@@ -1,0 +1,287 @@
+{
+  "resume": {
+    "personal_info": {
+      "name": "Mukul Chandrakant Mahadik",
+      "email": "pemukul.jobs.dev@gmail.com",
+      "phone": "602-999-6671"
+    },
+    "work_experience": [
+      {
+        "company": "National Renewable Energy Laboratory (NREL)",
+        "position": "Software Development Engineer",
+        "duration": "08/2023 \u2013 09/2024",
+        "responsibilities": [
+          "Refined data processing in model build and analysis pipeline, transforming raw data into inferred values with comprehensive automated unit and integration testing.",
+          "Optimized system scalability through time complexity improvements, enhancing overall performance.",
+          "Troubleshot and resolved model build pipeline failures in staging and production environments using CloudWatch logs.",
+          "Streamlined and automated DevOps processes by restructuring CI/CD workflows with GitHub Actions.",
+          "Implementing data export/import functionality for timeseries data purge and restore, improving database efficiency and data lifecycle management."
+        ]
+      },
+      {
+        "company": "Oracle Financial Services Software",
+        "position": "Software Development Engineer",
+        "duration": "07/2021 \u2013 05/2022",
+        "responsibilities": [
+          "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in Production environments for 2 international financial banking firms.",
+          "Engineered 6 GUI based workflow runs for ETL pipelines with numerous tasks and integrated them with backend scripts to process data from Pre-staging to end-user report generation stage.",
+          "Enhanced UI for Individual Assessment (IA) module based on XML Forms Framework by customizing 4 UI Forms and 8 PL/SQL scripts to process over 300k customer records by proposing to debug existing legacy code.",
+          "Generated PL/SQL scripts for data manipulation and validation to automate manual tasks for filtering source data that helped reduce execution times by 20% while generating end-user reports containing customer data for over 6 months.",
+          "Documented technical designs and deployed code packages across environments via WinSCP/PuTTY client-server apps."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "degree": "Masters in Computer Science",
+        "institution": "Arizona State University",
+        "year": "08/2022 \u2013 05/2024"
+      },
+      {
+        "degree": "Bachelors in Electronics and Communication",
+        "institution": "National Institute of Technology",
+        "year": "08/2017 \u2013 05/2021"
+      }
+    ],
+    "skills": [
+      "Python",
+      "C++",
+      "Java",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "TypeScript",
+      "PL/SQL",
+      "Go",
+      "REST API",
+      "GraphQL",
+      "Node.js",
+      "Express",
+      "React",
+      "Next.js",
+      "Flask",
+      "PostgreSQL",
+      "MongoDB",
+      "Oracle DB",
+      "AWS DynamoDB",
+      "Supabase",
+      "Prisma",
+      "Docker",
+      "Git",
+      "Linux",
+      "Bash",
+      "VSCode",
+      "Postman",
+      "Figma",
+      "Documentation",
+      "Agile",
+      "OpenStack",
+      "Kubernetes"
+    ],
+    "projects": [
+      {
+        "name": "Microservices Video to MP3 Converter",
+        "description": "Engineered a distributed system for converting video files to MP3 format using microservices architecture.",
+        "technologies": [
+          "Python",
+          "Docker",
+          "Kubernetes",
+          "RabbitMQ",
+          "MongoDB"
+        ]
+      },
+      {
+        "name": "Kafka Confluent Cloud Pub-Sub",
+        "description": "Implemented Apache Kafka producers/consumers using Confluent Cloud with topic management, data serialization.",
+        "technologies": [
+          "Kafka",
+          "Java",
+          "Python",
+          "Go",
+          "Node.js",
+          "Spring Boot",
+          "Docker"
+        ]
+      },
+      {
+        "name": "Classic To-Do List",
+        "description": "Developed a full-stack task manager webapp with CRUD operations using React and Go with PostgreSQL database.",
+        "technologies": [
+          "React",
+          "Go",
+          "GraphQL",
+          "AWS",
+          "PostgreSQL"
+        ]
+      },
+      {
+        "name": "Voice AI Interviewer Agent",
+        "description": "Engineered an AI-powered voice interviewer, leveraging Groq for fast inference and Vapi for voice interactions.",
+        "technologies": [
+          "TypeScript",
+          "NextJS",
+          "Vapi",
+          "Supabase",
+          "Groq",
+          "GenAI",
+          "ShadCN UI"
+        ]
+      },
+      {
+        "name": "Cloud-based Video Face Recognition App",
+        "description": "Designed a 3-tier hybrid cloud architecture leveraging AWS and OpenStack for Web, App, and Data tiers integration.",
+        "technologies": [
+          "AWS",
+          "Python",
+          "Flask",
+          "Docker",
+          "OpenStack"
+        ]
+      }
+    ],
+    "achievements": [
+      {
+        "award": "Overall Winner",
+        "program": "AICamp Generative AI Hackathon for AI Agent and RAG",
+        "year": "06/2024"
+      }
+    ],
+    "extracurriculars": [
+      {
+        "activity": "Coding Experiences: Debugging Made Easier",
+        "description": "Maintaining blog with posts - 'Adding Local Directory to GitHub Repository' and 'Renaming Multiple Files At Once'."
+      }
+    ]
+  },
+  "linkedin": {
+    "personal_info": {
+      "name": "Mukul C. Mahadik",
+      "email": "mukulm2010@gmail.com",
+      "phone": "+16029996671"
+    },
+    "work_experience": [
+      {
+        "company": "National Renewable Energy Laboratory",
+        "position": "Software Engineer Intern - Python Developer, DevOps Engineer",
+        "duration": "August 2023 - Present (1 year 2 months)",
+        "responsibilities": [
+          "Refined data processing in model build and analysis pipeline in a distributed system for transforming raw data to inferred values followed by end-to-end manual and automated unit testing and integration tests.",
+          "Did scaling and performance optimization to address scalability requirements by optimizing time complexity.",
+          "Diagnosed and remedied model build pipeline failures in staging and production environments using Cloudwatch logs.",
+          "Automated deployment DevOps process by restructuring CI/CD workflows using GitHub Actions."
+        ]
+      },
+      {
+        "company": "Ira A. Fulton Schools of Engineering at Arizona State University",
+        "position": "Graduate Services Assistant",
+        "duration": "January 2023 - May 2023 (5 months)",
+        "responsibilities": [
+          "Grader for CSE 536 Advanced Operating Systems course (Spring 2023) under School of Computing and Augmented Intelligence (SCAI).",
+          "Activities: Preparing and reviewing coursework, Assisting students during office hours, Grading assignments."
+        ]
+      },
+      {
+        "company": "ORACLE FINANCIAL SERVICES SOFTWARE LIMITED",
+        "position": "Software Engineer - PL/SQL Developer",
+        "duration": "July 2021 - May 2022 (11 months)",
+        "responsibilities": [
+          "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in Production environments for 2 international financial banking firms.",
+          "Engineered 6 GUI based workflow runs for ETL pipelines with numerous tasks and integrated them with backend scripts to process data from Pre-staging to end-user report generation stage.",
+          "Enhanced UI for Individual Assessment (IA) module based on XML Forms Framework by customizing 4 UI Forms and 8 PL/SQL scripts to process over 300k customer records by proposing to debug existing legacy code.",
+          "Generated PL/SQL scripts for data manipulation and validation to automate manual tasks for filtering source data that helped reduce execution times by 20% while generating end-user reports containing customer data for over 6 months.",
+          "Documented technical designs and deployed code packages across environments via WinSCP/PuTTY client-server apps."
+        ]
+      },
+      {
+        "company": "Inter-university accelerator centre",
+        "position": "Embedded C++ Developer",
+        "duration": "May 2020 - August 2020 (4 months)",
+        "responsibilities": [
+          "Worked under Dr. Joby Antony (MS Kent State University, Ohio, USA), Formerly Visiting Scientist, CERN, Geneva.",
+          "Designed software modules for ARM Cortex-M3 embedded server sensor device to measure subzero temperatures.",
+          "Troubleshooted bugs and optimized the system to handle real-time sensor data via RPC transfer protocols."
+        ]
+      },
+      {
+        "company": "College of Engineering Pune",
+        "position": "Python Developer",
+        "duration": "May 2019 - July 2019 (3 months)",
+        "responsibilities": [
+          "Worked under the guidance of Ms. Vanita Agarwal, Assistant Professor, Department of Electronics & Telecommunication Engineering, College of Engineering, Pune.",
+          "Successfully modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining using Python.",
+          "Designed custom-built library to process 65,536 objects in 2 minutes with accuracy of 95% using linear regression."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "degree": "Master of Science - MS",
+        "institution": "Arizona State University",
+        "year": "August 2022 - May 2024"
+      },
+      {
+        "degree": "Bachelor of Technology - BTech",
+        "institution": "National Institute of Technology Hamirpur",
+        "year": "July 2017 - June 2021"
+      },
+      {
+        "degree": "Class XI-XII",
+        "institution": "The Bishops School, Camp",
+        "year": "2015 - 2017"
+      },
+      {
+        "degree": "Class UKG-X",
+        "institution": "The Bishops Co-Ed School, Kalyaninagar",
+        "year": "2004 - 2015"
+      }
+    ],
+    "skills": [
+      "Python",
+      "TypeScript",
+      "C++",
+      "Java",
+      "Flask",
+      "Spring Boot",
+      "Oracle SQL",
+      "MongoDB",
+      "AWS",
+      "Kubernetes",
+      "Git",
+      "Docker",
+      "Full-stack development",
+      "Generative AI applications"
+    ],
+    "projects": [
+      {
+        "name": "N/A",
+        "description": "N/A",
+        "technologies": []
+      }
+    ],
+    "achievements": [
+      "1x Hackathon Winner",
+      "KPIT Sparkle 2019: Centennial",
+      "Brigade Certificate of Merit",
+      "Google IT Automation with Python"
+    ],
+    "extracurriculars": []
+  },
+  "qa_responses": [
+    {
+      "question": "What are you looking for in your next role?",
+      "answer": "In my next role, I'm primarily looking for opportunities for growth, learning, and making a significant impact. I'm seeking a position where I can contribute to building and scaling products that serve a large user base, ideally reaching over a million users. This kind of challenge excites me as it presents complex technical problems and the opportunity to learn about system scalability. I'm also looking for an environment that encourages proactivity and ownership. My experience in hackathons and personal projects has shown me that I thrive when given the autonomy to tackle problems creatively. I'm eager to join a team where I can take initiative, propose solutions, and see them through to implementation. Additionally, I value a collaborative team environment where I can learn from experienced colleagues while also contributing my own ideas. I'm particularly interested in roles that involve working with cutting-edge technologies and require continuous learning. Lastly, I'm looking for a role that aligns with my personal values of creating technology that has a positive impact on users' lives."
+    },
+    {
+      "question": "Why do you want to work for X company?",
+      "answer": "I'm drawn to X company because of its commitment to innovation and its potential for significant impact in the tech industry. Your mission to [insert specific mission if known] aligns perfectly with my personal goal of contributing to products that can serve millions of users. I'm particularly excited about the opportunity to work with cutting-edge technologies like [mention specific technologies if known about the company]. My recent experience of rapidly learning <mention tech stack> demonstrates my ability to quickly adapt to new technologies, which I believe would be valuable in a fast-paced environment like X company. Moreover, I'm motivated by the chance to work in an unstructured environment where I can take ownership of projects and contribute proactively to solving complex problems. The potential for growth and learning at X company is incredibly appealing to me. At this stage in my career, I'm prioritizing opportunities to expand my skills and make meaningful contributions over financial considerations. I believe X company offers the perfect environment for me to challenge myself, learn from experienced colleagues, and contribute to impactful projects."
+    },
+    {
+      "question": "What project are you currently working on?",
+      "answer": "I'm currently developing a Voice AI Interviewer Agent, which combines cutting-edge AI technologies with full-stack development to create an innovative interviewing tool."
+    },
+    {
+      "question": "What is the most challenging aspect of your current project?",
+      "answer": "The most challenging aspect of the Voice AI Interviewer Agent project is developing an accurate and nuanced evaluation system for interview responses."
+    }
+  ]
+}

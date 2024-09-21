@@ -44,6 +44,16 @@ class CodingCulture(BaseModel):
     reference_context: list[str]
 
 
+class Question(BaseModel):
+    question: str
+    reference_context: list[str]
+
+
+class Answer(BaseModel):
+    answer: str
+    reference_context: list[str]
+
+
 class User(BaseModel):
     name: str
     email: str
