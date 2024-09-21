@@ -1,0 +1,37 @@
+{
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    "python.testing.pytestEnabled": true,
+    "isort.check": true,
+    "isort.args": [
+        "--profile",
+        "black"
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.rulers": [
+            88,
+        ]
+    },
+    "flake8.args": [
+        "--show-source",
+        "--config=.flake8"
+    ],
+    "cSpell.words": [
+        "aiohttp",
+        "loguru",
+        "msearch",
+        "openai",
+        "opensearchpy",
+        "pydantic",
+        "sigmahq",
+        "upserted",
+        "upserting",
+        "upserts",
+        "zipball"
+    ],
+    "mypy.runUsingActiveInterpreter": true,
+    "mypy.debugLogging": true,
+}
