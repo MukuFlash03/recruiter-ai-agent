@@ -260,8 +260,8 @@ Page 4 of 4
 
     # Example usage
     experiences: Experiences = parse_input(
-        system_content="You are a helpful math tutor. Guide the user through the solution step by step.",
-        user_content="how can I solve 8x + 7 = -23",
+        system_content="Extract the experiences from the resume.",
+        user_content=example_content,
         response_format=Experiences,
     )
 
