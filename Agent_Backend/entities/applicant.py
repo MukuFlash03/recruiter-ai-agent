@@ -11,7 +11,8 @@ class Experience(BaseModel):
     reference_context: list[str]
     reasoning: str
 
-
+class Experiences(BaseModel):
+    experiences: list[Experience]
 class Skill(BaseModel):
     name: str
     proficiency: str
