@@ -1,2 +1,3 @@
 groq
 PyPDF2==3.0.1
+openai==1.42.0
