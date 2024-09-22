@@ -77,7 +77,7 @@ export function Page() {
 
             const response = await saveAudio(base64AudioMessage?.toString() || '')
             console.log('File saved successfully:', response)
-            router.push('/candidate/123')
+            // router.push('/candidate/123')
           } catch (error) {
             console.error('Error saving audio:', error)
           }
@@ -174,9 +174,27 @@ export function Page() {
     }
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Here you would typically send the recordings to your server
-    
+    try {
+      const response = await fetch("/api/update-audio-text", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        console.log("Profile saved successfully");
+
+      } else {
+        throw new Error("Failed to save profile");
+      }
+    } catch (error) {
+      console.error("Error saving profile:", error);
+      alert("Failed to save profile. Please try again.");
+    }
+
     // For this example, we'll just show a success message
     toast({
       title: "Interview Submitted",
