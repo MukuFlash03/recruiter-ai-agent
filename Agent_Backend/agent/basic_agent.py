@@ -1,13 +1,34 @@
 from typing import List, Type, TypeVar, Any
 from pydantic import BaseModel
 from openai import OpenAI
+import PyPDF2
+import sys
+import os
 
+current_file_path = os.path.abspath(__file__)
+parent_directory = os.path.dirname(os.path.dirname(current_file_path))
+sys.path.append(parent_directory)
+
+from entities.applicant import User, ExperienceList, EducationList, SkillList, ProjectList, AchievementList, QuestionAnswer, QuestionAnswerList
 
 # Define a generic type variable
 T = TypeVar("T", bound=BaseModel)
 
 client: OpenAI = OpenAI()
 
+def extract_text_from_pdf(file_path: str) -> str:
+    """
+    Extract text from a PDF file.
+    
+    :param file_path: Path to the PDF file
+    :return: Extracted text content
+    """
+    text = ""
+    with open(file_path, 'rb') as file:
+        reader = PyPDF2.PdfReader(file)
+        for page in reader.pages:
+            text += page.extract_text() + "\n"
+    return text
 
 def parse_input(
     system_content: str,
@@ -60,210 +81,110 @@ def get_openai_text_response(
 
     return response.choices[0].message.content
 
+def read_prepared_qna(file_path):
+    with open(file_path, 'r') as file:
+        content = file.read()
+    return content
 
 # TODO: use groq later.
 
 if __name__ == "__main__":
 
-    example_content = """
-Contact
-www.linkedin.com/in/eordax
-(LinkedIn)
+    resume_path = "data/Resume/Mukul_Resume.pdf"
+    linkedin_path = "data/LinkedIn/Mukul_LI_Profile.pdf"
+    questions_path = "data/QnA/Questions.txt"
+    answers_path = "data/QnA/Mukul_Answers.txt"
 
-Top Skills
-Artificial Intelligence (AI)
-Machine Learning
-MLOps
+    resume_content = extract_text_from_pdf(resume_path)
+    linkedin_content = extract_text_from_pdf(linkedin_path)
 
-Languages
-Español (Native or Bilingual)
-Inglés (Native or Bilingual)
+    merged_content = resume_content + linkedin_content
 
-Certifications
-AWS Certified Cloud Practitioner
+    raw_questions = read_prepared_qna(questions_path)
+    raw_answers = read_prepared_qna(answers_path)
 
-Eduardo Ordax
+    questions = raw_questions.split("\n\n")
+    questions = [question for question in questions if question.startswith("Q")]
+    
+    answers = raw_answers.split("-----------------")
+    
+    question_answer_list = []
+    for question, answer in zip(questions, answers):
+        question_answer_list.append(QuestionAnswer(question=question, answer=answer))
+    
+    qa_list: QuestionAnswerList = QuestionAnswerList(question_answer_list=question_answer_list)
 
-Generative AI Lead @ AWS ☁️ | Startup Advisor | Public Speaker
-Madrid, Community of Madrid, Spain
-
-Summary
-One of my favorite quotes that I strive to live by every day is, "To
-give anything less than your best is to sacrifice the gift." In addition to
-this guiding principle, I have a daily ritual that I cherish - rising early
-in the morning to run a few miles, setting the tone for an energised
-and productive day ahead."
-With a strong technical foundation, I have over 15 years of extensive
-experience in sales and business development. Throughout my
-career, I've successfully led cross-functional teams and in recent
-years, I've honed my expertise in Artificial Intelligence and Machine
-Learning. In the ever-evolving landscape of AI and ML, organisations
-are grappling with the need to accelerate their journey. To overcome
-that, I work as the AI/ML Go to Market EMEA Lead at AWS, where I
-assist customers around the world in harnessing the full potential of
-Artificial Intelligence.
-I am passionate about actively engaging in discussions surrounding
-these topics and connecting with fellow professionals in the field to
-exchange knowledge and experiences
-I am a proud parent of two amazing children, whom I consider to be
-among the most wonderful accomplishments in this world
-
-Experience
-Amazon Web Services (AWS)
-2 years 4 months
-
-Principal Go to Market Generative AI
-June 2024 - Present (4 months)
-Greater Madrid Metropolitan Area
-
-Go to Market expert for AI & ML AWS services in EMEA. Responsible for
-providing business and technical expertise to help our customers succeed.
-
-Page 1 of 4
-
-This involves leading the Go to Market for Generative AI, scaling activities with
-other stakeholders and shaping the evolution of our AI Services and Products.
-
-Principal MLOps EMEA
-
-June 2022 - June 2024 (2 years 1 month)
-EMEA
-Responsible for building business and technical relationships with large
-enterprises and operate as their trusted advisor, ensuring they get the most
-out of the cloud at every stage of their journey in adopting Machine Learning
-across their organisation.
-
-Vodafone
-General Manager AI
-
-July 2020 - June 2022 (2 years)
-Madrid y alrededores
-The Analytics manager will lead the analytics strategy within Vodafone Group
-across all the countries in order to:
-Contribute to the creation, delivery and evolution of the insight strategy to
-maximize the benefit of significant investment in data and business intelligence
-tools.
-Co-lead the development and delivery of a commercial roadmap of data
-products and services.
-Manage the definition and delivery of actionable insight for both Business-AsUsual activities and ad-hoc/project based initiatives.
-
-Vodafone Business
-Manager Big Data & Advanced Analytics
-April 2019 - July 2020 (1 year 4 months)
-Madrid Area, Spain
-
-Lead the creation of advanced analytics products that provides actionable
-business insights to Vodafone and its customers.
-Identify opportunities to generate value internally and external customers
-through the use of predictive models with large and varied datasets.
-Optimise use of existing big data technology.
-Contribute to the definition of the data monetisation strategy for enterprise
-customers.
-
-Vodafone
-Manager Partners & Solutions
-
-March 2014 - April 2019 (5 years 2 months)
-Page 2 of 4
-
-Madrid
-Responsible for building, maintaining and managing sound relationships with
-the customers through our team of Partners and Solution Selling Program.
-
-Vodacom
-Business Development Manager
-
-May 2012 - March 2014 (1 year 11 months)
-To help position Vodacom Business as a Mobile Solution Partner in
-solving service delivery issues for corporate customers. Achievement of
-sales objectives by identifying, creating and pursuing newrevenue growth
-opportunities, within targeted customers.
-
-Vodafone
-4 years 3 months
-
-Sales Support Specialist
-
-January 2012 - May 2012 (5 months)
-Sales support professionals work in the administration side of the business.
-My job includes handling correspondence, reviewing and distributing sales
-related documents, creating new sales opportunities, examine client accounts,
-prepare and distribute financial and sales reports to advise team members.
-They also assist sales teams with new ideas and suggestions to achieve their
-targets.
-
-key Account Manager
-
-September 2008 - January 2012 (3 years 5 months)
-Responsible for the management of the sales and relationship with strategic
-customers.
-To engage in a variety of tasks including project management, coordination,
-strategic planning, relationship management, negotiation, leadership and
-innovative development of opportunities. keeping record of transaction of sale
-and purchase goods.
-
-Pre-Sales Specialist
-
-March 2008 - September 2008 (7 months)
-To lead the development of sales propositions, researching sales markets,
-creating sales plans that match specific market needs with Upstream’s
-solutions. As well, responsible of building up existing sales collateral, to
-present innovative and add value commercial proposals.
-
-Thales
-Page 3 of 4
-
-Junior Programmer & Analyst
-
-September 2007 - March 2008 (7 months)
-
-Education
-Universidad de Valladolid
-Master Postgraduade: Marketing & Project Managment, Project
-Management · (2008 - 2009)
-
-Launchpad AI
-Data Scientist Intensive Program (320h), Big Data & Analytics · (2019 - 2019)
-
-University of Derby Corporate
-Telecoms Mini MBA Programme, Technology and Business · (2013 - 2013)
-
-Educational Testing Service (ETS)
-Test of English for International Communication (TOEIC), English C1
-Level · (2011 - 2011)
-
-Katholieke Hogeschool Zuid-West Vlaanderen . Kortrijk
-Final Project, Informatics · (2007 - 2007)
-
-Page 4 of 4
-
-
-"""
-    # Define a sample response format class for math reasoning
-
-    class Experience(BaseModel):
-        title: str
-        company: str
-        location: str
-        start_date: str
-        end_date: str
-        description: str
-        reference_context: list[str]
-        reasoning: str
-
-    class Experiences(BaseModel):
-        experiences: List[Experience]
-
-    class MathReasoning(BaseModel):
-        steps: List[str]
-        result: str
 
     # Example usage
-    experiences: Experiences = parse_input(
+    experiences: ExperienceList = parse_input(
         system_content="Extract the experiences from the resume.",
-        user_content=example_content,
-        response_format=Experiences,
+        user_content=merged_content,
+        response_format=ExperienceList,
     )
+    
+    educations: EducationList = parse_input(
+        system_content="Extract the educations from the resume.",
+        user_content=merged_content,
+        response_format=EducationList,
+    )
+
+    skills: SkillList = parse_input(
+        system_content="Extract the skills from the resume.",
+        user_content=merged_content,
+        response_format=SkillList,
+    )
+
+    projects: ProjectList = parse_input(
+        system_content="Extract the projects from the resume.",
+        user_content=merged_content,
+        response_format=ProjectList,
+    )
+
+    achievements: AchievementList = parse_input(
+        system_content="Extract the achievements from the resume.",
+        user_content=merged_content,
+        response_format=AchievementList,
+    )
+
+    name: str = parse_input(
+        system_content="Extract the name from the resume.",
+        user_content=merged_content,
+        response_format=str,
+    )
+
+    email: str = parse_input(
+        system_content="Extract the email from the resume.",
+        user_content=merged_content,
+        response_format=str,
+    )
+    phone: str = parse_input(
+        system_content="Extract the phone number from the resume.",
+        user_content=merged_content,
+        response_format=str,
+    )
+    location: str = parse_input(
+        system_content="Extract the location from the resume.",
+        user_content=merged_content,
+        response_format=str,
+    )
+
+
+
+
+    user = User(
+        name=name,
+        email=email,
+        phone=phone,
+        location=location,
+        experiences=experiences,
+        educations=educations,
+        skills=skills,
+        projects=projects,
+        achievements=achievements,
+        questionAnswer=qa_list
+
+    )
+
 
     for i, experience in enumerate(experiences.experiences):
         print("Company", i + 1, experience.company)
