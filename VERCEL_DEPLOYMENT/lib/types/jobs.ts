@@ -10,3 +10,11 @@ export type JobsResponse = {
 export type SelectedJobsResponse = Pick<JobsResponse,
     'job_id' | 'job_title' | 'company_name'
 >;
+
+export interface JobPostingData {
+    jobTitle: string;
+    companyName: string;
+    jobDescription: string;
+    requiredSkills: string;
+    questions: string[];
+}

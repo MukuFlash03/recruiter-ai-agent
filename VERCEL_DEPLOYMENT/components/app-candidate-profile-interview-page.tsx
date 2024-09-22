@@ -1,11 +1,13 @@
 'use client'
 
-import Link from 'next/link'
-import { useState, useRef, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Mic, Square, Play, Pause, Trash2 } from 'lucide-react'
 import { useToast } from "@/hooks/use-toast"
+import { saveAudio } from "@/lib/utils/api_calls"
+import { Mic, Pause, Play, Square, Trash2 } from 'lucide-react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react'
 
 const questions = [
   "Tell me a bit about yourself",
@@ -27,6 +29,8 @@ export function Page() {
   const timerIntervalRef = useRef<NodeJS.Timeout | null>(null)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const { toast } = useToast()
+
+  const router = useRouter()
 
   useEffect(() => {
     return () => {
@@ -53,14 +57,34 @@ export function Page() {
       audioChunksRef.current.push(event.data)
     }
 
-    mediaRecorder.onstop = () => {
+    mediaRecorder.onstop = async () => {
       const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/wav' })
       const audioUrl = URL.createObjectURL(audioBlob)
+      const newRecording = { url: audioUrl, duration: timer }
+
       setRecordings(prev => {
         const newRecordings = [...prev]
-        newRecordings[currentQuestion] = { url: audioUrl, duration: timer }
+        newRecordings[currentQuestion] = newRecording
         return newRecordings
       })
+
+      // Save only the first recording to the server
+      if (currentQuestion === 0) {
+        const reader = new FileReader()
+        reader.onloadend = async () => {
+          const base64AudioMessage = reader.result
+          try {
+
+            const response = await saveAudio(base64AudioMessage?.toString() || '')
+            console.log('File saved successfully:', response)
+            // router.push('/candidate/123')
+          } catch (error) {
+            console.error('Error saving audio:', error)
+          }
+        }
+        reader.readAsDataURL(audioBlob)
+      }
+
       setTimer(0)
     }
 
@@ -70,6 +94,7 @@ export function Page() {
       setTimer(prevTimer => prevTimer + 1)
     }, 1000)
   }
+
 
   const stopRecording = () => {
     mediaRecorderRef.current?.stop()
@@ -149,8 +174,27 @@ export function Page() {
     }
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Here you would typically send the recordings to your server
+    try {
+      const response = await fetch("/api/update-audio-text", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        console.log("Profile saved successfully");
+
+      } else {
+        throw new Error("Failed to save profile");
+      }
+    } catch (error) {
+      console.error("Error saving profile:", error);
+      alert("Failed to save profile. Please try again.");
+    }
+
     // For this example, we'll just show a success message
     toast({
       title: "Interview Submitted",
@@ -203,7 +247,7 @@ export function Page() {
         </div>
       </CardContent>
       <CardFooter className="flex justify-between">
-        {currentQuestion === 0? (
+        {currentQuestion === 0 ? (
           <Link href="/candidate/123/profile">
             <Button>Back to Profile</Button>
           </Link>
