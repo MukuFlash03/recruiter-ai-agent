@@ -52,7 +52,8 @@ export function Page() {
       <div className="space-y-4">
         {interviewsData.map((candidate) => (
           <div key={candidate.interview_id} className="border p-4 rounded-lg">
-            <h2 className="text-xl font-semibold">{candidate.candidate_id}</h2>
+            {/* <h2 className="text-xl font-semibold">{candidate.candidate_id}</h2> */}
+            <h2 className="text-xl font-semibold">{candidate.candidate_name}</h2>
             <p>Score: {candidate.score}</p>
             <p>Match: {candidate.match_pct}</p>
             <p>Decision: {candidate.interview_decision ? 'Selected' : 'Rejected'}</p>
