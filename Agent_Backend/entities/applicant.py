@@ -1,5 +1,15 @@
 from pydantic import BaseModel
 
+class Education(BaseModel):
+    degree: str
+    institution: str
+    start_date: str
+    end_date: str
+    grade: str
+    reference_context: list[str]
+
+class EducationList(BaseModel):
+    education: list[Education]
 
 class Experience(BaseModel):
     title: str
@@ -10,48 +20,41 @@ class Experience(BaseModel):
     description: str
     reference_context: list[str]
     reasoning: str
+    skills: list[str]
 
+class ExperienceList(BaseModel):
+    experiences: list[Experience]
 
-class Skill(BaseModel):
-    name: str
-    proficiency: str
-    experience: int
+class SkillList(BaseModel):
+    name: list[str]
     reference_context: list[str]
 
-
-class Expertise(BaseModel):
+class Project(BaseModel):
     name: str
     description: str
+    start_date: str
+    end_date: str
     reference_context: list[str]
+    skills: list[str]
 
+class ProjectList(BaseModel):
+    projects: list[Project]
 
 class Achievement(BaseModel):
     title: str
     description: str
     reference_context: list[str]
 
+class AchievementList(BaseModel):
+    achievements: list[Achievement]
 
-class PersonalityTrait(BaseModel):
-    name: str
-    description: str
-    reference_context: list[str]
-
-
-class CodingCulture(BaseModel):
-    name: str
-    description: str
-    reference_context: list[str]
-
-
-class Question(BaseModel):
+class QuestionAnswer(BaseModel):
     question: str
-    reference_context: list[str]
-
-
-class Answer(BaseModel):
     answer: str
-    reference_context: list[str]
 
+
+class QuestionAnswerList(BaseModel):
+    question_answer_list: list[QuestionAnswer]
 
 class User(BaseModel):
     name: str
@@ -59,12 +62,8 @@ class User(BaseModel):
     phone: str
     location: str
     experience: list[Experience]
-    skills: list[Skill]
-    expertise: list[Expertise]
+    skills: SkillList
     achievements: list[Achievement]
-    personality_traits: list[PersonalityTrait]
-    coding_culture: list[CodingCulture]
-    reference_context: list[str]
-    reasoning: str
-    user_id: str
-    user_type: str
+    projects: list[Project]
+    education: list[Education]
+    questionAnswer: list[QuestionAnswerList]
