@@ -33,8 +33,4 @@ graph TD
     plus --> Questions
     Questions --> RecruiterAgent
 
-
-
-
-
 ```
