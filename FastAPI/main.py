@@ -1,4 +1,4 @@
-from fastapi import FastAPI, BackgroundTasks, HTTPException
+from fastapi import FastAPI, BackgroundTasks, HTTPException, Request
 from typing import Dict
 
 import sys
@@ -11,6 +11,7 @@ sys.path.append(f"{parent_directory}/Agent_Backend")
 sys.path.append(f"{parent_directory}/Agent_Backend/agent")
 
 from Agent_Backend.agent.test_basic_agent import get_user_info
+from Agent_Backend.agent.workflow import end_to_end_agent
 
 app = FastAPI()
 
@@ -21,6 +22,33 @@ def background_task(message: str) -> None:
     A simple background task that simulates some processing.
     """
     print(f"Processing background task with message: {message}")
+
+
+# Asynchronous route with background task
+from typing import List, Any
+from fastapi import FastAPI
+import asyncio
+from pydantic import BaseModel
+
+app = FastAPI()
+
+
+class Questions(BaseModel):
+    questions: list[str]
+
+
+@app.post("/analyze_candidates")
+async def analyze_candidates(request: Request, questions: Questions) -> Any:
+    """
+    An asynchronous API route that processes a list of questions.
+    """
+    # Simulate some async processing
+    await asyncio.sleep(1)  # Simulate IO-bound operation
+
+    return_json = await end_to_end_agent(all_questions=questions.questions)
+    # Example response, you can replace this with actual processing
+
+    return return_json
 
 
 # Synchronous route with background task
