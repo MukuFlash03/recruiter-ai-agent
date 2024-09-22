@@ -1,15 +1,17 @@
 'use client'
 
-import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { SelectedJobsResponse } from "@/lib/types/jobs"
+import { fetchJobPostings } from '@/lib/utils/api_calls'
 import { PlusCircle, X } from "lucide-react"
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 // Placeholder data
 const jobPostings = [
@@ -28,6 +30,24 @@ export function RecruiterDashboardComponent() {
   const [activeTab, setActiveTab] = useState("overview")
   const [questions, setQuestions] = useState<string[]>([''])
   const [isNewJobModalOpen, setIsNewJobModalOpen] = useState(false)
+  const [jobPostingsData, setJobPostingsData] = useState<SelectedJobsResponse[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const data = await fetchJobPostings();
+        setJobPostingsData(data.data);
+        setLoading(false);
+      } catch (err) {
+        setError('Failed to fetch jon postings data');
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
 
   const addQuestion = () => {
     setQuestions([...questions, ''])
@@ -127,16 +147,19 @@ export function RecruiterDashboardComponent() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {jobPostings.map((job) => (
-                  <Card key={job.id}>
+                {/* {jobPostings.map((job) => ( */}
+                {jobPostingsData.map((job) => (
+                  <Card key={job.job_id}>
                     <CardHeader>
-                      <CardTitle>{job.title}</CardTitle>
-                      <CardDescription>{job.company}</CardDescription>
+                      <CardTitle>{job.job_title}</CardTitle>
+                      <CardDescription>{job.company_name}</CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <p>{job.applicants} applicants</p>
+                      {/* TODO: Replace with actual selected top candidates from True count from interviews table in database */}
+                      {/* <p>{job.applicants} applicants</p> */}
+                      <p>5 applicants</p>
                       <div className="flex justify-end mt-2">
-                        <Link href="/recruiter/results">
+                        <Link href={`/recruiter/jobs/${job.job_id}/results`}>
                           <Button variant="outline" size="sm">View Details</Button>
                         </Link>
                       </div>
