@@ -1,9 +1,9 @@
 'use client'
 
-import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Home, Users, Briefcase, MessageSquare, Settings } from 'lucide-react'
+import { Briefcase, Home, MessageSquare, Settings, Users } from 'lucide-react'
+import Link from 'next/link'
 
 export function Sidebar() {
   return (
@@ -17,7 +17,7 @@ export function Sidebar() {
             </Link>
           </Button>
           <Button variant="ghost" className="w-full justify-start" asChild>
-            <Link href="/candidate">
+            <Link href="/candidate/123">
               <Users className="mr-2 h-4 w-4" />
               For Candidates
             </Link>

@@ -1,14 +1,15 @@
 'use client'
 
-import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { PlusCircle, X } from "lucide-react"
+import Link from 'next/link'
+import { useState } from 'react'
 
 // Placeholder data
 const jobPostings = [
@@ -135,7 +136,9 @@ export function RecruiterDashboardComponent() {
                     <CardContent>
                       <p>{job.applicants} applicants</p>
                       <div className="flex justify-end mt-2">
-                        <Button variant="outline" size="sm">View Details</Button>
+                        <Link href={`/recruiter/jobs/${job.id}/results`}>
+                          <Button variant="outline" size="sm">View Details</Button>
+                        </Link>
                       </div>
                     </CardContent>
                   </Card>

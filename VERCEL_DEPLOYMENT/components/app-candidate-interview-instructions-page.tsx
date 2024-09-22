@@ -1,9 +1,9 @@
 'use client'
 
-import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { CheckCircle, Video } from 'lucide-react'
+import Link from 'next/link'
 
 export function Page() {
   return (
@@ -41,7 +41,7 @@ export function Page() {
           </li>
           <li className="flex items-start">
             <CheckCircle className="mr-2 mt-1 text-green-500" />
-            <span>Explain why you're interested in this position</span>
+            <span>Explain why you&apos;re interested in this position</span>
           </li>
           <li className="flex items-start">
             <CheckCircle className="mr-2 mt-1 text-green-500" />
@@ -53,10 +53,10 @@ export function Page() {
         </p>
       </Card>
       <div className="flex justify-between">
-        <Link href="/candidate">
+        <Link href="/candidate/123">
           <Button variant="outline">Back to Profile</Button>
         </Link>
-        <Link href="/candidate/interview/start">
+        <Link href="/candidate/123/interview/start">
           <Button>
             <Video className="mr-2" />
             Start Video Interview

@@ -1,8 +1,8 @@
 'use client'
 
-import Link from 'next/link'
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Users, Briefcase, Sparkles } from 'lucide-react'
+import { ArrowRight, Briefcase, Sparkles, Users } from 'lucide-react'
+import Link from 'next/link'
 
 export function Page() {
   return (
@@ -16,16 +16,16 @@ export function Page() {
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
           <Button asChild size="lg" className="w-full sm:w-auto group">
-            <Link href="/candidate" className="flex items-center justify-center">
+            <Link href="/candidate/123" className="flex items-center justify-center">
               <Users className="mr-2 h-5 w-5" />
-              I'm a Candidate
+              I&apos;m a Candidate
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="w-full sm:w-auto group">
             <Link href="/recruiter" className="flex items-center justify-center">
               <Briefcase className="mr-2 h-5 w-5" />
-              I'm a Recruiter
+              I&apos;m a Recruiter
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>

@@ -40,7 +40,7 @@ export function Page() {
       });
 
       if (response.ok) {
-        router.push("/candidate/interview");
+        router.push("/candidate/123/interview");
       } else {
         throw new Error("Failed to save profile");
       }
