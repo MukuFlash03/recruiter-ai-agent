@@ -10,8 +10,10 @@ export async function POST(request: Request) {
     const contact = formData.get('contact') as string;
     const file = formData.get('file') as File;
     const linkedIn = formData.get('linkedIn') as string;
-    const github = formData.get('github') as string;
-    const portfolio = formData.get('portfolio') as string;
+    const location = formData.get('location') as string;
+    const workPreference = formData.get('workPreference') as string;
+    const salaryExpectation = formData.get('salaryExpectation') as string;
+    const additionalInfo = formData.get('additionalInfo') as string;
 
     if (!file) {
         return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
@@ -32,7 +34,7 @@ export async function POST(request: Request) {
         // For this example, we'll just log it
         const result_fetchResumeContent = await fetchPdfText(filePath)
         console.log(result_fetchResumeContent);
-        console.log('Profile info:', { name, email, contact, linkedIn, github, portfolio });
+        console.log('Profile info:', { name, email, contact, linkedIn, location, workPreference, salaryExpectation, additionalInfo });
 
         return NextResponse.json({ message: 'Profile saved successfully' });
     } catch (error) {

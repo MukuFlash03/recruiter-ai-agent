@@ -46,17 +46,18 @@ export async function fetchJobPostings() {
     return response.json();
 }
 
-export async function fetchInterviewData(candidate_data: { job_id: string }) {
+// export async function fetchInterviewData(candidate_data: { job_id: string }) {
+export async function fetchInterviewData() {
     const response = await fetch('/api/read-interviews-data', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(candidate_data),
+        // body: JSON.stringify(candidate_data),
     });
 
     if (!response.ok) {
-        throw new Error('Failed to fetch job postings data');
+        throw new Error('Failed to fetch interviews data');
     }
 
     return response.json();
