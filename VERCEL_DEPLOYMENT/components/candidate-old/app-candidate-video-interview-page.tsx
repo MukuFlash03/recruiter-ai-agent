@@ -1,10 +1,12 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { ArrowLeft, Video, Pause, StopCircle } from 'lucide-react'
+import { saveRecording } from '@/lib/utils/api_calls'
+import { ArrowLeft, Pause, StopCircle, Video } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react'
 
 export function Page() {
   const [isRecording, setIsRecording] = useState(false)
@@ -12,6 +14,10 @@ export function Page() {
   const [timer, setTimer] = useState(0)
   const videoRef = useRef<HTMLVideoElement>(null)
   const streamRef = useRef<MediaStream | null>(null)
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null)
+  const chunksRef = useRef<Blob[]>([])
+
+  const router = useRouter()
 
   useEffect(() => {
     let interval: NodeJS.Timeout
@@ -42,6 +48,15 @@ export function Page() {
       if (videoRef.current) {
         videoRef.current.srcObject = stream
       }
+
+      mediaRecorderRef.current = new MediaRecorder(stream)
+      mediaRecorderRef.current.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          chunksRef.current.push(event.data)
+        }
+      }
+      mediaRecorderRef.current.start()
+
       setIsRecording(true)
       setIsPaused(false)
     } catch (err) {
@@ -53,10 +68,48 @@ export function Page() {
     setIsPaused(!isPaused)
   }
 
-  const stopRecording = () => {
+  const stopRecording = async () => {
     if (streamRef.current) {
       streamRef.current.getTracks().forEach(track => track.stop())
     }
+
+    if (mediaRecorderRef.current) {
+      mediaRecorderRef.current.stop()
+      mediaRecorderRef.current.onstop = async () => {
+        const audioBlob = new Blob(chunksRef.current, { type: 'audio/mp3' })
+        const reader = new FileReader()
+        reader.onloadend = async () => {
+          const base64AudioMessage = reader.result
+          try {
+            const response = await saveRecording(base64AudioMessage?.toString() || '')
+            console.log('File saved successfully:', response)
+            router.push('/candidate/123')
+          } catch (error) {
+            console.error('Error saving file:', error)
+          }
+        }
+        reader.readAsDataURL(audioBlob)
+        chunksRef.current = []
+      }
+    }
+
+    /*
+    if (mediaRecorderRef.current) {
+      mediaRecorderRef.current.stop()
+      mediaRecorderRef.current.onstop = () => {
+        const audioBlob = new Blob(chunksRef.current, { type: 'audio/mp3' })
+        const audioUrl = URL.createObjectURL(audioBlob)
+        const link = document.createElement('a')
+        link.href = audioUrl
+        link.download = 'interview_audio.mp3'
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        chunksRef.current = []
+      }
+    }
+    */
+
     setIsRecording(false)
     setIsPaused(false)
     setTimer(0)
@@ -64,7 +117,7 @@ export function Page() {
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-[#F3F4F6]">
-      <Link href="/candidate/interview" className="flex items-center text-[#4F46E5] hover:text-[#4338CA] mb-6">
+      <Link href="/candidate/123/interview" className="flex items-center text-[#4F46E5] hover:text-[#4338CA] mb-6">
         <ArrowLeft className="mr-2" /> Back to Instructions
       </Link>
       <h1 className="text-3xl font-bold mb-6 text-[#1F2937]">Video Interview</h1>
@@ -97,7 +150,7 @@ export function Page() {
           </div>
         </div>
         <p className="text-sm text-[#6B7280]">
-          Remember to introduce yourself, discuss your experience, and explain why you're interested in this position. Aim for 2-3 minutes.
+          Remember to introduce yourself, discuss your experience, and explain why you&apos;re interested in this position. Aim for 2-3 minutes.
         </p>
       </Card>
     </div>
