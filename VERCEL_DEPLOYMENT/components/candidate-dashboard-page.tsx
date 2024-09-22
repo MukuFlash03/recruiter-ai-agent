@@ -14,8 +14,8 @@ const fetchJobs = async () => {
   await new Promise(resolve => setTimeout(resolve, 1000))
   return [
     { id: 1, title: 'Software Engineer', company: 'Tech Co' },
-    { id: 2, title: 'Product Manager', company: 'Startup Inc' },
-    { id: 3, title: 'Data Scientist', company: 'Big Data Corp' },
+    { id: 2, title: 'Product Engineer', company: 'Startup Inc' },
+    { id: 3, title: 'Developer', company: 'Big Data Corp' },
   ]
 }
 
@@ -70,7 +70,7 @@ export function Page() {
           <CardTitle>Your Profile</CardTitle>
           <CardDescription>
             {profileComplete
-              ? "Your profile is complete. You're ready to explore job opportunities!"
+              ? "Your profile is complete. Your interview avatar will be automatically entered for top Job Opportunities"
               : "Complete your profile to unlock exciting job opportunities."}
           </CardDescription>
         </CardHeader>
@@ -96,8 +96,8 @@ export function Page() {
       {profileComplete && (
         <Card>
           <CardHeader>
-            <CardTitle>Job Listings</CardTitle>
-            <CardDescription>Here are some jobs that match your profile</CardDescription>
+            <CardTitle>Job Opportunities (Recruiter Screen Complete 🙌)</CardTitle>
+            <CardDescription>You passed the recruiter screen! Select Job Opportunities you want to move forward with </CardDescription>
           </CardHeader>
           <CardContent>
             <ul className="space-y-2">
