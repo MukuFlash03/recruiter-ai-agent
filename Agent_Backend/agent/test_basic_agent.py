@@ -4,6 +4,7 @@ from openai import OpenAI
 import PyPDF2
 import sys
 import os
+import asyncio
 
 current_file_path = os.path.abspath(__file__)
 parent_directory = os.path.dirname(os.path.dirname(current_file_path))
@@ -21,7 +22,12 @@ from entities.applicant import (
     PersonalDetails,
 )
 
-from basic_agent import parse_input
+from basic_agent import (
+    parse_input,
+    get_openai_text_response,
+    parse_input_async,
+    get_openai_text_response_async,
+)
 
 
 def read_prepared_qna(file_path):
@@ -45,7 +51,7 @@ def extract_text_from_pdf(file_path: str) -> str:
     return text
 
 
-if __name__ == "__main__":
+async def main():
     base_folder = "Agent_Backend/"
     # base_folder = ""
     resume_path = f"{base_folder}data/Resume/Mukul_Resume.pdf"
@@ -74,51 +80,66 @@ if __name__ == "__main__":
         question_answer_list=question_answer_list
     )
 
+    task_list: Any = []
     # Example usage
-    experiences: ExperienceList = parse_input(
+    experiences_task = parse_input_async(
         system_content="Extract the experiences from the resume.",
         user_content=merged_content,
         response_format=ExperienceList,
     )
-
-    educations: EducationList = parse_input(
+    educations_task = parse_input_async(
         system_content="Extract the educations from the resume.",
         user_content=merged_content,
         response_format=EducationList,
     )
-
-    skills: SkillList = parse_input(
+    skills_task = parse_input_async(
         system_content="Extract the skills from the resume.",
         user_content=merged_content,
         response_format=SkillList,
     )
 
-    projects: ProjectList = parse_input(
+    projects_task = parse_input_async(
         system_content="Extract the projects from the resume.",
         user_content=merged_content,
         response_format=ProjectList,
     )
 
-    achievements: AchievementList = parse_input(
+    achievements_task = parse_input_async(
         system_content="Extract the achievements from the resume.",
         user_content=merged_content,
         response_format=AchievementList,
     )
 
-    personal_details: PersonalDetails = parse_input(
+    personal_details_task = parse_input_async(
         system_content="""Extract the personal details of name, \
 email, location and phone from the resume.""",
         user_content=merged_content,
         response_format=PersonalDetails,
     )
 
+    task_list = [
+        asyncio.create_task(task)
+        for task in [
+            experiences_task,
+            educations_task,
+            skills_task,
+            projects_task,
+            achievements_task,
+            personal_details_task,
+        ]
+    ]
+
+    experiences, educations, skills, projects, achievements, personal_details = (
+        await asyncio.gather(*task_list)
+    )
+
     user = User(
         personal_details=personal_details,
-        experiences=experiences,
-        educations=educations,
-        skills=skills,
-        projects=projects,
-        achievements=achievements,
+        experiences=experiences.experiences,
+        educations=educations.education,
+        skills=skills.name,
+        projects=projects.projects,
+        achievements=achievements.achievements,
         questionAnswer=qa_list,
     )
 
@@ -136,3 +157,10 @@ email, location and phone from the resume.""",
         user_prompt=user_prompt, system_prompt=system_prompt
     )
     print(result)
+
+
+if __name__ == "__main__":
+
+    import asyncio
+
+    asyncio.run(main())
