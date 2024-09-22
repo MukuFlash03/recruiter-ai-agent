@@ -1,23 +1,26 @@
 {
     "education": [
         {
-            "degree": "Master of Science",
+            "degree": "Master of Science - MS, Computer Science",
             "institution": "Arizona State University",
             "start_date": "August 2022",
             "end_date": "May 2024",
             "grade": "GPA: 3.90 / 4.0",
             "reference_context": [
-                "Courses: Software Courses (Requirements; Design; Verification, Validation, Testing), Data Processing at Scale, Cloud Computing"
+                "Arizona State University",
+                "Master's in Computer Science",
+                "Required courses, Data Processing at Scale, Cloud Computing"
             ]
         },
         {
-            "degree": "Bachelor of Technology",
+            "degree": "Bachelor of Technology - BTech, Electronics and Communications Engineering",
             "institution": "National Institute of Technology Hamirpur",
             "start_date": "July 2017",
             "end_date": "June 2021",
             "grade": "GPA: 8.73 / 10",
             "reference_context": [
-                "Degree in Electronics and Communications Engineering"
+                "National Institute of Technology Hamirpur",
+                "Bachelor's in Electronics and Communications"
             ]
         },
         {
@@ -26,7 +29,10 @@
             "start_date": "2015",
             "end_date": "2017",
             "grade": "",
-            "reference_context": []
+            "reference_context": [
+                "The Bishops School, Camp",
+                "Class XI-XII"
+            ]
         },
         {
             "degree": "Class UKG-X",
@@ -34,7 +40,10 @@
             "start_date": "2004",
             "end_date": "2015",
             "grade": "",
-            "reference_context": []
+            "reference_context": [
+                "The Bishops Co-Ed School, Kalyaninagar",
+                "Class UKG-X"
+            ]
         }
     ]
 }

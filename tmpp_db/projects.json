@@ -83,7 +83,9 @@
                 "NextJS",
                 "Vapi",
                 "Supabase",
-                "Groq"
+                "Groq",
+                "GenAI",
+                "ShadCN UI"
             ]
         },
         {
