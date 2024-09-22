@@ -1,41 +1,41 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Badge } from "@/components/ui/badge"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog"
-import { UserCircle, ArrowRight, X, CheckCircle } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { ArrowRight, CheckCircle, UserCircle, X } from "lucide-react"
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 // Mock API call
 const fetchJobs = async () => {
   // Simulate API call
   await new Promise(resolve => setTimeout(resolve, 1000))
   return [
-    { 
-      id: 1, 
-      title: 'Full-Stack Engineer', 
+    {
+      id: 1,
+      title: 'Full-Stack Engineer',
       company: 'Fetch.ai',
       link: 'https://wellfound.com/jobs/3086730-full-stack-engineer-node-typescript-react',
       summary: 'Develop, deploy, and orchestrate multi-agent systems in an open AI Agents marketplace.',
       tags: ['React', 'Node.js', 'TypeScript'],
       status: 'New'
     },
-    { 
-      id: 2, 
-      title: 'Software Engineer, Developer Experience', 
+    {
+      id: 2,
+      title: 'Software Engineer, Developer Experience',
       company: 'Groq',
       link: 'https://groq.com/careers/?gh_jid=5993550003',
       summary: 'Ship code daily to improve the suite of APIs that >200k developers use to build fast AI applications.',
       tags: ['System Optimization', 'Software Development'],
       status: 'New'
     },
-    { 
-      id: 3, 
-      title: 'Software Engineer', 
+    {
+      id: 3,
+      title: 'Software Engineer',
       company: 'Vectara',
       link: 'https://job-boards.greenhouse.io/vectara/jobs/4040538008',
       summary: 'Apply machine learning to solve complex business problems.',
@@ -88,8 +88,8 @@ export function Page() {
 
   const confirmMoveForward = () => {
     if (selectedJob) {
-      setActiveJobs(activeJobs.map(job => 
-        job.id === selectedJob.id ? { ...job, status: 'Moving Forward' } : job
+      setActiveJobs(activeJobs.map(job =>
+        job.id === selectedJob.id ? { ...job, status: 'Next Step: Technical Screen' } : job
       ))
       setSelectedJob(null)
     }
@@ -113,7 +113,7 @@ export function Page() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Welcome Mukul</h1>
+      <h1 className="text-2xl font-bold mb-4">Welcome Sanya</h1>
       <Card className="mb-8">
         <CardHeader>
           <CardTitle>Your Profile</CardTitle>
@@ -170,12 +170,12 @@ export function Page() {
                           ))}
                         </div>
                       </div>
-                      <Badge variant={job.status === 'Moving Forward' ? 'default' : 'secondary'} className={job.status === 'Moving Forward' ? 'bg-primary text-primary-foreground' : ''}>
+                      <Badge variant={job.status === 'Next Step: Technical Screen' ? 'default' : 'secondary'} className={job.status === 'Next Step: Technical Screen' ? 'bg-primary text-primary-foreground' : ''}>
                         {job.status}
                       </Badge>
                     </div>
                     <div className="flex space-x-2 mt-4">
-                      {job.status !== 'Moving Forward' && (
+                      {job.status !== 'Next Step: Technical Screen' && (
                         <Dialog>
                           <DialogTrigger asChild>
                             <Button onClick={() => handleMoveForward(job)} size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
@@ -208,11 +208,11 @@ export function Page() {
                           </DialogContent>
                         </Dialog>
                       )}
-                      <Button 
-                        onClick={() => handleWithdraw(job.id)} 
-                        variant={job.status === 'Moving Forward' ? 'outline' : 'secondary'} 
+                      <Button
+                        onClick={() => handleWithdraw(job.id)}
+                        variant={job.status === 'Next Step: Technical Screen' ? 'outline' : 'secondary'}
                         size="sm"
-                        className={job.status === 'Moving Forward' ? 'text-muted-foreground' : ''}
+                        className={job.status === 'Next Step: Technical Screen' ? 'text-muted-foreground' : ''}
                       >
                         <X className="h-4 w-4 mr-2" />
                         Withdraw Application

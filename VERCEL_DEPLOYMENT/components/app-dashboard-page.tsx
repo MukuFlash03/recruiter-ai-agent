@@ -1,37 +1,37 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog"
-import { UserCircle, ArrowRight, X, CheckCircle } from "lucide-react"
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { ArrowRight, CheckCircle, UserCircle, X } from "lucide-react"
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 // Mock API call
 const fetchJobs = async () => {
   // Simulate API call
   await new Promise(resolve => setTimeout(resolve, 1000))
   return [
-    { 
-      id: 1, 
-      title: 'Software Engineer', 
+    {
+      id: 1,
+      title: 'Software Engineer',
       company: 'Tech Co',
       summary: 'Develop cutting-edge web applications using modern technologies.',
       tags: ['React', 'Node.js', 'AWS'],
       status: 'New'
     },
-    { 
-      id: 2, 
-      title: 'Product Manager', 
+    {
+      id: 2,
+      title: 'Product Manager',
       company: 'Startup Inc',
       summary: 'Lead product development for our innovative fintech solutions.',
       tags: ['Fintech', 'Agile', 'UX'],
       status: 'New'
     },
-    { 
-      id: 3, 
-      title: 'Data Scientist', 
+    {
+      id: 3,
+      title: 'Data Scientist',
       company: 'Big Data Corp',
       summary: 'Apply machine learning to solve complex business problems.',
       tags: ['Python', 'ML', 'Big Data'],
@@ -66,7 +66,7 @@ export function Page() {
 
       const jobListings = await fetchJobs()
       setActiveJobs(jobListings)
-      
+
       setLoading(false)
     }
 
@@ -86,8 +86,8 @@ export function Page() {
 
   const confirmMoveForward = () => {
     if (selectedJob) {
-      setActiveJobs(activeJobs.map(job => 
-        job.id === selectedJob.id ? { ...job, status: 'Moving Forward' } : job
+      setActiveJobs(activeJobs.map(job =>
+        job.id === selectedJob.id ? { ...job, status: 'Next Step: Technical Screen' } : job
       ))
       setSelectedJob(null)
     }
@@ -162,12 +162,12 @@ export function Page() {
                       ))}
                     </div>
                   </div>
-                  <Badge variant={job.status === 'Moving Forward' ? 'default' : 'secondary'} className={job.status === 'Moving Forward' ? 'bg-primary text-primary-foreground' : ''}>
+                  <Badge variant={job.status === 'Next Step: Technical Screen' ? 'default' : 'secondary'} className={job.status === 'Next Step: Technical Screen' ? 'bg-primary text-primary-foreground' : ''}>
                     {job.status}
                   </Badge>
                 </div>
                 <div className="flex space-x-2 mt-4">
-                  {job.status !== 'Moving Forward' && (
+                  {job.status !== 'Next Step: Technical Screen' && (
                     <Dialog>
                       <DialogTrigger asChild>
                         <Button onClick={() => handleMoveForward(job)} size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
@@ -200,11 +200,11 @@ export function Page() {
                       </DialogContent>
                     </Dialog>
                   )}
-                  <Button 
-                    onClick={() => handleWithdraw(job.id)} 
-                    variant={job.status === 'Moving Forward' ? 'outline' : 'secondary'} 
+                  <Button
+                    onClick={() => handleWithdraw(job.id)}
+                    variant={job.status === 'Next Step: Technical Screen' ? 'outline' : 'secondary'}
                     size="sm"
-                    className={job.status === 'Moving Forward' ? 'text-muted-foreground' : ''}
+                    className={job.status === 'Next Step: Technical Screen' ? 'text-muted-foreground' : ''}
                   >
                     <X className="h-4 w-4 mr-2" />
                     Withdraw Application
