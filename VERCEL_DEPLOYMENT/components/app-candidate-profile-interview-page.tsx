@@ -1,11 +1,11 @@
 'use client'
 
-import Link from 'next/link'
-import { useState, useRef, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Mic, Square, Play, Pause, Trash2 } from 'lucide-react'
 import { useToast } from "@/hooks/use-toast"
+import { Mic, Pause, Play, Square, Trash2 } from 'lucide-react'
+import Link from 'next/link'
+import { useEffect, useRef, useState } from 'react'
 
 const questions = [
   "Tell me a bit about yourself",
@@ -203,7 +203,7 @@ export function Page() {
         </div>
       </CardContent>
       <CardFooter className="flex justify-between">
-        {currentQuestion === 0? (
+        {currentQuestion === 0 ? (
           <Link href="/candidate/123/profile">
             <Button>Back to Profile</Button>
           </Link>

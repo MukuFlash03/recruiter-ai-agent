@@ -20,11 +20,4 @@ export async function POST(request: Request) {
         return NextResponse.json({ message: 'Error saving file' }, { status: 500 })
     }
 }
-
-export const config = {
-    api: {
-        bodyParser: {
-            sizeLimit: '10mb',
-        },
-    },
-}
+export const dynamic = 'force-static'; 

@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { SelectedInterviewsResponse } from "@/lib/types/interviews";
 import { fetchInterviewData } from '@/lib/utils/api_calls';
+import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -55,7 +56,10 @@ export function Page() {
             <p>Score: {candidate.score}</p>
             <p>Match: {candidate.match_pct}</p>
             <p>Decision: {candidate.interview_decision ? 'Selected' : 'Rejected'}</p>
-            <Button className="mt-2">View Full Analysis</Button>
+            <Link href={`/recruiter/jobs/1/results/analysis/`}>
+              {/* <Link href={`/recruiter/jobs/${job.job_id}/results/`}> */}
+              <Button className="mt-2">View Full Analysis</Button>
+            </Link>
           </div>
         ))}
       </div>
