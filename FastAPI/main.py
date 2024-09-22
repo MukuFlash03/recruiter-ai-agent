@@ -1,6 +1,17 @@
 from fastapi import FastAPI, BackgroundTasks, HTTPException
 from typing import Dict
 
+import sys
+import os
+
+current_file_path = os.path.abspath(__file__)
+parent_directory = os.path.dirname(os.path.dirname(current_file_path))
+sys.path.append(parent_directory)
+sys.path.append(f"{parent_directory}/Agent_Backend")
+sys.path.append(f"{parent_directory}/Agent_Backend/agent")
+
+from Agent_Backend.agent.test_basic_agent import get_user_info
+
 app = FastAPI()
 
 
