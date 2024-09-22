@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Briefcase, Sparkles, Users } from 'lucide-react'
+import { ArrowRight, Briefcase, Sparkles, Users, Clock } from 'lucide-react'
 import Link from 'next/link'
 
 export function Page() {
@@ -12,19 +12,19 @@ export function Page() {
           Find Your <span className="bg-gradient-to-r from-pink-500 to-violet-500 text-transparent bg-clip-text">Dream Match</span> with RecruitAI
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Swipe right on your career! Our AI-powered platform connects awesome talent with cool companies. No boring resumes, just real connections.
+          Our AI-powered platform connects awesome talent with cool companies. Say goodbye to endless interviews and hello to perfect matches!
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
-          <Button asChild size="lg" className="w-full sm:w-auto group">
+          <Button asChild size="lg" variant="outline" className="w-full sm:w-auto group">
             <Link href="/candidate/123/profile" className="flex items-center justify-center">
-              <Users className="mr-2 h-5 w-5" />
+              <Briefcase className="mr-2 h-5 w-5" />
               I&apos;m a Candidate
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
-          <Button asChild size="lg" variant="outline" className="w-full sm:w-auto group">
+          <Button asChild size="lg" className="w-full sm:w-auto group">
             <Link href="/recruiter" className="flex items-center justify-center">
-              <Briefcase className="mr-2 h-5 w-5" />
+              <Users className="mr-2 h-5 w-5" />
               I&apos;m a Recruiter
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
@@ -53,13 +53,13 @@ const features = [
     description: "Our smart AI finds the perfect fit for your vibe and skills. Get matched with opportunities that truly resonate with you."
   },
   {
-    icon: <Users className="h-8 w-8 text-violet-500" />,
-    title: "Video Profiles",
-    description: "Show off your personality with short video intros. No more boring CVs! Let your true self shine through."
+    icon: <Clock className="h-8 w-8 text-indigo-500" />,
+    title: "Save time",
+    description: "Eliminate repetitive interviews and streamline the hiring process for both candidates and recruiters."
   },
   {
-    icon: <Briefcase className="h-8 w-8 text-indigo-500" />,
-    title: "Instant Feedback",
-    description: "Get real-time insights on your applications and interviews. Improve your chances with every interaction."
+    icon: <Users className="h-8 w-8 text-violet-500" />,
+    title: "Interview Avatars",
+    description: "Show off your personality with short intros. No more boring CVs! Let your true self shine through."
   }
 ]
