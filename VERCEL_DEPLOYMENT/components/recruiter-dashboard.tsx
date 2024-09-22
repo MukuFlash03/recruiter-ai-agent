@@ -134,12 +134,12 @@ export function RecruiterDashboardComponent() {
           </DialogContent>
         </Dialog>
       </div>
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
+      {/* <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="candidates">Top Candidates</TabsTrigger>
         </TabsList>
-        <TabsContent value="overview">
+        <TabsContent value="overview"> */}
           <Card>
             <CardHeader>
               <CardTitle>Your Job Postings</CardTitle>
@@ -157,7 +157,7 @@ export function RecruiterDashboardComponent() {
                     <CardContent>
                       {/* TODO: Replace with actual selected top candidates from True count from interviews table in database */}
                       {/* <p>{job.applicants} applicants</p> */}
-                      <p>5 applicants</p>
+                      <p>5 top candidates</p>
                       <div className="flex justify-end mt-2">
                         <Link href={`/recruiter/jobs/${job.job_id}/results`}>
                           <Button variant="outline" size="sm">View Details</Button>
@@ -169,8 +169,8 @@ export function RecruiterDashboardComponent() {
               </div>
             </CardContent>
           </Card>
-        </TabsContent>
-        <TabsContent value="candidates">
+        {/* </TabsContent> */}
+        {/* <TabsContent value="candidates">
           <Card>
             <CardHeader>
               <CardTitle>Top Candidates</CardTitle>
@@ -196,7 +196,7 @@ export function RecruiterDashboardComponent() {
             </CardContent>
           </Card>
         </TabsContent>
-      </Tabs>
+      </Tabs> */}
     </div>
   )
 }

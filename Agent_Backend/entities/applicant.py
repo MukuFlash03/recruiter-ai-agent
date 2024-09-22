@@ -74,11 +74,12 @@ class PersonalDetails(BaseModel):
     location: str
 
 
+# DO NOT USE THIS FOR NOW. Directly output each stuff as model_dump()
 class User(BaseModel):
     personal_details: PersonalDetails
-    experience: list[Experience]
+    experience: ExperienceList
     skills: SkillList
-    achievements: list[Achievement]
-    projects: list[Project]
-    education: list[Education]
-    questionAnswer: list[QuestionAnswerList]
+    achievements: AchievementList
+    projects: ProjectList
+    education: EducationList
+    questionAnswer: QuestionAnswerList
