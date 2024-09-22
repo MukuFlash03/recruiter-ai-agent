@@ -62,6 +62,16 @@ def parse_input(
     return completion.choices[0].message.parsed
 
 
+def groq_text(system_prompt: str, user_prompt: str):
+    chat_completion = client.chat.completions.create(
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ],
+        model="llama3-8b-8192",
+    )
+
+
 async def parse_input_async(
     system_content: str,
     user_content: str,

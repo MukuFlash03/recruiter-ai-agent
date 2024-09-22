@@ -1,0 +1,43 @@
+{
+    "achievements": [
+        {
+            "title": "AICamp Generative AI Hackathon for AI Agent and RAG Winner",
+            "description": "Won the AWS for Startups prize for creating a multimodal AI assistant that automates browser tasks on behalf of users.",
+            "reference_context": [
+                "Extracurriculars"
+            ]
+        },
+        {
+            "title": "Oracle Financial Services Software Enhancements",
+            "description": "Implemented OFSAA LLFP fintech solutions and enhanced the UI for the Individual Assessment module, processing over 300k customer records and reducing execution times by 20%.",
+            "reference_context": [
+                "Work Experience",
+                "Oracle Financial Services Software"
+            ]
+        },
+        {
+            "title": "National Renewable Energy Laboratory Contributions",
+            "description": "Repaired model build pipeline failures, optimized system scalability, and automated DevOps processes through restructuring CI/CD workflows with GitHub Actions.",
+            "reference_context": [
+                "Work Experience",
+                "National Renewable Energy Laboratory"
+            ]
+        },
+        {
+            "title": "Embedded C++ Developer Role",
+            "description": "Designed software modules for ARM Cortex-M3 embedded server sensor devices and optimized the system to handle real-time sensor data.",
+            "reference_context": [
+                "Work Experience",
+                "Inter-university accelerator centre"
+            ]
+        },
+        {
+            "title": "Python Developer at COEP",
+            "description": "Modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining using Python, achieving a processing speed of 65,536 objects in 2 minutes with 95% accuracy.",
+            "reference_context": [
+                "Work Experience",
+                "College of Engineering Pune"
+            ]
+        }
+    ]
+}
