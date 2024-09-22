@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card"
 import { saveRecording } from '@/lib/api_calls'
 import { ArrowLeft, Pause, StopCircle, Video } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
 export function Page() {
@@ -15,6 +16,8 @@ export function Page() {
   const streamRef = useRef<MediaStream | null>(null)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const chunksRef = useRef<Blob[]>([])
+
+  const router = useRouter()
 
   useEffect(() => {
     let interval: NodeJS.Timeout
@@ -80,6 +83,7 @@ export function Page() {
           try {
             const response = await saveRecording(base64AudioMessage?.toString() || '')
             console.log('File saved successfully:', response)
+            router.push('/candidate/123')
           } catch (error) {
             console.error('Error saving file:', error)
           }

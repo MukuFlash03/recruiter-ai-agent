@@ -17,7 +17,7 @@ export function Sidebar() {
             </Link>
           </Button>
           <Button variant="ghost" className="w-full justify-start" asChild>
-            <Link href="/candidate/123">
+            <Link href="/candidate/123/profile">
               <Users className="mr-2 h-4 w-4" />
               For Candidates
             </Link>

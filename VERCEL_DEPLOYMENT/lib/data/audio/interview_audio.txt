@@ -1,1 +1,1 @@
- testing after adding some personal info pause resume also working
+ testing after adding the candidate dashboard page

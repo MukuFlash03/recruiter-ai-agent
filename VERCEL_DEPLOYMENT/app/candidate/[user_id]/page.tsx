@@ -1,9 +1,9 @@
-import { Page as CandidateProfilePage } from '@/components/app-candidate-page';
-  
-export default function CandidateProfile() {
-  return (
-    <div >
-      <CandidateProfilePage />
-    </div>
-  );
+import { Page as CandidateDashboardPage } from '@/components/app-candidate-dashboard-page';
+
+export default function Page() {
+    return (
+        <div >
+            <CandidateDashboardPage />
+        </div>
+    );
 }

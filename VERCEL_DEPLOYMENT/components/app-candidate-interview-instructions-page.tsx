@@ -53,7 +53,7 @@ export function Page() {
         </p>
       </Card>
       <div className="flex justify-between">
-        <Link href="/candidate/123">
+        <Link href="/candidate/123/profile">
           <Button variant="outline">Back to Profile</Button>
         </Link>
         <Link href="/candidate/123/interview/start">

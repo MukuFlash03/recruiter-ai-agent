@@ -16,7 +16,7 @@ export function Page() {
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
           <Button asChild size="lg" className="w-full sm:w-auto group">
-            <Link href="/candidate/123" className="flex items-center justify-center">
+            <Link href="/candidate/123/profile" className="flex items-center justify-center">
               <Users className="mr-2 h-5 w-5" />
               I&apos;m a Candidate
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
