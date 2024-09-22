@@ -6,38 +6,17 @@
             "location": "Golden, Colorado",
             "start_date": "08/2023",
             "end_date": "09/2024",
-            "description": "Refined data processing in model build and analysis pipeline, transforming raw data into inferred values with comprehensive automated unit and integration testing. Optimized system scalability through time complexity improvements, enhancing overall performance. Troubleshot and resolved model build pipeline failures in staging and production environments using CloudWatch logs. Streamlined and automated DevOps processes by restructuring CI/CD workflows with GitHub Actions. Implemented data export/import functionality for timeseries data purge and restore, improving database efficiency and data lifecycle management.",
+            "description": "Refined data processing in model build and analysis pipeline to transform raw data into inferred values with comprehensive automated unit and integration testing. Optimized system scalability through time complexity improvements, enhancing overall performance. Troubleshot and resolved model build pipeline failures in staging and production environments using CloudWatch logs. Streamlined and automated DevOps processes by restructuring CI/CD workflows with GitHub Actions. Implemented data export/import functionality for timeseries data purge and restore, improving database efficiency and data lifecycle management.",
             "reference_context": [
-                "Work Experience",
-                "Related Projects",
-                "Summary",
-                "Contact"
+                "Experience section under National Renewable Energy Laboratory"
             ],
-            "reasoning": "This is a comprehensive role at NREL where Mukul worked on software development and DevOps processes, which fits the experience section of a resume.",
+            "reasoning": "The listed tasks involve responsibilities typically associated with a software development engineer role, such as refining data processing, optimizing systems, troubleshooting, and improving CI/CD workflows.",
             "skills": [
                 "Python",
                 "Docker",
                 "MongoDB",
                 "Git",
-                "AWS",
-                "DevOps"
-            ]
-        },
-        {
-            "title": "Graduate Services Assistant",
-            "company": "Ira A. Fulton Schools of Engineering, Arizona State University",
-            "location": "Tempe, Arizona",
-            "start_date": "01/2023",
-            "end_date": "05/2023",
-            "description": "Grader for CSE 536 Advanced Operating Systems course (Spring 2023) under the School of Computing and Augmented Intelligence (SCAI). Responsibilities included preparing and reviewing coursework, assisting students during office hours, and grading assignments.",
-            "reference_context": [
-                "Work Experience"
-            ],
-            "reasoning": "Experience as a Graduate Assistant involved academic responsibilities, suitable for the resume's experience section.",
-            "skills": [
-                "Grading",
-                "Coursework Preparation",
-                "Student Assistance"
+                "AWS (ECR, Cloudwatch, Inspector)"
             ]
         },
         {
@@ -46,12 +25,11 @@
             "location": "Bangalore, India",
             "start_date": "07/2021",
             "end_date": "05/2022",
-            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in production environments for international banking firms. Engineered GUI workflows for ETL pipelines, enhanced UI for the Individual Assessment module, and generated PL/SQL scripts for data manipulation and validation.",
+            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in production environments for 2 international financial banking firms. Engineered GUI based workflow runs for ETL pipelines and integrated them with backend scripts to process data. Enhanced UI for a module based on XML Forms Framework by customizing UI Forms and PL/SQL scripts. Generated PL/SQL scripts for data manipulation and validation to automate manual tasks, reducing execution times. Documented technical designs and deployed code packages across environments via WinSCP/PuTTY.",
             "reference_context": [
-                "Work Experience",
-                "Related Projects"
+                "Experience section under Oracle Financial Services Software"
             ],
-            "reasoning": "This role at Oracle involved significant software engineering and database management, pertinent to the work experience section.",
+            "reasoning": "The achievements listed pertain to a Software Development Engineer role, focusing on implementing solutions, engineering ETL workflows, and enhancing UI.",
             "skills": [
                 "PL/SQL",
                 "XML",
@@ -61,20 +39,33 @@
             ]
         },
         {
+            "title": "Graduate Services Assistant",
+            "company": "Ira A. Fulton Schools of Engineering at Arizona State University",
+            "location": "Tempe, Arizona, United States",
+            "start_date": "01/2023",
+            "end_date": "05/2023",
+            "description": "Grader for CSE 536 Advanced Operating Systems course under the School of Computing and Augmented Intelligence (SCAI). Activities included preparing and reviewing coursework, assisting students during office hours, and grading assignments.",
+            "reference_context": [
+                "Experience section under Ira A. Fulton Schools of Engineering at Arizona State University"
+            ],
+            "reasoning": "The responsibilities mentioned align with duties typically held by a graduate services assistant in a university setting.",
+            "skills": []
+        },
+        {
             "title": "Embedded C++ Developer",
             "company": "Inter-university Accelerator Centre",
-            "location": "New Delhi, India",
+            "location": "New Delhi, Delhi, India",
             "start_date": "05/2020",
             "end_date": "08/2020",
-            "description": "Designed software modules for ARM Cortex-M3 embedded server sensor device to measure subzero temperatures. Troubleshot bugs and optimized the system to handle real-time sensor data via RPC transfer protocols.",
+            "description": "Worked under Dr. Joby Antony, formerly a Visiting Scientist at CERN. Designed software modules for ARM Cortex-M3 embedded server sensor device to measure subzero temperatures. Troubleshot bugs and optimized the system to handle real-time sensor data via RPC transfer protocols.",
             "reference_context": [
-                "Work Experience"
+                "Experience section under Inter-university Accelerator Centre"
             ],
-            "reasoning": "The role involved embedded systems development, a key technical skill, making it relevant to the resume's experience section.",
+            "reasoning": "The tasks outlined are indicative of an embedded developer role, focusing on designing software for specific hardware and optimizing its performance.",
             "skills": [
-                "Embedded C++",
-                "ARM Cortex",
-                "Troubleshooting"
+                "C++",
+                "ARM Cortex-M3",
+                "RPC transfer protocols"
             ]
         },
         {
@@ -83,11 +74,11 @@
             "location": "Pune, Maharashtra, India",
             "start_date": "05/2019",
             "end_date": "07/2019",
-            "description": "Modeled discrete mathematical Rough Set Theory concepts for sensor data mining using Python. Designed a custom-built library to process 65,536 objects in 2 minutes with an accuracy of 95% using linear regression.",
+            "description": "Worked under the guidance of Ms. Vanita Agarwal. Successfully modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining using Python. Designed custom-built library to process 65,536 objects in 2 minutes with an accuracy of 95% using linear regression.",
             "reference_context": [
-                "Work Experience"
+                "Experience section under College of Engineering Pune"
             ],
-            "reasoning": "This internship involved significant software development and data processing, which is relevant to the experience section.",
+            "reasoning": "The description indicates tasks typical of a developer role, involving modeling mathematical concepts and developing software libraries.",
             "skills": [
                 "Python",
                 "Data Mining",

@@ -1,27 +1,50 @@
 {
     "achievements": [
         {
-            "title": "AI Camp Generative AI Hackathon",
+            "title": "Overall Winner at AICamp Generative AI Hackathon for AI Agent and RAG",
             "description": "Won the AWS for Startups prize for creating a multimodal AI assistant that automates browser tasks on behalf of users.",
             "reference_context": [
-                "Extracurriculars",
-                "AICamp Generative AI Hackathon for AI Agent and RAG |Overall Winner"
+                "June 2024"
             ]
         },
         {
-            "title": "Optimized PL/SQL Script Execution",
-            "description": "Reduced execution times by 20% for generating end-user reports containing customer data by automating manual tasks and filtering source data.",
+            "title": "Software Development Engineer at NREL",
+            "description": "Refined data processing in model build and analysis pipeline, optimized system scalability, automated DevOps processes, and implemented improved database efficiency.",
             "reference_context": [
-                "Work Experience",
-                "Oracle Financial Services Software"
+                "August 2023 \u2013 September 2024",
+                "National Renewable Energy Laboratory (NREL) Golden, Colorado"
             ]
         },
         {
-            "title": "Developed Custom Library for Data Processing",
-            "description": "Designed a custom-built library to process 65,536 objects in 2 minutes with an accuracy of 95% using linear regression.",
+            "title": "Graduate Services Assistant at Arizona State University",
+            "description": "Graded the CSE 536 Advanced Operating Systems course, prepared and reviewed coursework, assisted students during office hours, and graded assignments.",
             "reference_context": [
-                "Work Experience",
-                "College of Engineering Pune"
+                "January 2023 \u2013 May 2023",
+                "Tempe, Arizona, United States"
+            ]
+        },
+        {
+            "title": "Software Engineer at Oracle Financial Services Software",
+            "description": "Implemented OFSAA LLFP fintech solutions, engineered GUI-based workflow runs for ETL pipelines, enhanced UI for IA module, and improved data processing efficiency by 20%.",
+            "reference_context": [
+                "July 2021 \u2013 May 2022",
+                "Bangalore, India"
+            ]
+        },
+        {
+            "title": "Embedded C++ Developer at Inter-university accelerator centre",
+            "description": "Designed software modules for ARM Cortex-M3 embedded sensor device, troubleshooted bugs, and optimized the system for real-time data via RPC protocols.",
+            "reference_context": [
+                "May 2020 \u2013 August 2020",
+                "New Delhi, India"
+            ]
+        },
+        {
+            "title": "Python Developer at College of Engineering Pune",
+            "description": "Modeled discrete mathematical Rough Set Theory for Sensor Data Mining and designed a custom-built library for processing large datasets efficiently.",
+            "reference_context": [
+                "May 2019 \u2013 July 2019",
+                "Pune, Maharashtra, India"
             ]
         }
     ]

@@ -52,6 +52,10 @@ class Relevance(BaseModel):
     relevant_context: list[str]
 
 
+class AnswerToQuestion(BaseModel):
+    answer: str
+
+
 async def check_relevance(question: str, model_object: Any):
     system_prompt = """I am providing you with some details about a candidate for a job. 
     I will provide you with a question and also with some context about the candidate.
@@ -83,41 +87,57 @@ async def answer_the_question(question: str, relevant_context_list: list[Any]):
     I will provide you with a question and also with some relevant context 
     about the candidate.
     I want you to answer the question provided on behalf of the candidate.
-    Candidate will third person. 
+    
+    Your answer should refer the candidate in third person. 
+    If the name is provided in the context, you can use the name.
+    If not you can use the pronoun 'he' or 'she'. 
     """
+    relevant_context_list = [
+        context.model_dump_json(indent=4) for context in relevant_context_list
+    ]
 
-
-# async def get_all_relevant_content_for_a_single_question(
-#     user_profile_list: list[Any], question: str
-# ):
-#     relevant_contexts = []
-#     # TODO: Run Async here
-#     for user_profile_chunk in user_profile_list:
-#         for input_question in input_questions:
-#             relevance = await check_relevance(
-#                 question=input_question, model_object=user_profile_chunk
-#             )
-#             if relevance.yes_or_no:
-#                 relevant_contexts.append(relevance)
-
-
-async def select_candidate(user_profile_list: list[Any], input_questions: list[str]):
-
-    relevant_contexts = await get_all_relevant_contents(
-        user_profile_list, input_questions
+    relevant_context_str = "\n".join(relevant_context_list)
+    user_prompt = (
+        f"Question:\n{question} \n\n Relevant Context:\n{relevant_context_str}"
     )
 
-    # TODO: Another agent that based on the relevant context say if the candidate
-    # is selected for next round or not.
+    output_answer: AnswerToQuestion = await parse_input_async(
+        system_content=system_prompt,
+        user_content=user_prompt,
+        response_format=AnswerToQuestion,
+    )
+    return output_answer
 
 
-async def candidate_agents_answer(user_profile: list[Any], input_questions: list[str]):
-    for input_question in input_questions:
-        relevant_contents = await get_all_relevant_contents(
-            user_profile_list=user_profile, input_questions=[input_question]
-        )
+class SelectionOfCandidate(BaseModel):
+    selected: bool
+    reasoning: str
+    relevant_context: list[str]
 
-    # TODO: Another agent to answer the question
+
+async def candidate_selection_function(questions: list[str], answers: list[str]):
+    system_prompt = """I am providing you with some details about a candidate for a job. 
+    I will provide you with a set of questions and also with some answers 
+    about the candidate.
+    I want you to tell if the candidate should is selected for the next round or not.
+    
+    Your answer should refer the candidate in third person. 
+    If the name is provided in the context, you can use the name.
+    If not you can use the pronoun 'he' or 'she'. 
+
+    The relevant context should be the exact verbatim from the original context.
+    """
+
+    user_prompt = ""
+    for question, answer in zip(questions, answers):
+        user_prompt += f"Question:\n{question} \n\n Answer:\n{answer}\n\n"
+
+    output_selection: SelectionOfCandidate = await parse_input_async(
+        system_content=system_prompt,
+        user_content=user_prompt,
+        response_format=SelectionOfCandidate,
+    )
+    return output_selection
 
 
 async def get_all_relevant_content_for_a_single_question(
@@ -187,37 +207,73 @@ async def get_all_relevant_content_for_a_single_question(
     return relevant_chunks
 
 
-async def main():
-    experiences, educations, skills, projects, achievements, personal_details = (
-        await get_user_info()
-    )
+async def select_candidate(user_profile_list: list[Any], input_questions: list[str]):
 
-    all_questions = [
-        "How good is the candidate for Devops development?",
-        "How good is the candidate for Full Stack development?",
-        "How good is the candidate for Frontend development?",
-        "How good is the candidate for Backend development?",
-    ]
     tasks = []
-    for question in all_questions:
+    for question in input_questions:
         tasks.append(
             asyncio.create_task(
                 get_all_relevant_content_for_a_single_question(
                     question=question,
-                    user_profile_list=[
-                        experiences,
-                        educations,
-                        skills,
-                        projects,
-                        achievements,
-                        personal_details,
-                    ],
+                    user_profile_list=user_profile_list,
                 )
             )
         )
     relevant_contexts = await asyncio.gather(*tasks)
 
+    answer_tasks = []
+    for question, relevant_context in zip(input_questions, relevant_contexts):
+        answer_tasks.append(
+            asyncio.create_task(
+                answer_the_question(
+                    question=question, relevant_context_list=relevant_context
+                )
+            )
+        )
+
+    answers = await asyncio.gather(*answer_tasks)
+    candidate_selection = await candidate_selection_function(
+        questions=input_questions, answers=answers
+    )
+
+    return candidate_selection, answers, relevant_contexts
+
+
+async def end_to_end_agent(all_questions: list[str]):
+    experiences, educations, skills, projects, achievements, personal_details = (
+        await get_user_info()
+    )
+
+    candidate_selection, answers, relevant_contexts = await select_candidate(
+        user_profile_list=[
+            experiences,
+            educations,
+            skills,
+            projects,
+            achievements,
+            personal_details,
+        ],
+        input_questions=all_questions,
+    )
+    json_to_return = {}
+    json_to_return["candidate_selection"] = candidate_selection.model_dump()
+    json_to_return["answers"] = [answer.model_dump() for answer in answers]
+    json_to_return["relevant_contexts"] = [
+        [context.model_dump() for context in relevant_context]
+        for relevant_context in relevant_contexts
+    ]
+    return json_to_return
+
 
 if __name__ == "__main__":
 
-    asyncio.run(main())
+    asyncio.run(
+        end_to_end_agent(
+            all_questions=[
+                "How good is the candidate for Actor at a hollywood movie?",
+                # "How good is the candidate for Full Stack development?",
+                # "How good is the candidate for Frontend development?",
+                # "How good is the candidate for Backend development?",
+            ]
+        )
+    )
