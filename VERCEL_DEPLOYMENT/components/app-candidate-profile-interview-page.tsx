@@ -2,7 +2,9 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { saveAudio } from "@/lib/utils/api_calls"
 import { Mic, Pause, Play, Square, Trash2 } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
 const questions = [
@@ -24,6 +26,8 @@ export function Page() {
   const audioChunksRef = useRef<Blob[]>([])
   const timerIntervalRef = useRef<NodeJS.Timeout | null>(null)
   const audioRef = useRef<HTMLAudioElement | null>(null)
+
+  const router = useRouter()
 
   useEffect(() => {
     return () => {
@@ -50,16 +54,34 @@ export function Page() {
       audioChunksRef.current.push(event.data)
     }
 
-    mediaRecorder.onstop = () => {
+    mediaRecorder.onstop = async () => {
       const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/wav' })
       const audioUrl = URL.createObjectURL(audioBlob)
+      const newRecording = { url: audioUrl, duration: timer }
+
       setRecordings(prev => {
         const newRecordings = [...prev]
-        newRecordings[currentQuestion] = { url: audioUrl, duration: timer }
-        console.log(audioUrl);
-
+        newRecordings[currentQuestion] = newRecording
         return newRecordings
       })
+
+      // Save only the first recording to the server
+      if (currentQuestion === 0) {
+        const reader = new FileReader()
+        reader.onloadend = async () => {
+          const base64AudioMessage = reader.result
+          try {
+
+            const response = await saveAudio(base64AudioMessage?.toString() || '')
+            console.log('File saved successfully:', response)
+            router.push('/candidate/123')
+          } catch (error) {
+            console.error('Error saving audio:', error)
+          }
+        }
+        reader.readAsDataURL(audioBlob)
+      }
+
       setTimer(0)
     }
 
@@ -69,6 +91,7 @@ export function Page() {
       setTimer(prevTimer => prevTimer + 1)
     }, 1000)
   }
+
 
   const stopRecording = () => {
     mediaRecorderRef.current?.stop()
