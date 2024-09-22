@@ -5,10 +5,13 @@ import path from 'path';
 
 export async function POST(request: Request) {
     const formData = await request.formData();
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const contact = formData.get('contact') as string;
     const file = formData.get('file') as File;
     const linkedIn = formData.get('linkedIn') as string;
-    const portfolio = formData.get('portfolio') as string;
     const github = formData.get('github') as string;
+    const portfolio = formData.get('portfolio') as string;
 
     if (!file) {
         return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
@@ -29,7 +32,7 @@ export async function POST(request: Request) {
         // For this example, we'll just log it
         const result_fetchResumeContent = await fetchPdfText(filePath)
         console.log(result_fetchResumeContent);
-        console.log('Profile info:', { linkedIn, portfolio, github });
+        console.log('Profile info:', { name, email, contact, linkedIn, github, portfolio });
 
         return NextResponse.json({ message: 'Profile saved successfully' });
     } catch (error) {

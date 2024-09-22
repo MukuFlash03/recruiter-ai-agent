@@ -7,10 +7,13 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export function Page() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [contact, setContact] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [linkedIn, setLinkedIn] = useState("");
-  const [portfolio, setPortfolio] = useState("");
   const [github, setGithub] = useState("");
+  const [portfolio, setPortfolio] = useState("");
   const router = useRouter();
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,10 +31,13 @@ export function Page() {
     }
 
     const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("contact", contact);
     formData.append("file", file);
     formData.append("linkedIn", linkedIn);
-    formData.append("portfolio", portfolio);
     formData.append("github", github);
+    formData.append("portfolio", portfolio);
 
     try {
       const response = await fetch("/api/save-candidate-profile", {
@@ -55,6 +61,36 @@ export function Page() {
       <h1 className="text-3xl font-bold mb-6">Candidate Profile</h1>
       <form className="space-y-6" onSubmit={handleSubmit}>
         <div>
+          <Label htmlFor="name">Name</Label>
+          <Input
+            id="name"
+            type="text"
+            placeholder="Your Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div>
+          <Label htmlFor="email">Email</Label>
+          <Input
+            id="email"
+            type="email"
+            placeholder="test123@abc.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div>
+          <Label htmlFor="contact">Contact</Label>
+          <Input
+            id="contact"
+            type="text"
+            placeholder="1234567890"
+            value={contact}
+            onChange={(e) => setContact(e.target.value)}
+          />
+        </div>
+        <div>
           <Label htmlFor="resume">Resume</Label>
           <Input id="resume" type="file" onChange={handleFileUpload} />
         </div>
@@ -63,19 +99,9 @@ export function Page() {
           <Input
             id="linkedin"
             type="url"
-            // placeholder="https://www.linkedin.com/in/yourprofile"
+            placeholder="https://www.linkedin.com/in/yourprofile"
             value={linkedIn}
             onChange={(e) => setLinkedIn(e.target.value)}
-          />
-        </div>
-        <div>
-          <Label htmlFor="portfolio">Portfolio URL</Label>
-          <Input
-            id="portfolio"
-            type="url"
-            // placeholder="https://www.yourportfolio.com"
-            value={portfolio}
-            onChange={(e) => setPortfolio(e.target.value)}
           />
         </div>
         <div>
@@ -83,9 +109,19 @@ export function Page() {
           <Input
             id="github"
             type="url"
-            // placeholder="https://www.github/user.com"
+            placeholder="https://www.github/user.com"
             value={github}
             onChange={(e) => setGithub(e.target.value)}
+          />
+        </div>
+        <div>
+          <Label htmlFor="portfolio">Portfolio URL</Label>
+          <Input
+            id="portfolio"
+            type="url"
+            placeholder="https://www.yourportfolio.com"
+            value={portfolio}
+            onChange={(e) => setPortfolio(e.target.value)}
           />
         </div>
         <div className="flex justify-between">
