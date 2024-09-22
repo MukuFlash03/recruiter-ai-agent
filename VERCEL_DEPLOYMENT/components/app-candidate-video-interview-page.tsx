@@ -64,7 +64,7 @@ export function Page() {
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-[#F3F4F6]">
-      <Link href="/candidate/video-instructions" className="flex items-center text-[#4F46E5] hover:text-[#4338CA] mb-6">
+      <Link href="/candidate/interview" className="flex items-center text-[#4F46E5] hover:text-[#4338CA] mb-6">
         <ArrowLeft className="mr-2" /> Back to Instructions
       </Link>
       <h1 className="text-3xl font-bold mb-6 text-[#1F2937]">Video Interview</h1>

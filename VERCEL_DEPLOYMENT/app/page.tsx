@@ -3,8 +3,6 @@ export default function Home() {
   return (
     <div >
       <AppPage />
-
-
     </div>
   );
 }

@@ -56,7 +56,7 @@ export function Page() {
         <Link href="/candidate">
           <Button variant="outline">Back to Profile</Button>
         </Link>
-        <Link href="/candidate/video-interview">
+        <Link href="/candidate/interview/start">
           <Button>
             <Video className="mr-2" />
             Start Video Interview

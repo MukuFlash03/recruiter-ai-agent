@@ -1,16 +1,16 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 export function Page() {
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     // Handle file upload logic here
-    console.log('File uploaded:', event.target.files?.[0])
-  }
+    console.log("File uploaded:", event.target.files?.[0]);
+  };
 
   return (
     <div className="max-w-2xl mx-auto p-6">
@@ -22,11 +22,19 @@ export function Page() {
         </div>
         <div>
           <Label htmlFor="linkedin">LinkedIn Profile URL</Label>
-          <Input id="linkedin" type="url" placeholder="https://www.linkedin.com/in/yourprofile" />
+          <Input
+            id="linkedin"
+            type="url"
+            placeholder="https://www.linkedin.com/in/yourprofile"
+          />
         </div>
         <div>
           <Label htmlFor="portfolio">Portfolio URL</Label>
-          <Input id="portfolio" type="url" placeholder="https://www.yourportfolio.com" />
+          <Input
+            id="portfolio"
+            type="url"
+            placeholder="https://www.yourportfolio.com"
+          />
         </div>
         <div>
           <Label htmlFor="bio">Short Bio</Label>
@@ -34,11 +42,11 @@ export function Page() {
         </div>
         <div className="flex justify-between">
           <Button type="submit">Save Profile</Button>
-          <Link href="/candidate/video-instructions">
+          <Link href="/candidate/interview">
             <Button>Next: Video Interview</Button>
           </Link>
         </div>
       </form>
     </div>
-  )
+  );
 }
