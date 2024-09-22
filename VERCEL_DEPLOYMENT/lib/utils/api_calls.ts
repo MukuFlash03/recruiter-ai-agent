@@ -62,6 +62,23 @@ export async function fetchJobPostings() {
     return response.json();
 }
 
+// this is hacked for now to show the profile for the candidate dashboard
+export async function fetchCandidateProfile() {
+    const response = await fetch('/api/read-candidate-profiles', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        // body: JSON.stringify(candidate_data),
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to fetch candidate profiles');
+    }
+
+    return response.json();
+}
+
 // export async function fetchInterviewData(candidate_data: { job_id: string }) {
 export async function fetchInterviewData() {
     const response = await fetch('/api/read-interviews-data', {

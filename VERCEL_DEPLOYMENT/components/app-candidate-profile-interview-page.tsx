@@ -2,8 +2,10 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { useToast } from "@/hooks/use-toast"
 import { saveAudio } from "@/lib/utils/api_calls"
 import { Mic, Pause, Play, Square, Trash2 } from 'lucide-react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
@@ -26,6 +28,7 @@ export function Page() {
   const audioChunksRef = useRef<Blob[]>([])
   const timerIntervalRef = useRef<NodeJS.Timeout | null>(null)
   const audioRef = useRef<HTMLAudioElement | null>(null)
+  const { toast } = useToast()
 
   const router = useRouter()
 
@@ -171,6 +174,15 @@ export function Page() {
     }
   }
 
+  const handleSubmit = () => {
+    // Here you would typically send the recordings to your server
+    // For this example, we'll just show a success message
+    toast({
+      title: "Interview Submitted",
+      description: "Thank you for completing the interview!",
+    })
+  }
+
   return (
     <Card className="w-full max-w-3xl mx-auto">
       <CardHeader>
@@ -216,8 +228,21 @@ export function Page() {
         </div>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button onClick={prevQuestion} disabled={currentQuestion === 0}>Previous Question</Button>
-        <Button onClick={nextQuestion} disabled={currentQuestion === questions.length - 1}>Next Question</Button>
+        {currentQuestion === 0 ? (
+          <Link href="/candidate/123/profile">
+            <Button>Back to Profile</Button>
+          </Link>
+        ) : (
+          <Button onClick={prevQuestion}>Previous Question</Button>
+        )}
+        {/* <Button onClick={prevQuestion} disabled={currentQuestion === 0}>Previous Question</Button> */}
+        {currentQuestion === questions.length - 1 ? (
+          <Link href="/candidate/123">
+            <Button onClick={handleSubmit}>Submit</Button>
+          </Link>
+        ) : (
+          <Button onClick={nextQuestion}>Next Question</Button>
+        )}
       </CardFooter>
     </Card>
   )

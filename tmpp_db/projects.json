@@ -1,0 +1,78 @@
+{
+    "projects": [
+        {
+            "name": "Microservices Video to MP3 Converter",
+            "description": "Engineered a distributed system for converting video files to MP3 format using microservices architecture with secure JWT user authentication, message queuing with RabbitMQ, scalable storage, and notifications.",
+            "start_date": "09/2024",
+            "end_date": "09/2024",
+            "reference_context": [],
+            "skills": [
+                "Python",
+                "Docker",
+                "Kubernetes",
+                "RabbitMQ",
+                "MongoDB"
+            ]
+        },
+        {
+            "name": "Kafka Confluent Cloud Pub-Sub",
+            "description": "Implemented Apache Kafka producers/consumers using Confluent Cloud with topic management, data serialization, containerised multi-language environment showcasing Kafka integration, demonstrating cross-platform compatibility.",
+            "start_date": "09/2024",
+            "end_date": "09/2024",
+            "reference_context": [],
+            "skills": [
+                "Kafka",
+                "Java",
+                "Python",
+                "Go",
+                "Node.js",
+                "Spring Boot",
+                "Docker"
+            ]
+        },
+        {
+            "name": "Classic To-Do List",
+            "description": "Developed a full-stack task manager webapp with CRUD operations using React and Go with PostgreSQL database. Implemented GraphQL API for efficient data retrieval; deployed on AWS with self-signed SSL certificate for HTTPS.",
+            "start_date": "08/2024",
+            "end_date": "08/2024",
+            "reference_context": [],
+            "skills": [
+                "React",
+                "Go",
+                "GraphQL",
+                "AWS",
+                "PostgreSQL"
+            ]
+        },
+        {
+            "name": "Voice AI Interviewer Agent",
+            "description": "Engineered an AI-powered voice interviewer, leveraging Groq for fast inference and Vapi for voice interactions. Implemented evaluation system with custom metrics, utilizing Supabase for authentication and storage.",
+            "start_date": "07/2024",
+            "end_date": "07/2024",
+            "reference_context": [],
+            "skills": [
+                "TypeScript",
+                "NextJS",
+                "Vapi",
+                "Supabase",
+                "Groq",
+                "GenAI",
+                "ShadCN UI"
+            ]
+        },
+        {
+            "name": "Cloud-based Video Face Recognition App",
+            "description": "Designed a 3-tier hybrid cloud architecture leveraging AWS and OpenStack for Web, App, and Data tiers integration. Prepared Python scripts for: Lambda triggers, S3, DynamoDB; auto-scaled 20 EC2 instances via SQS and Cloudwatch.",
+            "start_date": "02/2023",
+            "end_date": "04/2023",
+            "reference_context": [],
+            "skills": [
+                "AWS",
+                "Python",
+                "Flask",
+                "Docker",
+                "OpenStack"
+            ]
+        }
+    ]
+}
