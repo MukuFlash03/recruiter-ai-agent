@@ -1,1 +1,1 @@
-# recruiter-ai-agent
+# recruiter-ai-agent-aiiffo-hackathon
