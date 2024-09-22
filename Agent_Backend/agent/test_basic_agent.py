@@ -22,6 +22,15 @@ from entities.applicant import (
     PersonalDetails,
 )
 
+tmpp_db = "tmpp_db/"
+experience_file = f"{tmpp_db}experiences.json"
+education_file = f"{tmpp_db}educations.json"
+project_file = f"{tmpp_db}projects.json"
+skill_file = f"{tmpp_db}skills.json"
+achievement_file = f"{tmpp_db}achievements.json"
+personal_details_file = f"{tmpp_db}personal_details.json"
+question_answer_file = f"{tmpp_db}question_answers.json"
+
 from basic_agent import (
     parse_input,
     get_openai_text_response,
@@ -51,7 +60,7 @@ def extract_text_from_pdf(file_path: str) -> str:
     return text
 
 
-async def main():
+async def get_user_info() -> Any:
     base_folder = "Agent_Backend/"
     # base_folder = ""
     resume_path = f"{base_folder}data/Resume/Mukul_Resume.pdf"
@@ -165,32 +174,25 @@ email, location and phone from the resume.""",
     #     questionAnswer=qa_list,
     # )
 
-    for i, experience in enumerate(experiences.experiences):
-        print("Company", i + 1, experience.company)
-        print("Title", i + 1, experience.title)
-        print("Location", i + 1, experience.location)
-        print("Start Date", i + 1, experience.start_date)
-        print("End Date", i + 1, experience.end_date)
+    # for i, experience in enumerate(experiences.experiences):
+    #     print("Company", i + 1, experience.company)
+    #     print("Title", i + 1, experience.title)
+    #     print("Location", i + 1, experience.location)
+    #     print("Start Date", i + 1, experience.start_date)
+    #     print("End Date", i + 1, experience.end_date)
 
     # Example usage
-    user_prompt = "What is the capital of France?"
-    system_prompt = "You are a helpful assistant."
-    result = get_openai_text_response(
-        user_prompt=user_prompt, system_prompt=system_prompt
-    )
-    print(result)
+    # user_prompt = "What is the capital of France?"
+    # system_prompt = "You are a helpful assistant."
+    # result = get_openai_text_response(
+    #     user_prompt=user_prompt, system_prompt=system_prompt
+    # )
+    # print(result)
+    return (experiences, educations, skills, projects, achievements, personal_details)
 
-
-experience_file = "experiences.json"
-education_file = "educations.json"
-project_file = "projects.json"
-skill_file = "skills.json"
-achievement_file = "achievements.json"
-personal_details_file = "personal_details.json"
-question_answer_file = "question_answers.json"
 
 if __name__ == "__main__":
 
     import asyncio
 
-    asyncio.run(main())
+    asyncio.run(get_user_info())
