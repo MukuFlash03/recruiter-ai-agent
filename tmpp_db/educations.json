@@ -1,7 +1,7 @@
 {
     "education": [
         {
-            "degree": "Master of Science",
+            "degree": "Master of Science - MS, Computer Science",
             "institution": "Arizona State University",
             "start_date": "August 2022",
             "end_date": "May 2024",
@@ -9,26 +9,19 @@
             "reference_context": [
                 "Education",
                 "Arizona State University",
-                "Masters in Computer Science |GPA: 3.90 / 4.0",
-                "08/2022 \u2013 05/2024",
-                "Software Courses (Requirements; Design; Verification, Validation, Testing), Data Processing at Scale, Cloud Computing",
-                "Arizona State University",
-                "Master of Science - MS, Computer Science \u00a0\u00b7\u00a0(August 2022\u00a0-\u00a0May 2024)"
+                "Masters in Computer Science |GPA: 3.90 / 4.0 08/2022 \u2013 05/2024"
             ]
         },
         {
-            "degree": "Bachelor of Technology",
+            "degree": "Bachelor of Technology - BTech, Electronics and Communications Engineering",
             "institution": "National Institute of Technology Hamirpur",
             "start_date": "July 2017",
             "end_date": "June 2021",
             "grade": "GPA: 8.73 / 10",
             "reference_context": [
                 "Education",
-                "National Institute of Technology Hamirpur Hamirpur (H.P.) , India",
-                "Bachelors in Electronics and Communication |GPA: 8.73 / 10",
-                "08/2017 \u2013 05/2021",
                 "National Institute of Technology Hamirpur",
-                "Bachelor of Technology - BTech, Electronics and Communications Engineering \u00a0\u00b7\u00a0(July 2017\u00a0-\u00a0June 2021)"
+                "Bachelors in Electronics and Communication |GPA: 8.73 / 10 08/2017 \u2013 05/2021"
             ]
         },
         {
@@ -38,8 +31,9 @@
             "end_date": "2017",
             "grade": "",
             "reference_context": [
+                "Education",
                 "The Bishops School, Camp",
-                "Class XI-XII \u00b7 (2015 - 2017)"
+                "Class XI-XII \u00a0 \u00b7\u00a0(2015\u00a0-\u00a02017)"
             ]
         },
         {
@@ -49,8 +43,9 @@
             "end_date": "2015",
             "grade": "",
             "reference_context": [
+                "Education",
                 "The Bishops Co-Ed School, Kalyaninagar",
-                "Class UKG-X \u00b7 (2004 - 2015)"
+                "Class UKG-X \u00a0 \u00b7\u00a0(2004\u00a0-\u00a02015)"
             ]
         }
     ]

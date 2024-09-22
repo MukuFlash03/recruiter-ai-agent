@@ -9,15 +9,35 @@
             "description": "Refined data processing in model build and analysis pipeline, transforming raw data into inferred values with comprehensive automated unit and integration testing. Optimized system scalability through time complexity improvements, enhancing overall performance. Troubleshot and resolved model build pipeline failures in staging and production environments using CloudWatch logs. Streamlined and automated DevOps processes by restructuring CI/CD workflows with GitHub Actions. Implemented data export/import functionality for timeseries data purge and restore, improving database efficiency and data lifecycle management.",
             "reference_context": [
                 "Work Experience",
-                "Resume Section"
+                "Related Projects",
+                "Summary",
+                "Contact"
             ],
-            "reasoning": "This experience highlights his role and responsibilities at NREL where he was involved in refining data processes and optimizing system performance using various tools and technologies.",
+            "reasoning": "This is a comprehensive role at NREL where Mukul worked on software development and DevOps processes, which fits the experience section of a resume.",
             "skills": [
                 "Python",
                 "Docker",
                 "MongoDB",
                 "Git",
-                "AWS (ECR, Cloudwatch, Inspector)"
+                "AWS",
+                "DevOps"
+            ]
+        },
+        {
+            "title": "Graduate Services Assistant",
+            "company": "Ira A. Fulton Schools of Engineering, Arizona State University",
+            "location": "Tempe, Arizona",
+            "start_date": "01/2023",
+            "end_date": "05/2023",
+            "description": "Grader for CSE 536 Advanced Operating Systems course (Spring 2023) under the School of Computing and Augmented Intelligence (SCAI). Responsibilities included preparing and reviewing coursework, assisting students during office hours, and grading assignments.",
+            "reference_context": [
+                "Work Experience"
+            ],
+            "reasoning": "Experience as a Graduate Assistant involved academic responsibilities, suitable for the resume's experience section.",
+            "skills": [
+                "Grading",
+                "Coursework Preparation",
+                "Student Assistance"
             ]
         },
         {
@@ -26,12 +46,12 @@
             "location": "Bangalore, India",
             "start_date": "07/2021",
             "end_date": "05/2022",
-            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in Production environments for 2 international financial banking firms. Engineered 6 GUI based workflow runs for ETL pipelines with numerous tasks and integrated them with backend scripts to process data from Pre-staging to end-user report generation stage. Enhanced UI for Individual Assessment (IA) module based on XML Forms Framework by customizing 4 UI Forms and 8 PL/SQL scripts to process over 300k customer records by debugging existing legacy code. Generated PL/SQL scripts for data manipulation and validation to automate manual tasks for filtering source data, reducing execution times by 20%. Documented technical designs and deployed code packages across environments via WinSCP/PuTTY.",
+            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in production environments for international banking firms. Engineered GUI workflows for ETL pipelines, enhanced UI for the Individual Assessment module, and generated PL/SQL scripts for data manipulation and validation.",
             "reference_context": [
                 "Work Experience",
-                "Academic Project"
+                "Related Projects"
             ],
-            "reasoning": "The detailed description of his responsibilities and technological involvement at Oracle illustrates his skills in software development and problem-solving in real-world financial applications.",
+            "reasoning": "This role at Oracle involved significant software engineering and database management, pertinent to the work experience section.",
             "skills": [
                 "PL/SQL",
                 "XML",
@@ -43,19 +63,18 @@
         {
             "title": "Embedded C++ Developer",
             "company": "Inter-university Accelerator Centre",
-            "location": "New Delhi, Delhi, India",
+            "location": "New Delhi, India",
             "start_date": "05/2020",
             "end_date": "08/2020",
-            "description": "Designed software modules for ARM Cortex-M3 embedded server sensor device to measure subzero temperatures. Troubleshooted bugs and optimized the system to handle real-time sensor data via RPC transfer protocols.",
+            "description": "Designed software modules for ARM Cortex-M3 embedded server sensor device to measure subzero temperatures. Troubleshot bugs and optimized the system to handle real-time sensor data via RPC transfer protocols.",
             "reference_context": [
-                "Internship",
-                "Resume Entry"
+                "Work Experience"
             ],
-            "reasoning": "This role involved designing and improving software solutions for hardware interfacing, which is significant for those looking at embedded systems or firmware development.",
+            "reasoning": "The role involved embedded systems development, a key technical skill, making it relevant to the resume's experience section.",
             "skills": [
-                "C++",
-                "Embedded Systems",
-                "RPC Transfer Protocols"
+                "Embedded C++",
+                "ARM Cortex",
+                "Troubleshooting"
             ]
         },
         {
@@ -64,34 +83,15 @@
             "location": "Pune, Maharashtra, India",
             "start_date": "05/2019",
             "end_date": "07/2019",
-            "description": "Modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining using Python. Designed a custom-built library to process 65,536 objects in 2 minutes with 95% accuracy using linear regression.",
+            "description": "Modeled discrete mathematical Rough Set Theory concepts for sensor data mining using Python. Designed a custom-built library to process 65,536 objects in 2 minutes with an accuracy of 95% using linear regression.",
             "reference_context": [
-                "Internship",
-                "Initial Work Experience"
+                "Work Experience"
             ],
-            "reasoning": "This early career experience indicates his initial exposure and problem-solving with Python and data analysis, beneficial for roles in data science or machine learning.",
+            "reasoning": "This internship involved significant software development and data processing, which is relevant to the experience section.",
             "skills": [
                 "Python",
                 "Data Mining",
                 "Linear Regression"
-            ]
-        },
-        {
-            "title": "Graduate Services Assistant - Grader",
-            "company": "Ira A. Fulton Schools of Engineering at Arizona State University",
-            "location": "Tempe, Arizona, United States",
-            "start_date": "01/2023",
-            "end_date": "05/2023",
-            "description": "Grader for CSE 536 Advanced Operating Systems course under School of Computing and Augmented Intelligence. Responsibilities included preparing and reviewing coursework, assisting students during office hours, and grading assignments.",
-            "reference_context": [
-                "Academic Employment",
-                "University Duties"
-            ],
-            "reasoning": "This academic role showcases his commitment to education and ability to handle technical subjects like OS, adding depth to his academic experiences.",
-            "skills": [
-                "Grading",
-                "Operating Systems",
-                "Technical Curriculum Assistance"
             ]
         }
     ]

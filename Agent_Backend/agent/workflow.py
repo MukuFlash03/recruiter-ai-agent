@@ -64,11 +64,11 @@ async def check_relevance(question: str, model_object: Any):
 
     If it is not relevant: then I want you to provide the reasoning
     why it is not relevant.
+
+    The relevant context should be the exact verbatim from the original context.
     """
 
-    user_prompt = (
-        f"Question:\n{question} \n\n Candidate Context:{model_object.model_dump_json()}"
-    )
+    user_prompt = f"Question:\n{question} \n\n Candidate Context:{model_object.model_dump_json(indent=4)}"
 
     output_relevance: Relevance = await parse_input_async(
         system_content=system_prompt,
@@ -87,18 +87,18 @@ async def answer_the_question(question: str, relevant_context_list: list[Any]):
     """
 
 
-async def get_all_relevant_contents(
-    user_profile_list: list[Any], input_questions: list[str]
-):
-    relevant_contexts = []
-    # TODO: Run Async here
-    for user_profile_chunk in user_profile_list:
-        for input_question in input_questions:
-            relevance = await check_relevance(
-                question=input_question, model_object=user_profile_chunk
-            )
-            if relevance.yes_or_no:
-                relevant_contexts.append(relevance)
+# async def get_all_relevant_content_for_a_single_question(
+#     user_profile_list: list[Any], question: str
+# ):
+#     relevant_contexts = []
+#     # TODO: Run Async here
+#     for user_profile_chunk in user_profile_list:
+#         for input_question in input_questions:
+#             relevance = await check_relevance(
+#                 question=input_question, model_object=user_profile_chunk
+#             )
+#             if relevance.yes_or_no:
+#                 relevant_contexts.append(relevance)
 
 
 async def select_candidate(user_profile_list: list[Any], input_questions: list[str]):
@@ -120,9 +120,104 @@ async def candidate_agents_answer(user_profile: list[Any], input_questions: list
     # TODO: Another agent to answer the question
 
 
-if __name__ == "__main__":
+async def get_all_relevant_content_for_a_single_question(
+    question: str, user_profile_list: list[Any]
+):
     experiences, educations, skills, projects, achievements, personal_details = (
-        asyncio.run(get_user_info())
+        user_profile_list
+    )
+    tasks: Any = []
+    for experience in experiences.experiences:
+        tasks.append(
+            asyncio.create_task(
+                check_relevance(
+                    question=question,
+                    model_object=experience,
+                )
+            )
+        )
+
+    for education in educations.education:
+        tasks.append(
+            asyncio.create_task(
+                check_relevance(
+                    question=question,
+                    model_object=education,
+                )
+            )
+        )
+
+    for project in projects.projects:
+        tasks.append(
+            asyncio.create_task(
+                check_relevance(
+                    question=question,
+                    model_object=project,
+                )
+            )
+        )
+
+    tasks.append(
+        asyncio.create_task(
+            check_relevance(
+                question=question,
+                model_object=skills,
+            )
+        )
     )
 
-    pass
+    for achievement in achievements.achievements:
+        tasks.append(
+            asyncio.create_task(
+                check_relevance(
+                    question=question,
+                    model_object=achievement,
+                )
+            )
+        )
+
+    relevances = await asyncio.gather(*tasks)
+
+    relevant_chunks = [relevance for relevance in relevances if relevance.yes_or_no]
+    irrelevant_chunks = [
+        relevance for relevance in relevances if not relevance.yes_or_no
+    ]
+    print(relevances)
+
+    return relevant_chunks
+
+
+async def main():
+    experiences, educations, skills, projects, achievements, personal_details = (
+        await get_user_info()
+    )
+
+    all_questions = [
+        "How good is the candidate for Devops development?",
+        "How good is the candidate for Full Stack development?",
+        "How good is the candidate for Frontend development?",
+        "How good is the candidate for Backend development?",
+    ]
+    tasks = []
+    for question in all_questions:
+        tasks.append(
+            asyncio.create_task(
+                get_all_relevant_content_for_a_single_question(
+                    question=question,
+                    user_profile_list=[
+                        experiences,
+                        educations,
+                        skills,
+                        projects,
+                        achievements,
+                        personal_details,
+                    ],
+                )
+            )
+        )
+    relevant_contexts = await asyncio.gather(*tasks)
+
+
+if __name__ == "__main__":
+
+    asyncio.run(main())
