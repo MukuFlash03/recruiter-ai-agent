@@ -132,6 +132,28 @@ email, location and phone from the resume.""",
     experiences, educations, skills, projects, achievements, personal_details = (
         await asyncio.gather(*task_list)
     )
+    import json
+
+    with open(experience_file, "w") as f:
+        json.dump(experiences.model_dump(), f, indent=4)
+
+    with open(education_file, "w") as f:
+        json.dump(educations.model_dump(), f, indent=4)
+
+    with open(skill_file, "w") as f:
+        json.dump(skills.model_dump(), f, indent=4)
+
+    with open(project_file, "w") as f:
+        json.dump(projects.model_dump(), f, indent=4)
+
+    with open(achievement_file, "w") as f:
+        json.dump(achievements.model_dump(), f, indent=4)
+
+    with open(personal_details_file, "w") as f:
+        json.dump(personal_details.model_dump(), f, indent=4)
+
+    with open(question_answer_file, "w") as f:
+        json.dump(qa_list.model_dump(), f, indent=4)
 
     # user = User(
     #     # personal_details=personal_details,
@@ -158,6 +180,14 @@ email, location and phone from the resume.""",
     )
     print(result)
 
+
+experience_file = "experiences.json"
+education_file = "educations.json"
+project_file = "projects.json"
+skill_file = "skills.json"
+achievement_file = "achievements.json"
+personal_details_file = "personal_details.json"
+question_answer_file = "question_answers.json"
 
 if __name__ == "__main__":
 
