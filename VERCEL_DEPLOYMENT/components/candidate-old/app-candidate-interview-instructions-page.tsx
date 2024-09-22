@@ -39,10 +39,10 @@ export function Page() {
             <CheckCircle className="mr-2 mt-1 text-green-500" />
             <span>Discuss your relevant experience and skills</span>
           </li>
-          <li className="flex items-start">
+          {/* <li className="flex items-start">
             <CheckCircle className="mr-2 mt-1 text-green-500" />
             <span>Explain why you're interested in this position</span>
-          </li>
+          </li> */}
           <li className="flex items-start">
             <CheckCircle className="mr-2 mt-1 text-green-500" />
             <span>Share what makes you a unique candidate</span>
