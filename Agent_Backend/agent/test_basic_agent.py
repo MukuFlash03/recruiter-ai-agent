@@ -133,15 +133,15 @@ email, location and phone from the resume.""",
         await asyncio.gather(*task_list)
     )
 
-    user = User(
-        personal_details=personal_details,
-        experiences=experiences.experiences,
-        educations=educations.education,
-        skills=skills.name,
-        projects=projects.projects,
-        achievements=achievements.achievements,
-        questionAnswer=qa_list,
-    )
+    # user = User(
+    #     # personal_details=personal_details,
+    #     # experiences=experiences,
+    #     # educations=educations,
+    #     # skills=skills,
+    #     projects=projects.model_dump(),
+    #     achievements=achievements,
+    #     questionAnswer=qa_list,
+    # )
 
     for i, experience in enumerate(experiences.experiences):
         print("Company", i + 1, experience.company)
