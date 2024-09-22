@@ -176,6 +176,7 @@ export function Page() {
 
   const handleSubmit = () => {
     // Here you would typically send the recordings to your server
+    
     // For this example, we'll just show a success message
     toast({
       title: "Interview Submitted",

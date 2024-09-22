@@ -1,4 +1,5 @@
 import { fetchPdfText } from '@/lib/utils/api_calls';
+import { createClient } from '@/lib/utils/supabase/server';
 import { writeFile } from 'fs/promises';
 import { NextResponse } from 'next/server';
 import path from 'path';
@@ -36,9 +37,29 @@ export async function POST(request: Request) {
         console.log(result_fetchResumeContent);
         console.log('Profile info:', { name, email, contact, linkedIn, location, workPreference, salaryExpectation, additionalInfo });
 
+        console.log("Received request in POST route");
+
+        const supabase = createClient();
+        const { data, error } = await supabase
+            .from('candidate_profiles')
+            .insert({
+                name: name,
+                email: email,
+                contact: contact,
+                resume_content: result_fetchResumeContent,
+                linkedin_url: linkedIn,
+                current_location: location,
+                work_environment: workPreference,
+                salary_expectation: salaryExpectation,
+                additional_info: additionalInfo
+            });
+
+        if (error) throw error;
+
+        // return NextResponse.json({ message: 'Job posting inserted successfully', data });
         return NextResponse.json({ message: 'Profile saved successfully' });
     } catch (error) {
-        console.error('Error saving file:', error);
-        return NextResponse.json({ error: 'Failed to save file' }, { status: 500 });
+        console.error('Error saving inserting profile data file:', error);
+        return NextResponse.json({ error: 'Failed to save insert profile dta file' }, { status: 500 });
     }
 }

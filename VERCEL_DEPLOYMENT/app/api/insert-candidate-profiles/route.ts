@@ -8,24 +8,12 @@ export async function POST(request: Request) {
         const bodyText = await request.text();
         console.log("Raw request body:", bodyText);
 
-        const {
-            candidate_id, name,
-            email, contact,
-            current_location, work_environment,
-            salary_expectation, additional_info
-        } = JSON.parse(bodyText);
+        const { jobTitle, companyName, jobDescription, requiredSkills, questions } = JSON.parse(bodyText);
 
         const supabase = createClient();
         const { data, error } = await supabase
-            .from('job_postings')
+            .from('candidate_profiles')
             .insert({
-                candidate_id: candidate_id,
-                name: name,
-                email: email,
-                contact: contact,
-                current_location: current_location,
-                work_environment: work_environment,
-                salary_expectation: salary_expectation,
                 job_title: jobTitle,
                 company_name: companyName,
                 job_description: jobDescription,
