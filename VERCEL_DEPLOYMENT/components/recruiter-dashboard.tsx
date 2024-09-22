@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { PlusCircle, X } from "lucide-react"
+import Link from 'next/link'
 
 // Placeholder data
 const jobPostings = [
@@ -135,7 +136,9 @@ export function RecruiterDashboardComponent() {
                     <CardContent>
                       <p>{job.applicants} applicants</p>
                       <div className="flex justify-end mt-2">
-                        <Button variant="outline" size="sm">View Details</Button>
+                        <Link href="/recruiter/results">
+                          <Button variant="outline" size="sm">View Details</Button>
+                        </Link>
                       </div>
                     </CardContent>
                   </Card>
