@@ -1,9 +1,9 @@
-import { RecruiterDashboardComponent as RecruiterPage } from '@/components/recruiter-dashboard';
+import { RecruiterDashboardComponent as RecruiterDashboardPage } from '@/components/recruiter-dashboard';
 
-export default function Page() {
+export default function RecruiterDashboard() {
   return (
     <div >
-      <RecruiterPage />
+      <RecruiterDashboardPage />
     </div>
   );
 }
