@@ -1,4 +1,4 @@
-import { fetchPdfText } from '@/lib/api_calls';
+import { fetchPdfText } from '@/lib/utils/api_calls';
 import { writeFile } from 'fs/promises';
 import { NextResponse } from 'next/server';
 import path from 'path';

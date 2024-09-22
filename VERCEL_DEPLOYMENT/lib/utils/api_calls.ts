@@ -30,19 +30,35 @@ export async function fetchPdfText(filePath: string) {
     return response.json();
 }
 
-/*
-export async function fetchPdfText(filePath: string) {
-    const response = await fetch('/api/fetch-pdf-text', {
-        method: 'POST',
+export async function fetchJobPostings() {
+    const response = await fetch('/api/read-job-postings', {
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ filePath: filePath }),
+        // body: JSON.stringify(candidate_data),
     });
+
     if (!response.ok) {
-        console.log(response);
-        throw new Error('Failed to extract text from resume PDF');
+        throw new Error('Failed to fetch job postings data');
     }
+
     return response.json();
 }
-*/
+
+export async function fetchInterviewData(candidate_data: { job_id: string }) {
+    const response = await fetch('/api/read-interviews-data', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(candidate_data),
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to fetch job postings data');
+    }
+
+    return response.json();
+}
+
