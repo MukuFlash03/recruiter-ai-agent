@@ -1,83 +1,43 @@
 {
     "achievements": [
         {
-            "title": "Refined data processing in model build pipeline",
-            "description": "Refined data processing in a distributed system to transform raw data into inferred values, followed by comprehensive automated unit and integration testing.",
+            "title": "Refined data processing and optimized system scalability at NREL",
+            "description": "Refined data processing in model build and analysis pipeline, transforming raw data into inferred values with comprehensive automated unit and integration testing. Optimized system scalability through time complexity improvements, enhancing overall performance.",
             "reference_context": [
-                "Role at National Renewable Energy Laboratory",
-                "Software Development Engineer"
+                "National Renewable Energy Laboratory",
+                "08/2023 \u2013 09/2024"
             ]
         },
         {
-            "title": "Optimized system scalability",
-            "description": "Improved system scalability by optimizing time complexity to enhance overall performance.",
+            "title": "Implemented OFSAA LLFP fintech solutions at Oracle",
+            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in production environments for 2 international financial banking firms.",
             "reference_context": [
-                "Role at National Renewable Energy Laboratory",
-                "Software Development Engineer"
+                "Oracle Financial Services Software",
+                "07/2021 \u2013 05/2022"
             ]
         },
         {
-            "title": "Automated CI/CD workflows",
-            "description": "Streamlined and automated DevOps processes by restructuring CI/CD workflows with GitHub Actions.",
+            "title": "Enhanced UI for IA module and reduced execution times at Oracle",
+            "description": "Enhanced UI for Individual Assessment (IA) module based on XML Forms Framework by customizing 4 UI Forms and 8 PL/SQL scripts to process over 300k customer records. Generated PL/SQL scripts to automate manual tasks, reducing execution times by 20% for generating end-user reports over 6 months.",
             "reference_context": [
-                "Role at National Renewable Energy Laboratory",
-                "Software Development Engineer"
+                "Oracle Financial Services Software",
+                "07/2021 \u2013 05/2022"
             ]
         },
         {
-            "title": "Implemented OFSAA LLFP fintech solutions",
-            "description": "Implemented specialized fintech solutions in SIT and UAT environments, providing post-implementation support for international banking firms.",
+            "title": "Won AI assistant hackathon",
+            "description": "Won the AWS for Startups prize for creating a multimodal AI assistant that automates browser tasks on behalf of users at the AICamp Generative AI Hackathon.",
             "reference_context": [
-                "Role at Oracle Financial Services Software",
-                "Software Development Engineer"
-            ]
-        },
-        {
-            "title": "Engineered ETL pipelines",
-            "description": "Developed six GUI-based workflow runs for ETL pipelines and integrated them with backend scripts for processing data through various stages until report generation.",
-            "reference_context": [
-                "Role at Oracle Financial Services Software",
-                "Software Development Engineer"
-            ]
-        },
-        {
-            "title": "Enhanced UI for Individual Assessment module",
-            "description": "Customized UI Forms and PL/SQL scripts to efficiently process a large volume of customer records.",
-            "reference_context": [
-                "Role at Oracle Financial Services Software",
-                "Software Development Engineer"
-            ]
-        },
-        {
-            "title": "Reduced execution times by 20%",
-            "description": "Generated scripts that automated tasks for data manipulation, leading to a 20% reduction in execution times for report generation.",
-            "reference_context": [
-                "Role at Oracle Financial Services Software",
-                "Software Development Engineer"
-            ]
-        },
-        {
-            "title": "AICamp Generative AI Hackathon winner",
-            "description": "Won the overall award for creating a multimodal AI assistant for automating browser tasks, recognized by the AWS for Startups prize.",
-            "reference_context": [
-                "Award",
-                "Participated in AICamp Generative AI Hackathon"
-            ]
-        },
-        {
-            "title": "Designed software for ARM Cortex-M3",
-            "description": "Developed software modules for an embedded server sensor device to measure subzero temperatures and optimized real-time data handling.",
-            "reference_context": [
-                "Role at Inter-university Accelerator Centre",
-                "Embedded C++ Developer"
+                "AICamp Generative AI Hackathon",
+                "06/2024"
             ]
         },
         {
             "title": "Modeled Rough Set Theory for Sensor Data Mining",
-            "description": "Designed a custom-built library to process large volumes of data efficiently, achieving a high accuracy rate through linear regression.",
+            "description": "Successfully modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining using Python, designing a custom-built library to process 65,536 objects in 2 minutes with 95% accuracy using linear regression.",
             "reference_context": [
-                "Internship at College of Engineering Pune",
-                "Python Developer"
+                "College of Engineering Pune",
+                "05/2019 \u2013 07/2019"
             ]
         }
     ]
