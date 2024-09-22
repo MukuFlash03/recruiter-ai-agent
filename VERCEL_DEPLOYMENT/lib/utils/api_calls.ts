@@ -63,3 +63,46 @@ export async function fetchInterviewData() {
     return response.json();
 }
 
+/*
+export async function insertJobPostings() {
+    const response = await fetch('/api/insert-job-postings', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(candidate_data),
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to insert job postings data');
+    }
+
+    return response.json();
+}
+*/
+
+import { JobPostingData } from '@/lib/types/jobs'; // You'll need to create this type
+
+export async function insertJobPostings(formData: JobPostingData) {
+    console.log('Form data in insertJobPostings:', formData);
+
+    const response = await fetch('/api/insert-job-postings', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+    });
+
+    if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Error response:', errorText);
+        throw new Error('Failed to insert job postings data');
+    }
+
+    console.log('Response from server:', response);
+    console.log('Response text:', await response.text());
+    // console.log('Response JSON:', response.json());
+
+    return response.json();
+}

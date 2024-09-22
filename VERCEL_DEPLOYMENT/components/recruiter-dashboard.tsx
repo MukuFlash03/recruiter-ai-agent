@@ -5,10 +5,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
-import { SelectedJobsResponse } from "@/lib/types/jobs"
-import { fetchJobPostings } from '@/lib/utils/api_calls'
+import { JobPostingData, SelectedJobsResponse } from "@/lib/types/jobs"
+import { fetchJobPostings, insertJobPostings } from '@/lib/utils/api_calls'
 import { PlusCircle, X } from "lucide-react"
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
@@ -28,11 +27,16 @@ const topCandidates = [
 
 export function RecruiterDashboardComponent() {
   const [activeTab, setActiveTab] = useState("overview")
-  const [questions, setQuestions] = useState<string[]>([''])
   const [isNewJobModalOpen, setIsNewJobModalOpen] = useState(false)
   const [jobPostingsData, setJobPostingsData] = useState<SelectedJobsResponse[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  const [jobTitle, setJobTitle] = useState('');
+  const [companyName, setCompanyName] = useState('');
+  const [jobDescription, setJobDescription] = useState('');
+  const [requiredSkills, setRequiredSkills] = useState('');
+  const [questions, setQuestions] = useState<string[]>(['']);
 
   useEffect(() => {
     const loadData = async () => {
@@ -64,12 +68,42 @@ export function RecruiterDashboardComponent() {
     setQuestions(newQuestions)
   }
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
     // Here you would typically send the form data to your backend
-    console.log('New job posting submitted')
+
+    const formData: JobPostingData = {
+      jobTitle,
+      companyName,
+      jobDescription,
+      requiredSkills,
+      questions: questions.filter(q => q.trim() !== '')
+    };
+
+    console.log('Form data to be submitted:', formData);
+
+    try {
+      const data_2 = await insertJobPostings(formData);
+      console.log('Response from insertJobPostings:', data_2);
+
+      const data = await fetchJobPostings();
+      setJobPostingsData(data.data);
+      setLoading(false);
+
+      console.log('New job posting submitted')
+
+      // Reset form fields
+      setJobTitle('');
+      setCompanyName('');
+      setJobDescription('');
+      setRequiredSkills('');
+      setQuestions(['']);
+    } catch (err) {
+      setError('Failed to insert job postings data');
+      setLoading(false);
+    }
+
     setIsNewJobModalOpen(false)
-    setQuestions(['']) // Reset questions after submission
   }
 
   return (
@@ -91,19 +125,47 @@ export function RecruiterDashboardComponent() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <Label htmlFor="jobTitle">Job Title</Label>
-                <Input id="jobTitle" placeholder="e.g. Senior React Developer" required />
+                <Input
+                  id="jobTitle"
+                  value={jobTitle}
+                  onChange={(e) => setJobTitle(e.target.value)}
+                  placeholder="e.g. Senior React Developer"
+                  required
+                />
+                {/* <Input id="jobTitle" placeholder="e.g. Senior React Developer" required /> */}
               </div>
               <div>
                 <Label htmlFor="companyName">Company Name</Label>
-                <Input id="companyName" placeholder="Your Company Name" required />
+                <Input
+                  id="companyName"
+                  value={companyName}
+                  onChange={(e) => setCompanyName(e.target.value)}
+                  placeholder="Your Company Name"
+                  required
+                />
+                {/* <Input id="companyName" placeholder="Your Company Name" required /> */}
               </div>
               <div>
                 <Label htmlFor="jobDescription">Job Description</Label>
-                <Textarea id="jobDescription" placeholder="Describe the job role and responsibilities" required />
+                <Textarea
+                  id="jobDescription"
+                  value={jobDescription}
+                  onChange={(e) => setJobDescription(e.target.value)}
+                  placeholder="Describe the job role and responsibilities"
+                  required
+                />
+                {/* <Textarea id="jobDescription" placeholder="Describe the job role and responsibilities" required /> */}
               </div>
               <div>
                 <Label htmlFor="requiredSkills">Required Skills</Label>
-                <Textarea id="requiredSkills" placeholder="List the required skills and qualifications" required />
+                <Textarea
+                  id="requiredSkills"
+                  value={requiredSkills}
+                  onChange={(e) => setRequiredSkills(e.target.value)}
+                  placeholder="List the required skills and qualifications"
+                  required
+                />
+                {/* <Textarea id="requiredSkills" placeholder="List the required skills and qualifications" required /> */}
               </div>
               <div>
                 <Label>Custom Questions for Candidates</Label>
@@ -140,37 +202,37 @@ export function RecruiterDashboardComponent() {
           <TabsTrigger value="candidates">Top Candidates</TabsTrigger>
         </TabsList>
         <TabsContent value="overview"> */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Your Job Postings</CardTitle>
-              <CardDescription>View and manage your current job postings</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {/* {jobPostings.map((job) => ( */}
-                {jobPostingsData.map((job) => (
-                  <Card key={job.job_id}>
-                    <CardHeader>
-                      <CardTitle>{job.job_title}</CardTitle>
-                      <CardDescription>{job.company_name}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      {/* TODO: Replace with actual selected top candidates from True count from interviews table in database */}
-                      {/* <p>{job.applicants} applicants</p> */}
-                      <p>5 top candidates</p>
-                      <div className="flex justify-end mt-2">
-                        <Link href={`/recruiter/jobs/${job.job_id}/results`}>
-                          <Button variant="outline" size="sm">View Details</Button>
-                        </Link>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        {/* </TabsContent> */}
-        {/* <TabsContent value="candidates">
+      <Card>
+        <CardHeader>
+          <CardTitle>Your Job Postings</CardTitle>
+          <CardDescription>View and manage your current job postings</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            {/* {jobPostings.map((job) => ( */}
+            {jobPostingsData.map((job) => (
+              <Card key={job.job_id}>
+                <CardHeader>
+                  <CardTitle>{job.job_title}</CardTitle>
+                  <CardDescription>{job.company_name}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {/* TODO: Replace with actual selected top candidates from True count from interviews table in database */}
+                  {/* <p>{job.applicants} applicants</p> */}
+                  <p>5 top candidates</p>
+                  <div className="flex justify-end mt-2">
+                    <Link href={`/recruiter/jobs/${job.job_id}/results`}>
+                      <Button variant="outline" size="sm">View Details</Button>
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+      {/* </TabsContent> */}
+      {/* <TabsContent value="candidates">
           <Card>
             <CardHeader>
               <CardTitle>Top Candidates</CardTitle>

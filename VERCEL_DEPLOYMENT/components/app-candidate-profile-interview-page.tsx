@@ -1,9 +1,9 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Mic, Square, Play, Pause, Trash2 } from 'lucide-react'
+import { Mic, Pause, Play, Square, Trash2 } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
 
 const questions = [
   "Tell me a bit about yourself",
@@ -56,6 +56,8 @@ export function Page() {
       setRecordings(prev => {
         const newRecordings = [...prev]
         newRecordings[currentQuestion] = { url: audioUrl, duration: timer }
+        console.log(audioUrl);
+
         return newRecordings
       })
       setTimer(0)
