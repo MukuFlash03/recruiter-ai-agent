@@ -187,7 +187,7 @@ export function Page() {
                             <DialogHeader>
                               <DialogTitle>Next Steps for {job.title} at {job.company}</DialogTitle>
                               <DialogDescription>
-                                You&apos;re about to move forward with this opportunity. Here's what happens next:
+                                You&apos;re about to move forward with this opportunity. Here&apos;s what happens next:
                               </DialogDescription>
                             </DialogHeader>
                             <div className="py-4">

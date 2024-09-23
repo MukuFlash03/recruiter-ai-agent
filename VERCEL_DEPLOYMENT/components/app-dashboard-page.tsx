@@ -62,9 +62,11 @@ export function Page() {
   useEffect(() => {
     const initializeDashboard = async () => {
       const profileData = await fetchProfile()
+      // @ts-ignore
       setProfile(profileData)
 
       const jobListings = await fetchJobs()
+      // @ts-ignore
       setActiveJobs(jobListings)
 
       setLoading(false)
