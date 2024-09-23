@@ -1,42 +1,43 @@
 {
     "achievements": [
         {
-            "title": "AICamp Generative AI Hackathon for AI Agent and RAG Winner",
-            "description": "Won the AWS for Startups prize for creating a multimodal AI assistant that automates browser tasks on behalf of users.",
+            "title": "Refined data processing and optimized system scalability at NREL",
+            "description": "Refined data processing in model build and analysis pipeline, transforming raw data into inferred values with comprehensive automated unit and integration testing. Optimized system scalability through time complexity improvements, enhancing overall performance.",
             "reference_context": [
-                "Extracurriculars"
+                "National Renewable Energy Laboratory",
+                "08/2023 \u2013 09/2024"
             ]
         },
         {
-            "title": "Oracle Financial Services Software Enhancements",
-            "description": "Implemented OFSAA LLFP fintech solutions and enhanced the UI for the Individual Assessment module, processing over 300k customer records and reducing execution times by 20%.",
+            "title": "Implemented OFSAA LLFP fintech solutions at Oracle",
+            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in production environments for 2 international financial banking firms.",
             "reference_context": [
-                "Work Experience",
-                "Oracle Financial Services Software"
+                "Oracle Financial Services Software",
+                "07/2021 \u2013 05/2022"
             ]
         },
         {
-            "title": "National Renewable Energy Laboratory Contributions",
-            "description": "Repaired model build pipeline failures, optimized system scalability, and automated DevOps processes through restructuring CI/CD workflows with GitHub Actions.",
+            "title": "Enhanced UI for IA module and reduced execution times at Oracle",
+            "description": "Enhanced UI for Individual Assessment (IA) module based on XML Forms Framework by customizing 4 UI Forms and 8 PL/SQL scripts to process over 300k customer records. Generated PL/SQL scripts to automate manual tasks, reducing execution times by 20% for generating end-user reports over 6 months.",
             "reference_context": [
-                "Work Experience",
-                "National Renewable Energy Laboratory"
+                "Oracle Financial Services Software",
+                "07/2021 \u2013 05/2022"
             ]
         },
         {
-            "title": "Embedded C++ Developer Role",
-            "description": "Designed software modules for ARM Cortex-M3 embedded server sensor devices and optimized the system to handle real-time sensor data.",
+            "title": "Won AI assistant hackathon",
+            "description": "Won the AWS for Startups prize for creating a multimodal AI assistant that automates browser tasks on behalf of users at the AICamp Generative AI Hackathon.",
             "reference_context": [
-                "Work Experience",
-                "Inter-university accelerator centre"
+                "AICamp Generative AI Hackathon",
+                "06/2024"
             ]
         },
         {
-            "title": "Python Developer at COEP",
-            "description": "Modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining using Python, achieving a processing speed of 65,536 objects in 2 minutes with 95% accuracy.",
+            "title": "Modeled Rough Set Theory for Sensor Data Mining",
+            "description": "Successfully modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining using Python, designing a custom-built library to process 65,536 objects in 2 minutes with 95% accuracy using linear regression.",
             "reference_context": [
-                "Work Experience",
-                "College of Engineering Pune"
+                "College of Engineering Pune",
+                "05/2019 \u2013 07/2019"
             ]
         }
     ]

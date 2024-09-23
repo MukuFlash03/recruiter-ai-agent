@@ -1,0 +1,3 @@
+FastAPI <--> Supabase
+Vercel Installation
+Signup and login

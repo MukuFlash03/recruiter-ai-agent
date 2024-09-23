@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { SelectedInterviewsResponse } from "@/lib/types/interviews";
 import { fetchInterviewData } from '@/lib/utils/api_calls';
+import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -51,11 +52,15 @@ export function Page() {
       <div className="space-y-4">
         {interviewsData.map((candidate) => (
           <div key={candidate.interview_id} className="border p-4 rounded-lg">
-            <h2 className="text-xl font-semibold">{candidate.candidate_id}</h2>
+            {/* <h2 className="text-xl font-semibold">{candidate.candidate_id}</h2> */}
+            <h2 className="text-xl font-semibold">{candidate.candidate_name}</h2>
             <p>Score: {candidate.score}</p>
             <p>Match: {candidate.match_pct}</p>
             <p>Decision: {candidate.interview_decision ? 'Selected' : 'Rejected'}</p>
-            <Button className="mt-2">View Full Analysis</Button>
+            <Link href={`/recruiter/jobs/1/results/analysis/`}>
+              {/* <Link href={`/recruiter/jobs/${job.job_id}/results/`}> */}
+              <Button className="mt-2">View Full Analysis</Button>
+            </Link>
           </div>
         ))}
       </div>

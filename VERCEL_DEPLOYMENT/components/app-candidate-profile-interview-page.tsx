@@ -126,7 +126,7 @@ export function Page() {
     if (audioRef.current) {
       audioRef.current.pause()
       setIsPlaying(false)
-      clearInterval(timerIntervalRef.current)
+      clearInterval(timerIntervalRef.current ?? undefined)
     }
   }
 
