@@ -114,7 +114,7 @@ export function Page() {
         <CardHeader>
           <CardTitle>Your Profile</CardTitle>
           <CardDescription>
-            Here's an overview of your professional profile
+            Here is an overview of your professional profile
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -179,15 +179,15 @@ export function Page() {
                         <DialogHeader>
                           <DialogTitle>Next Steps for {job.title} at {job.company}</DialogTitle>
                           <DialogDescription>
-                            You're about to move forward with this opportunity. Here's what happens next:
+                            You&apos;re about to move forward with this opportunity. Here&apos;s what happens next:
                           </DialogDescription>
                         </DialogHeader>
                         <div className="py-4">
                           <ol className="list-decimal list-inside space-y-2">
                             <li>Your interest will be communicated to the employer</li>
                             <li>The employer will review your profile</li>
-                            <li>If there's a match, we'll schedule an initial interview</li>
-                            <li>You'll receive preparation materials for the interview</li>
+                            <li>If there&apos;s a match, we&apos;ll schedule an initial interview</li>
+                            <li>You&apos;ll receive preparation materials for the interview</li>
                             <li>After the interview, both parties will provide feedback</li>
                           </ol>
                         </div>
@@ -224,7 +224,7 @@ export function Page() {
         <Card>
           <CardHeader>
             <CardTitle>Withdrawn Applications</CardTitle>
-            <CardDescription>Jobs you've withdrawn your application from</CardDescription>
+            <CardDescription>Jobs you&apos;ve withdrawn your application from</CardDescription>
           </CardHeader>
           <CardContent>
             <ul className="space-y-4">
