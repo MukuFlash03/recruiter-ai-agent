@@ -113,7 +113,7 @@ export function Page() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Welcome Sanya</h1>
+      <h1 className="text-2xl font-bold mb-4">Welcome Candidate</h1>
       <Card className="mb-8">
         <CardHeader>
           <CardTitle>Your Profile</CardTitle>
