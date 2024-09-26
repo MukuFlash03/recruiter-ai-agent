@@ -9,7 +9,6 @@ export async function GET(request: Request) {
             .from('interviews')
             .select()
         if (error) throw error;
-        console.log(request);
 
         return NextResponse.json({ message: 'Interviews data fetched successfully', data });
     } catch (error) {

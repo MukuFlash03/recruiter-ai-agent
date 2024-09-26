@@ -22,14 +22,14 @@ from entities.applicant import (
     PersonalDetails,
 )
 
-tmpp_db = "tmpp_db/"
-experience_file = f"{tmpp_db}experiences.json"
-education_file = f"{tmpp_db}educations.json"
-project_file = f"{tmpp_db}projects.json"
-skill_file = f"{tmpp_db}skills.json"
-achievement_file = f"{tmpp_db}achievements.json"
-personal_details_file = f"{tmpp_db}personal_details.json"
-question_answer_file = f"{tmpp_db}question_answers.json"
+tmpp_db = os.path.join(os.path.dirname(parent_directory), "tmpp_db")
+experience_file = os.path.join(tmpp_db, "experiences.json")
+education_file = os.path.join(tmpp_db, "educations.json")
+project_file = os.path.join(tmpp_db, "projects.json")
+skill_file = os.path.join(tmpp_db, "skills.json")
+personal_details_file = os.path.join(tmpp_db, "personal_details.json")
+question_answer_file = os.path.join(tmpp_db, "question_answers.json")
+achievement_file = os.path.join(tmpp_db, "achievements.json")
 
 from basic_agent import (
     parse_input,
@@ -61,12 +61,11 @@ def extract_text_from_pdf(file_path: str) -> str:
 
 
 async def get_user_info() -> Any:
-    base_folder = "Agent_Backend/"
-    # base_folder = ""
-    resume_path = f"{base_folder}data/Resume/Mukul_Resume.pdf"
-    linkedin_path = f"{base_folder}data/LinkedIn/Mukul_LI_Profile.pdf"
-    questions_path = f"{base_folder}data/QnA/Questions.txt"
-    answers_path = f"{base_folder}data/QnA/Mukul_Answers.txt"
+    base_folder = os.path.join(parent_directory, "data")
+    resume_path = os.path.join(base_folder, "Resume", "Mukul_Resume.pdf")
+    linkedin_path = os.path.join(base_folder, "LinkedIn", "Mukul_LI_Profile.pdf")
+    questions_path = os.path.join(base_folder, "QnA", "Questions.txt")
+    answers_path = os.path.join(base_folder, "QnA", "Mukul_Answers.txt")
 
     resume_content = extract_text_from_pdf(resume_path)
     linkedin_content = extract_text_from_pdf(linkedin_path)

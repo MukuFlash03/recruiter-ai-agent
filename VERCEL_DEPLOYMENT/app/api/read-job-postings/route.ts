@@ -8,7 +8,6 @@ export async function GET(request: Request) {
             .from('job_postings')
             .select()
         if (error) throw error;
-        console.log(request);
 
         return NextResponse.json({ message: 'Job Postings data fetched successfully', data });
     } catch (error) {

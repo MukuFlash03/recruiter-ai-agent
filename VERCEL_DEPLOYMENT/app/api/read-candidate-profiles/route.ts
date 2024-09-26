@@ -8,7 +8,6 @@ export async function GET(request: Request) {
             .from('candidate_profiles')
             .select()
         if (error) throw error;
-        console.log(request);
 
         return NextResponse.json({ message: 'Candidate profiles fetched successfully', data });
     } catch (error) {
