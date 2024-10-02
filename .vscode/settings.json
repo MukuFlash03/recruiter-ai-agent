@@ -10,7 +10,7 @@
         "black"
     ],
     "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter",
+        // "editor.defaultFormatter": "ms-python.autopep8",
         "editor.rulers": [
             88,
         ]
@@ -34,4 +34,5 @@
     ],
     "mypy.runUsingActiveInterpreter": true,
     "mypy.debugLogging": true,
+    "python.analysis.typeCheckingMode": "basic",
 }

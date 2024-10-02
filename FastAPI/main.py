@@ -1,5 +1,6 @@
 from fastapi import FastAPI, BackgroundTasks, HTTPException, Request
-from typing import Dict
+from typing import Dict, Any, Union
+from db.operations import get_candidate_profiles, get_job_postings
 
 import sys
 import os
@@ -99,3 +100,24 @@ async def async_with_background_error(
     raise HTTPException(
         status_code=400, detail="Async error occurred with background task."
     )
+
+@app.get("/candidates")
+async def get_candidates(candidate_id: Union[str, None] = None) -> Union[Dict[str, Any], Any]:  
+    """
+    Retrieve candidate profiles information from the database.
+    """
+    candidates = get_candidate_profiles(candidate_id)
+    if candidates is None:
+        raise HTTPException(status_code=404, detail="Candidates data not found")
+    return candidates
+
+@app.get("/jobs")
+async def get_jobs(job_id: Union[str, None] = None) -> Union[Dict[str, Any], Any]:  
+# async def get_candidates(user_id: str) -> Dict[str, Any]:
+    """
+    Retrieve job postings information from the database.
+    """
+    jobs = get_job_postings(job_id)
+    if jobs is None:
+        raise HTTPException(status_code=404, detail="Jobs data not found")
+    return jobs
