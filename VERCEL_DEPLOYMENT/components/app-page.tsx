@@ -1,8 +1,9 @@
 'use client'
 
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Briefcase, Sparkles, Users, Clock } from 'lucide-react'
-import Link from 'next/link'
+import { Clock, Sparkles, Users } from 'lucide-react';
+
+import DashboardButton from "@/app/(comp)/DashboardButton";
+import LoginButton from "@/app/(comp)/LoginLogoutButton";
 
 export function Page() {
   return (
@@ -14,21 +15,15 @@ export function Page() {
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
           Our AI-powered platform connects awesome talent with cool companies. Say goodbye to endless interviews and hello to perfect matches!
         </p>
+        <div className="z-10 w-full max-w-5xl items-center justify-center space-x-24 font-mono text-sm lg:flex">
+          {/* <UserGreetText /> */}
+          <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
+            <LoginButton />
+          </div>
+        </div>
         <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
-          <Button asChild size="lg" variant="outline" className="w-full sm:w-auto group">
-            <Link href="/candidate/123/profile" className="flex items-center justify-center">
-              <Briefcase className="mr-2 h-5 w-5" />
-              I&apos;m a Candidate
-              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </Button>
-          <Button asChild size="lg" className="w-full sm:w-auto group">
-            <Link href="/recruiter" className="flex items-center justify-center">
-              <Users className="mr-2 h-5 w-5" />
-              I&apos;m a Recruiter
-              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </Button>
+          <DashboardButton label="I&apos;m a Candidate" url="/candidate/123/profile" />
+          <DashboardButton label="I&apos;m a Recruiter" url="/recruiter" />
         </div>
       </div>
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
