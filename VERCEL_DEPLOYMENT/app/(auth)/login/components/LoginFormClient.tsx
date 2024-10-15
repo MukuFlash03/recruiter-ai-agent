@@ -1,30 +1,22 @@
-import Link from "next/link"
+'use client';
+import Link from "next/link";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { login } from "@/lib/auth-action"
-import { createClient } from '@/lib/utils/supabase/server'
-import { redirect } from "next/navigation"
-import SignInWithGoogleButton from "./SignInWithGoogleButton"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { login } from "@/lib/auth-action";
+import { SignInWithGoogleButton } from "./SignInWithGoogleButton";
 
-export async function LoginForm() {
-  const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (user) {
-    return redirect("/");
-  }
-
+export async function LoginFormClient({ redirectUrl, role }: { redirectUrl: string, role: string }) {
+  console.log(`Role in LoginFormClient: ${role}`);
+  console.log(`Redirect URL in LoginFormClient: ${redirectUrl}`);
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -54,11 +46,13 @@ export async function LoginForm() {
                 </Link>
               </div>
               <Input id="password" name="password" type="password" required />
+              {/* <Input id="redirect" name="redirect" type="hidden" value={redirectUrl} /> */}
+              <Input id="role" name="role" type="hidden" value={role} />
             </div>
             <Button type="submit" formAction={login} className="w-full">
               Login
             </Button>
-            <SignInWithGoogleButton />
+            <SignInWithGoogleButton redirectUrl={redirectUrl} role={role} />
           </div>
         </form>
         <div className="mt-4 text-center text-sm">

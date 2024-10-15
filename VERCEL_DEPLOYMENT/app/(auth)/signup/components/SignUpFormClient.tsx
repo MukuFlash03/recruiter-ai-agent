@@ -1,3 +1,4 @@
+'use client';
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -12,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signup } from "@/lib/auth-action";
 
-export function SignUpForm() {
+export function SignUpFormClient({ redirectUrl }: { redirectUrl: string }) {
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -57,6 +58,7 @@ export function SignUpForm() {
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
               <Input name="password" id="password" type="password" />
+              <Input id="redirect" name="redirect" type="hidden" value={redirectUrl} />
             </div>
             <Button formAction={signup} type="submit" className="w-full">
               Create an account

@@ -8,20 +8,27 @@ import { createClient } from "@/lib/utils/supabase/server";
 export async function login(formData: FormData) {
   const supabase = createClient();
 
-  const data = {
+  const data2 = {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
   };
 
-  const { error } = await supabase.auth.signInWithPassword(data);
+  // let redirectUrl = formData.get("redirect") as string;
+  const role = formData.get("role") as string;
+
+  const { data, error } = await supabase.auth.signInWithPassword(data2);
 
   if (error) {
     console.log(error);
     redirect("/error");
   }
 
+  const redirectUrl = role === "candidate" ? `/candidate/${data.user.id}` : "/recruiter";
+  console.log("Role in auth-action login is: " + role);
+  console.log(`Redirect URL in auth-action login: ${redirectUrl}`);
+
   revalidatePath("/", "layout");
-  redirect("/");
+  redirect(redirectUrl || "/");
 }
 
 export async function signup(formData: FormData) {
@@ -29,7 +36,7 @@ export async function signup(formData: FormData) {
 
   const firstName = formData.get("first-name") as string;
   const lastName = formData.get("last-name") as string;
-  const data = {
+  const data2 = {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
     options: {
@@ -40,7 +47,10 @@ export async function signup(formData: FormData) {
     },
   };
 
-  const { error } = await supabase.auth.signUp(data);
+  // const redirectUrl = formData.get("redirect") as string;
+  const role = formData.get("role") as string;
+
+  const { data, error } = await supabase.auth.signUp(data2);
 
   if (error) {
     console.log(error);
@@ -48,8 +58,12 @@ export async function signup(formData: FormData) {
     redirect("/error");
   }
 
+  const redirectUrl = role === "candidate" ? `/candidate/${data.user.id}` : "/recruiter";
+  console.log("Role in auth-action signup is: " + role);
+  console.log(`Redirect URL in auth-action signup: ${redirectUrl}`);
+
   revalidatePath("/", "layout");
-  redirect("/");
+  redirect(redirectUrl || "/");
 }
 
 export async function signout() {
@@ -63,7 +77,7 @@ export async function signout() {
   redirect("/logout");
 }
 
-export async function signInWithGoogle() {
+export async function signInWithGoogle(redirectUrl: string) {
   const supabase = createClient();
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
@@ -80,6 +94,7 @@ export async function signInWithGoogle() {
     redirect("/error");
   }
 
+  revalidatePath("/", "layout");
   redirect(data.url);
 }
 

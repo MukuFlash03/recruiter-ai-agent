@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { signout } from "@/lib/auth-action"
+import { createClient } from "@/lib/utils/supabase/client"
 import { ArrowRight, CheckCircle, UserCircle, X } from "lucide-react"
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -49,7 +51,7 @@ const fetchJobs = async () => {
 const checkProfileComplete = async () => {
   // Simulate API call
   await new Promise(resolve => setTimeout(resolve, 500))
-  return true // Change this to true to simulate a completed profile
+  return false // Change this to true to simulate a completed profile
 }
 
 export function Page() {
@@ -60,7 +62,17 @@ export function Page() {
   const [selectedJob, setSelectedJob] = useState<any>(null)
   const router = useRouter()
 
+  const [user, setUser] = useState<any>(null);
+  const supabase = createClient();
+
   useEffect(() => {
+    const fetchUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      setUser(user);
+    };
+
     const initializeDashboard = async () => {
       const isProfileComplete = await checkProfileComplete()
       setProfileComplete(isProfileComplete)
@@ -72,6 +84,7 @@ export function Page() {
       setLoading(false)
     }
 
+    fetchUser();
     initializeDashboard()
   }, [])
 
@@ -113,7 +126,17 @@ export function Page() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Welcome Candidate</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold mb-4">Welcome Candidate</h1>
+        <Button size="lg" variant="outline" className="w-full sm:w-auto group"
+          onClick={() => {
+            signout();
+            setUser(null);
+          }}
+        >
+          Log out
+        </Button>
+      </div>
       <Card className="mb-8">
         <CardHeader>
           <CardTitle>Your Profile</CardTitle>

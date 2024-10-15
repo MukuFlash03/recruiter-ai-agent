@@ -1,10 +1,9 @@
-import React from 'react'
-import { LoginForm } from './components/LoginForm'
+import { LoginFormWrapper } from './components/LoginFormWrapper';
 
-const LoginPage = () => {
+export default function LoginPage() {
   return (
-    <div className="flex h-svh items-center"><LoginForm/></div>
-  )
+    <div className="flex h-svh items-center">
+      <LoginFormWrapper />
+    </div>
+  );
 }
-
-export default LoginPage

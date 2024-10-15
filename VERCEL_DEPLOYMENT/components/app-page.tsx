@@ -2,10 +2,38 @@
 
 import { Clock, Sparkles, Users } from 'lucide-react';
 
-import DashboardButton from "@/app/(comp)/DashboardButton";
-import LoginButton from "@/app/(comp)/LoginLogoutButton";
+import { DashboardLoginButton } from "@/app/(comp)/DashboardLoginButton";
+import { DashboardViewButton } from "@/app/(comp)/DashboardViewButton";
+import { createClient } from "@/lib/utils/supabase/client";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export function Page() {
+  const [user, setUser] = useState<any>(null);
+  const [redirectUrl, setRedirectUrl] = useState<string>('');
+  const router = useRouter();
+  const supabase = createClient();
+
+  // First time signup or login after logout would fetch "role" correctly on clicking button
+  // If already logged in, button won't be visible, need to fetch role from Supabase DB
+  const role = "candidate";
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      setUser(user);
+      if (user) {
+        // setRedirectUrl(role === 'candidate' ? `/candidate/${user.id}` : '/recruiter')
+        console.log(`Go to dashboard for ${role} ${user.id}`);
+      }
+    };
+    fetchUser();
+  }, []);
+
+
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="text-center space-y-8 max-w-4xl mb-16">
@@ -15,16 +43,21 @@ export function Page() {
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
           Our AI-powered platform connects awesome talent with cool companies. Say goodbye to endless interviews and hello to perfect matches!
         </p>
-        <div className="z-10 w-full max-w-5xl items-center justify-center space-x-24 font-mono text-sm lg:flex">
-          {/* <UserGreetText /> */}
+        {/* <div className="z-10 w-full max-w-5xl items-center justify-center space-x-24 font-mono text-sm lg:flex">
           <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
             <LoginButton />
           </div>
-        </div>
-        <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
-          <DashboardButton label="I&apos;m a Candidate" url="/candidate/123/profile" />
-          <DashboardButton label="I&apos;m a Recruiter" url="/recruiter" />
-        </div>
+        </div> */}
+        {!user ? (
+          <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+            <DashboardLoginButton label="I'm a Candidate" role="candidate" />
+            <DashboardLoginButton label="I'm a Recruiter" role="recruiter" />
+          </div>
+        ) : (
+          <div>
+            <DashboardViewButton role={role} />
+          </div>
+        )}
       </div>
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
         {features.map((feature, index) => (

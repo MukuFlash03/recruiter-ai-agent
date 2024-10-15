@@ -6,10 +6,13 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { signout } from "@/lib/auth-action"
 import { JobPostingData, SelectedJobsResponse } from "@/lib/types/jobs"
 import { fetchJobPostings, insertJobPostings } from '@/lib/utils/api_calls'
+import { createClient } from "@/lib/utils/supabase/client"
 import { PlusCircle, X } from "lucide-react"
 import Link from 'next/link'
+import { useRouter } from "next/navigation"
 import { useEffect, useState } from 'react'
 
 // Placeholder data
@@ -38,7 +41,18 @@ export function RecruiterDashboardComponent() {
   const [requiredSkills, setRequiredSkills] = useState('');
   const [questions, setQuestions] = useState<string[]>(['']);
 
+  const [user, setUser] = useState<any>(null);
+  const router = useRouter();
+  const supabase = createClient();
+
   useEffect(() => {
+    const fetchUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      setUser(user);
+    };
+
     const loadData = async () => {
       try {
         const data = await fetchJobPostings();
@@ -50,7 +64,9 @@ export function RecruiterDashboardComponent() {
       }
     };
 
+    fetchUser();
     loadData();
+
   }, []);
 
   const addQuestion = () => {
@@ -110,6 +126,14 @@ export function RecruiterDashboardComponent() {
     <div className="container mx-auto p-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Recruiter Dashboard</h1>
+        <Button size="lg" variant="outline" className="w-full sm:w-auto group"
+          onClick={() => {
+            signout();
+            setUser(null);
+          }}
+        >
+          Log out
+        </Button>
         <Dialog open={isNewJobModalOpen} onOpenChange={setIsNewJobModalOpen}>
           <DialogTrigger asChild>
             <Button>
