@@ -5,7 +5,15 @@ import { ArrowRight, Briefcase } from 'lucide-react';
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export function DashboardLoginButton({ label, role }: { label: string, role: string }) {
+export function DashboardLoginButton({
+  label,
+  role,
+  onClick
+}: {
+  label: string,
+  role: string,
+  onClick?: () => void
+}) {
   const [user, setUser] = useState<any>(null);
   const [redirectUrl, setRedirectUrl] = useState<string>('');
   const router = useRouter();
@@ -21,7 +29,7 @@ export function DashboardLoginButton({ label, role }: { label: string, role: str
       } = await supabase.auth.getUser();
       setUser(user);
       if (user) {
-        setRedirectUrl(role === 'candidate' ? `/candidate/${user.id}` : '/recruiter')
+        setRedirectUrl(role === 'candidate' ? `/candidate/${user.id}` : `/recruiter/${user.id}`)
       }
     };
     fetchUser();
@@ -35,12 +43,14 @@ export function DashboardLoginButton({ label, role }: { label: string, role: str
         variant="outline"
         className="w-full sm:w-auto group"
         onClick={() => {
+          if (onClick)
+            onClick();
           if (!user) {
             // router.push(`/login?redirect=${encodeURIComponent(redirectUrl)}`);
             console.log(`Role in DashboardButton if not user: ${role}`);
             router.push(`/login?role=${role}`);
           } else {
-            setRedirectUrl(role === 'candidate' ? `/candidate/${user.id}` : '/recruiter')
+            setRedirectUrl(role === 'candidate' ? `/candidate/${user.id}` : `/recruiter/${user.id}`)
             console.log(`RedirectURL: ${redirectUrl}`);
             router.push(redirectUrl);
           }

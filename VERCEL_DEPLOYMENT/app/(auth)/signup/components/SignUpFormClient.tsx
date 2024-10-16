@@ -13,7 +13,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signup } from "@/lib/auth-action";
 
-export function SignUpFormClient({ redirectUrl }: { redirectUrl: string }) {
+// export async function SignUpFormClient({ redirectUrl, role }: { redirectUrl: string, role: string }) {
+export async function SignUpFormClient({ role }: { role: string }) {
+  console.log(`Role in SignUpFormClient: ${role}`);
+  // console.log(`Redirect URL in SignUpFormClient: ${redirectUrl}`);
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -58,7 +61,8 @@ export function SignUpFormClient({ redirectUrl }: { redirectUrl: string }) {
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
               <Input name="password" id="password" type="password" />
-              <Input id="redirect" name="redirect" type="hidden" value={redirectUrl} />
+              {/* <Input id="redirect" name="redirect" type="hidden" value={redirectUrl} /> */}
+              <Input id="role" name="role" type="hidden" value={role} />
             </div>
             <Button formAction={signup} type="submit" className="w-full">
               Create an account
@@ -67,7 +71,8 @@ export function SignUpFormClient({ redirectUrl }: { redirectUrl: string }) {
         </form>
         <div className="mt-4 text-center text-sm">
           Already have an account?{" "}
-          <Link href="/login" className="underline">
+
+          <Link href={`/login?role=${role}`} className="underline">
             Sign in
           </Link>
         </div>

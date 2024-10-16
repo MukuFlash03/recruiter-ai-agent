@@ -1,8 +1,9 @@
 'use client'
 
 import { Button } from "@/components/ui/button";
-import { SelectedInterviewsResponse } from "@/lib/types/interviews";
+import { InterviewsCandidateResponse } from "@/lib/types/interviews";
 import { fetchInterviewData } from '@/lib/utils/api_calls';
+import { createClient } from "@/lib/utils/supabase/client";
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -14,35 +15,56 @@ const mockResults = [
   { id: 3, name: "Bob Johnson", score: 72, match: "80%" },
 ]
 
-export function Page() {
-  const [interviewsData, setInterviewsData] = useState<SelectedInterviewsResponse[]>([]);
+export default function RecruiterResultsPage() {
+  const [interviewsData, setInterviewsData] = useState<InterviewsCandidateResponse[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [user, setUser] = useState<any>(null);
+
+  const supabase = createClient();
 
   const params = useParams();
   // const jobId = params.job_id;
   const jobId = Array.isArray(params.job_id) ? params.job_id[0] : params.job_id;
   console.log("Job ID from params:", jobId);
 
+  console.log("Before useEffect in RecruiterResultsPage");
+
+
   useEffect(() => {
+    const fetchUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      setUser(user);
+    };
+
     const loadData = async () => {
       try {
-        // const data = await fetchInterviewData({
-        //   job_id: jobId,
-        // });
-        const data = await fetchInterviewData();
+        console.log("Before call to fetchInterviewData");
+
+        const data = await fetchInterviewData({
+          job_id: jobId,
+        });
+
+        console.log("After call to fetchInterviewData");
+
         setInterviewsData(data.data);
         setLoading(false);
       } catch (err) {
-        setError('Failed to fetch jon postings data');
+        setError('Failed to fetch job postings data');
         setLoading(false);
       }
     };
 
+    fetchUser();
     loadData();
 
   }, []);
 
+  console.log("After useEffect in RecruiterResultsPage");
+
+  console.log("Logging interviewsData in RecruiterResultsPage:");
   console.log(interviewsData);
 
 
@@ -52,12 +74,11 @@ export function Page() {
       <div className="space-y-4">
         {interviewsData.map((candidate) => (
           <div key={candidate.interview_id} className="border p-4 rounded-lg">
-            {/* <h2 className="text-xl font-semibold">{candidate.candidate_id}</h2> */}
-            <h2 className="text-xl font-semibold">{candidate.candidate_name}</h2>
+            <h2 className="text-xl font-semibold">{candidate.candidate_profiles.name}</h2>
             <p>Score: {candidate.score}</p>
             <p>Match: {candidate.match_pct}</p>
             <p>Decision: {candidate.interview_decision ? 'Selected' : 'Rejected'}</p>
-            <Link href={`/recruiter/jobs/1/results/analysis/`}>
+            <Link href={`/recruiter/${user.id}/jobs/${jobId}/results/analysis/`}>
               {/* <Link href={`/recruiter/jobs/${job.job_id}/results/`}> */}
               <Button className="mt-2">View Full Analysis</Button>
             </Link>

@@ -1,13 +1,27 @@
 export type InterviewsResponse = {
-    interview_id: number,
-    candidate_id: number,
-    job_id: number,
-    score: number,
-    match_pct: number
-    interview_decision: boolean,
-    candidate_name: string
+  interview_id: number,
+  candidate_id: string,
+  recruiter_id: string,
+  job_id: number,
+  interview_decision: boolean,
+  score: number,
+  match_pct: number
 };
 
 export type SelectedInterviewsResponse = Pick<InterviewsResponse,
-    'interview_id' | 'candidate_id' | 'job_id' | 'score' | 'match_pct' | 'interview_decision' | 'candidate_name'
+  'interview_id' | 'candidate_id' | 'recruiter_id' | 'job_id' |
+  'interview_decision' | 'score' | 'match_pct'
 >;
+
+export type InterviewsCandidateResponse = {
+  interview_id: number,
+  candidate_id: string,
+  recruiter_id: string,
+  job_id: number,
+  interview_decision: boolean,
+  score: number,
+  match_pct: number,
+  candidate_profiles: {
+    name: string,
+  },
+}

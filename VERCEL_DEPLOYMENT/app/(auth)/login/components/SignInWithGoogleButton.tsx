@@ -2,8 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { signInWithGoogle } from "@/lib/auth-action";
 
-export async function SignInWithGoogleButton({ redirectUrl, role }: { redirectUrl: string, role: string }) {
-  console.log(`Redirect URL in SignInWithGoogleButton: ${redirectUrl}`);
+export async function SignInWithGoogleButton({ role }: { role: string }) {
   console.log(`Role in SignInWithGoogleButton: ${role}`);
 
   return (
@@ -12,7 +11,7 @@ export async function SignInWithGoogleButton({ redirectUrl, role }: { redirectUr
       variant="outline"
       className="w-full"
       onClick={() => {
-        signInWithGoogle(redirectUrl);
+        signInWithGoogle(role);
       }}
     >
       Login with Google

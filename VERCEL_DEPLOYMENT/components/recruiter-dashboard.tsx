@@ -43,6 +43,7 @@ export function RecruiterDashboardComponent() {
 
   const [user, setUser] = useState<any>(null);
   const router = useRouter();
+
   const supabase = createClient();
 
   useEffect(() => {
@@ -245,7 +246,7 @@ export function RecruiterDashboardComponent() {
                   {/* <p>{job.applicants} applicants</p> */}
                   <p>5 top candidates</p>
                   <div className="flex justify-end mt-2">
-                    <Link href={`/recruiter/jobs/${job.job_id}/results`}>
+                    <Link href={`/recruiter/${user.id}/jobs/${job.job_id}/results`}>
                       <Button variant="outline" size="sm">View Details</Button>
                     </Link>
                   </div>

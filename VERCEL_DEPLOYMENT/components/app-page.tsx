@@ -11,25 +11,37 @@ import { useEffect, useState } from "react";
 export function Page() {
   const [user, setUser] = useState<any>(null);
   const [redirectUrl, setRedirectUrl] = useState<string>('');
+  const [role, setRole] = useState<'candidate' | 'recruiter' | null>(null);
+
   const router = useRouter();
   const supabase = createClient();
 
   // First time signup or login after logout would fetch "role" correctly on clicking button
   // If already logged in, button won't be visible, need to fetch role from Supabase DB
-  const role = "candidate";
+  // SignInWithGoogle role needs to be managed correctly
+  // const role = "candidate";
+  // const role = "recruiter";
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const fetchUserAndSetRole = async () => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
       setUser(user);
+
+      const storedRole = localStorage.getItem('selectedRole');
+      if (storedRole) {
+        setRole(storedRole as 'recruiter' | 'candidate');
+        // localStorage.removeItem('selectedRole');
+        console.log(`Fetched updated Role in Page: role = ${role} ; storedRole = ${storedRole}`);
+      }
+
       if (user) {
-        // setRedirectUrl(role === 'candidate' ? `/candidate/${user.id}` : '/recruiter')
+        // setRedirectUrl(role === 'candidate' ? `/candidate/${user.id}` : `/recruiter/${user.id}`)
         console.log(`Go to dashboard for ${role} ${user.id}`);
       }
     };
-    fetchUser();
+    fetchUserAndSetRole();
   }, []);
 
 
@@ -43,15 +55,26 @@ export function Page() {
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
           Our AI-powered platform connects awesome talent with cool companies. Say goodbye to endless interviews and hello to perfect matches!
         </p>
-        {/* <div className="z-10 w-full max-w-5xl items-center justify-center space-x-24 font-mono text-sm lg:flex">
-          <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-            <LoginButton />
-          </div>
-        </div> */}
         {!user ? (
           <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
-            <DashboardLoginButton label="I'm a Candidate" role="candidate" />
-            <DashboardLoginButton label="I'm a Recruiter" role="recruiter" />
+            <DashboardLoginButton
+              label="I'm a Candidate"
+              role="candidate"
+              onClick={() => {
+                const roleToSet = 'candidate';
+                localStorage.setItem('selectedRole', roleToSet);
+                setRole(roleToSet);
+                console.log(`Role in Page: role = ${role} ; roleToSet = ${roleToSet}`);
+              }} />
+            <DashboardLoginButton
+              label="I'm a Recruiter"
+              role="recruiter"
+              onClick={() => {
+                const roleToSet = 'recruiter';
+                localStorage.setItem('selectedRole', roleToSet);
+                setRole(roleToSet);
+                console.log(`Role in Page: role = ${role} ; roleToSet = ${roleToSet}`);
+              }} />
           </div>
         ) : (
           <div>

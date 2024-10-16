@@ -9,7 +9,8 @@ export default async function RecruiterResults() {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return redirect("/login");
+    // return redirect("/login");
+    return redirect("/");
   }
 
   return (

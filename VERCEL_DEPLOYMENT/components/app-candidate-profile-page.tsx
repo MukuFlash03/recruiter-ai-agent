@@ -46,7 +46,7 @@ export function Page() {
     formData.append("additionalInfo", additionalInfo);
 
     try {
-      const response = await fetch("/api/save-candidate-profile", {
+      const response = await fetch("/api/update-candidate-profile", {
         method: "POST",
         body: formData,
       });

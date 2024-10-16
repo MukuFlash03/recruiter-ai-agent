@@ -1,20 +1,55 @@
 import { createClient } from '@/lib/utils/supabase/server';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function GET(request: NextRequest) {
+  console.log("GET Request received at /api/read-interviews-data");
+  try {
+    const job_id = request.nextUrl.searchParams.get('job_id');
+    console.log("Job ID in GET route:", job_id);
+
+    // const bodyText = await request.text();
+    // console.log("Raw request body:", bodyText);
+
+    // const { job_id } = JSON.parse(bodyText);
+
+    // const job_id = '2'
+
+    const supabase = createClient();
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    const recruiter_id = user?.id;
+
+    console.log("Recruiter ID:", recruiter_id);
+    console.log("Job ID:", job_id);
 
 
-export async function GET(request: Request) {
-    try {
-        const supabase = createClient();
-        const { data, error } = await supabase
-            .from('interviews')
-            .select()
-        if (error) throw error;
+    const { data, error } = await supabase
+      .from('interviews')
+      .select(`
+            interview_id,
+            candidate_id,
+            recruiter_id,
+            job_id,
+            interview_decision,
+            score,
+            match_pct,
+            candidate_profiles (name)
+          `
+      )
+      .eq('recruiter_id', recruiter_id)
+      .eq('job_id', job_id)
+      ;
 
-        return NextResponse.json({ message: 'Interviews data fetched successfully', data });
-    } catch (error) {
-        console.log(error);
-        return NextResponse.json({ error: 'Failed to fetch interviews data' }, { status: 500 });
-    }
+    if (error) throw error;
+
+    return NextResponse.json({ message: 'Interviews data fetched successfully', data });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ error: 'Failed to fetch interviews data' }, { status: 500 });
+  }
 }
 
 

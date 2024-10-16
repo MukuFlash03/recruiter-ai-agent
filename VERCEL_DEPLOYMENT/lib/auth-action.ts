@@ -4,6 +4,9 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { createClient } from "@/lib/utils/supabase/server";
+import { insertCandidateProfile, insertNewProfile, insertRecruiterProfile } from "./utils/api_calls";
+
+import { NewProfileResponse } from "@/lib/types/all_profiles";
 
 export async function login(formData: FormData) {
   const supabase = createClient();
@@ -23,7 +26,9 @@ export async function login(formData: FormData) {
     redirect("/error");
   }
 
-  const redirectUrl = role === "candidate" ? `/candidate/${data.user.id}` : "/recruiter";
+  const user_id = data.user.id;
+
+  const redirectUrl = role === "candidate" ? `/candidate/${data.user.id}` : `/recruiter/${data.user.id}`;
   console.log("Role in auth-action login is: " + role);
   console.log(`Redirect URL in auth-action login: ${redirectUrl}`);
 
@@ -54,13 +59,28 @@ export async function signup(formData: FormData) {
 
   if (error) {
     console.log(error);
-
     redirect("/error");
   }
 
-  const redirectUrl = role === "candidate" ? `/candidate/${data.user.id}` : "/recruiter";
+  const redirectUrl = role === "candidate" ? `/candidate/${data.user.id}` : `/recruiter/${data.user.id}`;
   console.log("Role in auth-action signup is: " + role);
   console.log(`Redirect URL in auth-action signup: ${redirectUrl}`);
+
+
+  await insertNewProfile(data.user.id, role);
+
+
+  const profileData: NewProfileResponse = {
+    profile_id: data.user.id,
+    role: role,
+    name: data.user.user_metadata?.full_name,
+    email: data.user.email
+  }
+
+  if (role === "candidate")
+    await insertCandidateProfile(profileData);
+  else if (role === "recruiter")
+    await insertRecruiterProfile(profileData);
 
   revalidatePath("/", "layout");
   redirect(redirectUrl || "/");
@@ -77,7 +97,7 @@ export async function signout() {
   redirect("/logout");
 }
 
-export async function signInWithGoogle(redirectUrl: string) {
+export async function signInWithGoogle(role: string) {
   const supabase = createClient();
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
@@ -93,6 +113,35 @@ export async function signInWithGoogle(redirectUrl: string) {
     console.log(error);
     redirect("/error");
   }
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  console.log("Inside signin with Google Auth-action");
+  console.log("User ID:", user?.id);
+  console.log("User email:", user?.email);
+  console.log("User name: ", user?.user_metadata?.full_name);
+
+  /*
+  const redirectUrl = role === "candidate" ? `/candidate/${user.id}` : `/recruiter/${user.id}`;
+  console.log("Role in auth-action signup is: " + role);
+  console.log(`Redirect URL in auth-action signup: ${redirectUrl}`);
+
+  await insertNewProfile(user.id, role);
+
+  const profileData: NewProfileResponse = {
+    profile_id: user.id,
+    role: role,
+    name: user.user_metadata?.full_name,
+    email: user.email
+  }
+
+  if (role === "candidate")
+    await insertCandidateProfile(profileData);
+  else if (role === "recruiter")
+    await insertRecruiterProfile(profileData);
+  */
 
   revalidatePath("/", "layout");
   redirect(data.url);

@@ -8,8 +8,14 @@ export default async function RecruiterDashboard() {
     data: { user },
   } = await supabase.auth.getUser();
 
+  // console.log("User data:", user);
+  // console.log("User email:", user?.email);
+  // console.log("User name: ", user?.user_metadata?.full_name);
+
+
   if (!user) {
-    return redirect("/login");
+    // return redirect("/login");
+    return redirect("/");
   }
 
   return (

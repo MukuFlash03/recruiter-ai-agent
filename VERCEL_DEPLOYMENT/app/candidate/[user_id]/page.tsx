@@ -1,4 +1,4 @@
-import { Page as CandidateDashboardPage } from '@/components/candidate-dashboard-page';
+import { CandidateDashboardPage } from '@/components/candidate-dashboard-page';
 import { createClient } from '@/lib/utils/supabase/server';
 import { redirect } from "next/navigation";
 
@@ -9,12 +9,13 @@ export default async function Page() {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return redirect("/login");
+    // return redirect("/login");
+    return redirect("/");
   }
 
   return (
     <div >
-      <CandidateDashboardPage />
+      <CandidateDashboardPage candidate_id={user.id} />
     </div>
   );
 }

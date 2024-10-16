@@ -6,11 +6,15 @@
             "location": "Golden, Colorado",
             "start_date": "08/2023",
             "end_date": "09/2024",
-            "description": "Refined data processing in model build and analysis pipeline, transforming raw data into inferred values with comprehensive automated unit and integration testing. Optimized system scalability through time complexity improvements, enhancing overall performance. Troubleshot and resolved model build pipeline failures in staging and production environments using CloudWatch logs. Streamlined and automated DevOps processes by restructuring CI/CD workflows with GitHub Actions. Implemented data export/import functionality for timeseries data purge and restore, improving database efficiency and data lifecycle management.",
+            "description": "Refined data processing in model build and analysis pipeline, transforming raw data into inferred values with comprehensive automated unit and integration testing. Optimized system scalability through time complexity improvements, enhancing overall performance. Troubleshot and resolved model build pipeline failures in staging and production environments using CloudWatch logs. Streamlined and automated DevOps processes by restructuring CI/CD workflows with GitHub Actions. Implementing data export/import functionality for timeseries data purge and restore, improving database efficiency and data lifecycle management.",
             "reference_context": [
-                "Work Experience"
+                "Refined data processing pipeline",
+                "Optimized system scalability",
+                "Troubleshot and resolved pipeline failures",
+                "Streamlined DevOps processes",
+                "Improved database efficiency"
             ],
-            "reasoning": "This role is clearly stated in the work experience section, detailing responsibilities and technical skills used.",
+            "reasoning": "This position involved comprehensive experience in software development, focusing on refining data processing pipelines and enhancing system performance through optimization and automation.",
             "skills": [
                 "Python",
                 "Docker",
@@ -20,21 +24,62 @@
             ]
         },
         {
-            "title": "Software Development Engineer",
-            "company": "Oracle Financial Services Software",
-            "location": "Bangalore, India",
-            "start_date": "07/2021",
-            "end_date": "05/2022",
-            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in Production environments for 2 international financial banking firms. Engineered 6 GUI based workflow runs for ETL pipelines with numerous tasks and integrated them with backend scripts to process data from Pre-staging to end-user report generation stage. Enhanced UI for Individual Assessment (IA) module based on XML Forms Framework by customizing 4 UI Forms and 8 PL/SQL scripts to process over 300k customer records. Generated PL/SQL scripts for data manipulation and validation to automate manual tasks for filtering source data that helped reduce execution times by 20% while generating end-user reports.",
+            "title": "Graduate Services Assistant",
+            "company": "Ira A. Fulton Schools of Engineering at Arizona State University",
+            "location": "Tempe, Arizona, United States",
+            "start_date": "01/2023",
+            "end_date": "05/2023",
+            "description": "Grader for CSE 536 Advanced Operating Systems course (Spring 2023) under School of Computing and Augmented Intelligence (SCAI). Activities included preparing and reviewing coursework, assisting students during office hours, and grading assignments.",
             "reference_context": [
-                "Work Experience"
+                "CSE 536 Advanced Operating Systems course",
+                "School of Computing and Augmented Intelligence",
+                "Preparing and reviewing coursework"
             ],
-            "reasoning": "The role is explicitly mentioned, and detailed tasks and technologies involved are listed, marking significant contributions and skills acquired.",
+            "reasoning": "This experience provided an opportunity to develop organizational and teaching skills by assisting with course management and student interaction.",
+            "skills": [
+                "Course preparation",
+                "Grading",
+                "Student assistance"
+            ]
+        },
+        {
+            "title": "Software Engineer Intern - Python Developer, DevOps Engineer",
+            "company": "National Renewable Energy Laboratory",
+            "location": "Colorado, United States",
+            "start_date": "August 2023",
+            "end_date": "Present",
+            "description": "Refined data processing in model build and analysis pipeline in a distributed system for transforming raw data to inferred values followed by end-to-end manual and automated unit testing and integration tests. Did scaling and performance optimization to address scalability requirements by optimizing time complexity. Diagnosed and remedied model build pipeline failures in staging and production environments using Cloudwatch logs. Automated deployment DevOps process by restructuring CI/CD workflows using GitHub Actions.",
+            "reference_context": [
+                "Refined data processing and build pipelines",
+                "Performed scaling and optimization",
+                "Diagnosed and fixed pipeline failures"
+            ],
+            "reasoning": "Focused on enhancing software systems and DevOps processes by implementing refined techniques in data processing and automation.",
+            "skills": [
+                "Python",
+                "DevOps",
+                "Cloudwatch",
+                "GitHub Actions"
+            ]
+        },
+        {
+            "title": "Software Engineer - PL/SQL Developer",
+            "company": "ORACLE FINANCIAL SERVICES SOFTWARE LIMITED",
+            "location": "Bengaluru, Karnataka, India",
+            "start_date": "July 2021",
+            "end_date": "May 2022",
+            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in Production environments for 2 international financial banking firms. Engineered 6 GUI based workflow runs for ETL pipelines with numerous tasks and integrated them with backend scripts to process data from Pre-staging to end-user report generation stage. Enhanced UI for Individual Assessment (IA) module based on XML Forms Framework by customizing 4 UI Forms and 8 PL/SQL scripts to process over 300k customer records by proposing to debug existing legacy code. Generated PL/SQL scripts for data manipulation and validation to automate manual tasks for filtering source data that helped reduce execution times by 20% while generating end-user reports containing customer data for over 6 months. Documented technical designs and deployed code packages across environments via WinSCP/PuTTY client-server apps.",
+            "reference_context": [
+                "Implemented OFSAA LLFP fintech solutions",
+                "Engineered ETL pipelines",
+                "Enhanced UI for Individual Assessment"
+            ],
+            "reasoning": "This role required proficiency in PL/SQL and experience with fintech solutions, focusing on UI enhancements and process automation to improve efficiency.",
             "skills": [
                 "PL/SQL",
                 "XML",
                 "Oracle DB",
-                "Oracle OFSAA",
+                "OFSAA",
                 "ETL"
             ]
         },
@@ -42,51 +87,39 @@
             "title": "Embedded C++ Developer",
             "company": "Inter-university accelerator centre",
             "location": "New Delhi, Delhi, India",
-            "start_date": "05/2020",
-            "end_date": "08/2020",
-            "description": "Worked under Dr. Joby Antony, Formerly Visiting Scientist, CERN, Geneva. Designed software modules for ARM Cortex-M3 embedded server sensor device to measure subzero temperatures. Troubleshooted bugs and optimized the system to handle real-time sensor data via RPC transfer protocols.",
+            "start_date": "May 2020",
+            "end_date": "August 2020",
+            "description": "Worked under Dr. Joby Antony (Formerly Visiting Scientist, CERN, Geneva). Designed software modules for ARM Cortex-M3 embedded server sensor device to measure subzero temperatures. Troubleshooted bugs and optimized the system to handle real-time sensor data via RPC transfer protocols.",
             "reference_context": [
-                "Work Experience"
+                "ARM Cortex-M3 embedded server sensor device",
+                "Handle real-time sensor data"
             ],
-            "reasoning": "Even though this experience is less formal, it provides insights into applied programming and problem-solving skills.",
+            "reasoning": "This position provided experience in embedded systems development and troubleshooting real-time data processing, which is crucial for efficient and reliable system operation.",
             "skills": [
-                "Embedded C++",
+                "C++",
+                "Embedded systems",
                 "ARM Cortex-M3",
-                "RPC transfer protocols"
+                "RPC protocols"
             ]
         },
         {
             "title": "Python Developer",
             "company": "College of Engineering Pune",
             "location": "Pune, Maharashtra, India",
-            "start_date": "05/2019",
-            "end_date": "07/2019",
+            "start_date": "May 2019",
+            "end_date": "July 2019",
             "description": "Worked under the guidance of Ms. Vanita Agarwal, Assistant Professor. Successfully modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining using Python. Designed custom-built library to process 65,536 objects in 2 minutes with accuracy of 95% using linear regression.",
             "reference_context": [
-                "Work Experience"
+                "Discrete mathematical Rough Set Theory",
+                "Sensor Data Mining using Python",
+                "Linear regression"
             ],
-            "reasoning": "The freelance nature of this experience might not officially qualify as employment, but it involved significant development work relevant to the candidate's skills.",
+            "reasoning": "Involved in data analysis and algorithm development, which are critical for developing high-performance computational models.",
             "skills": [
                 "Python",
                 "Data Mining",
+                "Mathematical Modeling",
                 "Linear Regression"
-            ]
-        },
-        {
-            "title": "Graduate Services Assistant",
-            "company": "Ira A. Fulton Schools of Engineering at Arizona State University",
-            "location": "Tempe, Arizona, United States",
-            "start_date": "01/2023",
-            "end_date": "05/2023",
-            "description": "Grader for CSE 536 Advanced Operating Systems course. Prepared and reviewed coursework, assisted students during office hours, and graded assignments.",
-            "reference_context": [
-                "Work Experience"
-            ],
-            "reasoning": "Although short-term and academic in nature, this role involves skills in education, grading, and supporting a learning environment.",
-            "skills": [
-                "Education",
-                "Grading",
-                "Coursework review"
             ]
         }
     ]

@@ -1,43 +1,90 @@
 {
     "achievements": [
         {
-            "title": "Refined data processing and optimized system scalability at NREL",
-            "description": "Refined data processing in model build and analysis pipeline, transforming raw data into inferred values with comprehensive automated unit and integration testing. Optimized system scalability through time complexity improvements, enhancing overall performance.",
+            "title": "Data Processing Optimization at NREL",
+            "description": "Refined data processing in model build and analysis pipeline, transforming raw data into inferred values with comprehensive automated unit and integration testing.",
             "reference_context": [
-                "National Renewable Energy Laboratory",
-                "08/2023 \u2013 09/2024"
+                "National Renewable Energy Laboratory (NREL)",
+                "Software Development Engineer"
             ]
         },
         {
-            "title": "Implemented OFSAA LLFP fintech solutions at Oracle",
-            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in production environments for 2 international financial banking firms.",
+            "title": "System Scalability Improvement",
+            "description": "Optimized system scalability through time complexity improvements, enhancing overall performance.",
+            "reference_context": [
+                "National Renewable Energy Laboratory (NREL)",
+                "Software Development Engineer"
+            ]
+        },
+        {
+            "title": "CI/CD Workflow Restructuring",
+            "description": "Streamlined and automated DevOps processes by restructuring CI/CD workflows with GitHub Actions.",
+            "reference_context": [
+                "National Renewable Energy Laboratory (NREL)",
+                "Software Development Engineer"
+            ]
+        },
+        {
+            "title": "Data Export/Import Implementation",
+            "description": "Improved database efficiency and data lifecycle management by implementing data export/import functionality for timeseries data purge and restore.",
+            "reference_context": [
+                "National Renewable Energy Laboratory (NREL)",
+                "Software Development Engineer"
+            ]
+        },
+        {
+            "title": "OFSAA LLFP Implementation",
+            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in Production environments for two international financial banking firms.",
             "reference_context": [
                 "Oracle Financial Services Software",
-                "07/2021 \u2013 05/2022"
+                "Software Development Engineer"
             ]
         },
         {
-            "title": "Enhanced UI for IA module and reduced execution times at Oracle",
-            "description": "Enhanced UI for Individual Assessment (IA) module based on XML Forms Framework by customizing 4 UI Forms and 8 PL/SQL scripts to process over 300k customer records. Generated PL/SQL scripts to automate manual tasks, reducing execution times by 20% for generating end-user reports over 6 months.",
+            "title": "ETL Pipeline Development",
+            "description": "Engineered six GUI-based workflow runs for ETL pipelines, integrating them with backend scripts to process data from pre-staging to end-user report generation stage.",
             "reference_context": [
                 "Oracle Financial Services Software",
-                "07/2021 \u2013 05/2022"
+                "Software Development Engineer"
             ]
         },
         {
-            "title": "Won AI assistant hackathon",
-            "description": "Won the AWS for Startups prize for creating a multimodal AI assistant that automates browser tasks on behalf of users at the AICamp Generative AI Hackathon.",
+            "title": "UI Enhancement for IA Module",
+            "description": "Enhanced UI for the Individual Assessment module based on XML Forms Framework by customizing four UI forms and eight PL/SQL scripts to process over 300,000 customer records.",
             "reference_context": [
-                "AICamp Generative AI Hackathon",
-                "06/2024"
+                "Oracle Financial Services Software",
+                "Software Development Engineer"
             ]
         },
         {
-            "title": "Modeled Rough Set Theory for Sensor Data Mining",
-            "description": "Successfully modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining using Python, designing a custom-built library to process 65,536 objects in 2 minutes with 95% accuracy using linear regression.",
+            "title": "PL/SQL Automation",
+            "description": "Generated PL/SQL scripts for data manipulation and validation, automating manual tasks for filtering source data, reducing execution times by 20 percent when generating end-user reports.",
+            "reference_context": [
+                "Oracle Financial Services Software",
+                "Software Development Engineer"
+            ]
+        },
+        {
+            "title": "AI Camp Generative AI Hackathon Winner",
+            "description": "Won the AWS for Startups prize for creating a multimodal AI assistant that automates browser tasks on behalf of users.",
+            "reference_context": [
+                "AICamp Generative AI Hackathon for AI Agent and RAG"
+            ]
+        },
+        {
+            "title": "Embedded Server Sensor Development",
+            "description": "Designed software modules for ARM Cortex-M3 embedded server sensor device to measure subzero temperatures and optimized the system for real-time data handling.",
+            "reference_context": [
+                "Inter-university accelerator centre",
+                "Embedded C++ Developer"
+            ]
+        },
+        {
+            "title": "Rough Set Theory Modeling",
+            "description": "Modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining using Python, achieving 95% accuracy processing 65,536 objects in two minutes.",
             "reference_context": [
                 "College of Engineering Pune",
-                "05/2019 \u2013 07/2019"
+                "Python Developer"
             ]
         }
     ]

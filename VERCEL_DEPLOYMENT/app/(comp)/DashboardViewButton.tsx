@@ -13,6 +13,9 @@ export function DashboardViewButton({ role }: { role: string }) {
   const router = useRouter();
   const supabase = createClient();
 
+  console.log(`Role in DashboardViewButton: ${role}`);
+
+
   useEffect(() => {
     const fetchUser = async () => {
       const {
@@ -20,7 +23,7 @@ export function DashboardViewButton({ role }: { role: string }) {
       } = await supabase.auth.getUser();
       setUser(user);
       if (user) {
-        setRedirectUrl(role === 'candidate' ? `/candidate/${user.id}` : '/recruiter')
+        setRedirectUrl(role === 'candidate' ? `/candidate/${user.id}` : `/recruiter/${user.id}`)
         console.log(`RedirectURL in DashboardViewButton if user: ${redirectUrl}`);
 
       }

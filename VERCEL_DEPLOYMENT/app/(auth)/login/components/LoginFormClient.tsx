@@ -15,8 +15,9 @@ import { login } from "@/lib/auth-action";
 import { SignInWithGoogleButton } from "./SignInWithGoogleButton";
 
 export async function LoginFormClient({ redirectUrl, role }: { redirectUrl: string, role: string }) {
+  // export async function LoginFormClient({ role }: { role: string }) {
   console.log(`Role in LoginFormClient: ${role}`);
-  console.log(`Redirect URL in LoginFormClient: ${redirectUrl}`);
+  // console.log(`Redirect URL in LoginFormClient: ${redirectUrl}`);
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -52,12 +53,13 @@ export async function LoginFormClient({ redirectUrl, role }: { redirectUrl: stri
             <Button type="submit" formAction={login} className="w-full">
               Login
             </Button>
-            <SignInWithGoogleButton redirectUrl={redirectUrl} role={role} />
+            <SignInWithGoogleButton role={role} />
           </div>
         </form>
         <div className="mt-4 text-center text-sm">
           Don&apos;t have an account?{" "}
-          <Link href="/signup" className="underline">
+
+          <Link href={`/signup?role=${role}`} className="underline">
             Sign up
           </Link>
         </div>

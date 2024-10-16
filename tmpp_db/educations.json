@@ -1,26 +1,23 @@
 {
     "education": [
         {
-            "degree": "Master of Science - MS, Computer Science",
+            "degree": "Masters in Computer Science",
             "institution": "Arizona State University",
-            "start_date": "August 2022",
-            "end_date": "May 2024",
-            "grade": "GPA: 3.90 / 4.0",
+            "start_date": "08/2022",
+            "end_date": "05/2024",
+            "grade": "3.90 / 4.0",
             "reference_context": [
-                "Arizona State University",
-                "Master's in Computer Science",
-                "Required courses, Data Processing at Scale, Cloud Computing"
+                "Master of Science - MS, Computer Science \u00b7 (August 2022 - May 2024)"
             ]
         },
         {
-            "degree": "Bachelor of Technology - BTech, Electronics and Communications Engineering",
+            "degree": "Bachelors in Electronics and Communication",
             "institution": "National Institute of Technology Hamirpur",
-            "start_date": "July 2017",
-            "end_date": "June 2021",
-            "grade": "GPA: 8.73 / 10",
+            "start_date": "08/2017",
+            "end_date": "05/2021",
+            "grade": "8.73 / 10",
             "reference_context": [
-                "National Institute of Technology Hamirpur",
-                "Bachelor's in Electronics and Communications"
+                "Bachelor of Technology - BTech, Electronics and Communications Engineering \u00b7 (July 2017 - June 2021)"
             ]
         },
         {
@@ -30,8 +27,7 @@
             "end_date": "2017",
             "grade": "",
             "reference_context": [
-                "The Bishops School, Camp",
-                "Class XI-XII"
+                "Class XI-XII \u00b7 (2015 - 2017)"
             ]
         },
         {
@@ -41,8 +37,7 @@
             "end_date": "2015",
             "grade": "",
             "reference_context": [
-                "The Bishops Co-Ed School, Kalyaninagar",
-                "Class UKG-X"
+                "Class UKG-X \u00b7 (2004 - 2015)"
             ]
         }
     ]

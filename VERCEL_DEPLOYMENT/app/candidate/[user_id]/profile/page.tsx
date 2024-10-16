@@ -9,7 +9,8 @@ export default async function CandidateProfile() {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return redirect("/login");
+    // return redirect("/login");
+    return redirect("/");
   }
 
   return (

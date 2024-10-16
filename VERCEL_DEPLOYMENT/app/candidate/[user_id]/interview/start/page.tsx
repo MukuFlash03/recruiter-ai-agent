@@ -1,4 +1,4 @@
-import { Page as CandidateInterviewPage } from '@/components/app-candidate-profile-interview-page';
+import CandidateInterviewPage from '@/components/app-candidate-profile-interview-page';
 import { createClient } from '@/lib/utils/supabase/server';
 import { redirect } from "next/navigation";
 
@@ -9,12 +9,13 @@ export default async function CandidateInterview() {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return redirect("/login");
+    // return redirect("/login");
+    return redirect("/");
   }
 
   return (
     <div >
-      <CandidateInterviewPage />
+      <CandidateInterviewPage candidate_id={user.id} />
     </div>
   );
 }

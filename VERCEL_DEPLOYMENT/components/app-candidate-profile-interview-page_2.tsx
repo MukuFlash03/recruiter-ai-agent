@@ -17,6 +17,7 @@ const questions = [
   "How do you handle challenging situations at work?"
 ]
 
+// export async function CandidateInterviewPage({ candidate_id }: { candidate_id: string }) {
 export default function CandidateInterviewPage({ candidate_id }: { candidate_id: string }) {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [isRecording, setIsRecording] = useState(false)
@@ -44,7 +45,7 @@ export default function CandidateInterviewPage({ candidate_id }: { candidate_id:
     }
   }, [])
 
-  const startRecording = () => {
+  const startRecording = async () => {
     if (recordings[currentQuestion]) {
       deleteRecording()
     }
@@ -105,6 +106,55 @@ export default function CandidateInterviewPage({ candidate_id }: { candidate_id:
       })
   }
 
+  /*
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+  const mediaRecorder = new MediaRecorder(stream)
+  mediaRecorderRef.current = mediaRecorder
+  audioChunksRef.current = []
+
+  mediaRecorder.ondataavailable = (event) => {
+    audioChunksRef.current.push(event.data)
+  }
+
+  mediaRecorder.onstop = async () => {
+    const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/wav' })
+    const audioUrl = URL.createObjectURL(audioBlob)
+    const newRecording = { url: audioUrl, duration: timer }
+
+    setRecordings(prev => {
+      const newRecordings = [...prev]
+      newRecordings[currentQuestion] = newRecording
+      return newRecordings
+    })
+
+    // Save only the first recording to the server
+    if (currentQuestion === 0) {
+      const reader = new FileReader()
+      reader.onloadend = async () => {
+        const base64AudioMessage = reader.result
+        try {
+
+          const response = await saveAudio(base64AudioMessage?.toString() || '')
+          console.log('File saved successfully:', response)
+          // router.push(`/candidate/${candidate_id}`)
+        } catch (error) {
+          console.error('Error saving audio:', error)
+        }
+      }
+      reader.readAsDataURL(audioBlob)
+    }
+
+    setTimer(0)
+  }
+
+  mediaRecorder.start()
+  setIsRecording(true)
+  timerIntervalRef.current = setInterval(() => {
+    setTimer(prevTimer => prevTimer + 1)
+  }, 1000)
+}
+*/
+
   const stopRecording = () => {
     mediaRecorderRef.current?.stop()
     setIsRecording(false)
@@ -153,7 +203,7 @@ export default function CandidateInterviewPage({ candidate_id }: { candidate_id:
     setIsPlaying(false)
   }
 
-  const formatTime = (seconds: number) => {
+  const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60)
     const secs = seconds % 60
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`
@@ -182,6 +232,36 @@ export default function CandidateInterviewPage({ candidate_id }: { candidate_id:
       setIsPlaying(false)
     }
   }
+
+  /*
+  const handleSubmit = async () => {
+    // Here you would typically send the recordings to your server
+    try {
+      const response = await fetch("/api/update-audio-text", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        console.log("Profile saved successfully");
+
+      } else {
+        throw new Error("Failed to save profile");
+      }
+    } catch (error) {
+      console.error("Error saving profile:", error);
+      alert("Failed to save profile. Please try again.");
+    }
+
+    // For this example, we'll just show a success message
+    toast({
+      title: "Interview Submitted",
+      description: "Thank you for completing the interview!",
+    })
+  }
+  */
 
   const handleSubmit = () => {
     fetch("/api/update-audio-text", {
@@ -263,6 +343,7 @@ export default function CandidateInterviewPage({ candidate_id }: { candidate_id:
         ) : (
           <Button onClick={prevQuestion}>Previous Question</Button>
         )}
+        {/* <Button onClick={prevQuestion} disabled={currentQuestion === 0}>Previous Question</Button> */}
         {currentQuestion === questions.length - 1 ? (
           <Link href={`/candidate/${candidate_id}`}>
             <Button onClick={handleSubmit}>Submit</Button>

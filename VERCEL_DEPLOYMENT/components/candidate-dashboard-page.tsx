@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { signout } from "@/lib/auth-action"
+import { checkProfileComplete } from "@/lib/utils/api_calls"
 import { createClient } from "@/lib/utils/supabase/client"
 import { ArrowRight, CheckCircle, UserCircle, X } from "lucide-react"
 import Link from 'next/link'
@@ -47,14 +48,15 @@ const fetchJobs = async () => {
   ]
 }
 
-// Mock profile check
-const checkProfileComplete = async () => {
-  // Simulate API call
-  await new Promise(resolve => setTimeout(resolve, 500))
-  return false // Change this to true to simulate a completed profile
-}
+// // Mock profile check
+// const checkProfileComplete = async () => {
+//   // Simulate API call
+//   await new Promise(resolve => setTimeout(resolve, 500))
+//   // return false // Change this to true to simulate a completed profile
+//   return true // Change this to true to simulate a completed profile
+// }
 
-export function Page() {
+export function CandidateDashboardPage({ candidate_id }: { candidate_id: string }) {
   const [profileComplete, setProfileComplete] = useState<boolean | null>(null)
   const [activeJobs, setActiveJobs] = useState<Array<any>>([])
   const [withdrawnJobs, setWithdrawnJobs] = useState<Array<any>>([])
@@ -127,7 +129,7 @@ export function Page() {
   return (
     <div className="container mx-auto p-4">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold mb-4">Welcome Candidate</h1>
+        <h1 className="text-2xl font-bold mb-4">Welcome {user?.user_metadata?.full_name ?? "Candidate"}</h1>
         <Button size="lg" variant="outline" className="w-full sm:w-auto group"
           onClick={() => {
             signout();
@@ -157,7 +159,7 @@ export function Page() {
               <AlertTitle className="text-blue-700">Start Your Journey</AlertTitle>
               <AlertDescription className="text-blue-600">
                 Take the first step towards your dream job.{' '}
-                <Link href="/candidate/123/profile" className="font-medium underline underline-offset-4">
+                <Link href={`/candidate/${candidate_id}/profile`} className="font-medium underline underline-offset-4">
                   Start your profile now
                 </Link>
               </AlertDescription>
