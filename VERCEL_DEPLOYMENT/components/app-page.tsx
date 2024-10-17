@@ -4,6 +4,8 @@ import { Clock, Sparkles, Users } from 'lucide-react';
 
 import { DashboardLoginButton } from "@/app/(comp)/DashboardLoginButton";
 import { DashboardViewButton } from "@/app/(comp)/DashboardViewButton";
+import { NewProfileResponse } from "@/lib/types/all_profiles";
+import { insertCandidateProfile, insertNewProfile, insertRecruiterProfile } from "@/lib/utils/api_calls";
 import { createClient } from "@/lib/utils/supabase/client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -22,6 +24,9 @@ export function Page() {
   // const role = "candidate";
   // const role = "recruiter";
 
+  console.log("Inside Root Page");
+
+
   useEffect(() => {
     const fetchUserAndSetRole = async () => {
       const {
@@ -37,14 +42,111 @@ export function Page() {
       }
 
       if (user) {
+        console.log("User Details:", user);
+
+
+
         // setRedirectUrl(role === 'candidate' ? `/candidate/${user.id}` : `/recruiter/${user.id}`)
         console.log(`Go to dashboard for ${role} ${user.id}`);
+        console.log(`Go to dashboard for ${storedRole} ${user.id}`);
+        console.log("Inside user found in checkUserAndInsertProfile");
+
+        console.log("User ID:", user.id);
+        console.log("User email:", user.email);
+        console.log("User name:", user.user_metadata?.full_name);
+        console.log("User role:", role);
+        console.log("User stored role:", storedRole);
+
+        // Check if user already exists in the profiles table
+        const { data: profileData, error: profileError } = await supabase
+          .from('all_profiles')
+          .select('*')
+          .eq('profile_id', user.id)
+          // .single()
+          ;
+
+        console.log("Profile data:", profileData);
+
+        if (profileError && profileError.code !== 'PGRST116') {
+          console.log("Error checking user profile:", profileError);
+          return;
+        }
+
+        if (profileData.length === 0) {
+          console.log("User not found in profiles table; inserting...");
+
+          await insertNewProfile(user.id, storedRole);
+
+          console.log("After inserting new profile");
+
+          const newProfileData: NewProfileResponse = {
+            profile_id: user.id,
+            role: storedRole,
+            name: user.user_metadata?.full_name,
+            email: user.email
+          }
+
+          if (storedRole === "candidate") {
+            console.log("Inside candidate role in checkUserAndInsertProfile");
+            // Check if user already exists in the candidates table
+            const { data: candidateData, error: candidateError } = await supabase
+              .from('candidate_profiles')
+              .select('candidate_id')
+              .eq('candidate_id', user.id)
+              // .single()
+              ;
+
+            if (candidateData.length === 0) {
+              console.log("User not found in candidates table; inserting...");
+              await insertCandidateProfile(newProfileData);
+              console.log("After inserting candidate profile");
+
+              setRedirectUrl(`/candidate/${user.id}`)
+              console.log(`Redirect URL in candidate signin google: ${redirectUrl}`);
+              router.push(redirectUrl);
+            } else {
+              console.log('Candidate profile already exists for the given candidate_id:', user.id);
+            }
+          }
+          else if (storedRole === "recruiter") {
+            console.log("Inside recruiter role in checkUserAndInsertProfile");
+            // Check if user already exists in the recruiters table
+            const { data: recruiterData, error: recruiterError } = await supabase
+              .from('recruiter_profiles')
+              .select('recruiter_id')
+              .eq('recruiter_id', user.id)
+              // .single()
+              ;
+
+            if (recruiterData.length === 0) {
+              console.log("User not found in recruiters table; inserting...");
+              await insertRecruiterProfile(newProfileData);
+              console.log("After inserting recruiter profile");
+
+              setRedirectUrl(`/recruiter/${user.id}`)
+              console.log(`Redirect URL in recruiter signin google: ${redirectUrl}`);
+              router.push(redirectUrl);
+            } else {
+              console.log('Recruiter profile already exists for the given recruiter_id:', user.id);
+            }
+          }
+        } else {
+          console.log("User already exists in profiles table.");
+        }
       }
     };
+
     fetchUserAndSetRole();
   }, []);
 
 
+  useEffect(() => {
+
+
+  }, []);
+
+
+  console.log("Inside Root Page before return component");
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-12 px-4 sm:px-6 lg:px-8">
@@ -73,7 +175,7 @@ export function Page() {
                 const roleToSet = 'recruiter';
                 localStorage.setItem('selectedRole', roleToSet);
                 setRole(roleToSet);
-                console.log(`Role in Page: role = ${role} ; roleToSet = ${roleToSet}`);
+                console.log(`Role in Page DLB: role = ${role} ; roleToSet = ${roleToSet}`);
               }} />
           </div>
         ) : (

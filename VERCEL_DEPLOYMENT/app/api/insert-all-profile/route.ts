@@ -12,6 +12,10 @@ export async function POST(request: Request) {
 
     const supabase = createClient();
 
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
     console.log("User ID:", user_id);
     console.log("Role: ", role);
 
@@ -20,20 +24,26 @@ export async function POST(request: Request) {
         .from('all_profiles')
         .select('profile_id')
         .eq('profile_id', user_id)
-        .single();
+        // .single()
+        ;
 
       // if (profileError) {
       //   console.error('Error fetching profile:', profileError);
       // } else 
-      if (!profileData) {
+      if (profileData.length === 0) {
         const { data, error } = await supabase
           .from('all_profiles')
           .insert({
             profile_id: user_id,
             role: role,
           })
-          .select()
+          // .select()
           ;
+
+        console.log("Inside insert-all-profile route");
+
+        console.log('Inserted data:', data);
+        console.log("User details:", user);
 
         if (error) {
           console.error(`Error inserting new profile with ${role} role: `, error);

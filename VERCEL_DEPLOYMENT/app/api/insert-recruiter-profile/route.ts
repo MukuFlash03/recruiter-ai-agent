@@ -17,20 +17,22 @@ export async function POST(request: Request) {
         .from('all_profiles')
         .select('profile_id')
         .eq('profile_id', profile_id)
-        .single();
+        // .single()
+        ;
 
       const { data: recruiterData, error: recruiterError } = await supabase
         .from('recruiter_profiles')
         .select('recruiter_id')
         .eq('recruiter_id', profile_id)
-        .single();
+        // .single()
+        ;
 
       if (profileError) {
         console.error('Error fetching profile:', profileError);
         // } else if (recruiterError) {
         //   console.error('Error fetching recruiter profile:', recruiterError);
       } else if (profileData) {
-        if (!recruiterData) {
+        if (recruiterData.length === 0) {
           const { data, error } = await supabase
             .from('recruiter_profiles')
             .insert({
@@ -38,7 +40,7 @@ export async function POST(request: Request) {
               name: name,
               email: email,
             })
-            .select()
+            // .select()
             ;
 
           if (error) {

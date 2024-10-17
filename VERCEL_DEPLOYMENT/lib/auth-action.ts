@@ -99,6 +99,7 @@ export async function signout() {
 
 export async function signInWithGoogle(role: string) {
   const supabase = createClient();
+
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
@@ -119,29 +120,6 @@ export async function signInWithGoogle(role: string) {
   } = await supabase.auth.getUser();
 
   console.log("Inside signin with Google Auth-action");
-  console.log("User ID:", user?.id);
-  console.log("User email:", user?.email);
-  console.log("User name: ", user?.user_metadata?.full_name);
-
-  /*
-  const redirectUrl = role === "candidate" ? `/candidate/${user.id}` : `/recruiter/${user.id}`;
-  console.log("Role in auth-action signup is: " + role);
-  console.log(`Redirect URL in auth-action signup: ${redirectUrl}`);
-
-  await insertNewProfile(user.id, role);
-
-  const profileData: NewProfileResponse = {
-    profile_id: user.id,
-    role: role,
-    name: user.user_metadata?.full_name,
-    email: user.email
-  }
-
-  if (role === "candidate")
-    await insertCandidateProfile(profileData);
-  else if (role === "recruiter")
-    await insertRecruiterProfile(profileData);
-  */
 
   revalidatePath("/", "layout");
   redirect(data.url);

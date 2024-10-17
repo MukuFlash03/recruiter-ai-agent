@@ -53,13 +53,15 @@ export async function POST(request: Request) {
         .from('all_profiles')
         .select('profile_id')
         .eq('profile_id', user.id)
-        .single();
+        // .single()
+        ;
 
       const { data: candidateData, error: candidateError } = await supabase
         .from('candidate_profiles')
         .select('candidate_id')
         .eq('candidate_id', user.id)
-        .single();
+        // .single()
+        ;
 
       if (profileError) {
         console.error('Error fetching profile:', profileError);
