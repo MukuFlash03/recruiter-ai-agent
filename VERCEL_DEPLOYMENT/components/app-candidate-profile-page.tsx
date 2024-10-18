@@ -9,27 +9,35 @@ import { Textarea } from "@/components/ui/textarea";
 import Link from 'next/link';
 import { useState } from "react";
 
-export function Page() {
+export function CandidateProfileForm({ candidate_id }: { candidate_id: string }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
-  const [file, setFile] = useState<File | null>(null);
+  const [fileResume, setFileResume] = useState<File | null>(null);
+  const [fileLiProfile, setFileLiProfile] = useState<File | null>(null);
   const [linkedIn, setLinkedIn] = useState("");
   const [location, setLocation] = useState("");
   const [workPreference, setWorkPreference] = useState("");
   const [salaryExpectation, setSalaryExpectation] = useState("");
   const [additionalInfo, setAdditionalInfo] = useState("");
 
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileResumeUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const uploadedFile = event.target.files?.[0];
     if (uploadedFile) {
-      setFile(uploadedFile);
+      setFileResume(uploadedFile);
+    }
+  };
+
+  const handleFileLiProfileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const uploadedFile = event.target.files?.[0];
+    if (uploadedFile) {
+      setFileLiProfile(uploadedFile);
     }
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (!file) {
+    if (!fileResume) {
       alert("Please upload a resume file.");
       return;
     }
@@ -38,7 +46,8 @@ export function Page() {
     formData.append("name", name);
     formData.append("email", email);
     formData.append("contact", contact);
-    formData.append("file", file);
+    formData.append("fileResume", fileResume);
+    formData.append("fileLiProfile", fileLiProfile);
     formData.append("linkedIn", linkedIn);
     formData.append("location", location);
     formData.append("workPreference", workPreference);
@@ -103,7 +112,11 @@ export function Page() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="resume">Resume</Label>
-            <Input id="resume" type="file" onChange={handleFileUpload} />
+            <Input id="resume" type="file" onChange={handleFileResumeUpload} />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="liprofile">LinkedIn Profile</Label>
+            <Input id="liprofile" type="file" onChange={handleFileLiProfileUpload} />
           </div>
           <div className="space-y-2">
             <Label htmlFor="linkedin">LinkedIn Profile URL</Label>
@@ -164,7 +177,7 @@ export function Page() {
       </CardContent>
       <CardFooter className="flex justify-between">
         {/* <Button type="submit">Save Profile</Button> */}
-        <Link href="/candidate/123/interview">
+        <Link href={`/candidate/${candidate_id}/interview`}>
           <Button variant="outline">Continue to Interview</Button>
         </Link>
       </CardFooter>

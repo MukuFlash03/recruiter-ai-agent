@@ -5,6 +5,7 @@ export type CandidatesResponse = {
   email: string,
   contact: string,
   resume_content: string,
+  liProfile_content: string,
   interview_audio_text: string,
   linkedin_url: string,
   current_location: string,

@@ -1,4 +1,4 @@
-import { Page as CandidateProfilePage } from '@/components/app-candidate-profile-page';
+import { CandidateProfileForm } from '@/components/app-candidate-profile-page';
 import { createClient } from '@/lib/utils/supabase/server';
 import { redirect } from "next/navigation";
 
@@ -15,7 +15,7 @@ export default async function CandidateProfile() {
 
   return (
     <div >
-      <CandidateProfilePage />
+      <CandidateProfileForm candidate_id={user.id} />
     </div>
   );
 }

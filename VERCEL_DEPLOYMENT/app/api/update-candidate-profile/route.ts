@@ -9,32 +9,30 @@ export async function POST(request: Request) {
   const name = formData.get('name') as string;
   const email = formData.get('email') as string;
   const contact = formData.get('contact') as string;
-  const file = formData.get('file') as File;
+  const fileResume = formData.get('fileResume') as File;
+  const fileLiProfile = formData.get('fileLiProfile') as File;
   const linkedIn = formData.get('linkedIn') as string;
   const location = formData.get('location') as string;
   const workPreference = formData.get('workPreference') as string;
   const salaryExpectation = formData.get('salaryExpectation') as string;
   const additionalInfo = formData.get('additionalInfo') as string;
 
-  if (!file) {
-    return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
+  if (!fileResume || !fileLiProfile) {
+    return NextResponse.json({ error: 'No files uploaded' }, { status: 400 });
   }
 
-  const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
-
-  const fileName = `resume.pdf`;
-  const filePath = path.join(process.cwd(), 'lib', 'data', 'documents', fileName)
+  const rawFiles: Record<string, File> = {
+    fileResume: fileResume,
+    fileLiProfile: fileLiProfile,
+  }
 
   try {
-    await writeFile(filePath, buffer);
-    console.log(`File saved to ${filePath}`);
-
-    // TODO: Save profile information to a database
-    // Here you would typically save the profile information to a database
-    // For this example, we'll just log it
-    const result_fetchResumeContent = await fetchPdfText(filePath)
+    const fileContents = await fileBufferText(rawFiles);
+    const result_fetchResumeContent = fileContents["fileResume"];
+    const result_fetchLiProfileContent = fileContents["fileLiProfile"];
     console.log(result_fetchResumeContent);
+    console.log(result_fetchLiProfileContent);
+
     console.log('Profile info:', { name, email, contact, linkedIn, location, workPreference, salaryExpectation, additionalInfo });
 
     console.log("Received request in POST route");
@@ -69,6 +67,8 @@ export async function POST(request: Request) {
         console.error('Error fetching candidate profile:', candidateError);
       } else if (profileData) {
         if (candidateData) {
+          console.log("Updating profile...");;
+
           const { data, error } = await supabase
             .from('candidate_profiles')
             .update({
@@ -76,6 +76,7 @@ export async function POST(request: Request) {
               email: email,
               contact: contact,
               resume_content: result_fetchResumeContent,
+              liProfile_content: result_fetchLiProfileContent,
               linkedin_url: linkedIn,
               current_location: location,
               work_environment: workPreference,
@@ -107,3 +108,38 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Failed to save update candidate profile data file' }, { status: 500 });
   }
 }
+
+// async function fileBufferText({ fileResume, fileLiProfile }: { fileResume: File, fileLiProfile: File }) {
+async function fileBufferText(rawFiles) {
+
+
+  const fileContents: Record<string, string> = {};
+
+  for (const [key, file] of Object.entries(rawFiles)) {
+    if (file instanceof File) {
+      console.log(`Processing ${key}... inside fileBufferText if`);
+      const bytes = await file.arrayBuffer();
+      const buffer = Buffer.from(bytes);
+
+      const fileName = `${key}.pdf`;
+      const filePath = path.join(process.cwd(), 'lib', 'data', 'documents', fileName);
+
+      try {
+        await writeFile(filePath, buffer);
+        console.log(`File saved to ${filePath}`);
+
+        const result = await fetchPdfText(filePath);
+        console.log(`Content of ${key}:`, result);
+
+        fileContents[key] = result.text;
+      } catch (error) {
+        console.error(`Error processing ${key}:`, error);
+      }
+    }
+  }
+  console.log("Processed file contents:", fileContents);
+
+
+  return fileContents;
+}
+
