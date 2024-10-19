@@ -1,6 +1,13 @@
 from fastapi import FastAPI, BackgroundTasks, HTTPException, Request
 from typing import Dict, Any, Union
-from db.operations import get_candidate_profiles, get_job_postings
+from db.operations import get_candidate_profiles, get_job_postings, get_interview_data
+from db.helpers import \
+  organize_interview_data, \
+  get_org_interviews_data, \
+  organize_job_postings_data, \
+  get_org_job_postings, \
+  organize_candidate_profiles, \
+  get_org_candidate_profiles
 
 import sys
 import os
@@ -11,8 +18,8 @@ sys.path.append(parent_directory)
 sys.path.append(f"{parent_directory}/Agent_Backend")
 sys.path.append(f"{parent_directory}/Agent_Backend/agent")
 
-from Agent_Backend.agent.test_basic_agent import get_user_info
-from Agent_Backend.agent.workflow import end_to_end_agent
+from agent.test_basic_agent import get_user_info
+from agent.workflow import end_to_end_agent
 
 app = FastAPI()
 
@@ -38,18 +45,108 @@ class Questions(BaseModel):
     questions: list[str]
 
 
-@app.post("/analyze_candidates")
-async def analyze_candidates(request: Request, questions: Questions) -> Any:
+# @app.post("/analyze_candidates")
+# async def analyze_candidates(request: Request, questions: Questions) -> Any:
+#     """
+#     An asynchronous API route that processes a list of questions.
+#     """
+#     # Simulate some async processing
+#     await asyncio.sleep(1)  # Simulate IO-bound operation
+
+#     return_json = await end_to_end_agent(all_questions=questions.questions)
+#     # Example response, you can replace this with actual processing
+
+#     return return_json
+
+
+@app.get("/get_candidate_profiles")
+async def getCandidateProfiles(
+    candidate_id: Union[str, None] = None
+) -> Union[Dict[str, Any], Any]:  
+    """
+    Retrieve candidate profiles information from the database.
+    """
+    print("Inside getCandidateProfiles FastAPI route")
+    # candidates = get_candidate_profiles(candidate_id)
+    candidates_data, organized_candidate_profiles, keys_list = get_candidate_profiles(candidate_id)
+    print("Candidates data:")
+    print(candidates_data)
+    
+    print("Organized candidate profiles:")
+    print(organized_candidate_profiles)
+
+    print("Organized candidate profiles keys:")
+    print(keys_list)
+
+    return candidates_data
+
+@app.get("/get_job_postings")
+async def getJobPostings(
+    recruiter_id: str,
+    job_id: Union[str, None] = None
+) -> Union[Dict[str, Any], Any]:  
+# async def get_candidates(user_id: str) -> Dict[str, Any]:
+    """
+    Retrieve job postings information from the database.
+    """
+    # job_postings_data = get_job_postings(recruiter_id, job_id)
+    job_postings_data, organized_job_postings = get_job_postings(recruiter_id, job_id)
+    
+    print("Job postings data:")
+    print(job_postings_data)
+
+    print("Organized job postings:")
+    print(organized_job_postings)
+    
+    return job_postings_data
+
+@app.get("/get_interviews_data")
+async def getInterviewData(
+    recruiter_id: str,
+    job_id: Union[str, None] = None,
+    candidate_id: Union[str, None] = None
+) -> Union[Dict[str, Any], Any]:  
+
+    """
+    Retrieve interview data for candidates information from the database.
+    """
+    interviews_data, organized_interviews = get_interview_data(recruiter_id, job_id, candidate_id)
+  
+    print("Interviews data:")
+    print(interviews_data)
+
+    print("Organized interviews:")
+    print(organized_interviews)
+
+    return interviews_data
+
+@app.post("/get_candidates_analysis")
+async def getCandidatesAnalysis(
+    recruiter_id: str,
+    job_id: str,
+) -> Union[Dict[str, Any], Any]:
     """
     An asynchronous API route that processes a list of questions.
     """
     # Simulate some async processing
     await asyncio.sleep(1)  # Simulate IO-bound operation
 
-    return_json = await end_to_end_agent(all_questions=questions.questions)
+    return_json = await end_to_end_agent(recruiter_id, job_id)
     # Example response, you can replace this with actual processing
 
     return return_json
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Synchronous route with background task
@@ -100,24 +197,3 @@ async def async_with_background_error(
     raise HTTPException(
         status_code=400, detail="Async error occurred with background task."
     )
-
-@app.get("/candidates")
-async def get_candidates(candidate_id: Union[str, None] = None) -> Union[Dict[str, Any], Any]:  
-    """
-    Retrieve candidate profiles information from the database.
-    """
-    candidates = get_candidate_profiles(candidate_id)
-    if candidates is None:
-        raise HTTPException(status_code=404, detail="Candidates data not found")
-    return candidates
-
-@app.get("/jobs")
-async def get_jobs(job_id: Union[str, None] = None) -> Union[Dict[str, Any], Any]:  
-# async def get_candidates(user_id: str) -> Dict[str, Any]:
-    """
-    Retrieve job postings information from the database.
-    """
-    jobs = get_job_postings(job_id)
-    if jobs is None:
-        raise HTTPException(status_code=404, detail="Jobs data not found")
-    return jobs

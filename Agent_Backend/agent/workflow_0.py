@@ -18,7 +18,7 @@ from basic_agent import (
     get_openai_text_response_async,
 )
 import asyncio
-from test_basic_agent import (
+from test_basic_agent_0 import (
     experience_file,
     education_file,
     project_file,
@@ -33,24 +33,6 @@ from pydantic import BaseModel
 
 import json
 
-from db.operations import get_candidate_profiles, get_job_postings, get_interview_data
-
-from db.helpers import \
-  organize_interview_data, \
-  get_org_interviews_data, \
-  organize_job_postings_data, \
-  get_org_job_postings, \
-  organize_candidate_profiles, \
-  get_org_candidate_profiles
-
-
-standard_questions = [
-  "Tell me a bit about yourself",
-  "What are you looking for in your next role?",
-  "Pick a project you are proud of and tell us why",
-  "What's your biggest professional achievement?",
-  "How do you handle challenging situations at work?"
-]
 
 def read_json_file(filename: str) -> dict:
     with open(filename, "r") as f:
@@ -257,72 +239,41 @@ async def select_candidate(user_profile_list: list[Any], input_questions: list[s
     return candidate_selection, answers, relevant_contexts
 
 
-async def end_to_end_agent(recruiter_id: str, job_id: str):
-    candidates_data, organized_candidate_profiles, keys_list = get_candidate_profiles()
+async def end_to_end_agent(all_questions: list[str]):
+    experiences, educations, skills, projects, achievements, personal_details = (
+        await get_user_info()
+    )
 
-    global standard_questions
-    print("Standard Questions:")
-    print(standard_questions)
-
-    job_postings_data, organized_job_postings = get_job_postings(recruiter_id, job_id)
-    specific_job_data = get_org_job_postings(organized_job_postings, recruiter_id, job_id)
-    
-    print("Specific Job Posting:")
-    print(specific_job_data)
-
-    custom_questions = specific_job_data[0]["custom_questions"]
-    print("Custom Questions:")
-    print(custom_questions)
-    
+    candidate_selection, answers, relevant_contexts = await select_candidate(
+        user_profile_list=[
+            experiences,
+            educations,
+            skills,
+            projects,
+            achievements,
+            personal_details,
+        ],
+        input_questions=all_questions,
+    )
     json_to_return = {}
-    for candidate_id in keys_list:
-        candidate_data = organized_candidate_profiles[candidate_id][0]
-        experiences, educations, skills, projects, achievements, personal_details = (
-            await get_user_info(candidate_data)
-        )
-
-        all_questions = standard_questions + custom_questions
-        print("All Questions:")
-        print(all_questions)
-
-        candidate_selection, answers, relevant_contexts = await select_candidate(
-            user_profile_list=[
-                experiences,
-                educations,
-                skills,
-                projects,
-                achievements,
-                personal_details,
-            ],
-            input_questions=all_questions,
-        )
-
-        print("Candidate Selection:")
-        print(candidate_selection)
-        
-        json_to_return[candidate_id]["candidate_selection"] = candidate_selection.model_dump()
-        json_to_return[candidate_id]["answers"] = [answer.model_dump() for answer in answers]
-        json_to_return[candidate_id]["relevant_contexts"] = [
-            [context.model_dump() for context in relevant_context]
-            for relevant_context in relevant_contexts
-        ]
-
-        print("JSON to return:")
-        print(json_to_return)
-    
+    json_to_return["candidate_selection"] = candidate_selection.model_dump()
+    json_to_return["answers"] = [answer.model_dump() for answer in answers]
+    json_to_return["relevant_contexts"] = [
+        [context.model_dump() for context in relevant_context]
+        for relevant_context in relevant_contexts
+    ]
     return json_to_return
 
 
 if __name__ == "__main__":
 
-    # asyncio.run(
-    #     end_to_end_agent(
-    #         all_questions=[
-    #             "How good is the candidate for Actor at a hollywood movie?",
-    #             # "How good is the candidate for Full Stack development?",
-    #             # "How good is the candidate for Frontend development?",
-    #             # "How good is the candidate for Backend development?",
-    #         ]
-    #     )
-    # )
-    print("Running workflow main...")
+    asyncio.run(
+        end_to_end_agent(
+            all_questions=[
+                "How good is the candidate for Actor at a hollywood movie?",
+                # "How good is the candidate for Full Stack development?",
+                # "How good is the candidate for Frontend development?",
+                # "How good is the candidate for Backend development?",
+            ]
+        )
+    )

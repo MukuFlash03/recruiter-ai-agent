@@ -30,8 +30,8 @@ export async function POST(request: Request) {
     const fileContents = await fileBufferText(rawFiles);
     const result_fetchResumeContent = fileContents["fileResume"];
     const result_fetchLiProfileContent = fileContents["fileLiProfile"];
-    console.log(result_fetchResumeContent);
-    console.log(result_fetchLiProfileContent);
+    // console.log(result_fetchResumeContent);
+    // console.log(result_fetchLiProfileContent);
 
     console.log('Profile info:', { name, email, contact, linkedIn, location, workPreference, salaryExpectation, additionalInfo });
 
@@ -112,7 +112,6 @@ export async function POST(request: Request) {
 // async function fileBufferText({ fileResume, fileLiProfile }: { fileResume: File, fileLiProfile: File }) {
 async function fileBufferText(rawFiles) {
 
-
   const fileContents: Record<string, string> = {};
 
   for (const [key, file] of Object.entries(rawFiles)) {
@@ -129,7 +128,7 @@ async function fileBufferText(rawFiles) {
         console.log(`File saved to ${filePath}`);
 
         const result = await fetchPdfText(filePath);
-        console.log(`Content of ${key}:`, result);
+        // console.log(`Content of ${key}:`, result);
 
         fileContents[key] = result.text;
       } catch (error) {

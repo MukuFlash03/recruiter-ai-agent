@@ -18,6 +18,7 @@ export async function saveRecording(base64AudioMessage: string) {
 }
 */
 
+/*
 export async function saveAudio(base64AudioMessage: string) {
   const response = await fetch('/api/save-audio-file', {
     method: 'POST',
@@ -32,6 +33,19 @@ export async function saveAudio(base64AudioMessage: string) {
   }
   return response.json();
 }
+*/
+
+export async function saveAudio(audioData: string, questionNumber: number) {
+  const response = await fetch('/api/save-audio-file', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ audioData, questionNumber }),
+  })
+  return response.json()
+}
+
 
 
 export async function fetchPdfText(filePath: string) {

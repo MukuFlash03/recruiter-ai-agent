@@ -59,6 +59,7 @@ export default function CandidateInterviewPage({ candidate_id }: { candidate_id:
           audioChunksRef.current.push(event.data)
         }
 
+        /* 
         mediaRecorder.onstop = () => {
           const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/wav' })
           const audioUrl = URL.createObjectURL(audioBlob)
@@ -67,6 +68,8 @@ export default function CandidateInterviewPage({ candidate_id }: { candidate_id:
           setRecordings(prev => {
             const newRecordings = [...prev]
             newRecordings[currentQuestion] = newRecording
+            console.log(`New recordings during question ${currentQuestion}`);
+            console.log(newRecordings);
             return newRecordings
           })
 
@@ -86,6 +89,48 @@ export default function CandidateInterviewPage({ candidate_id }: { candidate_id:
             reader.readAsDataURL(audioBlob)
           }
 
+          setTimer(0)
+        }
+        */
+
+        mediaRecorder.onstop = () => {
+          const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/wav' })
+          const audioUrl = URL.createObjectURL(audioBlob)
+
+          const reader = new FileReader()
+          reader.onloadend = () => {
+            const base64AudioMessage = reader.result?.toString() || ''
+
+            /*
+            setRecordings(prev => {
+              const newRecordings = [...prev]
+              newRecordings[currentQuestion] = {
+                url: audioUrl,
+                duration: timer,
+                base64: base64AudioMessage
+              }
+              return newRecordings
+            })
+            */
+
+            saveAudio(base64AudioMessage, currentQuestion)
+              .then(response => {
+                console.log(`File for question ${currentQuestion} saved successfully:`, response)
+                setRecordings(prev => {
+                  const newRecordings = [...prev]
+                  newRecordings[currentQuestion] = {
+                    url: audioUrl,
+                    duration: timer,
+                    fileName: response.fileName
+                  }
+                  return newRecordings
+                })
+              })
+              .catch(error => {
+                console.error(`Error saving audio for question ${currentQuestion}:`, error)
+              })
+          }
+          reader.readAsDataURL(audioBlob)
           setTimer(0)
         }
 
@@ -184,28 +229,33 @@ export default function CandidateInterviewPage({ candidate_id }: { candidate_id:
   }
 
   const handleSubmit = () => {
+    // const audioTexts = recordings.map(recording => recording?.base64 || null);
+    const audioFileNames = recordings.map(recording => recording?.fileName || null);
+
     fetch("/api/update-audio-text", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
       },
+      // body: JSON.stringify({ audioTexts }),
+      body: JSON.stringify({ audioFileNames }),
     })
       .then(response => {
         if (response.ok) {
-          console.log("Profile saved successfully")
+          console.log("Profile saved successfully with interview QnA")
           toast({
             title: "Interview Submitted",
             description: "Thank you for completing the interview!",
           })
         } else {
-          throw new Error("Failed to save profile")
+          throw new Error("Failed to save profile with interview QnA")
         }
       })
       .catch(error => {
-        console.error("Error saving profile:", error)
+        console.error("Error saving profile with interview QnA:", error)
         toast({
           title: "Error",
-          description: "Failed to save profile. Please try again.",
+          description: "Failed to save profile with interview QnA. Please try again.",
           variant: "destructive",
         })
       })

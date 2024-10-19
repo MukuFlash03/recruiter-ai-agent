@@ -22,14 +22,6 @@ from entities.applicant import (
     PersonalDetails,
 )
 
-standard_questions = [
-  "Tell me a bit about yourself",
-  "What are you looking for in your next role?",
-  "Pick a project you are proud of and tell us why",
-  "What's your biggest professional achievement?",
-  "How do you handle challenging situations at work?"
-]
-
 tmpp_db = os.path.join(os.path.dirname(parent_directory), "tmpp_db")
 experience_file = os.path.join(tmpp_db, "experiences.json")
 education_file = os.path.join(tmpp_db, "educations.json")
@@ -68,36 +60,28 @@ def extract_text_from_pdf(file_path: str) -> str:
     return text
 
 
-async def get_user_info(candidate_data) -> Any:
+async def get_user_info() -> Any:
     base_folder = os.path.join(parent_directory, "data")
-    # resume_path = os.path.join(base_folder, "Resume", "Mukul_Resume.pdf")
-    # linkedin_path = os.path.join(base_folder, "LinkedIn", "Mukul_LI_Profile.pdf")
-    # questions_path = os.path.join(base_folder, "QnA", "Questions.txt")
-    # answers_path = os.path.join(base_folder, "QnA", "Mukul_Answers.txt")
+    resume_path = os.path.join(base_folder, "Resume", "Mukul_Resume.pdf")
+    linkedin_path = os.path.join(base_folder, "LinkedIn", "Mukul_LI_Profile.pdf")
+    questions_path = os.path.join(base_folder, "QnA", "Questions.txt")
+    answers_path = os.path.join(base_folder, "QnA", "Mukul_Answers.txt")
 
-    # resume_content = extract_text_from_pdf(resume_path)
-    # linkedin_content = extract_text_from_pdf(linkedin_path)
+    resume_content = extract_text_from_pdf(resume_path)
+    linkedin_content = extract_text_from_pdf(linkedin_path)
 
-    standard_answers = candidate_data["interview_audio_texts"]
-    resume_content = candidate_data["resume_content"]
-    liProfile_content = candidate_data["liProfile_content"]
+    merged_content = resume_content + linkedin_content
 
-    merged_content = resume_content + liProfile_content
-    
-    global standard_questions
-    raw_questions = standard_questions
+    raw_questions = read_prepared_qna(questions_path)
+    raw_answers = read_prepared_qna(answers_path)
 
-    raw_answers = []
-    for key, value in standard_answers.items():
-        raw_answers.append(value)
+    questions = raw_questions.split("\n\n")
+    questions = [question for question in questions if question.startswith("Q")]
 
-    # questions = raw_questions.split("\n\n")
-    # questions = [question for question in questions if question.startswith("Q")]
-
-    # answers = raw_answers.split("-----------------")
+    answers = raw_answers.split("-----------------")
 
     question_answer_list = []
-    for question, answer in zip(raw_questions, raw_answers):
+    for question, answer in zip(questions, answers):
         question_answer_list.append(QuestionAnswer(question=question, answer=answer))
 
     qa_list: QuestionAnswerList = QuestionAnswerList(
@@ -136,7 +120,7 @@ async def get_user_info(candidate_data) -> Any:
 
     personal_details_task = parse_input_async(
         system_content="""Extract the personal details of name, \
-                email, location and phone from the resume.""",
+email, location and phone from the resume.""",
         user_content=merged_content,
         response_format=PersonalDetails,
     )
@@ -156,7 +140,6 @@ async def get_user_info(candidate_data) -> Any:
     experiences, educations, skills, projects, achievements, personal_details = (
         await asyncio.gather(*task_list)
     )
-
     import json
 
     with open(experience_file, "w") as f:
@@ -211,4 +194,4 @@ if __name__ == "__main__":
 
     import asyncio
 
-    # asyncio.run(get_user_info())
+    asyncio.run(get_user_info())
