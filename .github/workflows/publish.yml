@@ -1,0 +1,49 @@
+name: Build and Push Docker Image to AWS ECR
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow on push to the main branch
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+env:
+  IMAGE_TAG: ${{ github.sha }}
+
+jobs:
+  build-and-push:
+    name: Build and Push Docker Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Change Directory to Agent_Backend and Build Docker Image
+        run: |
+          cd Agent_Backend
+          docker build -t ${{ secrets.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }} .
+
+      - name: Tag Docker Image
+        run: |
+          cd Agent_Backend
+          docker tag ${{ secrets.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }} ${{ secrets.ECR_REGISTRY }}/${{ secrets.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
+
+      - name: Push Docker Image to ECR
+        run: |
+          cd Agent_Backend
+          docker push ${{ secrets.ECR_REGISTRY }}/${{ secrets.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
+
+      - name: Logout from Amazon ECR
+        run: |
+          docker logout ${{ secrets.ECR_REGISTRY }}

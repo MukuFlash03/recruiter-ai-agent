@@ -1,0 +1,4 @@
+ECR_REPO = 767398153015.dkr.ecr.us-east-1.amazonaws.com/recruit-ai-agent
+ECR_REGISTRY = 767398153015.dkr.ecr.us-east-1.amazonaws.com
+AWS_ACCOUNT_ID = 767398153015
+AWS_REGION = us-east-1
