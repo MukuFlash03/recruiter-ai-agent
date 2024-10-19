@@ -1,9 +1,15 @@
+import { Suspense } from 'react';
+
 import { SignUpFormWrapper } from "./components/SignUpFormWrapper";
 
 export default function SignUpPage() {
   return (
-    <div className="flex h-svh items-center">
-      <SignUpFormWrapper />
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+
+      <div className="flex h-svh items-center">
+        <SignUpFormWrapper />
+      </div>
+    </Suspense>
+
   );
 }
