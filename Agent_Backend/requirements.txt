@@ -1,8 +1,8 @@
-groq
+groq==0.11.0
 PyPDF2==3.0.1
-pydantic
+pydantic==2.8.2
 openai==1.42.0
 fastapi==0.115.0
-uvicorn
+uvicorn==0.30.1
 python-dotenv==1.0.1
-supabase
+supabase==2.9.1

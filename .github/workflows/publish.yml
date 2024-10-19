@@ -29,16 +29,19 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build Docker Image
+      - name: Change Directory to Agent_Backend and Build Docker Image
         run: |
+          cd Agent_Backend
           docker build -t ${{ secrets.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }} .
 
       - name: Tag Docker Image
         run: |
+          cd Agent_Backend
           docker tag ${{ secrets.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }} ${{ secrets.ECR_REGISTRY }}/${{ secrets.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
 
       - name: Push Docker Image to ECR
         run: |
+          cd Agent_Backend
           docker push ${{ secrets.ECR_REGISTRY }}/${{ secrets.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
 
       - name: Logout from Amazon ECR
