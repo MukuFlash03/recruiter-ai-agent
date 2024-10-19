@@ -6,23 +6,27 @@ class RequiredSkill(BaseModel):
     proficiency: str
     experience: int
     reference_context: list[str]
+    tags: list[str]
 
 
 class RequiredExpertise(BaseModel):
     name: str
     description: str
     reference_context: list[str]
+    tags: list[str]
 
 
 class RequiredPersonalityTrait(BaseModel):
     name: str
     description: str
     reference_context: list[str]
+    tags: list[str]
 
 
 class Question(BaseModel):
     question: str
     reference_context: list[str]
+    tags: list[str]
 
 
 class Questions(BaseModel):
@@ -32,3 +36,4 @@ class Questions(BaseModel):
 class ExpectedAnswer(BaseModel):
     answer: str
     reference_context: list[str]
+    tags: list[str]
