@@ -120,7 +120,7 @@ async def getInterviewData(
 
     return interviews_data
 
-@app.post("/get_candidates_analysis")
+@app.get("/get_candidates_analysis")
 async def getCandidatesAnalysis(
     recruiter_id: str,
     job_id: str,

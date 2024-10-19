@@ -258,57 +258,74 @@ async def select_candidate(user_profile_list: list[Any], input_questions: list[s
 
 
 async def end_to_end_agent(recruiter_id: str, job_id: str):
+    print("Inside end to end agent workflow\n\n")
     candidates_data, organized_candidate_profiles, keys_list = get_candidate_profiles()
 
+    print("\n\nCandidates Data:")
+    print(candidates_data)
+    print()
+    print("\n\nOrganized Candidate Profiles:")
+    print(organized_candidate_profiles)
+    print()
+    print("\n\nKeys List:")
+    print(keys_list)
+    print()
+
     global standard_questions
-    print("Standard Questions:")
+    print("\n\nStandard Questions:")
     print(standard_questions)
 
     job_postings_data, organized_job_postings = get_job_postings(recruiter_id, job_id)
-    specific_job_data = get_org_job_postings(organized_job_postings, recruiter_id, job_id)
+    print("\n\nJob Postings:")
+    print(job_postings_data)
+    print()
+    print("\n\nOrganized Job Postings:")
+    print(organized_job_postings)
+    print()
+    # specific_job_data = get_org_job_postings(organized_job_postings, recruiter_id, job_id)
     
-    print("Specific Job Posting:")
-    print(specific_job_data)
+    print("\n\nSpecific Job Posting:")
+    # print(specific_job_data)
 
-    custom_questions = specific_job_data[0]["custom_questions"]
-    print("Custom Questions:")
-    print(custom_questions)
+    # custom_questions = specific_job_data[0]["custom_questions"]
+    # print("Custom Questions:")
+    # print(custom_questions)
     
     json_to_return = {}
-    for candidate_id in keys_list:
-        candidate_data = organized_candidate_profiles[candidate_id][0]
-        experiences, educations, skills, projects, achievements, personal_details = (
-            await get_user_info(candidate_data)
-        )
+    # for candidate_id in keys_list:
+    #     candidate_data = organized_candidate_profiles[candidate_id][0]
+    #     experiences, educations, skills, projects, achievements, personal_details = (
+    #         await get_user_info(candidate_data)
+    #     )
 
-        all_questions = standard_questions + custom_questions
-        print("All Questions:")
-        print(all_questions)
+    #     all_questions = standard_questions + custom_questions
+    #     print("All Questions:")
+    #     print(all_questions)
 
-        candidate_selection, answers, relevant_contexts = await select_candidate(
-            user_profile_list=[
-                experiences,
-                educations,
-                skills,
-                projects,
-                achievements,
-                personal_details,
-            ],
-            input_questions=all_questions,
-        )
+    #     candidate_selection, answers, relevant_contexts = await select_candidate(
+    #         user_profile_list=[
+    #             experiences,
+    #             educations,
+    #             skills,
+    #             projects,
+    #             achievements,
+    #             personal_details,
+    #         ],
+    #         input_questions=all_questions,
+    #     )
 
-        print("Candidate Selection:")
-        print(candidate_selection)
+    #     print("Candidate Selection:")
+    #     print(candidate_selection)
         
-        json_to_return[candidate_id]["candidate_selection"] = candidate_selection.model_dump()
-        json_to_return[candidate_id]["answers"] = [answer.model_dump() for answer in answers]
-        json_to_return[candidate_id]["relevant_contexts"] = [
-            [context.model_dump() for context in relevant_context]
-            for relevant_context in relevant_contexts
-        ]
+    #     json_to_return[candidate_id]["candidate_selection"] = candidate_selection.model_dump()
+    #     json_to_return[candidate_id]["answers"] = [answer.model_dump() for answer in answers]
+    #     json_to_return[candidate_id]["relevant_contexts"] = [
+    #         [context.model_dump() for context in relevant_context]
+    #         for relevant_context in relevant_contexts
+    #     ]
 
-        print("JSON to return:")
-        print(json_to_return)
+    #     print("JSON to return:")
+    #     print(json_to_return)
     
     return json_to_return
 
