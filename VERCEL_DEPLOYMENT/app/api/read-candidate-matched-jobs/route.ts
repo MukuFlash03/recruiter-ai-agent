@@ -37,6 +37,7 @@ export async function GET(request: NextRequest) {
         job_id,
         job_title,
         company_name,
+        company_url,
         job_description,
         required_skills
         `)
