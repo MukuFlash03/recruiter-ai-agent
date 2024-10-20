@@ -150,12 +150,19 @@ export function Page() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-      <div className="text-center space-y-8 max-w-4xl mb-16">
+      {/* <div className="text-center space-y-8 max-w-4xl mb-16">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight">
-          Find Your <span className="bg-gradient-to-r from-pink-500 to-violet-500 text-transparent bg-clip-text">Dream Match</span> with RecruitAI
+          Find Your <span className="bg-gradient-to-r from-pink-500 to-violet-500 text-transparent bg-clip-text">Dream Match</span> with LevelHire.ai
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
           Our AI-powered platform connects awesome talent with cool companies. Say goodbye to endless interviews and hello to perfect matches!
+        </p> */}
+      < div className="text-center space-y-8 max-w-4xl mb-16" >
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight">
+          Find Your <span className="bg-gradient-to-r from-pink-500 to-violet-500 text-transparent bg-clip-text">Dream Match</span> with LevelHire.ai
+        </h1>
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          At LevelHire.ai, we believe that talent should be matched based on skills, passion, and potential. Find the job you deserve—no matter who you are or where you come from.
         </p>
         {!user ? (
           <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
@@ -202,8 +209,8 @@ export function Page() {
 const features = [
   {
     icon: <Sparkles className="h-8 w-8 text-pink-500" />,
-    title: "AI-Powered Matching",
-    description: "Our smart AI finds the perfect fit for your vibe and skills. Get matched with opportunities that truly resonate with you."
+    title: "AI-Powered Auto Apply",
+    description: "Our AI levels the playing field by auto-applying for jobs based on your skills, giving everyone an equal shot, no matter their background."
   },
   {
     icon: <Clock className="h-8 w-8 text-indigo-500" />,
@@ -212,7 +219,25 @@ const features = [
   },
   {
     icon: <Users className="h-8 w-8 text-violet-500" />,
-    title: "Interview Avatars",
-    description: "Show off your personality with short intros. No more boring CVs! Let your true self shine through."
+    title: "Personalized Interview Avatars",
+    description: "Go beyond the traditional resume. Present your unique strengths through personalized intros, letting your true potential shine."
   }
 ]
+
+// const features = [
+//   {
+//     icon: <Sparkles className="h-8 w-8 text-pink-500" />,
+//     title: "AI-Powered Matching",
+//     description: "Our smart AI finds the perfect fit for your vibe and skills. Get matched with opportunities that truly resonate with you."
+//   },
+//   {
+//     icon: <Clock className="h-8 w-8 text-indigo-500" />,
+//     title: "Save time",
+//     description: "Eliminate repetitive interviews and streamline the hiring process for both candidates and recruiters."
+//   },
+//   {
+//     icon: <Users className="h-8 w-8 text-violet-500" />,
+//     title: "Interview Avatars",
+//     description: "Show off your personality with short intros. No more boring CVs! Let your true self shine through."
+//   }
+// ]

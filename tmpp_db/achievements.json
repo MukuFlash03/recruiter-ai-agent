@@ -1,87 +1,107 @@
 {
     "achievements": [
         {
-            "title": "Multimodal AI Assistant",
-            "description": "Created a multimodal AI assistant that automates browser tasks for users, winning the AWS for Startups prize.",
+            "title": "Winner at AICamp Generative AI Hackathon",
+            "description": "Won the AWS for Startups prize for creating a multimodal AI assistant that automates browser tasks on behalf of users.",
             "reference_context": [
-                "AICamp Generative AI Hackathon"
+                "Extracurriculars",
+                "Hackathon"
             ],
             "tags": [
-                "AI",
-                "Automation",
-                "Hackathon Winner"
+                "Hackathon",
+                "Award",
+                "AI"
             ]
         },
         {
-            "title": "Cloud-based Video Face Recognition App",
-            "description": "Designed a three-tier hybrid cloud architecture integrating AWS and OpenStack, with Python scripts for Lambda triggers, S3, and DynamoDB, auto-scaling 20 EC2 instances.",
+            "title": "Developed Microservices Video to MP3 Converter",
+            "description": "Engineered a distributed system for converting video files to MP3 format using microservices architecture, implementing secure JWT user authentication, message queuing with RabbitMQ, scalable storage, and notifications.",
             "reference_context": [
-                "Projects"
+                "Projects",
+                "Microservices Video to MP3 Converter"
             ],
             "tags": [
-                "Cloud Computing",
-                "AWS",
-                "OpenStack",
-                "Python"
-            ]
-        },
-        {
-            "title": "Voice AI Interviewer Agent",
-            "description": "Engineered an AI-powered voice interviewer utilizing Groq for fast inference and Vapi for voice interactions, with a custom evaluation system and Supabase for storage.",
-            "reference_context": [
-                "Projects"
-            ],
-            "tags": [
-                "AI",
-                "Voice Technology",
-                "Supabase"
-            ]
-        },
-        {
-            "title": "Microservices Video to MP3 Converter",
-            "description": "Developed a distributed system using microservices architecture for video-to-MP3 conversion, implementing JWT authentication and message queuing with RabbitMQ.",
-            "reference_context": [
-                "Projects"
-            ],
-            "tags": [
+                "Project",
                 "Microservices",
-                "Distributed Systems",
-                "Docker"
+                "Development"
             ]
         },
         {
-            "title": "OFSAA Fintech Solutions Implementation",
-            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT, and production environments for two international financial firms.",
+            "title": "Implemented Apache Kafka Pub-Sub",
+            "description": "Implemented Apache Kafka producers/consumers using Confluent Cloud with topic management and data serialization, showcasing cross-platform compatibility.",
             "reference_context": [
-                "Oracle Financial Services Software"
+                "Projects",
+                "Kafka Confluent Cloud Pub-Sub"
             ],
             "tags": [
-                "Fintech",
-                "PL/SQL",
-                "Banking"
+                "Project",
+                "Kafka",
+                "Cloud"
             ]
         },
         {
-            "title": "System Scalability Optimization",
-            "description": "Optimized the system scalability and performance by refining data processing pipelines and improving time complexity at NREL.",
+            "title": "Developed Classic To-Do List Application",
+            "description": "Built a full-stack task manager webapp with CRUD operations using React and Go with PostgreSQL, and implemented GraphQL API for efficient data retrieval, deployed on AWS with self-signed SSL certificate for HTTPS.",
             "reference_context": [
-                "National Renewable Energy Laboratory"
+                "Projects",
+                "Classic To-Do List"
             ],
             "tags": [
-                "Scalability",
-                "Data Processing",
+                "Project",
+                "Web Application",
+                "AWS"
+            ]
+        },
+        {
+            "title": "Engineered Voice AI Interviewer Agent",
+            "description": "Developed an AI-powered voice interviewer utilizing Groq for fast inference and Vapi for voice interactions, with an evaluation system using custom metrics and Supabase for authentication and storage.",
+            "reference_context": [
+                "Projects",
+                "Voice AI Interviewer Agent"
+            ],
+            "tags": [
+                "Project",
+                "AI",
+                "Voice Interaction"
+            ]
+        },
+        {
+            "title": "Designed Cloud-based Video Face Recognition App",
+            "description": "Designed a 3-tier hybrid cloud architecture leveraging AWS and OpenStack for web, app, and data tiers integration, with Python scripts for Lambda triggers, S3, DynamoDB; and auto-scaled 20 EC2 instances via SQS and Cloudwatch.",
+            "reference_context": [
+                "Projects",
+                "Cloud-based Video Face Recognition App"
+            ],
+            "tags": [
+                "Project",
+                "Cloud",
+                "AWS"
+            ]
+        },
+        {
+            "title": "Embedded C++ Developer Internship",
+            "description": "Designed software modules for ARM Cortex-M3 embedded server sensor device to measure subzero temperatures, troubleshooted bugs, and optimized the system for real-time sensor data via RPC transfer protocols.",
+            "reference_context": [
+                "Experience",
+                "Inter-university accelerator centre"
+            ],
+            "tags": [
+                "Internship",
+                "Embedded Systems",
+                "C++"
+            ]
+        },
+        {
+            "title": "Modeled Discrete Mathematical Rough Set Theory",
+            "description": "Successfully modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining using Python and designed a custom-built library to process 65,536 objects in 2 minutes with 95% accuracy using linear regression.",
+            "reference_context": [
+                "Experience",
+                "College of Engineering Pune"
+            ],
+            "tags": [
+                "Research",
+                "Mathematics",
                 "Python"
-            ]
-        },
-        {
-            "title": "Debugging Made Easier Blog",
-            "description": "Maintained a technical blog with posts like \u201cAdding Local Directory to GitHub Repository\u201d and \u201cRenaming Multiple Files At Once\u201c.",
-            "reference_context": [
-                "Coding Experiences"
-            ],
-            "tags": [
-                "Technical Writing",
-                "Blog"
             ]
         }
     ]

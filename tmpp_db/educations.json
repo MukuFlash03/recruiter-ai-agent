@@ -1,38 +1,37 @@
 {
     "education": [
         {
-            "degree": "Master of Science in Computer Science",
-            "institution": "Arizona State University, Tempe, Arizona",
+            "degree": "Master of Science - MS, Computer Science",
+            "institution": "Arizona State University",
             "start_date": "08/2022",
             "end_date": "05/2024",
-            "grade": "GPA: 3.90 / 4.0",
+            "grade": "3.90 / 4.0",
             "reference_context": [
-                "Currently a Master's graduate with a passion for backend applications and integrating Large Language Models (LLMs) for Generative AI applications.",
-                "Technical Skills: Python, TypeScript, C++, Java, Flask, Spring Boot",
-                "Worked as a Graduate Services Assistant, Grader for CSE 536 Advanced Operating Systems course in Spring 2023"
+                "Master of Science - MS, Computer Science",
+                "August 2022 - May 2024"
             ],
             "tags": [
+                "Masters",
                 "Computer Science",
-                "MS",
-                "Backend Applications",
-                "Generative AI"
+                "Arizona State University",
+                "Graduate"
             ]
         },
         {
-            "degree": "Bachelor of Technology in Electronics and Communications Engineering",
-            "institution": "National Institute of Technology Hamirpur, India",
-            "start_date": "08/2017",
+            "degree": "Bachelor of Technology - BTech, Electronics and Communications Engineering",
+            "institution": "National Institute of Technology Hamirpur",
+            "start_date": "07/2017",
             "end_date": "06/2021",
-            "grade": "GPA: 8.73 / 10",
+            "grade": "8.73 / 10",
             "reference_context": [
-                "Developed software modules for ARM Cortex-M3 embedded server sensor device under supervision at Inter-university accelerator centre.",
-                "Modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining during internship at College of Engineering Pune."
+                "Bachelor of Technology - BTech, Electronics and Communications Engineering",
+                "July 2017 - June 2021"
             ],
             "tags": [
+                "Bachelors",
                 "Electronics and Communications",
-                "BTech",
-                "Embedded Systems",
-                "Sensor Data"
+                "NIT Hamirpur",
+                "Undergraduate"
             ]
         },
         {
@@ -41,10 +40,14 @@
             "start_date": "2015",
             "end_date": "2017",
             "grade": "",
-            "reference_context": [],
+            "reference_context": [
+                "Class XI-XII",
+                "2015 - 2017"
+            ],
             "tags": [
                 "High School",
-                "Class XI-XII"
+                "The Bishops School",
+                "Senior Secondary"
             ]
         },
         {
@@ -53,17 +56,21 @@
             "start_date": "2004",
             "end_date": "2015",
             "grade": "",
-            "reference_context": [],
+            "reference_context": [
+                "Class UKG-X",
+                "2004 - 2015"
+            ],
             "tags": [
-                "Primary and Secondary Education",
-                "Class UKG-X"
+                "Primary School",
+                "The Bishops Co-Ed School",
+                "Kalyaninagar",
+                "Junior"
             ]
         }
     ],
     "tags": [
         "Education",
-        "Degree",
-        "Institution",
-        "Academic Background"
+        "Academic History",
+        "Qualifications"
     ]
 }

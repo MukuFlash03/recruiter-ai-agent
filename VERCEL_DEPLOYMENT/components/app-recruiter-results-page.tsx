@@ -17,61 +17,59 @@ export default function RecruiterResultsPage() {
   const supabase = createClient();
 
   const params = useParams();
-  // const jobId = params.job_id;
   const jobId = Array.isArray(params.job_id) ? params.job_id[0] : params.job_id;
   console.log("Job ID from params:", jobId);
 
-  console.log("Before useEffect in RecruiterResultsPage");
-
   useEffect(() => {
     const fetchUser = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      const { data: { user } } = await supabase.auth.getUser();
       setUser(user);
+      return user;
     };
 
-    const loadData = async () => {
-      try {
-        console.log("Before call to fetchInterviewData");
+    const loadData = async (currentUser: any) => {
+      if (!currentUser || !jobId) {
+        console.error("User or jobId not available");
+        setError('User or job information not available');
+        setLoading(false);
+        return;
+      }
 
+      try {
         const data = await fetchInterviewData({
           job_id: jobId,
-          recruiter_id: user?.id,
+          recruiter_id: currentUser.id,
         });
 
-        console.log("After call to fetchInterviewData");
-
         setInterviewsData(data.data);
-        setLoading(false);
       } catch (err) {
+        console.error("Error fetching interview data:", err);
         setError('Failed to fetch interviewed candidates data');
+      } finally {
         setLoading(false);
       }
     };
 
-    fetchUser();
-    loadData();
+    fetchUser().then(loadData);
+  }, [jobId]);
 
-  }, []);
-
-
-  console.log("After useEffect in RecruiterResultsPage");
-
-  console.log("Logging interviewsData in RecruiterResultsPage:");
-  console.log(interviewsData);
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!user) return <div>User not authenticated</div>;
 
   return (
     <div className="max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold mb-6">Interview Results</h1>
       <div className="space-y-4">
+        <Link href={`/recruiter/${user.id}/jobs/${jobId}/results/visualize`}>
+          <Button className="mt-2">View Visuals</Button>
+        </Link>
         {interviewsData.map((candidate) => (
           <div key={candidate.interview_id} className="border p-4 rounded-lg">
             <h2 className="text-xl font-semibold">{candidate.candidate_profiles.name}</h2>
             <p>Match: {candidate.match_pct}</p>
             <p>Decision: {candidate.interview_decision ? 'Selected' : 'Rejected'}</p>
             <Link href={`/recruiter/${user.id}/jobs/${jobId}/results/${candidate.candidate_id}/analysis/`}>
-              {/* <Link href={`/recruiter/jobs/${job.job_id}/results/`}> */}
               <Button className="mt-2">View Full Analysis</Button>
             </Link>
           </div>

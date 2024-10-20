@@ -146,6 +146,28 @@ export async function fetchInterviewAnalysis({ job_id, recruiter_id, candidate_i
   return response.json();
 }
 
+export async function fetchJobAnalysis({ job_id, recruiter_id }: { job_id: string, recruiter_id: string }) {
+  console.log('job_id in fetchJobAnalysis:', job_id);
+  console.log('recruiter_id in fetchJobAnalysis:', recruiter_id);
+
+  const response = await fetch(`/api/read-job-analysis?recruiter_id=${recruiter_id}&job_id=${job_id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    // body: JSON.stringify({ job_id: job_id }),
+  });
+
+  console.log("After getting response from fetch api/read-job-analysis");
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch job analysis data');
+  }
+
+  return response.json();
+}
+
+
 // export async function fetchCandidateMatchedJobs({ candidate_id }: { candidate_id: string }) {
 export async function fetchCandidateMatchedJobs() {
   console.log('candidate_id in fetchCandidateMatchedJobs');

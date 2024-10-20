@@ -40,6 +40,18 @@ from db.helpers import \
   get_org_candidate_profiles
 from custom_types import JobRecruiterID
 
+from entities.applicant import (
+    User,
+    ExperienceList,
+    EducationList,
+    SkillList,
+    ProjectList,
+    AchievementList,
+    QuestionAnswer,
+    QuestionAnswerList,
+    PersonalDetails,
+)
+
 standard_questions = [
   "Tell me a bit about yourself",
   "What are you looking for in your next role?",
@@ -130,6 +142,17 @@ class SelectionOfCandidate(BaseModel):
     relevant_context: list[str]
 
 
+class CharacteristicValues(BaseModel):
+    problem_solving: str
+    technical_skills: str
+    leadership: str
+    communication: str
+    teamwork: str
+    adaptability: str
+    creativity: str
+    relevant_context: list[str]
+
+
 async def candidate_selection_function(questions: list[str], answers: list[str]):
     system_prompt = """I am providing you with some details about a candidate for a job. 
     I will provide you with a set of questions and also with some answers 
@@ -157,11 +180,45 @@ async def candidate_selection_function(questions: list[str], answers: list[str])
     )
     return output_selection
 
+async def gauge_characteristic_traits(qa_list: QuestionAnswerList):
+    system_prompt = """I am providing you with some details about a candidate for a job. 
+    I will provide you with a set of questions and also with some answers 
+    about the candidate.
+    I will also provide with the job details including job description and core principles and characteristic values of the company.
+    I want you to tell how closely the candidate's behavioral traits and values match with the job description and core principles and characteristic values of the company.
+
+    Gauge the candidate for these dimensions:
+    Problem Solving, Technical Skills, Leadership, Communication, Teamwork, Adaptability, Creativity.
+
+    For each of these dimensions, provide a score between 0 and 5.
+
+    The final output format should only be the scores for each of the dimensions.
+    Do not give any reasoning or explanation for the score.
+    
+    Your answer should refer the candidate in third person. 
+    If the name is provided in the context, you can use the name.
+    If not you can use the pronoun 'he' or 'she'. 
+
+    The relevant context should be the exact verbatim from the original context.
+    """
+
+    user_prompt = ""
+    for qa in qa_list.question_answer_list:
+        user_prompt += f"Question:\n{qa.question} \n\n Answer:\n{qa.answer}\n\n"
+
+
+    output_characteristic: CharacteristicValues = await parse_input_async(
+        system_content=system_prompt,
+        user_content=user_prompt,
+        response_format=CharacteristicValues,
+    )
+    return output_characteristic
+
 
 async def get_all_relevant_content_for_a_single_question(
     question: str, user_profile_list: list[Any]
 ):
-    experiences, educations, skills, projects, achievements, personal_details = (
+    experiences, educations, skills, projects, achievements, personal_details, qa_list = (
         user_profile_list
     )
     tasks: Any = []
@@ -254,7 +311,11 @@ async def select_candidate(user_profile_list: list[Any], input_questions: list[s
         questions=input_questions, answers=answers
     )
 
-    return candidate_selection, answers, relevant_contexts
+    candidate_characterstics = await gauge_characteristic_traits(
+        qa_list=user_profile_list[6]
+    )
+
+    return candidate_selection, answers, relevant_contexts, candidate_characterstics
 
 
 async def end_to_end_agent(jobDetails: JobRecruiterID):
@@ -295,7 +356,7 @@ async def end_to_end_agent(jobDetails: JobRecruiterID):
     print(specific_job_data)
 
     custom_questions = specific_job_data["custom_questions"]
-    print("Custom Questions:")
+    print("\n\nCustom Questions:")
     print(custom_questions)
     
     json_to_return = {}
@@ -304,7 +365,7 @@ async def end_to_end_agent(jobDetails: JobRecruiterID):
 
         candidate_data = organized_candidate_profiles[candidate_id]
         print(candidate_data)
-        experiences, educations, skills, projects, achievements, personal_details = (
+        experiences, educations, skills, projects, achievements, personal_details, qa_list = (
             await get_user_info(candidate_data)
         )
 
@@ -313,9 +374,9 @@ async def end_to_end_agent(jobDetails: JobRecruiterID):
         print("\n\nAll Questions:")
         print(all_questions)
 
-        print("Inside end to end agent workflow; before select_candidate()")
+        print("\n\nInside end to end agent workflow; before select_candidate()")
 
-        candidate_selection, answers, relevant_contexts = await select_candidate(
+        candidate_selection, answers, relevant_contexts, candidate_characterstics = await select_candidate(
             user_profile_list=[
                 experiences,
                 educations,
@@ -323,6 +384,7 @@ async def end_to_end_agent(jobDetails: JobRecruiterID):
                 projects,
                 achievements,
                 personal_details,
+                qa_list,
             ],
             input_questions=all_questions,
         )
@@ -348,6 +410,7 @@ async def end_to_end_agent(jobDetails: JobRecruiterID):
             [context.model_dump() for context in relevant_context]
             for relevant_context in relevant_contexts
         ]
+        json_to_return[candidate_id]["candidate_characterstics"] = candidate_characterstics.model_dump()
 
         print("\n\nJSON to return in workflow end to end agent for candidate:", candidate_id)
         print(json.dumps(json_to_return, indent=4))

@@ -22,7 +22,7 @@ export async function POST(request: Request) {
       console.log("Simulating matching process by sleeping for 5 seconds");
 
       // Simulate a time-consuming process
-      await new Promise(resolve => setTimeout(resolve, 5000)); // 5 seconds delay
+      // await new Promise(resolve => setTimeout(resolve, 5000)); // 5 seconds delay
 
       await startJobCandidateMatching({
         job_id: jobId,

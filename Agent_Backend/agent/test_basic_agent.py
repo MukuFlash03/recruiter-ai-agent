@@ -231,7 +231,7 @@ async def get_user_info(candidate_data) -> Any:
     # )
     # print(result)
 
-    return (experiences, educations, skills, projects, achievements, personal_details)
+    return (experiences, educations, skills, projects, achievements, personal_details, qa_list)
 
 
 if __name__ == "__main__":

@@ -41,6 +41,7 @@ export function RecruiterDashboardComponent() {
   const [jobDescription, setJobDescription] = useState('');
   const [requiredSkills, setRequiredSkills] = useState('');
   const [questions, setQuestions] = useState<string[]>(['']);
+  const [characteristicValues, setCharacteristicValues] = useState('');
 
   const [processingJobs, setProcessingJobs] = useState<Set<string>>(new Set());
 
@@ -102,7 +103,8 @@ export function RecruiterDashboardComponent() {
       companyURL,
       jobDescription,
       requiredSkills,
-      questions: questions.filter(q => q.trim() !== '')
+      questions: questions.filter(q => q.trim() !== ''),
+      characteristicValues,
     };
 
     console.log('Form data to be submitted:', formData);
@@ -124,6 +126,7 @@ export function RecruiterDashboardComponent() {
       setJobDescription('');
       setRequiredSkills('');
       setQuestions(['']);
+      setCharacteristicValues('');
     } catch (err) {
       setError('Failed to insert job postings data');
       setLoading(false);
@@ -239,6 +242,17 @@ export function RecruiterDashboardComponent() {
                   required
                 />
                 {/* <Textarea id="requiredSkills" placeholder="List the required skills and qualifications" required /> */}
+              </div>
+              <div>
+                <Label htmlFor="characteristicValues">Characteristic Values</Label>
+                <Textarea
+                  id="characteristicValues"
+                  value={characteristicValues}
+                  onChange={(e) => setCharacteristicValues(e.target.value)}
+                  placeholder="Describe the company's core principles and values"
+                  required
+                />
+                {/* <Textarea id="characteristicValues" placeholder="Describe the company's core princicples and values" required /> */}
               </div>
               <div>
                 <Label>Custom Questions for Candidates</Label>

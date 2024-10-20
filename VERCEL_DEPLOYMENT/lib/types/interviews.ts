@@ -15,6 +15,9 @@ export type InterviewsResponse = {
   custom_answers: string[],
   relevant_contexts: {
     [key: string]: RelevantContext[]
+  },
+  characteristic_values: {
+    [key: string]: string
   }
 };
 
@@ -36,6 +39,9 @@ export type InterviewsCandidateResponse = {
   relevant_contexts: {
     [key: string]: RelevantContext[]
   },
+  characteristic_values: {
+    [key: string]: string
+  }
   candidate_profiles: {
     name: string,
   },

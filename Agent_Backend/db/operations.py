@@ -216,8 +216,15 @@ def insert_interviews_data(
       relevant_contexts: List[List[RelevantContext]] = candidate_selection_data["relevant_contexts"]
       print("relevant_contexts: ", relevant_contexts)
       print()
+
       print("*"*100)
 
+      candidate_characteristics: Dict[str, Any] = candidate_selection_data["candidate_characterstics"]
+      print("candidate_characterstics: ", candidate_characteristics)
+      print()
+      
+      print("*"*100)
+      
       answer_contexts: Dict[str, List[RelevantContext]] = {}
       ctx_idx = 1
       for relevant_context in relevant_contexts:
@@ -234,6 +241,7 @@ def insert_interviews_data(
             "match_pct": match_pct,
             "custom_answers": custom_answers,
             "relevant_contexts": answer_contexts,
+            "characteristic_values": candidate_characteristics,
           },
           on_conflict ="recruiter_id, job_id, candidate_id"
           )

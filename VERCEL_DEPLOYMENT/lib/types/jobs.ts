@@ -8,6 +8,7 @@ export type JobsResponse = {
   required_skills: string,
   custom_questions: string[],
   analysis_status: boolean,
+  characteristicValues: string,
 };
 
 export type SelectedJobsResponse = Pick<JobsResponse,
@@ -21,6 +22,7 @@ export interface JobPostingData {
   jobDescription: string;
   requiredSkills: string;
   questions: string[];
+  characteristicValues: string;
 }
 
 export type JobRecruiterID = {

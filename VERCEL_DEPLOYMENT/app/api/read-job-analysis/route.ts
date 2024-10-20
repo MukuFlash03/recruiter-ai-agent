@@ -31,16 +31,12 @@ export async function GET(request: NextRequest) {
             job_id,
             interview_decision,
             match_pct,
-            reasoning_summary,
-            custom_answers,
-            relevant_contexts,
             characteristic_values,
             candidate_profiles (name)
           `
       )
       .eq('recruiter_id', recruiter_id)
       .eq('job_id', job_id)
-      .eq('candidate_id', candidate_id)
       ;
 
     if (error) throw error;
