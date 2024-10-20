@@ -8,7 +8,7 @@ export async function POST(request: Request) {
     const bodyText = await request.text();
     console.log("Raw request body:", bodyText);
 
-    const { jobTitle, companyName, jobDescription, requiredSkills, questions } = JSON.parse(bodyText);
+    const { jobTitle, companyName, companyURL, jobDescription, requiredSkills, questions } = JSON.parse(bodyText);
 
     const supabase = createClient();
 
@@ -22,6 +22,7 @@ export async function POST(request: Request) {
         recruiter_id: user?.id,
         job_title: jobTitle,
         company_name: companyName,
+        company_url: companyURL,
         job_description: jobDescription,
         required_skills: requiredSkills,
         custom_questions: questions

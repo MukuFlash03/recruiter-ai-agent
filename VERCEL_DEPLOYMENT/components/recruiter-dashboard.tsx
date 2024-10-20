@@ -37,6 +37,7 @@ export function RecruiterDashboardComponent() {
 
   const [jobTitle, setJobTitle] = useState('');
   const [companyName, setCompanyName] = useState('');
+  const [companyURL, setCompanyURL] = useState('');
   const [jobDescription, setJobDescription] = useState('');
   const [requiredSkills, setRequiredSkills] = useState('');
   const [questions, setQuestions] = useState<string[]>(['']);
@@ -98,6 +99,7 @@ export function RecruiterDashboardComponent() {
     const formData: JobPostingData = {
       jobTitle,
       companyName,
+      companyURL,
       jobDescription,
       requiredSkills,
       questions: questions.filter(q => q.trim() !== '')
@@ -118,6 +120,7 @@ export function RecruiterDashboardComponent() {
       // Reset form fields
       setJobTitle('');
       setCompanyName('');
+      setCompanyURL('');
       setJobDescription('');
       setRequiredSkills('');
       setQuestions(['']);
@@ -205,6 +208,17 @@ export function RecruiterDashboardComponent() {
                 {/* <Input id="companyName" placeholder="Your Company Name" required /> */}
               </div>
               <div>
+                <Label htmlFor="companyURL">Company URL</Label>
+                <Input
+                  id="companyURL"
+                  value={companyURL}
+                  onChange={(e) => setCompanyURL(e.target.value)}
+                  placeholder="Your Company URL"
+                  required
+                />
+                {/* <Input id="companyURL" placeholder="Your Company Name" required /> */}
+              </div>
+              <div>
                 <Label htmlFor="jobDescription">Job Description</Label>
                 <Textarea
                   id="jobDescription"
@@ -278,7 +292,7 @@ export function RecruiterDashboardComponent() {
                 <CardContent>
                   {/* TODO: Replace with actual selected top candidates from True count from interviews table in database */}
                   {/* <p>{job.applicants} applicants</p> */}
-                  <p>5 top candidates</p>
+                  {/* <p>5 top candidates</p> */}
                   <div className="flex justify-end mt-2 space-x-4">
                     <Button
                       variant="outline"

@@ -2,35 +2,37 @@
     "education": [
         {
             "degree": "Master of Science in Computer Science",
-            "institution": "Arizona State University",
+            "institution": "Arizona State University, Tempe, Arizona",
             "start_date": "08/2022",
             "end_date": "05/2024",
             "grade": "GPA: 3.90 / 4.0",
             "reference_context": [
-                "Arizona State University",
-                "Tempe, Arizona",
-                "CSE 536 Advanced Operating Systems",
-                "School of Computing and Augmented Intelligence (SCAI)",
-                "Graduate Services Assistant"
+                "Currently a Master's graduate with a passion for backend applications and integrating Large Language Models (LLMs) for Generative AI applications.",
+                "Technical Skills: Python, TypeScript, C++, Java, Flask, Spring Boot",
+                "Worked as a Graduate Services Assistant, Grader for CSE 536 Advanced Operating Systems course in Spring 2023"
             ],
             "tags": [
+                "Computer Science",
                 "MS",
-                "Masters"
+                "Backend Applications",
+                "Generative AI"
             ]
         },
         {
             "degree": "Bachelor of Technology in Electronics and Communications Engineering",
-            "institution": "National Institute of Technology Hamirpur",
-            "start_date": "07/2017",
+            "institution": "National Institute of Technology Hamirpur, India",
+            "start_date": "08/2017",
             "end_date": "06/2021",
             "grade": "GPA: 8.73 / 10",
             "reference_context": [
-                "National Institute of Technology Hamirpur",
-                "Hamirpur (H.P.) , India"
+                "Developed software modules for ARM Cortex-M3 embedded server sensor device under supervision at Inter-university accelerator centre.",
+                "Modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining during internship at College of Engineering Pune."
             ],
             "tags": [
+                "Electronics and Communications",
                 "BTech",
-                "Bachelor"
+                "Embedded Systems",
+                "Sensor Data"
             ]
         },
         {
@@ -39,11 +41,10 @@
             "start_date": "2015",
             "end_date": "2017",
             "grade": "",
-            "reference_context": [
-                "The Bishops School, Camp"
-            ],
+            "reference_context": [],
             "tags": [
-                "High School"
+                "High School",
+                "Class XI-XII"
             ]
         },
         {
@@ -52,13 +53,17 @@
             "start_date": "2004",
             "end_date": "2015",
             "grade": "",
-            "reference_context": [
-                "The Bishops Co-Ed School, Kalyaninagar"
-            ],
+            "reference_context": [],
             "tags": [
-                "Primary Education"
+                "Primary and Secondary Education",
+                "Class UKG-X"
             ]
         }
     ],
-    "tags": []
+    "tags": [
+        "Education",
+        "Degree",
+        "Institution",
+        "Academic Background"
+    ]
 }
