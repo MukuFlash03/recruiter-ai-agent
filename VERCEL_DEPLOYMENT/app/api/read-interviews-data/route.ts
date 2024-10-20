@@ -36,6 +36,8 @@ export async function GET(request: NextRequest) {
             interview_decision,
             score,
             match_pct,
+            reasoning_summary,
+            custom_qna,
             candidate_profiles (name)
           `
       )

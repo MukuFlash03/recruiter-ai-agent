@@ -1,90 +1,66 @@
 {
     "achievements": [
         {
-            "title": "Data Processing Optimization at NREL",
-            "description": "Refined data processing in model build and analysis pipeline, transforming raw data into inferred values with comprehensive automated unit and integration testing.",
-            "reference_context": [
-                "National Renewable Energy Laboratory (NREL)",
-                "Software Development Engineer"
-            ]
-        },
-        {
-            "title": "System Scalability Improvement",
-            "description": "Optimized system scalability through time complexity improvements, enhancing overall performance.",
-            "reference_context": [
-                "National Renewable Energy Laboratory (NREL)",
-                "Software Development Engineer"
-            ]
-        },
-        {
-            "title": "CI/CD Workflow Restructuring",
-            "description": "Streamlined and automated DevOps processes by restructuring CI/CD workflows with GitHub Actions.",
-            "reference_context": [
-                "National Renewable Energy Laboratory (NREL)",
-                "Software Development Engineer"
-            ]
-        },
-        {
-            "title": "Data Export/Import Implementation",
-            "description": "Improved database efficiency and data lifecycle management by implementing data export/import functionality for timeseries data purge and restore.",
-            "reference_context": [
-                "National Renewable Energy Laboratory (NREL)",
-                "Software Development Engineer"
-            ]
-        },
-        {
-            "title": "OFSAA LLFP Implementation",
-            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in Production environments for two international financial banking firms.",
-            "reference_context": [
-                "Oracle Financial Services Software",
-                "Software Development Engineer"
-            ]
-        },
-        {
-            "title": "ETL Pipeline Development",
-            "description": "Engineered six GUI-based workflow runs for ETL pipelines, integrating them with backend scripts to process data from pre-staging to end-user report generation stage.",
-            "reference_context": [
-                "Oracle Financial Services Software",
-                "Software Development Engineer"
-            ]
-        },
-        {
-            "title": "UI Enhancement for IA Module",
-            "description": "Enhanced UI for the Individual Assessment module based on XML Forms Framework by customizing four UI forms and eight PL/SQL scripts to process over 300,000 customer records.",
-            "reference_context": [
-                "Oracle Financial Services Software",
-                "Software Development Engineer"
-            ]
-        },
-        {
-            "title": "PL/SQL Automation",
-            "description": "Generated PL/SQL scripts for data manipulation and validation, automating manual tasks for filtering source data, reducing execution times by 20 percent when generating end-user reports.",
-            "reference_context": [
-                "Oracle Financial Services Software",
-                "Software Development Engineer"
-            ]
-        },
-        {
-            "title": "AI Camp Generative AI Hackathon Winner",
+            "title": "AICamp Generative AI Hackathon",
             "description": "Won the AWS for Startups prize for creating a multimodal AI assistant that automates browser tasks on behalf of users.",
             "reference_context": [
-                "AICamp Generative AI Hackathon for AI Agent and RAG"
+                "Extracurriculars",
+                "AICamp Generative AI Hackathon for AI Agent and RAG",
+                "06/2024 \u2013 06/2024"
             ]
         },
         {
-            "title": "Embedded Server Sensor Development",
-            "description": "Designed software modules for ARM Cortex-M3 embedded server sensor device to measure subzero temperatures and optimized the system for real-time data handling.",
+            "title": "Optimized System Scalability",
+            "description": "Refined data processing in model build and analysis pipeline, transforming raw data into inferred values with comprehensive automated unit and integration testing. Implemented data export/import functionality for timeseries data purge and restore, enhancing system scalability and database efficiency.",
             "reference_context": [
-                "Inter-university accelerator centre",
-                "Embedded C++ Developer"
+                "Work Experience",
+                "National Renewable Energy Laboratory (NREL)",
+                "08/2023 \u2013 09/2024"
             ]
         },
         {
-            "title": "Rough Set Theory Modeling",
-            "description": "Modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining using Python, achieving 95% accuracy processing 65,536 objects in two minutes.",
+            "title": "Enhanced UI for Individual Assessment Module",
+            "description": "Customized 4 UI Forms and 8 PL/SQL scripts to process over 300k customer records, reducing execution times by 20% while generating end-user reports containing customer data for over 6 months.",
             "reference_context": [
-                "College of Engineering Pune",
-                "Python Developer"
+                "Work Experience",
+                "Oracle Financial Services Software",
+                "07/2021 \u2013 05/2022"
+            ]
+        },
+        {
+            "title": "Engineered a Distributed System for Video to MP3 Conversion",
+            "description": "Developed a microservices architecture for converting video files to MP3 format, implementing secure JWT user authentication, message queuing with RabbitMQ, scalable storage, and notifications.",
+            "reference_context": [
+                "Projects",
+                "Microservices Video to MP3 Converter",
+                "09/2024 \u2013 09/2024"
+            ]
+        },
+        {
+            "title": "Apache Kafka Producers/Consumers Implementation",
+            "description": "Implemented Apache Kafka producers/consumers using Confluent Cloud with topic management, data serialization, and containerized an environment demonstrating cross-platform compatibility.",
+            "reference_context": [
+                "Projects",
+                "Kafka Confluent Cloud Pub-Sub",
+                "09/2024 \u2013 09/2024"
+            ]
+        },
+        {
+            "title": "Full-stack Task Manager Web Application",
+            "description": "Developed a full-stack task manager webapp with CRUD operations using React and Go, implemented GraphQL API for efficient data retrieval, and deployed on AWS with a self-signed SSL certificate for HTTPS.",
+            "reference_context": [
+                "Projects",
+                "Classic To-Do List",
+                "08/2024 \u2013 08/2024"
+            ]
+        },
+        {
+            "title": "AI-powered Voice Interviewer",
+            "description": "Engineered an AI-powered voice interviewer application leveraging Groq for fast inference and Vapi for voice interactions, including a custom evaluation system utilizing Supabase for authentication and storage.",
+            "reference_context": [
+                "Projects",
+                "Voice AI Interviewer Agent",
+                "07/2024 \u2013 07/2024"
             ]
         }
     ]

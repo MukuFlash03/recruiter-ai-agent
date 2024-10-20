@@ -1,23 +1,23 @@
 {
     "education": [
         {
-            "degree": "Masters in Computer Science",
+            "degree": "Master of Science in Computer Science",
             "institution": "Arizona State University",
-            "start_date": "08/2022",
-            "end_date": "05/2024",
-            "grade": "3.90 / 4.0",
+            "start_date": "August 2022",
+            "end_date": "May 2024",
+            "grade": "GPA: 3.90 / 4.0",
             "reference_context": [
-                "Master of Science - MS, Computer Science \u00b7 (August 2022 - May 2024)"
+                "Education"
             ]
         },
         {
-            "degree": "Bachelors in Electronics and Communication",
+            "degree": "Bachelor of Technology in Electronics and Communications Engineering",
             "institution": "National Institute of Technology Hamirpur",
-            "start_date": "08/2017",
-            "end_date": "05/2021",
-            "grade": "8.73 / 10",
+            "start_date": "July 2017",
+            "end_date": "June 2021",
+            "grade": "GPA: 8.73 / 10",
             "reference_context": [
-                "Bachelor of Technology - BTech, Electronics and Communications Engineering \u00b7 (July 2017 - June 2021)"
+                "Education"
             ]
         },
         {
@@ -27,7 +27,7 @@
             "end_date": "2017",
             "grade": "",
             "reference_context": [
-                "Class XI-XII \u00b7 (2015 - 2017)"
+                "Education"
             ]
         },
         {
@@ -37,7 +37,7 @@
             "end_date": "2015",
             "grade": "",
             "reference_context": [
-                "Class UKG-X \u00b7 (2004 - 2015)"
+                "Education"
             ]
         }
     ]

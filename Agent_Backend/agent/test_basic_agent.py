@@ -78,18 +78,32 @@ async def get_user_info(candidate_data) -> Any:
     # resume_content = extract_text_from_pdf(resume_path)
     # linkedin_content = extract_text_from_pdf(linkedin_path)
 
+    print("Inside get_user_info in test_basic_agent.py")
+
     standard_answers = candidate_data["interview_audio_texts"]
+    print("\n\nStandard Answers:")
+    print(standard_answers)
+
     resume_content = candidate_data["resume_content"]
+    print("\n\nResume Content:")
+    print(resume_content)
+
     liProfile_content = candidate_data["liProfile_content"]
+    print("\n\nLinkedIn Content:")
+    print(liProfile_content)
 
     merged_content = resume_content + liProfile_content
     
     global standard_questions
     raw_questions = standard_questions
+    print("\n\nRaw Questions:")
+    print(raw_questions)
 
     raw_answers = []
-    for key, value in standard_answers.items():
-        raw_answers.append(value)
+    for answer in standard_answers:
+        raw_answers.append(answer["text"])
+    print("\n\nRaw Answers:")
+    print(raw_answers)
 
     # questions = raw_questions.split("\n\n")
     # questions = [question for question in questions if question.startswith("Q")]
@@ -104,8 +118,16 @@ async def get_user_info(candidate_data) -> Any:
         question_answer_list=question_answer_list
     )
 
+    print("\n\nQuestion Answer List:")
+    print(qa_list)
+
     task_list: Any = []
     # Example usage
+
+    """
+    Uncomment below
+    """
+    
     experiences_task = parse_input_async(
         system_content="Extract the experiences from the resume.",
         user_content=merged_content,
@@ -179,6 +201,10 @@ async def get_user_info(candidate_data) -> Any:
 
     with open(question_answer_file, "w") as f:
         json.dump(qa_list.model_dump(), f, indent=4)
+    
+    """
+    Uncomment above
+    """
 
     # user = User(
     #     # personal_details=personal_details,
@@ -204,6 +230,7 @@ async def get_user_info(candidate_data) -> Any:
     #     user_prompt=user_prompt, system_prompt=system_prompt
     # )
     # print(result)
+
     return (experiences, educations, skills, projects, achievements, personal_details)
 
 

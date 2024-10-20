@@ -38,8 +38,7 @@
         "LLMs",
         "Deepgram",
         "OpenStack",
-        "AWS Cloud Services (EC2, S3, SQS, Lambda, RDS, Amplify)",
-        "GitHub",
+        "AWS Cloud Services (EC2, S3, SQS, Lambda, Cloudwatch, ECR, RDS, Amplify)",
         "GitHub Actions",
         "Kubernetes",
         "Kafka",
@@ -52,20 +51,19 @@
         "Documentation",
         "Agile",
         "Vapi",
-        "Supabase",
         "ShadCN UI"
     ],
     "reference_context": [
-        "Software Development Engineer at National Renewable Energy Laboratory",
-        "Refined data processing in model build and analysis pipeline",
-        "Optimized system scalability through time complexity improvements",
-        "Troubleshot and resolved model build pipeline failures using CloudWatch logs",
-        "Streamlined and automated DevOps processes with GitHub Actions",
-        "Developing a distributed system for converting video files to MP3 format using microservices architecture",
-        "Implemented Kafka producers/consumers using Confluent Cloud",
-        "Developed a full-stack task manager webapp with CRUD operations using React and Go",
-        "Engineered an AI-powered voice interviewer, leveraging Groq for fast inference and Vapi for voice interactions",
-        "Prepared Python scripts for AWS Lambda, S3, DynamoDB; auto-scaled EC2 instances",
-        "Master's in Computer Science, Arizona State University"
+        "Refined data processing in model build and analysis pipeline, transforming raw data into inferred values with comprehensive automated unit and integration testing.",
+        "Optimized system scalability through time complexity improvements, enhancing overall performance.",
+        "Streamlined and automated DevOps processes by restructuring CI/CD workflows with GitHub Actions.",
+        "Implemented data export/import functionality for timeseries data purge and restore, improving database efficiency and data lifecycle management.",
+        "Enhanced UI for Individual Assessment (IA) module based on XML Forms Framework by customizing 4 UI Forms and 8 PL/SQL scripts.",
+        "Generated PL/SQL scripts for data manipulation and validation to automate manual tasks for filtering source data.",
+        "Implemented secure JWT user authentication, message queuing with RabbitMQ, scalable storage, notifications.",
+        "Implemented Apache Kafka producers/consumers using Confluent Cloud with topic management, data serialization.",
+        "Developed a full-stack task manager webapp with CRUD operations using React and Go with PostgreSQL database.",
+        "Engineered an AI-powered voice interviewer, leveraging Groq for fast inference and Vapi for voice interactions.",
+        "Designed a 3-tier hybrid cloud architecture leveraging AWS and OpenStack for Web, App, and Data tiers integration."
     ]
 }

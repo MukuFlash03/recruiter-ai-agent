@@ -41,6 +41,8 @@ export function RecruiterDashboardComponent() {
   const [requiredSkills, setRequiredSkills] = useState('');
   const [questions, setQuestions] = useState<string[]>(['']);
 
+  const [processingJobs, setProcessingJobs] = useState<Set<string>>(new Set());
+
   const [user, setUser] = useState<any>(null);
   const router = useRouter();
 
@@ -122,6 +124,34 @@ export function RecruiterDashboardComponent() {
 
     setIsNewJobModalOpen(false)
   }
+
+  const startMatchingProcess = async (jobId: string, recruiter_id: string) => {
+    console.log("Inside startMatchingProcess onClick for jobId:", jobId);
+
+    setProcessingJobs(prev => new Set(prev).add(jobId));
+    console.log("Processing jobs set:", processingJobs);
+
+    console.log("Before fetching job postings data via API route");
+
+    try {
+      const response = await fetch('/api/start-candidate-matching', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ jobId, recruiter_id }),
+      });
+      if (!response.ok) throw new Error('Failed to start matching process');
+    } catch (error) {
+      console.error('Error starting matching process:', error);
+    } finally {
+      setProcessingJobs(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(jobId);
+        return newSet;
+      });
+    }
+
+    console.log("After fetching job postings data via API route");
+  };
 
   return (
     <div className="container mx-auto p-6">
@@ -245,10 +275,26 @@ export function RecruiterDashboardComponent() {
                   {/* TODO: Replace with actual selected top candidates from True count from interviews table in database */}
                   {/* <p>{job.applicants} applicants</p> */}
                   <p>5 top candidates</p>
-                  <div className="flex justify-end mt-2">
-                    <Link href={`/recruiter/${user.id}/jobs/${job.job_id}/results`}>
-                      <Button variant="outline" size="sm">View Details</Button>
-                    </Link>
+                  <div className="flex justify-end mt-2 space-x-4">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => startMatchingProcess(job.job_id.toString(), user.id)}
+                      disabled={processingJobs.has(job.job_id.toString())}
+                    >
+                      {processingJobs.has(job.job_id.toString()) ? 'Processing...' : 'Fetch Matching Candidates'}
+                    </Button>
+                    {job.analysis_status ? (
+                      <Link href={`/recruiter/${user.id}/jobs/${job.job_id}/results`}>
+                        <Button variant="outline" size="sm">
+                          View Details
+                        </Button>
+                      </Link>
+                    ) : (
+                      <Button variant="outline" size="sm" disabled>
+                        View Details
+                      </Button>
+                    )}
                   </div>
                 </CardContent>
               </Card>

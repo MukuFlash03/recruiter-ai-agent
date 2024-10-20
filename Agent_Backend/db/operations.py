@@ -1,5 +1,5 @@
 from supabase import create_client, Client
-from typing import Union, Dict, Any, List, Tuple
+from typing import Union, Dict, Any, List, Tuple, Set
 from fastapi import HTTPException
 from dotenv import load_dotenv
 import os
@@ -25,7 +25,7 @@ supabase: Client = create_client(url, key)
 
 def get_candidate_profiles(
     candidate_id: Union[str, None] = None
-) -> Tuple[List[Dict[str, Any]] | None, Dict[str, List[Dict[str, Any]]], List[str]]:
+) -> Tuple[List[Dict[str, Any]] | None, Dict[str, Dict[str, Any]], List[str]]:
   try:
     candidates_data: List[Dict[str, Any]] | None = []
     if candidate_id is None:
@@ -49,11 +49,11 @@ def get_candidate_profiles(
     if candidates_data is None:
         raise HTTPException(status_code=404, detail="Candidates data not found")
 
-    organized_candidate_profiles: Dict[str, List[Dict[str, Any]]] = organize_candidate_profiles(candidates_data)
-    print("Organized candidate profiles:")
+    organized_candidate_profiles: Dict[str, Dict[str, Any]] = organize_candidate_profiles(candidates_data)
+    print("\n\nOrganized candidate profiles:")
     print(organized_candidate_profiles)
 
-    print("Organized candidate profiles keys:")
+    print("\n\nOrganized candidate profiles keys:")
     keys_list = list(organized_candidate_profiles.keys())
     print(keys_list)
 
@@ -65,7 +65,7 @@ def get_candidate_profiles(
 def get_job_postings(
     recruiter_id: str,
     job_id: Union[str, None] = None
-) -> Tuple[List[Dict[str, Any]] | None, Dict[str, Dict[str, List[Dict[str, Any]]]]]:
+) -> Tuple[List[Dict[str, Any]] | None, Dict[str, Dict[str, Dict[str, Any]]]]:
   try:
     job_postings_data: List[Dict[str, Any]] | None = []
     if job_id is None:
@@ -74,7 +74,7 @@ def get_job_postings(
           .select("*")\
           .eq("recruiter_id", recruiter_id)\
           .execute()
-      print(job_postings)
+      # print(job_postings)
       job_postings_data = job_postings.data
       # return job_postings.data
     else:
@@ -84,15 +84,18 @@ def get_job_postings(
           .eq("recruiter_id", recruiter_id)\
           .eq("job_id", job_id)\
           .execute()
-      print(job_postings)
+      # print(job_postings)
       job_postings_data = job_postings.data
       # return job_postings.data
     
     if job_postings_data is None:
         raise HTTPException(status_code=404, detail="Jobs data not found")
     
-    organized_job_postings: Dict[str, Dict[str, List[Dict[str, Any]]]] = organize_job_postings_data(job_postings_data)
-    print("Organized job postings:")
+    print("\n\nJob postings data in supabase get job postings operations:")
+    print(job_postings_data)
+    
+    organized_job_postings = organize_job_postings_data(job_postings_data)
+    print("\n\nOrganized job postings:")
     print(organized_job_postings)
 
     return job_postings_data, organized_job_postings
@@ -104,7 +107,7 @@ def get_interview_data(
     recruiter_id: str,
     job_id: Union[str, None] = None,
     candidate_id: Union[str, None] = None
-) -> Tuple[List[Dict[str, Any]] | None, Dict[str, Dict[str, List[Dict[str, Any]]]]]:
+) -> Tuple[List[Dict[str, Any]] | None, Dict[str, Dict[str, Dict[str, Any]]]]:
   try:
     interviews_data: List[Dict[str, Any]] | None = []
     
@@ -130,7 +133,7 @@ def get_interview_data(
       interviews_data = interviews_data_db.data
       # return interviews_data_db.data
     elif candidate_id is not None and job_id is None:
-      print("candidate_id is not None")
+      print("\n\ncandidate_id is not None")
       interviews_data_db = supabase\
           .table("interviews")\
           .select("*")\
@@ -141,7 +144,7 @@ def get_interview_data(
       interviews_data = interviews_data_db.data
       # return interviews_data_db.data
     else:
-      print("candidate_id and job_id are not None")
+      print("\n\ncandidate_id and job_id are not None")
       interviews_data_db = supabase\
           .table("interviews")\
           .select("*")\
@@ -156,7 +159,7 @@ def get_interview_data(
     if interviews_data is None:
         raise HTTPException(status_code=404, detail="Interviews data not found")
 
-    organized_interviews: Dict[str, Dict[str, List[Dict[str, Any]]]] = organize_interview_data(interviews_data)
+    organized_interviews: Dict[str, Dict[str, Dict[str, Any]]] = organize_interview_data(interviews_data)
     # print(organized_interviews)
 
     return interviews_data, organized_interviews

@@ -8,7 +8,6 @@
 # You also add the reference context you obtained from the question.
 
 
-#
 from typing import Any
 from basic_agent import (
     parse_input_async,
@@ -30,11 +29,8 @@ from test_basic_agent import (
 )
 
 from pydantic import BaseModel
-
 import json
-
 from db.operations import get_candidate_profiles, get_job_postings, get_interview_data
-
 from db.helpers import \
   organize_interview_data, \
   get_org_interviews_data, \
@@ -42,7 +38,7 @@ from db.helpers import \
   get_org_job_postings, \
   organize_candidate_profiles, \
   get_org_candidate_profiles
-
+from custom_types import JobRecruiterID
 
 standard_questions = [
   "Tell me a bit about yourself",
@@ -130,6 +126,7 @@ async def answer_the_question(question: str, relevant_context_list: list[Any]):
 class SelectionOfCandidate(BaseModel):
     selected: bool
     reasoning: str
+    match_pct: str
     relevant_context: list[str]
 
 
@@ -144,6 +141,9 @@ async def candidate_selection_function(questions: list[str], answers: list[str])
     If not you can use the pronoun 'he' or 'she'. 
 
     The relevant context should be the exact verbatim from the original context.
+
+    Finally, based on your final judgment, assign the candidate a score of match percentage between 0 and 100.
+    This would represent how well the candidate matches the job description.
     """
 
     user_prompt = ""
@@ -257,8 +257,14 @@ async def select_candidate(user_profile_list: list[Any], input_questions: list[s
     return candidate_selection, answers, relevant_contexts
 
 
-async def end_to_end_agent(recruiter_id: str, job_id: str):
+async def end_to_end_agent(jobDetails: JobRecruiterID):
     print("Inside end to end agent workflow\n\n")
+
+    recruiter_id, job_id = jobDetails.recruiter_id, jobDetails.job_id
+
+    print("\n\nRecruiter ID:", recruiter_id)
+    print("\n\nJob ID:", job_id)
+
     candidates_data, organized_candidate_profiles, keys_list = get_candidate_profiles()
 
     print("\n\nCandidates Data:")
@@ -275,58 +281,73 @@ async def end_to_end_agent(recruiter_id: str, job_id: str):
     print("\n\nStandard Questions:")
     print(standard_questions)
 
-    job_postings_data, organized_job_postings = get_job_postings(recruiter_id, job_id)
+    job_postings_data, organized_job_postings  = get_job_postings(recruiter_id, job_id)
     print("\n\nJob Postings:")
     print(job_postings_data)
     print()
     print("\n\nOrganized Job Postings:")
     print(organized_job_postings)
     print()
-    # specific_job_data = get_org_job_postings(organized_job_postings, recruiter_id, job_id)
+
+    specific_job_data = get_org_job_postings(organized_job_postings, recruiter_id, job_id)
     
     print("\n\nSpecific Job Posting:")
-    # print(specific_job_data)
+    print(specific_job_data)
 
-    # custom_questions = specific_job_data[0]["custom_questions"]
-    # print("Custom Questions:")
-    # print(custom_questions)
+    custom_questions = specific_job_data["custom_questions"]
+    print("Custom Questions:")
+    print(custom_questions)
     
     json_to_return = {}
-    # for candidate_id in keys_list:
-    #     candidate_data = organized_candidate_profiles[candidate_id][0]
-    #     experiences, educations, skills, projects, achievements, personal_details = (
-    #         await get_user_info(candidate_data)
-    #     )
+    for candidate_id in keys_list:
+        print("\n\n Checking candidate data in for loop in workflow for candidate: ", candidate_id)
 
-    #     all_questions = standard_questions + custom_questions
-    #     print("All Questions:")
-    #     print(all_questions)
+        candidate_data = organized_candidate_profiles[candidate_id]
+        print(candidate_data)
+        experiences, educations, skills, projects, achievements, personal_details = (
+            await get_user_info(candidate_data)
+        )
 
-    #     candidate_selection, answers, relevant_contexts = await select_candidate(
-    #         user_profile_list=[
-    #             experiences,
-    #             educations,
-    #             skills,
-    #             projects,
-    #             achievements,
-    #             personal_details,
-    #         ],
-    #         input_questions=all_questions,
-    #     )
+        # all_questions = standard_questions + custom_questions
+        all_questions = custom_questions
+        print("\n\nAll Questions:")
+        print(all_questions)
 
-    #     print("Candidate Selection:")
-    #     print(candidate_selection)
+        print("Inside end to end agent workflow; before select_candidate()")
+
+        candidate_selection, answers, relevant_contexts = await select_candidate(
+            user_profile_list=[
+                experiences,
+                educations,
+                skills,
+                projects,
+                achievements,
+                personal_details,
+            ],
+            input_questions=all_questions,
+        )
+
+        print("Inside end to end agent workflow; after select_candidate()")
+
+        print("\n\nCandidate Selection:")
+        print(candidate_selection)
+
+        # print("\n\nMatch percentage:")
+        # print(candidate_selection.match_pct)
         
-    #     json_to_return[candidate_id]["candidate_selection"] = candidate_selection.model_dump()
-    #     json_to_return[candidate_id]["answers"] = [answer.model_dump() for answer in answers]
-    #     json_to_return[candidate_id]["relevant_contexts"] = [
-    #         [context.model_dump() for context in relevant_context]
-    #         for relevant_context in relevant_contexts
-    #     ]
+        print("\n\nBefore populating JSON for candidate:", candidate_id)
+        json_to_return[candidate_id] = {}
+        json_to_return[candidate_id]["candidate_selection"] = candidate_selection.model_dump()
+        json_to_return[candidate_id]["answers"] = [answer.model_dump() for answer in answers]
+        json_to_return[candidate_id]["relevant_contexts"] = [
+            [context.model_dump() for context in relevant_context]
+            for relevant_context in relevant_contexts
+        ]
 
-    #     print("JSON to return:")
-    #     print(json_to_return)
+        print("\n\nJSON to return in workflow end to end agent for candidate:", candidate_id)
+        print(json_to_return)
     
+    json_to_return = {}
     return json_to_return
 
 

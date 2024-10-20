@@ -9,6 +9,7 @@ from db.helpers import (
     organize_candidate_profiles,
     get_org_candidate_profiles,
 )
+from custom_types import JobRecruiterID
 
 import sys
 import os
@@ -72,13 +73,13 @@ async def getCandidateProfiles(
     candidates_data, organized_candidate_profiles, keys_list = get_candidate_profiles(
         candidate_id
     )
-    print("Candidates data:")
+    print("\n\nCandidates data:")
     print(candidates_data)
 
-    print("Organized candidate profiles:")
+    print("\n\nOrganized candidate profiles:")
     print(organized_candidate_profiles)
 
-    print("Organized candidate profiles keys:")
+    print("\n\nOrganized candidate profiles keys:")
     print(keys_list)
 
     return candidates_data
@@ -95,10 +96,10 @@ async def getJobPostings(
     # job_postings_data = get_job_postings(recruiter_id, job_id)
     job_postings_data, organized_job_postings = get_job_postings(recruiter_id, job_id)
 
-    print("Job postings data:")
+    print("\n\nJob postings data:")
     print(job_postings_data)
 
-    print("Organized job postings:")
+    print("\n\nOrganized job postings:")
     print(organized_job_postings)
 
     return job_postings_data
@@ -117,28 +118,27 @@ async def getInterviewData(
         recruiter_id, job_id, candidate_id
     )
 
-    print("Interviews data:")
+    print("\n\nInterviews data:")
     print(interviews_data)
 
-    print("Organized interviews:")
+    print("\n\nOrganized interviews:")
     print(organized_interviews)
 
     return interviews_data
 
 
-@app.get("/get_candidates_analysis")
+@app.post("/get_candidates_analysis")
 async def getCandidatesAnalysis(
-    recruiter_id: str,
-    job_id: str,
+jobDetails: JobRecruiterID
 ) -> Union[Dict[str, Any], Any]:
     """
     An asynchronous API route that processes a list of questions.
     """
+    print("Inside getCandidatesAnalysis FastAPI route in main.py")
     # Simulate some async processing
     await asyncio.sleep(1)  # Simulate IO-bound operation
 
-    return_json = await end_to_end_agent(recruiter_id, job_id)
-    # Example response, you can replace this with actual processing
+    return_json = await end_to_end_agent(jobDetails)
 
     return return_json
 
