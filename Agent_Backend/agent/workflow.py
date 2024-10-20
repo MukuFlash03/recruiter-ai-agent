@@ -30,7 +30,7 @@ from test_basic_agent import (
 
 from pydantic import BaseModel
 import json
-from db.operations import get_candidate_profiles, get_job_postings, get_interview_data
+from db.operations import get_candidate_profiles, get_job_postings, get_interview_data, insert_interviews_data
 from db.helpers import \
   organize_interview_data, \
   get_org_interviews_data, \
@@ -337,16 +337,27 @@ async def end_to_end_agent(jobDetails: JobRecruiterID):
         
         print("\n\nBefore populating JSON for candidate:", candidate_id)
         json_to_return[candidate_id] = {}
+        json_to_return[candidate_id]["ids"] = {
+            "recruiter_id": recruiter_id, 
+            "job_id": job_id
+        }
         json_to_return[candidate_id]["candidate_selection"] = candidate_selection.model_dump()
-        json_to_return[candidate_id]["answers"] = [answer.model_dump() for answer in answers]
+        json_to_return[candidate_id]["custom_answers"] = [answer.model_dump() for answer in answers]
+        # json_to_return[candidate_id]["custom_questions"] = custom_questions
         json_to_return[candidate_id]["relevant_contexts"] = [
             [context.model_dump() for context in relevant_context]
             for relevant_context in relevant_contexts
         ]
 
         print("\n\nJSON to return in workflow end to end agent for candidate:", candidate_id)
-        print(json_to_return)
+        print(json.dumps(json_to_return, indent=4))
+        # print(json_to_return)
+
     
+    print("Before inserting interviews data to DB")
+    insert_interviews_data(json_to_return)
+    print("After inserting interviews data to DB")
+
     json_to_return = {}
     return json_to_return
 

@@ -8,18 +8,21 @@
             "end_date": "09/2024",
             "description": "Refined data processing in model build and analysis pipeline, transforming raw data into inferred values with comprehensive automated unit and integration testing. Optimized system scalability through time complexity improvements, enhancing overall performance. Troubleshot and resolved model build pipeline failures in staging and production environments using CloudWatch logs. Streamlined and automated DevOps processes by restructuring CI/CD workflows with GitHub Actions. Implementing data export/import functionality for timeseries data purge and restore, improving database efficiency and data lifecycle management.",
             "reference_context": [
-                "Refined data processing in model build and analysis pipeline in a distributed system for transforming raw data to inferred values followed by end-to-end manual and automated unit testing and integration tests.",
-                "Did scaling and performance optimization to address scalability requirements by optimizing time complexity.",
-                "Diagnosed and remedied model build pipeline failures in staging and production environments using Cloudwatch logs.",
-                "Automated deployment DevOps process by restructuring CI/CD workflows using GitHub Actions."
+                "Responsibilities included transforming raw data into inferred values, automated testing, optimizing system scalability, troubleshooting failures using CloudWatch logs, and automating DevOps processes."
             ],
-            "reasoning": "This position describes a highly technical and hands-on role with significant responsibilities in software and DevOps engineering, closely matching the detailed tasks in the resume.",
+            "reasoning": "This experience indicates expertise in software development, DevOps, and data processing within the renewable energy sector.",
             "skills": [
                 "Python",
                 "Docker",
                 "MongoDB",
                 "Git",
-                "AWS (ECR, Cloudwatch, Inspector)"
+                "AWS (ECR, Cloudwatch, Inspector)",
+                "CI/CD"
+            ],
+            "tags": [
+                "Software Development",
+                "DevOps",
+                "Data Processing"
             ]
         },
         {
@@ -28,21 +31,21 @@
             "location": "Bangalore, India",
             "start_date": "07/2021",
             "end_date": "05/2022",
-            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in Production environments for 2 international financial banking firms. Engineered 6 GUI based workflow runs for ETL pipelines with numerous tasks and integrated them with backend scripts to process data from Pre-staging to end-user report generation stage. Enhanced UI for Individual Assessment (IA) module based on XML Forms Framework by customizing 4 UI Forms and 8 PL/SQL scripts to process over 300k customer records by proposing to debug existing legacy code. Generated PL/SQL scripts for data manipulation and validation to automate manual tasks for filtering source data that helped reduce execution times by 20% while generating end-user reports containing customer data for over 6 months. Documented technical designs and deployed code packages across environments via WinSCP/PuTTY client-server apps.",
+            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in Production environments for 2 international financial banking firms. Engineered 6 GUI based workflow runs for ETL pipelines with numerous tasks and integrated them with backend scripts to process data from Pre-staging to end-user report generation stage. Enhanced UI for Individual Assessment (IA) module based on XML Forms Framework by customizing 4 UI Forms and 8 PL/SQL scripts to process over 300k customer records. Generated PL/SQL scripts for data manipulation and validation to automate manual tasks.",
             "reference_context": [
-                "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in Production environments for 2 international financial banking firms.",
-                "Engineered 6 GUI based workflow runs for ETL pipelines with numerous tasks and integrated them with backend scripts to process data from Pre-staging to end-user report generation stage.",
-                "Enhanced UI for Individual Assessment (IA) module based on XML Forms Framework by customizing 4 UI Forms and 8 PL/SQL scripts to process over 300k customer records by proposing to debug existing legacy code.",
-                "Generated PL/SQL scripts for data manipulation and validation to automate manual tasks for filtering source data that helped reduce execution times by 20% while generating end-user reports containing customer data for over 6 months.",
-                "Documented technical designs and deployed code packages across environments via WinSCP/PuTTY client-server apps."
+                "Focus on implementing fintech solutions, engineering ETL pipelines, enhancing UI, and automating data processes."
             ],
-            "reasoning": "The tasks, technologies, and responsibilities clearly align with a Software Development Engineer role as described in the resume, focusing on PL/SQL development and UI enhancements.",
+            "reasoning": "Demonstrates capability in software engineering, particularly in fintech and data manipulation using PL/SQL and Oracle technologies.",
             "skills": [
                 "PL/SQL",
                 "XML",
                 "Oracle DB",
-                "Oracle OFSAA",
                 "ETL"
+            ],
+            "tags": [
+                "Software Development",
+                "Fintech",
+                "Data Engineering"
             ]
         },
         {
@@ -51,31 +54,44 @@
             "location": "Tempe, Arizona, United States",
             "start_date": "01/2023",
             "end_date": "05/2023",
-            "description": "Grader for CSE 536 Advanced Operating Systems course under the School of Computing and Augmented Intelligence (SCAI). Activities included preparing and reviewing coursework, assisting students during office hours, and grading assignments.",
+            "description": "Grader for CSE 536 Advanced Operating Systems course. Prepared and reviewed coursework, assisted students during office hours, and graded assignments.",
             "reference_context": [
-                "Grader for CSE 536 Advanced Operating Systems course (Spring 2023) under School of Computing and Augmented Intelligence (SCAI).",
-                "Activities: Preparing and reviewing coursework, Assisting students during office hours, Grading assignments."
+                "Engagement in academic support by grading and assisting students in advanced operating systems courses."
             ],
-            "reasoning": "This position aligns with the student's role as a Graduate Services Assistant, matching the described duties in the educational context.",
-            "skills": []
+            "reasoning": "Illustrates experience in academia and education, supporting roles in teaching advanced technical subjects.",
+            "skills": [
+                "Teaching",
+                "Technical Support",
+                "Coursework Preparation",
+                "Grading"
+            ],
+            "tags": [
+                "Academic",
+                "Education Support",
+                "Operating Systems"
+            ]
         },
         {
             "title": "Embedded C++ Developer",
-            "company": "Inter-university accelerator centre",
+            "company": "Inter-university Accelerator Centre",
             "location": "New Delhi, Delhi, India",
             "start_date": "05/2020",
             "end_date": "08/2020",
-            "description": "Worked under Dr. Joby Antony to design software modules for ARM Cortex-M3 embedded server sensor device to measure subzero temperatures. Troubleshooted bugs and optimized the system to handle real-time sensor data via RPC transfer protocols.",
+            "description": "Designed software modules for ARM Cortex-M3 embedded server sensor device to measure subzero temperatures. Troubleshooted bugs and optimized the system to handle real-time sensor data via RPC transfer protocols.",
             "reference_context": [
-                "Worked under Dr. Joby Antony (MS Kent State University, Ohio, USA), Formerly Visiting Scientist, CERN, Geneva.",
-                "Designed software modules for ARM Cortex-M3 embedded server sensor device to measure subzero temperatures.",
-                "Troubleshooted bugs and optimized the system to handle real-time sensor data via RPC transfer protocols."
+                "Developed software for embedded systems, focusing on sensor data measurement and system optimization."
             ],
-            "reasoning": "The description fits the role of an Embedded C++ Developer, involving specific technical competencies and tasks stated in the resume.",
+            "reasoning": "Experience demonstrates capability in embedded systems development and real-time data handling.",
             "skills": [
-                "C++",
+                "Embedded C++",
+                "ARM Cortex-M3",
+                "RPC Protocols",
+                "Troubleshooting"
+            ],
+            "tags": [
                 "Embedded Systems",
-                "RPC transfer protocols"
+                "Software Development",
+                "Real-Time Data"
             ]
         },
         {
@@ -84,18 +100,39 @@
             "location": "Pune, Maharashtra, India",
             "start_date": "05/2019",
             "end_date": "07/2019",
-            "description": "Modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining using Python. Successfully designed a custom-built library to process 65,536 objects in 2 minutes with 95% accuracy using linear regression.",
+            "description": "Modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining using Python. Designed custom-built library to process 65,536 objects in 2 minutes with accuracy of 95% using linear regression.",
             "reference_context": [
-                "Worked under the guidance of Ms. Vanita Agarwal, Assistant Professor, Department of Electronics & Telecommunication Engineering, College of Engineering, Pune.",
-                "Successfully modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining using Python.",
-                "Designed custom-built library to process 65,536 objects in 2 minutes with accuracy of 95% using linear regression."
+                "Focused on developing a Python library for data mining and implementing mathematical models."
             ],
-            "reasoning": "The duties and skills required for this position align with the resume's description of work as a Python Developer.",
+            "reasoning": "Reflects strong analytical skills and proficiency in Python, particularly in data processing and algorithm development.",
             "skills": [
                 "Python",
-                "Sensor Data Mining",
-                "Linear Regression"
+                "Data Mining",
+                "Linear Regression",
+                "Algorithm Development"
+            ],
+            "tags": [
+                "Python Development",
+                "Data Science",
+                "Mathematical Modeling"
             ]
         }
+    ],
+    "tags": [
+        "Software Development",
+        "Data Processing",
+        "DevOps",
+        "Fintech",
+        "Embedded Systems",
+        "Academic Support",
+        "Python",
+        "C++",
+        "Cloud Computing",
+        "ETL",
+        "Oracle",
+        "AWS",
+        "Docker",
+        "Git",
+        "PL/SQL"
     ]
 }

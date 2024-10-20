@@ -10,6 +10,7 @@ from db.helpers import \
   get_org_job_postings, \
   organize_candidate_profiles, \
   get_org_candidate_profiles
+from custom_types import RelevantContext
 
 load_dotenv()
 
@@ -168,3 +169,76 @@ def get_interview_data(
       print(f"message: Interview data not found; Error: {e}")
       return None, {}
 
+def insert_interviews_data(
+    candidate_selection_json: Dict[str, Any]
+):
+  print("\n\nInside insert_interviews_data function")
+  try:
+    candidate_ids = list(candidate_selection_json.keys())
+
+    for candidate_id in candidate_ids:
+      print("\n\nInside for loop for candidate_id: ", candidate_id)
+      
+      candidate_selection_data: Dict[str, Any] = candidate_selection_json[candidate_id]
+
+      selected: bool = candidate_selection_data["candidate_selection"]["selected"]
+      print("selected: ", selected)
+      print()
+
+      reasoning_summary: str =  candidate_selection_data["candidate_selection"]["reasoning"]
+      print("reasoning_summary: ", reasoning_summary)
+      print()
+
+      match_pct: str = candidate_selection_data["candidate_selection"]["match_pct"]
+      print("match_pct: ", match_pct)
+      print()
+
+      recruiter_id: str = candidate_selection_data["ids"]["recruiter_id"]
+      print("recruiter_id: ", recruiter_id)
+      print()
+
+      job_id: str = candidate_selection_data["ids"]["job_id"]
+      print("job_id: ", job_id)
+      print()
+
+      answers: List[Dict[str, Any]] = candidate_selection_data["custom_answers"]
+      print("answers: ", answers)
+      print()
+
+      custom_answers: List[str] = []
+      for answer in answers:
+         custom_answers.append(answer["answer"])
+      print("custom_answers: ", custom_answers)
+      print()
+
+      print("*"*100)
+
+      relevant_contexts: List[List[RelevantContext]] = candidate_selection_data["relevant_contexts"]
+      print("relevant_contexts: ", relevant_contexts)
+      print()
+      print("*"*100)
+
+      answer_contexts: Dict[str, List[RelevantContext]] = {}
+      ctx_idx = 1
+      for relevant_context in relevant_contexts:
+         answer_contexts[str(ctx_idx)] = relevant_context
+
+      response = (
+        supabase.table("interviews")
+        .insert({
+          "candidate_id": candidate_id,
+          "recruiter_id": recruiter_id,
+          "job_id": job_id,
+          "interview_decision": selected,
+          "reasoning_summary": reasoning_summary,
+          "match_pct": match_pct,
+          "custom_answers": custom_answers,
+          "relevant_contexts": answer_contexts,
+        })
+        .execute()
+      )
+  
+    return response
+  except Exception as e:
+      print(f"message: Candidate profile not found; Error: {e}")
+      return None, {}, []

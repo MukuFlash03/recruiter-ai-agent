@@ -7,7 +7,6 @@ export type TopCandidatesResponse = {
   job_id: number
   job_title: string
   company_name: string
-  score: number
-  match_pct: number
+  match_pct: string
   interview_decision: boolean
 }

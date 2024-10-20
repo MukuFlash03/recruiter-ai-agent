@@ -1,18 +1,27 @@
+export type RelevantContext = {
+  yes_or_no: boolean,
+  reasoning: string,
+  relevant_context: string[]
+}
+
 export type InterviewsResponse = {
   interview_id: number,
   candidate_id: string,
   recruiter_id: string,
   job_id: number,
   interview_decision: boolean,
-  score: number,
-  match_pct: number,
+  match_pct: string,
   reasoning_summary: string,
-  custom_qna: string,
+  custom_answers: string[],
+  relevant_contexts: {
+    [key: string]: RelevantContext[]
+  }
 };
 
 export type SelectedInterviewsResponse = Pick<InterviewsResponse,
   'interview_id' | 'candidate_id' | 'recruiter_id' | 'job_id' |
-  'interview_decision' | 'score' | 'match_pct' | 'reasoning_summary' | 'custom_qna'
+  'interview_decision' | 'match_pct' |
+  'reasoning_summary' | 'custom_answers' | 'relevant_contexts'
 >;
 
 export type InterviewsCandidateResponse = {
@@ -21,8 +30,10 @@ export type InterviewsCandidateResponse = {
   recruiter_id: string,
   job_id: number,
   interview_decision: boolean,
-  score: number,
-  match_pct: number,
+  match_pct: string,
+  reasoning_summary: string,
+  custom_answers: string[],
+  relevant_contexts: (RelevantContext[])[],
   candidate_profiles: {
     name: string,
   },

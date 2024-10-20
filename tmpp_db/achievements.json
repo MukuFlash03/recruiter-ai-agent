@@ -1,66 +1,110 @@
 {
     "achievements": [
         {
-            "title": "AICamp Generative AI Hackathon",
-            "description": "Won the AWS for Startups prize for creating a multimodal AI assistant that automates browser tasks on behalf of users.",
+            "title": "Refined Data Processing Pipeline",
+            "description": "Refined data processing in the model build and analysis pipeline at the National Renewable Energy Laboratory, transforming raw data into inferred values with comprehensive automated unit and integration testing.",
             "reference_context": [
-                "Extracurriculars",
-                "AICamp Generative AI Hackathon for AI Agent and RAG",
-                "06/2024 \u2013 06/2024"
+                "National Renewable Energy Laboratory"
+            ],
+            "tags": [
+                "Data Processing",
+                "Software Development",
+                "Testing"
             ]
         },
         {
             "title": "Optimized System Scalability",
-            "description": "Refined data processing in model build and analysis pipeline, transforming raw data into inferred values with comprehensive automated unit and integration testing. Implemented data export/import functionality for timeseries data purge and restore, enhancing system scalability and database efficiency.",
+            "description": "Optimized system scalability through time complexity improvements, enhancing overall performance at the National Renewable Energy Laboratory.",
             "reference_context": [
-                "Work Experience",
-                "National Renewable Energy Laboratory (NREL)",
-                "08/2023 \u2013 09/2024"
+                "National Renewable Energy Laboratory"
+            ],
+            "tags": [
+                "Scalability",
+                "Performance Optimization"
             ]
         },
         {
-            "title": "Enhanced UI for Individual Assessment Module",
-            "description": "Customized 4 UI Forms and 8 PL/SQL scripts to process over 300k customer records, reducing execution times by 20% while generating end-user reports containing customer data for over 6 months.",
+            "title": "Automated DevOps Processes",
+            "description": "Streamlined and automated DevOps processes by restructuring CI/CD workflows with GitHub Actions at the National Renewable Energy Laboratory.",
             "reference_context": [
-                "Work Experience",
-                "Oracle Financial Services Software",
-                "07/2021 \u2013 05/2022"
+                "National Renewable Energy Laboratory"
+            ],
+            "tags": [
+                "DevOps",
+                "CI/CD",
+                "Automation"
             ]
         },
         {
-            "title": "Engineered a Distributed System for Video to MP3 Conversion",
-            "description": "Developed a microservices architecture for converting video files to MP3 format, implementing secure JWT user authentication, message queuing with RabbitMQ, scalable storage, and notifications.",
+            "title": "Implemented OFSAA LLFP Fintech Solutions",
+            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in Production environments for 2 international financial banking firms at Oracle Financial Services Software.",
             "reference_context": [
-                "Projects",
-                "Microservices Video to MP3 Converter",
-                "09/2024 \u2013 09/2024"
+                "Oracle Financial Services Software"
+            ],
+            "tags": [
+                "Fintech Solutions",
+                "Implementation",
+                "Support"
             ]
         },
         {
-            "title": "Apache Kafka Producers/Consumers Implementation",
-            "description": "Implemented Apache Kafka producers/consumers using Confluent Cloud with topic management, data serialization, and containerized an environment demonstrating cross-platform compatibility.",
+            "title": "Engineered ETL Workflows",
+            "description": "Engineered 6 GUI-based workflow runs for ETL pipelines, integrating them with backend scripts for data processing at Oracle Financial Services Software.",
             "reference_context": [
-                "Projects",
-                "Kafka Confluent Cloud Pub-Sub",
-                "09/2024 \u2013 09/2024"
+                "Oracle Financial Services Software"
+            ],
+            "tags": [
+                "ETL",
+                "Data Processing",
+                "Software Engineering"
             ]
         },
         {
-            "title": "Full-stack Task Manager Web Application",
-            "description": "Developed a full-stack task manager webapp with CRUD operations using React and Go, implemented GraphQL API for efficient data retrieval, and deployed on AWS with a self-signed SSL certificate for HTTPS.",
+            "title": "Reduced Execution Times by 20%",
+            "description": "Generated PL/SQL scripts for data manipulation and validation at Oracle Financial Services Software, automating manual tasks and reducing execution times by 20%.",
             "reference_context": [
-                "Projects",
-                "Classic To-Do List",
-                "08/2024 \u2013 08/2024"
+                "Oracle Financial Services Software"
+            ],
+            "tags": [
+                "Performance Improvement",
+                "Automation",
+                "Data Manipulation"
             ]
         },
         {
-            "title": "AI-powered Voice Interviewer",
-            "description": "Engineered an AI-powered voice interviewer application leveraging Groq for fast inference and Vapi for voice interactions, including a custom evaluation system utilizing Supabase for authentication and storage.",
+            "title": "Overall Winner - AICamp Generative AI Hackathon",
+            "description": "Won the AWS for Startups prize for creating a multimodal AI assistant that automates browser tasks at the AICamp Generative AI Hackathon.",
             "reference_context": [
-                "Projects",
-                "Voice AI Interviewer Agent",
-                "07/2024 \u2013 07/2024"
+                "AICamp Generative AI Hackathon"
+            ],
+            "tags": [
+                "Hackathon",
+                "AI Development",
+                "Automation"
+            ]
+        },
+        {
+            "title": "Developed Microservices Video to MP3 Converter",
+            "description": "Engineered a distributed system for converting video files to MP3 format using microservices architecture.",
+            "reference_context": [
+                "Projects"
+            ],
+            "tags": [
+                "Microservices",
+                "Distributed Systems",
+                "Software Engineering"
+            ]
+        },
+        {
+            "title": "Voice AI Interviewer Agent",
+            "description": "Engineered an AI-powered voice interviewer, leveraging Groq for fast inference and Vapi for voice interactions.",
+            "reference_context": [
+                "Projects"
+            ],
+            "tags": [
+                "AI Development",
+                "Voice Recognition",
+                "Software Engineering"
             ]
         }
     ]

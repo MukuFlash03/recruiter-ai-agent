@@ -34,10 +34,10 @@ export async function GET(request: NextRequest) {
             recruiter_id,
             job_id,
             interview_decision,
-            score,
             match_pct,
             reasoning_summary,
-            custom_qna,
+            custom_answers,
+            relevant_contexts,
             candidate_profiles (name)
           `
       )
@@ -66,7 +66,6 @@ export async function GET(request: Request) {
             .select(`
                 candidate_id,
                 job_id,
-                score,
                 match_pct,
                 interview_decision,
                 candidate_profiles!inner(name, email, contact),

@@ -10,9 +10,9 @@ import { useEffect, useState } from 'react';
 
 // This would be fetched from your API
 const mockResults = [
-  { id: 1, name: "John Doe", score: 85, match: "90%" },
-  { id: 2, name: "Jane Smith", score: 78, match: "85%" },
-  { id: 3, name: "Bob Johnson", score: 72, match: "80%" },
+  { id: 1, name: "John Doe", match: "90%" },
+  { id: 2, name: "Jane Smith", match: "85%" },
+  { id: 3, name: "Bob Johnson", match: "80%" },
 ]
 
 export default function RecruiterResultsPage() {
@@ -75,7 +75,6 @@ export default function RecruiterResultsPage() {
         {interviewsData.map((candidate) => (
           <div key={candidate.interview_id} className="border p-4 rounded-lg">
             <h2 className="text-xl font-semibold">{candidate.candidate_profiles.name}</h2>
-            <p>Score: {candidate.score}</p>
             <p>Match: {candidate.match_pct}</p>
             <p>Decision: {candidate.interview_decision ? 'Selected' : 'Rejected'}</p>
             <Link href={`/recruiter/${user.id}/jobs/${jobId}/results/analysis/`}>

@@ -5,9 +5,24 @@
             "institution": "Arizona State University",
             "start_date": "August 2022",
             "end_date": "May 2024",
-            "grade": "GPA: 3.90 / 4.0",
+            "grade": "",
             "reference_context": [
-                "Education"
+                "Education",
+                "Arizona State University",
+                "Tempe, Arizona",
+                "Masters in Computer Science",
+                "|",
+                "GPA: 3.90 / 4.0",
+                "08/2022 \u2013 05/2024",
+                "Software Courses (Requirements; Design; Verification, Validation, Testing), Data Processing at Scale, Cloud Computing",
+                "Education",
+                "Arizona State University",
+                "Master of Science - MS, Computer Science",
+                "\u00b7 (August 2022 - May 2024)"
+            ],
+            "tags": [
+                "Master's",
+                "Computer Science"
             ]
         },
         {
@@ -15,30 +30,61 @@
             "institution": "National Institute of Technology Hamirpur",
             "start_date": "July 2017",
             "end_date": "June 2021",
-            "grade": "GPA: 8.73 / 10",
+            "grade": "",
             "reference_context": [
-                "Education"
+                "Education",
+                "National Institute of Technology Hamirpur",
+                "Hamirpur (H.P.) , India",
+                "Bachelors in Electronics and Communication",
+                "|",
+                "GPA: 8.73 / 10",
+                "08/2017 \u2013 05/2021",
+                "Education",
+                "National Institute of Technology Hamirpur",
+                "Bachelor of Technology - BTech, Electronics and Communications Engineering",
+                "\u00b7 (July 2017 - June 2021)"
+            ],
+            "tags": [
+                "Bachelor's",
+                "Electronics and Communications"
             ]
         },
         {
-            "degree": "Class XI-XII",
+            "degree": "High School",
             "institution": "The Bishops School, Camp",
             "start_date": "2015",
             "end_date": "2017",
             "grade": "",
             "reference_context": [
-                "Education"
+                "The Bishops School, Camp",
+                "Class XI-XII",
+                "\u00b7 (2015 - 2017)"
+            ],
+            "tags": [
+                "High School"
             ]
         },
         {
-            "degree": "Class UKG-X",
+            "degree": "Primary and Secondary Education",
             "institution": "The Bishops Co-Ed School, Kalyaninagar",
             "start_date": "2004",
             "end_date": "2015",
             "grade": "",
             "reference_context": [
-                "Education"
+                "The Bishops Co-Ed School, Kalyaninagar",
+                "Class UKG-X",
+                "\u00b7 (2004 - 2015)"
+            ],
+            "tags": [
+                "Primary and Secondary Education"
             ]
         }
+    ],
+    "tags": [
+        "Education",
+        "Degree",
+        "Institution",
+        "Graduation",
+        "Schooling"
     ]
 }
