@@ -8,10 +8,12 @@ class Education(BaseModel):
     end_date: str
     grade: str
     reference_context: list[str]
+    tags: list[str]
 
 
 class EducationList(BaseModel):
     education: list[Education]
+    tags: list[str]
 
 
 class Experience(BaseModel):
@@ -24,15 +26,18 @@ class Experience(BaseModel):
     reference_context: list[str]
     reasoning: str
     skills: list[str]
+    tags: list[str]
 
 
 class ExperienceList(BaseModel):
     experiences: list[Experience]
+    tags: list[str]
 
 
 class SkillList(BaseModel):
     name: list[str]
     reference_context: list[str]
+    tags: list[str]
 
 
 class Project(BaseModel):
@@ -42,16 +47,19 @@ class Project(BaseModel):
     end_date: str
     reference_context: list[str]
     skills: list[str]
+    tags: list[str]
 
 
 class ProjectList(BaseModel):
     projects: list[Project]
+    tags: list[str]
 
 
 class Achievement(BaseModel):
     title: str
     description: str
     reference_context: list[str]
+    tags: list[str]
 
 
 class AchievementList(BaseModel):
