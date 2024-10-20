@@ -97,11 +97,18 @@ export async function fetchCandidateProfile() {
   return response.json();
 }
 
-export async function fetchInterviewData({ job_id }: { job_id: string }) {
+export async function fetchInterviewData({
+  job_id,
+  recruiter_id,
+}: {
+  job_id: string,
+  recruiter_id: string,
+}) {
   console.log('job_id in fetchInterviewData:', job_id);
   console.log('job_id again in fetchInterviewData:', job_id);
+  console.log('recruiter_id in fetchInterviewData:', recruiter_id);
 
-  const response = await fetch(`/api/read-interviews-data?job_id=${job_id}`, {
+  const response = await fetch(`/api/read-interviews-data?recruiter_id=${recruiter_id}&job_id=${job_id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -117,6 +124,71 @@ export async function fetchInterviewData({ job_id }: { job_id: string }) {
 
   return response.json();
 }
+
+export async function fetchInterviewAnalysis({ job_id, recruiter_id, candidate_id }: { job_id: string, recruiter_id: string, candidate_id: string }) {
+  console.log('job_id in fetchInterviewAnalysis:', job_id);
+  console.log('recruiter_id in fetchInterviewAnalysis:', recruiter_id);
+
+  const response = await fetch(`/api/read-interviews-analysis?recruiter_id=${recruiter_id}&job_id=${job_id}&candidate_id=${candidate_id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    // body: JSON.stringify({ job_id: job_id }),
+  });
+
+  console.log("After getting response from fetch api/read-interviews-analysis");
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch interviews analysis data');
+  }
+
+  return response.json();
+}
+
+// export async function fetchCandidateMatchedJobs({ candidate_id }: { candidate_id: string }) {
+export async function fetchCandidateMatchedJobs() {
+  console.log('candidate_id in fetchCandidateMatchedJobs');
+
+  const response = await fetch(`/api/read-candidate-matched-jobs?`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    // body: JSON.stringify({ job_id: job_id }),
+  });
+
+  console.log("After getting response from fetch api/read-candidate-matched-jobs");
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch candidate matched jobs');
+  }
+
+  return response.json();
+}
+
+export async function fetchCustomQuestions({ job_id, recruiter_id }: { job_id: string, recruiter_id: String }) {
+  console.log('job_id in fetchCustomQuestions:', job_id);
+  console.log('recruiter_id in fetchCustomQuestions:', recruiter_id);
+
+  const response = await fetch(`/api/read-job-questions?recruiter_id=${recruiter_id}&job_id=${job_id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    // body: JSON.stringify({ job_id: job_id }),
+  });
+
+  console.log("After getting response from fetch api/read-job-questions");
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch custom questions data');
+  }
+
+
+  return response.json();
+}
+
 
 /*
 export async function insertJobPostings() {

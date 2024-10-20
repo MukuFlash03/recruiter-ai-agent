@@ -33,7 +33,9 @@ export type InterviewsCandidateResponse = {
   match_pct: string,
   reasoning_summary: string,
   custom_answers: string[],
-  relevant_contexts: (RelevantContext[])[],
+  relevant_contexts: {
+    [key: string]: RelevantContext[]
+  },
   candidate_profiles: {
     name: string,
   },

@@ -4,11 +4,10 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { signout } from "@/lib/auth-action"
-import { checkProfileComplete } from "@/lib/utils/api_calls"
+import { checkProfileComplete, fetchCandidateMatchedJobs } from "@/lib/utils/api_calls"
 import { createClient } from "@/lib/utils/supabase/client"
-import { ArrowRight, CheckCircle, UserCircle, X } from "lucide-react"
+import { UserCircle } from "lucide-react"
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -60,7 +59,9 @@ export function CandidateDashboardPage({ candidate_id }: { candidate_id: string 
   const [profileComplete, setProfileComplete] = useState<boolean | null>(null)
   const [activeJobs, setActiveJobs] = useState<Array<any>>([])
   const [withdrawnJobs, setWithdrawnJobs] = useState<Array<any>>([])
+  const [matchedJobs, setMatchedJobs] = useState<Array<any>>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null);
   const [selectedJob, setSelectedJob] = useState<any>(null)
   const router = useRouter()
 
@@ -86,8 +87,21 @@ export function CandidateDashboardPage({ candidate_id }: { candidate_id: string 
       setLoading(false)
     }
 
+    const loadData = async () => {
+      try {
+        const data = await fetchCandidateMatchedJobs();
+        console.log("Fetched candidate matched jobs in loadData:", data.MatchedJobsData);
+        setMatchedJobs(data.MatchedJobsData);
+      } catch (err) {
+        setError('Failed to fetch candidate matched jobs data');
+      } finally {
+        setLoading(false);
+      }
+    }
+
     fetchUser();
     initializeDashboard()
+    loadData();
   }, [])
 
   const handleRefreshJobs = async () => {
@@ -176,7 +190,28 @@ export function CandidateDashboardPage({ candidate_id }: { candidate_id: string 
             </CardHeader>
             <CardContent>
               <ul className="space-y-4">
-                {activeJobs.map((job) => (
+                {matchedJobs.map((job) => (
+                  <li key={job.job_id} className="p-4 bg-muted rounded-lg">
+                    <div className="flex justify-between items-start mb-2">
+                      <div>
+                        <h3 className="font-semibold text-lg">
+                          {job.job_title}
+                        </h3>
+                        <p className="text-primary font-medium">{job.company_name}</p>
+                        <p className="text-sm text-muted-foreground mt-1">{job.job_description}</p>
+                        <div className="flex flex-wrap gap-2 mt-2">
+                          {job.required_skills}
+                          {/* {job.tags.map((tag: string, index: number) => (
+                            <Badge key={index} variant="secondary" className="bg-secondary text-secondary-foreground">
+                              {tag}
+                            </Badge>
+                          ))} */}
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+                {/* {activeJobs.map((job) => (
                   <li key={job.id} className="p-4 bg-muted rounded-lg">
                     <div className="flex justify-between items-start mb-2">
                       <div>
@@ -244,7 +279,7 @@ export function CandidateDashboardPage({ candidate_id }: { candidate_id: string 
                       </Button>
                     </div>
                   </li>
-                ))}
+                ))} */}
               </ul>
             </CardContent>
             <CardFooter>

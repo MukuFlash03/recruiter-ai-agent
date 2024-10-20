@@ -56,6 +56,10 @@ export function RecruiterDashboardComponent() {
       setUser(user);
     };
 
+    // if (!user) {
+    //   router.push('/login');
+    // }
+
     const loadData = async () => {
       try {
         const data = await fetchJobPostings();

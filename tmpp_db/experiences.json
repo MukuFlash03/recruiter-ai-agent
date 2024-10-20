@@ -8,21 +8,43 @@
             "end_date": "09/2024",
             "description": "Refined data processing in model build and analysis pipeline, transforming raw data into inferred values with comprehensive automated unit and integration testing. Optimized system scalability through time complexity improvements, enhancing overall performance. Troubleshot and resolved model build pipeline failures in staging and production environments using CloudWatch logs. Streamlined and automated DevOps processes by restructuring CI/CD workflows with GitHub Actions. Implementing data export/import functionality for timeseries data purge and restore, improving database efficiency and data lifecycle management.",
             "reference_context": [
-                "Responsibilities included transforming raw data into inferred values, automated testing, optimizing system scalability, troubleshooting failures using CloudWatch logs, and automating DevOps processes."
+                "Software Development Engineer at National Renewable Energy Laboratory (NREL)",
+                "Involved in refining data processing, optimizing system scalability, resolving pipeline failures, and enhancing DevOps processes"
             ],
-            "reasoning": "This experience indicates expertise in software development, DevOps, and data processing within the renewable energy sector.",
+            "reasoning": "The responsibilities involved core software engineering skills and DevOps, using technologies like Python and AWS.",
             "skills": [
                 "Python",
                 "Docker",
                 "MongoDB",
                 "Git",
-                "AWS (ECR, Cloudwatch, Inspector)",
-                "CI/CD"
+                "AWS (ECR, Cloudwatch, Inspector)"
             ],
             "tags": [
-                "Software Development",
-                "DevOps",
-                "Data Processing"
+                "software development",
+                "AWS",
+                "DevOps"
+            ]
+        },
+        {
+            "title": "Graduate Services Assistant",
+            "company": "Ira A. Fulton Schools of Engineering at Arizona State University",
+            "location": "Tempe, Arizona",
+            "start_date": "01/2023",
+            "end_date": "05/2023",
+            "description": "Grader for CSE 536 Advanced Operating Systems course under School of Computing and Augmented Intelligence (SCAI). Responsibilities included preparing and reviewing coursework, assisting students during office hours, and grading assignments.",
+            "reference_context": [
+                "Graduate Services Assistant at Ira A. Fulton Schools of Engineering",
+                "Assisted in academic activities including grading and student support for advanced operating systems course"
+            ],
+            "reasoning": "This role involved academic and instructional support under the higher education framework.",
+            "skills": [
+                "Coursework Preparation",
+                "Student Assistance",
+                "Grading"
+            ],
+            "tags": [
+                "education",
+                "academic support"
             ]
         },
         {
@@ -31,44 +53,23 @@
             "location": "Bangalore, India",
             "start_date": "07/2021",
             "end_date": "05/2022",
-            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in Production environments for 2 international financial banking firms. Engineered 6 GUI based workflow runs for ETL pipelines with numerous tasks and integrated them with backend scripts to process data from Pre-staging to end-user report generation stage. Enhanced UI for Individual Assessment (IA) module based on XML Forms Framework by customizing 4 UI Forms and 8 PL/SQL scripts to process over 300k customer records. Generated PL/SQL scripts for data manipulation and validation to automate manual tasks.",
+            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in production environments for international banking firms. Engineered GUI-based workflow runs for ETL pipelines and integrated them with backend scripts for report generation. Enhanced UI module customization, improved data manipulation, and reduced execution times of scripts for customer data processing.",
             "reference_context": [
-                "Focus on implementing fintech solutions, engineering ETL pipelines, enhancing UI, and automating data processes."
+                "Software Development Engineer at Oracle Financial Services Software",
+                "Worked on fintech solutions, ETL pipelines, UI enhancements, and data processing"
             ],
-            "reasoning": "Demonstrates capability in software engineering, particularly in fintech and data manipulation using PL/SQL and Oracle technologies.",
+            "reasoning": "The experience required strong software development and database management skills, specifically in Oracle technologies.",
             "skills": [
                 "PL/SQL",
                 "XML",
                 "Oracle DB",
+                "Oracle OFSAA",
                 "ETL"
             ],
             "tags": [
-                "Software Development",
-                "Fintech",
-                "Data Engineering"
-            ]
-        },
-        {
-            "title": "Graduate Services Assistant",
-            "company": "Ira A. Fulton Schools of Engineering at Arizona State University",
-            "location": "Tempe, Arizona, United States",
-            "start_date": "01/2023",
-            "end_date": "05/2023",
-            "description": "Grader for CSE 536 Advanced Operating Systems course. Prepared and reviewed coursework, assisted students during office hours, and graded assignments.",
-            "reference_context": [
-                "Engagement in academic support by grading and assisting students in advanced operating systems courses."
-            ],
-            "reasoning": "Illustrates experience in academia and education, supporting roles in teaching advanced technical subjects.",
-            "skills": [
-                "Teaching",
-                "Technical Support",
-                "Coursework Preparation",
-                "Grading"
-            ],
-            "tags": [
-                "Academic",
-                "Education Support",
-                "Operating Systems"
+                "financial services",
+                "Oracle",
+                "ETL"
             ]
         },
         {
@@ -77,21 +78,21 @@
             "location": "New Delhi, Delhi, India",
             "start_date": "05/2020",
             "end_date": "08/2020",
-            "description": "Designed software modules for ARM Cortex-M3 embedded server sensor device to measure subzero temperatures. Troubleshooted bugs and optimized the system to handle real-time sensor data via RPC transfer protocols.",
+            "description": "Designed software modules for ARM Cortex-M3 servers to measure subzero temperatures. Developed solutions to troubleshoot bugs and optimize real-time sensor data handling via RPC protocols.",
             "reference_context": [
-                "Developed software for embedded systems, focusing on sensor data measurement and system optimization."
+                "Embedded C++ Developer at Inter-university Accelerator Centre",
+                "Worked on software development for ARM Cortex-M3 based sensor devices"
             ],
-            "reasoning": "Experience demonstrates capability in embedded systems development and real-time data handling.",
+            "reasoning": "The role was focused on embedded systems development and required proficiency in C++ for hardware interaction.",
             "skills": [
-                "Embedded C++",
-                "ARM Cortex-M3",
+                "C++",
+                "Embedded Systems",
                 "RPC Protocols",
-                "Troubleshooting"
+                "ARM Cortex-M3"
             ],
             "tags": [
-                "Embedded Systems",
-                "Software Development",
-                "Real-Time Data"
+                "embedded systems",
+                "hardware interaction"
             ]
         },
         {
@@ -100,39 +101,29 @@
             "location": "Pune, Maharashtra, India",
             "start_date": "05/2019",
             "end_date": "07/2019",
-            "description": "Modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining using Python. Designed custom-built library to process 65,536 objects in 2 minutes with accuracy of 95% using linear regression.",
+            "description": "Modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining using Python. Created a custom-built library to process large datasets with high accuracy using linear regression.",
             "reference_context": [
-                "Focused on developing a Python library for data mining and implementing mathematical models."
+                "Python Developer at College of Engineering Pune",
+                "Involved in developing mathematical models and data processing libraries"
             ],
-            "reasoning": "Reflects strong analytical skills and proficiency in Python, particularly in data processing and algorithm development.",
+            "reasoning": "This internship required advanced Python skills, data mining techniques, and statistical modeling.",
             "skills": [
                 "Python",
                 "Data Mining",
-                "Linear Regression",
-                "Algorithm Development"
+                "Linear Regression"
             ],
             "tags": [
-                "Python Development",
-                "Data Science",
-                "Mathematical Modeling"
+                "data science",
+                "academic research"
             ]
         }
     ],
     "tags": [
-        "Software Development",
-        "Data Processing",
-        "DevOps",
-        "Fintech",
-        "Embedded Systems",
-        "Academic Support",
-        "Python",
-        "C++",
-        "Cloud Computing",
-        "ETL",
-        "Oracle",
-        "AWS",
-        "Docker",
-        "Git",
-        "PL/SQL"
+        "software engineering",
+        "internship",
+        "teaching assistant",
+        "academic research",
+        "fintech",
+        "embedded systems"
     ]
 }

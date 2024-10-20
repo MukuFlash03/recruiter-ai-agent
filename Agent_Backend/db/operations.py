@@ -224,19 +224,36 @@ def insert_interviews_data(
          answer_contexts[str(ctx_idx)] = relevant_context
 
       response = (
-        supabase.table("interviews")
-        .insert({
-          "candidate_id": candidate_id,
-          "recruiter_id": recruiter_id,
-          "job_id": job_id,
-          "interview_decision": selected,
-          "reasoning_summary": reasoning_summary,
-          "match_pct": match_pct,
-          "custom_answers": custom_answers,
-          "relevant_contexts": answer_contexts,
-        })
-        .execute()
+          supabase.table("interviews")
+          .upsert({ 
+            "candidate_id": candidate_id,
+            "recruiter_id": recruiter_id,
+            "job_id": job_id,
+            "interview_decision": selected,
+            "reasoning_summary": reasoning_summary,
+            "match_pct": match_pct,
+            "custom_answers": custom_answers,
+            "relevant_contexts": answer_contexts,
+          },
+          on_conflict ="recruiter_id, job_id, candidate_id"
+          )
+          .execute()
       )
+
+      # response = (
+      #   supabase.table("interviews")
+      #   .insert({
+      #     "candidate_id": candidate_id,
+      #     "recruiter_id": recruiter_id,
+      #     "job_id": job_id,
+      #     "interview_decision": selected,
+      #     "reasoning_summary": reasoning_summary,
+      #     "match_pct": match_pct,
+      #     "custom_answers": custom_answers,
+      #     "relevant_contexts": answer_contexts,
+      #   })
+      #   .execute()
+      # )
   
     return response
   except Exception as e:

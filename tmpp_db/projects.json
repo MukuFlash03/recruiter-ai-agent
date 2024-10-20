@@ -2,13 +2,15 @@
     "projects": [
         {
             "name": "Microservices Video to MP3 Converter",
-            "description": "Engineered a distributed system for converting video files to MP3 format using microservices architecture with secure JWT user authentication, message queuing, scalable storage, and notifications.",
+            "description": "Engineered a distributed system for converting video files to MP3 format using microservices architecture with secure JWT user authentication, message queuing with RabbitMQ, scalable storage, and notifications.",
             "start_date": "09/2024",
             "end_date": "09/2024",
             "reference_context": [
-                "Implemented secure JWT user authentication",
-                "Utilized RabbitMQ for message queuing",
-                "Employed Docker and Kubernetes for container management"
+                "Python",
+                "Docker",
+                "Kubernetes",
+                "RabbitMQ",
+                "MongoDB"
             ],
             "skills": [
                 "Python",
@@ -19,19 +21,23 @@
             ],
             "tags": [
                 "Microservices",
-                "Video Conversion",
+                "Audio Conversion",
                 "Distributed Systems"
             ]
         },
         {
             "name": "Kafka Confluent Cloud Pub-Sub",
-            "description": "Implemented Apache Kafka producers/consumers using Confluent Cloud with topic management, data serialization. Demonstrated cross-platform compatibility through a containerized multi-language environment.",
+            "description": "Implemented Apache Kafka producers/consumers using Confluent Cloud with topic management and data serialization. Developed a containerized multi-language environment showcasing Kafka integration and cross-platform compatibility.",
             "start_date": "09/2024",
             "end_date": "09/2024",
             "reference_context": [
-                "Integrated Kafka with Java, Python, Go, Node.js",
-                "Used Spring Boot for backend services",
-                "Deployed on Docker"
+                "Kafka",
+                "Java",
+                "Python",
+                "Go",
+                "Node.js",
+                "Spring Boot",
+                "Docker"
             ],
             "skills": [
                 "Kafka",
@@ -43,66 +49,76 @@
                 "Docker"
             ],
             "tags": [
-                "Pub-Sub System",
-                "Cloud Integration",
-                "Containerization"
+                "Kafka",
+                "Pub-Sub",
+                "Containerization",
+                "Cross-platform"
             ]
         },
         {
             "name": "Classic To-Do List",
-            "description": "Developed a full-stack task manager web app with CRUD operations using React and Go, deployed on AWS with GraphQL API for efficient data retrieval.",
+            "description": "Developed a full-stack task manager web application with CRUD operations using React and Go with PostgreSQL database. Implemented a GraphQL API for efficient data retrieval and deployed the application on AWS with a self-signed SSL certificate for HTTPS.",
             "start_date": "08/2024",
             "end_date": "08/2024",
             "reference_context": [
-                "Implemented CRUD operations",
-                "Deployed on AWS EC2",
-                "Utilized PostgreSQL database"
+                "React",
+                "Go",
+                "GraphQL",
+                "AWS (EC2, Amplify, RDS)",
+                "PostgreSQL"
             ],
             "skills": [
                 "React",
                 "Go",
                 "GraphQL",
-                "AWS EC2",
-                "PostgreSQL"
+                "PostgreSQL",
+                "AWS"
             ],
             "tags": [
-                "Task Manager",
-                "Full-Stack Development",
-                "Web Application"
+                "Full-stack Development",
+                "Task Management",
+                "Web App"
             ]
         },
         {
             "name": "Voice AI Interviewer Agent",
-            "description": "Engineered an AI-powered voice interviewer leveraging Groq for fast inference and Vapi for voice interactions, with Supabase for authentication and storage.",
+            "description": "Engineered an AI-powered voice interviewer leveraging Groq for fast inference and Vapi for voice interactions. Implemented an evaluation system with custom metrics and utilized Supabase for authentication and storage.",
             "start_date": "07/2024",
             "end_date": "07/2024",
             "reference_context": [
-                "Used TypeScript and NextJS for front-end",
-                "Integrated Supabase for backend storage",
-                "Leveraged Groq for AI model inference"
+                "TypeScript",
+                "NextJS",
+                "Vapi",
+                "Supabase",
+                "Groq",
+                "GenAI",
+                "ShadCN UI"
             ],
             "skills": [
                 "TypeScript",
                 "NextJS",
                 "Vapi",
                 "Supabase",
-                "Groq"
+                "Groq",
+                "GenAI"
             ],
             "tags": [
-                "AI Voice Agent",
-                "Generative AI",
-                "Interview Simulation"
+                "AI",
+                "Voice Interactions",
+                "Generative AI"
             ]
         },
         {
             "name": "Cloud-based Video Face Recognition App",
-            "description": "Designed a 3-tier hybrid cloud architecture leveraging AWS and OpenStack for integration across Web, App, and Data tiers, with support for Python scripts to trigger cloud functions.",
+            "description": "Designed a 3-tier hybrid cloud architecture leveraging AWS and OpenStack for Web, App, and Data tiers integration. Prepared Python scripts for Lambda triggers, S3, DynamoDB, and auto-scaled 20 EC2 instances via SQS and Cloudwatch.",
             "start_date": "02/2023",
             "end_date": "04/2023",
             "reference_context": [
-                "Developed Python scripts for AWS services",
-                "Auto-scaled EC2 instances via SQS and Cloudwatch",
-                "Employed Flask for API development"
+                "AWS",
+                "Python",
+                "Flask",
+                "Docker",
+                "OpenStack"
             ],
             "skills": [
                 "AWS",
@@ -112,17 +128,34 @@
                 "OpenStack"
             ],
             "tags": [
+                "Cloud Computing",
                 "Face Recognition",
-                "Cloud Architecture",
-                "Python Scripting"
+                "Hybrid Cloud"
             ]
         }
     ],
     "tags": [
-        "Software Development",
-        "Cloud Integration",
-        "Microservices",
-        "AI",
-        "DevOps"
+        "Python",
+        "Docker",
+        "Kubernetes",
+        "RabbitMQ",
+        "MongoDB",
+        "Kafka",
+        "Java",
+        "Go",
+        "Node.js",
+        "Spring Boot",
+        "React",
+        "GraphQL",
+        "AWS",
+        "TypeScript",
+        "NextJS",
+        "Vapi",
+        "Supabase",
+        "Groq",
+        "GenAI",
+        "ShadCN UI",
+        "Flask",
+        "OpenStack"
     ]
 }

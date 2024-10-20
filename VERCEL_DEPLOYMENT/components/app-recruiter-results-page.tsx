@@ -8,13 +8,6 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-// This would be fetched from your API
-const mockResults = [
-  { id: 1, name: "John Doe", match: "90%" },
-  { id: 2, name: "Jane Smith", match: "85%" },
-  { id: 3, name: "Bob Johnson", match: "80%" },
-]
-
 export default function RecruiterResultsPage() {
   const [interviewsData, setInterviewsData] = useState<InterviewsCandidateResponse[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -30,7 +23,6 @@ export default function RecruiterResultsPage() {
 
   console.log("Before useEffect in RecruiterResultsPage");
 
-
   useEffect(() => {
     const fetchUser = async () => {
       const {
@@ -45,6 +37,7 @@ export default function RecruiterResultsPage() {
 
         const data = await fetchInterviewData({
           job_id: jobId,
+          recruiter_id: user?.id,
         });
 
         console.log("After call to fetchInterviewData");
@@ -52,7 +45,7 @@ export default function RecruiterResultsPage() {
         setInterviewsData(data.data);
         setLoading(false);
       } catch (err) {
-        setError('Failed to fetch job postings data');
+        setError('Failed to fetch interviewed candidates data');
         setLoading(false);
       }
     };
@@ -62,11 +55,11 @@ export default function RecruiterResultsPage() {
 
   }, []);
 
+
   console.log("After useEffect in RecruiterResultsPage");
 
   console.log("Logging interviewsData in RecruiterResultsPage:");
   console.log(interviewsData);
-
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -77,7 +70,7 @@ export default function RecruiterResultsPage() {
             <h2 className="text-xl font-semibold">{candidate.candidate_profiles.name}</h2>
             <p>Match: {candidate.match_pct}</p>
             <p>Decision: {candidate.interview_decision ? 'Selected' : 'Rejected'}</p>
-            <Link href={`/recruiter/${user.id}/jobs/${jobId}/results/analysis/`}>
+            <Link href={`/recruiter/${user.id}/jobs/${jobId}/results/${candidate.candidate_id}/analysis/`}>
               {/* <Link href={`/recruiter/jobs/${job.job_id}/results/`}> */}
               <Button className="mt-2">View Full Analysis</Button>
             </Link>

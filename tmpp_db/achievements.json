@@ -1,110 +1,123 @@
 {
     "achievements": [
         {
-            "title": "Refined Data Processing Pipeline",
-            "description": "Refined data processing in the model build and analysis pipeline at the National Renewable Energy Laboratory, transforming raw data into inferred values with comprehensive automated unit and integration testing.",
+            "title": "AICamp Generative AI Hackathon",
+            "description": "Won the overall winner prize at the AICamp Generative AI Hackathon by creating a multimodal AI assistant that automates browser tasks on behalf of users.",
             "reference_context": [
-                "National Renewable Energy Laboratory"
+                "Extracurriculars"
             ],
             "tags": [
-                "Data Processing",
-                "Software Development",
-                "Testing"
+                "hackathon",
+                "AI",
+                "automation",
+                "winner"
             ]
         },
         {
-            "title": "Optimized System Scalability",
-            "description": "Optimized system scalability through time complexity improvements, enhancing overall performance at the National Renewable Energy Laboratory.",
+            "title": "NREL Software Development",
+            "description": "Refined data processing in model build and analysis pipeline, transforming raw data into inferred values with comprehensive automated unit and integration testing. Optimized system scalability through time complexity improvements.",
             "reference_context": [
-                "National Renewable Energy Laboratory"
+                "National Renewable Energy Laboratory",
+                "Work Experience"
             ],
             "tags": [
-                "Scalability",
-                "Performance Optimization"
+                "software development",
+                "optimization",
+                "testing"
             ]
         },
         {
-            "title": "Automated DevOps Processes",
-            "description": "Streamlined and automated DevOps processes by restructuring CI/CD workflows with GitHub Actions at the National Renewable Energy Laboratory.",
+            "title": "Oracle Financial Services Software Development",
+            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in Production environments for 2 international financial banking firms. Engineered 6 GUI based workflow runs for ETL pipelines.",
             "reference_context": [
-                "National Renewable Energy Laboratory"
+                "Oracle Financial Services Software",
+                "Work Experience"
             ],
             "tags": [
-                "DevOps",
-                "CI/CD",
-                "Automation"
+                "fintech",
+                "software engineering",
+                "ETL"
             ]
         },
         {
-            "title": "Implemented OFSAA LLFP Fintech Solutions",
-            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support in Production environments for 2 international financial banking firms at Oracle Financial Services Software.",
-            "reference_context": [
-                "Oracle Financial Services Software"
-            ],
-            "tags": [
-                "Fintech Solutions",
-                "Implementation",
-                "Support"
-            ]
-        },
-        {
-            "title": "Engineered ETL Workflows",
-            "description": "Engineered 6 GUI-based workflow runs for ETL pipelines, integrating them with backend scripts for data processing at Oracle Financial Services Software.",
-            "reference_context": [
-                "Oracle Financial Services Software"
-            ],
-            "tags": [
-                "ETL",
-                "Data Processing",
-                "Software Engineering"
-            ]
-        },
-        {
-            "title": "Reduced Execution Times by 20%",
-            "description": "Generated PL/SQL scripts for data manipulation and validation at Oracle Financial Services Software, automating manual tasks and reducing execution times by 20%.",
-            "reference_context": [
-                "Oracle Financial Services Software"
-            ],
-            "tags": [
-                "Performance Improvement",
-                "Automation",
-                "Data Manipulation"
-            ]
-        },
-        {
-            "title": "Overall Winner - AICamp Generative AI Hackathon",
-            "description": "Won the AWS for Startups prize for creating a multimodal AI assistant that automates browser tasks at the AICamp Generative AI Hackathon.",
-            "reference_context": [
-                "AICamp Generative AI Hackathon"
-            ],
-            "tags": [
-                "Hackathon",
-                "AI Development",
-                "Automation"
-            ]
-        },
-        {
-            "title": "Developed Microservices Video to MP3 Converter",
-            "description": "Engineered a distributed system for converting video files to MP3 format using microservices architecture.",
+            "title": "Microservices Video to MP3 Converter Project",
+            "description": "Engineered a distributed system for converting video files to MP3 format using microservices architecture. Implemented secure JWT user authentication, message queuing with RabbitMQ, scalable storage, notifications.",
             "reference_context": [
                 "Projects"
             ],
             "tags": [
-                "Microservices",
-                "Distributed Systems",
-                "Software Engineering"
+                "microservices",
+                "distributed systems",
+                "security",
+                "audio conversion"
+            ]
+        },
+        {
+            "title": "Cloud-based Video Face Recognition App",
+            "description": "Designed a 3-tier hybrid cloud architecture leveraging AWS and OpenStack for Web, App, and Data tiers integration. Prepared Python scripts for automatic scaling of EC2 instances via SQS and Cloudwatch.",
+            "reference_context": [
+                "Projects"
+            ],
+            "tags": [
+                "cloud architecture",
+                "AWS",
+                "OpenStack",
+                "automation",
+                "face recognition"
+            ]
+        },
+        {
+            "title": "Classic To-Do List Web Application",
+            "description": "Developed a full-stack task manager webapp with CRUD operations using React and Go with PostgreSQL database. Implemented GraphQL API for efficient data retrieval and deployed on AWS with self-signed SSL certificate for HTTPS.",
+            "reference_context": [
+                "Projects"
+            ],
+            "tags": [
+                "full-stack development",
+                "web application",
+                "security",
+                "database"
             ]
         },
         {
             "title": "Voice AI Interviewer Agent",
-            "description": "Engineered an AI-powered voice interviewer, leveraging Groq for fast inference and Vapi for voice interactions.",
+            "description": "Engineered an AI-powered voice interviewer, leveraging Groq for fast inference and Vapi for voice interactions. Implemented evaluation system with custom metrics, utilizing Supabase for authentication and storage.",
             "reference_context": [
                 "Projects"
             ],
             "tags": [
-                "AI Development",
-                "Voice Recognition",
-                "Software Engineering"
+                "AI",
+                "voice interaction",
+                "authentication",
+                "evaluation"
+            ]
+        },
+        {
+            "title": "Embedded C++ Developer at Inter-university Accelerator Centre",
+            "description": "Designed software modules for ARM Cortex-M3 embedded server sensor device to measure subzero temperatures. Optimized the system for real-time sensor data via RPC transfer protocols.",
+            "reference_context": [
+                "Inter-university accelerator centre",
+                "Work Experience"
+            ],
+            "tags": [
+                "embedded systems",
+                "real-time data",
+                "optimization",
+                "C++"
+            ]
+        },
+        {
+            "title": "Python Developer at College of Engineering Pune",
+            "description": "Modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining using Python. Designed a custom-built library for processing 65,536 objects in 2 minutes with 95% accuracy using linear regression.",
+            "reference_context": [
+                "College of Engineering Pune",
+                "Work Experience"
+            ],
+            "tags": [
+                "data mining",
+                "Python",
+                "regression analysis",
+                "mathematical modeling"
             ]
         }
     ]
