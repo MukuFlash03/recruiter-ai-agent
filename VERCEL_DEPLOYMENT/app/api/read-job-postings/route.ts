@@ -9,7 +9,10 @@ export async function GET(request: Request) {
       data: { user },
     } = await supabase.auth.getUser();
 
+    console.log("Before recruiter id");
     const recruiter_id = user?.id;
+    console.log("Recruiter id:", recruiter_id);
+    console.log("After recruiter id");
 
     const { data, error } = await supabase
       .from('job_postings')

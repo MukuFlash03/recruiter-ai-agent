@@ -2,12 +2,10 @@
     "projects": [
         {
             "name": "Microservices Video to MP3 Converter",
-            "description": "Engineered a distributed system for converting video files to MP3 format using microservices architecture. Implemented secure JWT user authentication, message queuing with RabbitMQ, scalable storage, and notifications.",
+            "description": "Engineered a distributed system for converting video files to MP3 format using a microservices architecture. Implemented secure JWT user authentication, message queuing with RabbitMQ, scalable storage, and notifications.",
             "start_date": "09/2024",
             "end_date": "09/2024",
-            "reference_context": [
-                "Project"
-            ],
+            "reference_context": [],
             "skills": [
                 "Python",
                 "Docker",
@@ -15,19 +13,14 @@
                 "RabbitMQ",
                 "MongoDB"
             ],
-            "tags": [
-                "Microservices",
-                "Video Conversion"
-            ]
+            "tags": []
         },
         {
             "name": "Kafka Confluent Cloud Pub-Sub",
-            "description": "Implemented Apache Kafka producers/consumers using Confluent Cloud with topic management, data serialization. Containerised multi-language environment showcasing Kafka integration, demonstrating cross-platform compatibility.",
+            "description": "Implemented Apache Kafka producers/consumers using Confluent Cloud with topic management and data serialization. Containerized multi-language environment showcasing Kafka integration, demonstrating cross-platform compatibility.",
             "start_date": "09/2024",
             "end_date": "09/2024",
-            "reference_context": [
-                "Project"
-            ],
+            "reference_context": [],
             "skills": [
                 "Kafka",
                 "Java",
@@ -37,39 +30,29 @@
                 "Spring Boot",
                 "Docker"
             ],
-            "tags": [
-                "Kafka",
-                "Cloud Integration"
-            ]
+            "tags": []
         },
         {
             "name": "Classic To-Do List",
-            "description": "Developed a full-stack task manager webapp with CRUD operations using React and Go with PostgreSQL database. Implemented GraphQL API for efficient data retrieval; deployed on AWS with self-signed SSL certificate for HTTPS.",
+            "description": "Developed a full-stack task manager webapp with CRUD operations using React and Go with PostgreSQL database. Implemented GraphQL API for efficient data retrieval; deployed on AWS with a self-signed SSL certificate for HTTPS.",
             "start_date": "08/2024",
             "end_date": "08/2024",
-            "reference_context": [
-                "Project"
-            ],
+            "reference_context": [],
             "skills": [
                 "React",
                 "Go",
                 "GraphQL",
-                "AWS",
+                "AWS (EC2, Amplify, RDS)",
                 "PostgreSQL"
             ],
-            "tags": [
-                "Task Manager",
-                "Web Application"
-            ]
+            "tags": []
         },
         {
             "name": "Voice AI Interviewer Agent",
-            "description": "Engineered an AI-powered voice interviewer, leveraging Groq for fast inference and Vapi for voice interactions. Implemented evaluation system with custom metrics, utilizing Supabase for authentication and storage.",
+            "description": "Engineered an AI-powered voice interviewer leveraging Groq for fast inference and Vapi for voice interactions. Implemented an evaluation system with custom metrics, utilizing Supabase for authentication and storage.",
             "start_date": "07/2024",
             "end_date": "07/2024",
-            "reference_context": [
-                "Project"
-            ],
+            "reference_context": [],
             "skills": [
                 "TypeScript",
                 "NextJS",
@@ -79,19 +62,14 @@
                 "GenAI",
                 "ShadCN UI"
             ],
-            "tags": [
-                "AI",
-                "Voice Interaction"
-            ]
+            "tags": []
         },
         {
             "name": "Cloud-based Video Face Recognition App",
-            "description": "Designed a 3-tier hybrid cloud architecture leveraging AWS and OpenStack for Web, App, and Data tiers integration. Prepared Python scripts for: Lambda triggers, S3, DynamoDB; auto-scaled 20 EC2 instances via SQS and Cloudwatch.",
+            "description": "Designed a 3-tier hybrid cloud architecture leveraging AWS and OpenStack for Web, App, and Data tiers integration. Prepared Python scripts for Lambda triggers, S3, DynamoDB and auto-scaled 20 EC2 instances via SQS and Cloudwatch.",
             "start_date": "02/2023",
             "end_date": "04/2023",
-            "reference_context": [
-                "Project"
-            ],
+            "reference_context": [],
             "skills": [
                 "AWS",
                 "Python",
@@ -99,20 +77,8 @@
                 "Docker",
                 "OpenStack"
             ],
-            "tags": [
-                "Cloud",
-                "Face Recognition"
-            ]
+            "tags": []
         }
     ],
-    "tags": [
-        "Python",
-        "Docker",
-        "AWS",
-        "Kafka",
-        "React",
-        "Cloud Computing",
-        "AI",
-        "Machine Learning"
-    ]
+    "tags": []
 }

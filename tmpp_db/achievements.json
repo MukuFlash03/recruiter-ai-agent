@@ -1,107 +1,106 @@
 {
     "achievements": [
         {
-            "title": "Winner at AICamp Generative AI Hackathon",
-            "description": "Won the AWS for Startups prize for creating a multimodal AI assistant that automates browser tasks on behalf of users.",
+            "title": "Refinement of Data Processing in Model Build and Analysis Pipeline",
+            "description": "Transformed raw data into inferred values with comprehensive automated unit and integration testing, troubleshooting pipeline failures, and optimizing system scalability through time complexity improvements at National Renewable Energy Laboratory.",
             "reference_context": [
-                "Extracurriculars",
-                "Hackathon"
+                "Work experience at National Renewable Energy Laboratory"
+            ],
+            "tags": [
+                "Data Processing",
+                "Model Build",
+                "Troubleshooting",
+                "Scalability Optimization"
+            ]
+        },
+        {
+            "title": "DevOps Process Automation",
+            "description": "Streamlined and automated DevOps processes by restructuring CI/CD workflows with GitHub Actions, enhancing deployment efficiency at National Renewable Energy Laboratory.",
+            "reference_context": [
+                "Work experience at National Renewable Energy Laboratory"
+            ],
+            "tags": [
+                "DevOps",
+                "CI/CD",
+                "Automation",
+                "Deployment"
+            ]
+        },
+        {
+            "title": "Implementation of OFSAA LLFP Fintech Solutions",
+            "description": "Successfully implemented fintech solutions and provided post-implementation support for two international financial banking firms, enhancing UI and automating data manipulation tasks, at Oracle Financial Services Software.",
+            "reference_context": [
+                "Work experience at Oracle Financial Services Software"
+            ],
+            "tags": [
+                "Fintech Solutions",
+                "UI Enhancement",
+                "Automation",
+                "International Banking"
+            ]
+        },
+        {
+            "title": "AICamp Generative AI Hackathon Win",
+            "description": "Achieved the Overall Winner prize by creating a multimodal AI assistant that automates browser tasks for users, winning the AWS for Startups award.",
+            "reference_context": [
+                "Extracurricular Participation at AICamp Generative AI Hackathon"
             ],
             "tags": [
                 "Hackathon",
-                "Award",
-                "AI"
+                "AI Assistant",
+                "Browser Automation",
+                "AWS Prize"
             ]
         },
         {
-            "title": "Developed Microservices Video to MP3 Converter",
-            "description": "Engineered a distributed system for converting video files to MP3 format using microservices architecture, implementing secure JWT user authentication, message queuing with RabbitMQ, scalable storage, and notifications.",
+            "title": "Development of Cloud-based Video Face Recognition App",
+            "description": "Designed a 3-tier hybrid cloud architecture leveraging AWS and OpenStack for integration of Web, App, and Data tiers, scaling EC2 instances and preparing scripts for various AWS services.",
             "reference_context": [
-                "Projects",
-                "Microservices Video to MP3 Converter"
+                "Projects: Cloud-based Video Face Recognition App"
             ],
             "tags": [
-                "Project",
+                "Cloud Architecture",
+                "AWS",
+                "OpenStack",
+                "Video Face Recognition"
+            ]
+        },
+        {
+            "title": "Embedded C++ Development for Temperature Sensor Device",
+            "description": "Designed software modules for ARM Cortex-M3 embedded server sensor device, optimizing system for real-time sensor data handling at Inter-university accelerator centre.",
+            "reference_context": [
+                "Work experience at Inter-university accelerator centre"
+            ],
+            "tags": [
+                "Embedded C++",
+                "Sensor Device",
+                "System Optimization"
+            ]
+        },
+        {
+            "title": "Engineering of Microservices for Video to MP3 Conversion",
+            "description": "Engineered a distributed system using microservices architecture for converting video files to MP3 format, implementing secure JWT authentication and scalable storage solutions.",
+            "reference_context": [
+                "Projects: Microservices Video to MP3 Converter"
+            ],
+            "tags": [
                 "Microservices",
-                "Development"
+                "File Conversion",
+                "JWT Authentication",
+                "Scalability"
             ]
         },
         {
-            "title": "Implemented Apache Kafka Pub-Sub",
-            "description": "Implemented Apache Kafka producers/consumers using Confluent Cloud with topic management and data serialization, showcasing cross-platform compatibility.",
+            "title": "Design of Custom Python Library for Sensor Data Mining",
+            "description": "Successfully modeled Rough Set Theory concepts and designed a Python library to process large data sets with a 95% accuracy at College of Engineering Pune.",
             "reference_context": [
-                "Projects",
-                "Kafka Confluent Cloud Pub-Sub"
+                "Work experience at College of Engineering Pune"
             ],
             "tags": [
-                "Project",
-                "Kafka",
-                "Cloud"
-            ]
-        },
-        {
-            "title": "Developed Classic To-Do List Application",
-            "description": "Built a full-stack task manager webapp with CRUD operations using React and Go with PostgreSQL, and implemented GraphQL API for efficient data retrieval, deployed on AWS with self-signed SSL certificate for HTTPS.",
-            "reference_context": [
-                "Projects",
-                "Classic To-Do List"
-            ],
-            "tags": [
-                "Project",
-                "Web Application",
-                "AWS"
-            ]
-        },
-        {
-            "title": "Engineered Voice AI Interviewer Agent",
-            "description": "Developed an AI-powered voice interviewer utilizing Groq for fast inference and Vapi for voice interactions, with an evaluation system using custom metrics and Supabase for authentication and storage.",
-            "reference_context": [
-                "Projects",
-                "Voice AI Interviewer Agent"
-            ],
-            "tags": [
-                "Project",
-                "AI",
-                "Voice Interaction"
-            ]
-        },
-        {
-            "title": "Designed Cloud-based Video Face Recognition App",
-            "description": "Designed a 3-tier hybrid cloud architecture leveraging AWS and OpenStack for web, app, and data tiers integration, with Python scripts for Lambda triggers, S3, DynamoDB; and auto-scaled 20 EC2 instances via SQS and Cloudwatch.",
-            "reference_context": [
-                "Projects",
-                "Cloud-based Video Face Recognition App"
-            ],
-            "tags": [
-                "Project",
-                "Cloud",
-                "AWS"
-            ]
-        },
-        {
-            "title": "Embedded C++ Developer Internship",
-            "description": "Designed software modules for ARM Cortex-M3 embedded server sensor device to measure subzero temperatures, troubleshooted bugs, and optimized the system for real-time sensor data via RPC transfer protocols.",
-            "reference_context": [
-                "Experience",
-                "Inter-university accelerator centre"
-            ],
-            "tags": [
-                "Internship",
-                "Embedded Systems",
-                "C++"
-            ]
-        },
-        {
-            "title": "Modeled Discrete Mathematical Rough Set Theory",
-            "description": "Successfully modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining using Python and designed a custom-built library to process 65,536 objects in 2 minutes with 95% accuracy using linear regression.",
-            "reference_context": [
-                "Experience",
-                "College of Engineering Pune"
-            ],
-            "tags": [
-                "Research",
-                "Mathematics",
-                "Python"
+                "Sensor Data Mining",
+                "Python",
+                "Data Accuracy",
+                "Library Design"
             ]
         }
     ]

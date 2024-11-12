@@ -3,35 +3,44 @@
         {
             "degree": "Master of Science - MS, Computer Science",
             "institution": "Arizona State University",
-            "start_date": "08/2022",
-            "end_date": "05/2024",
-            "grade": "3.90 / 4.0",
+            "start_date": "August 2022",
+            "end_date": "May 2024",
+            "grade": "GPA: 3.90 / 4.0",
             "reference_context": [
-                "Master of Science - MS, Computer Science",
-                "August 2022 - May 2024"
+                "Arizona State University",
+                "Tempe, Arizona",
+                "Masters in Computer Science",
+                "GPA: 3.90 / 4.0",
+                "08/2022 \u2013 05/2024",
+                "Software Courses (Requirements; Design; Verification, Validation, Testing), Data Processing at Scale, Cloud Computing",
+                "Ira A. Fulton Schools of Engineering at Arizona State University",
+                "Graduate Services Assistant",
+                "January 2023 - May 2023",
+                "Tempe, Arizona, United States"
             ],
             "tags": [
-                "Masters",
                 "Computer Science",
-                "Arizona State University",
-                "Graduate"
+                "Masters",
+                "Arizona State University"
             ]
         },
         {
             "degree": "Bachelor of Technology - BTech, Electronics and Communications Engineering",
             "institution": "National Institute of Technology Hamirpur",
-            "start_date": "07/2017",
-            "end_date": "06/2021",
-            "grade": "8.73 / 10",
+            "start_date": "July 2017",
+            "end_date": "June 2021",
+            "grade": "GPA: 8.73 / 10",
             "reference_context": [
-                "Bachelor of Technology - BTech, Electronics and Communications Engineering",
-                "July 2017 - June 2021"
+                "National Institute of Technology Hamirpur",
+                "Hamirpur (H.P.) , India",
+                "Bachelors in Electronics and Communication",
+                "GPA: 8.73 / 10",
+                "08/2017 \u2013 05/2021"
             ],
             "tags": [
-                "Bachelors",
                 "Electronics and Communications",
-                "NIT Hamirpur",
-                "Undergraduate"
+                "Bachelors",
+                "National Institute of Technology Hamirpur"
             ]
         },
         {
@@ -41,13 +50,13 @@
             "end_date": "2017",
             "grade": "",
             "reference_context": [
+                "The Bishops School, Camp",
                 "Class XI-XII",
-                "2015 - 2017"
+                "(2015 - 2017)"
             ],
             "tags": [
                 "High School",
-                "The Bishops School",
-                "Senior Secondary"
+                "The Bishops School"
             ]
         },
         {
@@ -57,20 +66,21 @@
             "end_date": "2015",
             "grade": "",
             "reference_context": [
+                "The Bishops Co-Ed School, Kalyaninagar",
                 "Class UKG-X",
-                "2004 - 2015"
+                "(2004 - 2015)"
             ],
             "tags": [
-                "Primary School",
-                "The Bishops Co-Ed School",
-                "Kalyaninagar",
-                "Junior"
+                "Primary Education",
+                "The Bishops Co-Ed School"
             ]
         }
     ],
     "tags": [
         "Education",
-        "Academic History",
-        "Qualifications"
+        "Arizona State University",
+        "National Institute of Technology Hamirpur",
+        "The Bishops School",
+        "The Bishops Co-Ed School"
     ]
 }

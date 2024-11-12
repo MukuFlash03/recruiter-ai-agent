@@ -59,7 +59,7 @@ export function InterviewInstructionsPage({ candidate_id }: { candidate_id: stri
         <Link href={`/candidate/${candidate_id}/interview/start`}>
           <Button>
             <Video className="mr-2" />
-            Start Video Interview
+            Start Interview
           </Button>
         </Link>
       </div>

@@ -15,19 +15,6 @@ import Link from 'next/link'
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from 'react'
 
-// Placeholder data
-const jobPostings = [
-  { id: 1, title: "Senior React Developer", company: "TechCorp", applicants: 15 },
-  { id: 2, title: "UX Designer", company: "DesignHub", applicants: 8 },
-  { id: 3, title: "Product Manager", company: "InnovateCo", applicants: 12 },
-]
-
-const topCandidates = [
-  { id: 1, name: "Alice Johnson", jobTitle: "Senior React Developer", matchPercentage: 95 },
-  { id: 2, name: "Bob Smith", jobTitle: "UX Designer", matchPercentage: 92 },
-  { id: 3, name: "Charlie Brown", jobTitle: "Product Manager", matchPercentage: 88 },
-]
-
 export function RecruiterDashboardComponent() {
   const [activeTab, setActiveTab] = useState("overview")
   const [isNewJobModalOpen, setIsNewJobModalOpen] = useState(false)
@@ -62,13 +49,18 @@ export function RecruiterDashboardComponent() {
     //   router.push('/login');
     // }
 
+    console.log("Inside useEffect");
+    console.log("User:", user);
+
+
     const loadData = async () => {
       try {
         const data = await fetchJobPostings();
+        console.log("Data in Recruiter dash useEffect:", data);
         setJobPostingsData(data.data);
         setLoading(false);
       } catch (err) {
-        setError('Failed to fetch jon postings data');
+        setError('Failed to fetch job postings data');
         setLoading(false);
       }
     };
@@ -95,7 +87,6 @@ export function RecruiterDashboardComponent() {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
-    // Here you would typically send the form data to your backend
 
     const formData: JobPostingData = {
       jobTitle,
@@ -168,8 +159,8 @@ export function RecruiterDashboardComponent() {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Recruiter Dashboard</h1>
         <Button size="lg" variant="outline" className="w-full sm:w-auto group"
-          onClick={() => {
-            signout();
+          onClick={async () => {
+            await signout();
             setUser(null);
           }}
         >
@@ -316,7 +307,7 @@ export function RecruiterDashboardComponent() {
                     >
                       {processingJobs.has(job.job_id.toString()) ? 'Processing...' : 'Fetch Matching Candidates'}
                     </Button>
-                    {job.analysis_status ? (
+                    {job.analysis_status && user ? (
                       <Link href={`/recruiter/${user.id}/jobs/${job.job_id}/results`}>
                         <Button variant="outline" size="sm">
                           View Details
@@ -334,34 +325,6 @@ export function RecruiterDashboardComponent() {
           </div>
         </CardContent>
       </Card>
-      {/* </TabsContent> */}
-      {/* <TabsContent value="candidates">
-          <Card>
-            <CardHeader>
-              <CardTitle>Top Candidates</CardTitle>
-              <CardDescription>View the best matches for your job postings</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {topCandidates.map((candidate) => (
-                  <Card key={candidate.id}>
-                    <CardHeader>
-                      <CardTitle>{candidate.name}</CardTitle>
-                      <CardDescription>{candidate.jobTitle}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <p>Match: {candidate.matchPercentage}%</p>
-                      <div className="flex justify-end mt-2">
-                        <Button variant="outline" size="sm">View Profile</Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-      </Tabs> */}
     </div>
   )
 }

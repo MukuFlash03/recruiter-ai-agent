@@ -172,7 +172,7 @@ export async function fetchJobAnalysis({ job_id, recruiter_id }: { job_id: strin
 export async function fetchCandidateMatchedJobs() {
   console.log('candidate_id in fetchCandidateMatchedJobs');
 
-  const response = await fetch(`/api/read-candidate-matched-jobs?`, {
+  const response = await fetch(`/api/read-candidate-matched-jobs`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

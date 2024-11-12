@@ -4,7 +4,7 @@
         "Docker",
         "MongoDB",
         "Git",
-        "AWS",
+        "AWS (ECR, Cloudwatch, Inspector)",
         "PL/SQL",
         "XML",
         "Oracle DB",
@@ -38,9 +38,7 @@
         "LLMs",
         "Deepgram",
         "OpenStack",
-        "AWS Cloud Services",
-        "GitHub",
-        "GitHub Actions",
+        "AWS (EC2, S3, SQS, Lambda, Cloudwatch, ECR, RDS, Amplify)",
         "Kubernetes",
         "Kafka",
         "RabbitMQ",
@@ -55,19 +53,18 @@
         "ShadCN UI"
     ],
     "reference_context": [
-        "Technical Skills",
         "Work Experience",
+        "Technical Skills",
         "Projects",
-        "Summary"
+        "Extracurriculars"
     ],
     "tags": [
-        "Programming",
-        "Frameworks",
+        "Programming Languages",
         "Databases",
-        "Generative AI",
+        "Frameworks",
         "Cloud Platforms",
-        "DevOps",
+        "DevOps Tools",
         "Developer Tools",
-        "Languages"
+        "Generative AI"
     ]
 }
