@@ -38,7 +38,9 @@
         "LLMs",
         "Deepgram",
         "OpenStack",
-        "AWS (EC2, S3, SQS, Lambda, Cloudwatch, ECR, RDS, Amplify)",
+        "AWS Cloud Services (EC2, S3, SQS, Lambda, Cloudwatch, ECR, RDS, Amplify)",
+        "GitHub",
+        "GitHub Actions",
         "Kubernetes",
         "Kafka",
         "RabbitMQ",
@@ -47,24 +49,33 @@
         "VSCode",
         "Postman",
         "Figma",
+        "Documentation",
         "Agile",
         "Vapi",
         "Supabase",
         "ShadCN UI"
     ],
     "reference_context": [
-        "Work Experience",
         "Technical Skills",
-        "Projects",
-        "Extracurriculars"
+        "Languages:  Python, C++, Java, HTML, CSS, JavaScript, TypeScript, PL/SQL, Go",
+        "Frameworks:  REST API, GraphQL, Node.js, Express, React, Next.js, Flask",
+        "Databases:  PostgreSQL, MongoDB, Oracle DB, AWS DynamoDB, Supabase, Prisma",
+        "Generative AI: Anthropic, OpenAI, Groq, Streamlit, LangChain, MultiOn, RAG Chain, LLMs, Deepgram",
+        "Cloud Platforms:  OpenStack, AWS Cloud Services (EC2, S3, SQS, Lambda, Cloudwatch, ECR, RDS, Amplify)",
+        "DevOps:  Docker, GitHub, GitHub Actions, Kubernetes, Kafka, RabbitMQ",
+        "Developer Tools:  Git, Linux, Bash, VSCode, Postman, Figma, Documentation, Agile",
+        "Projects"
     ],
     "tags": [
         "Programming Languages",
-        "Databases",
-        "Frameworks",
+        "Software Development",
+        "Database Management",
         "Cloud Platforms",
-        "DevOps Tools",
+        "Web Development",
+        "DevOps",
+        "Frameworks",
+        "AI and Machine Learning",
         "Developer Tools",
-        "Generative AI"
+        "Agile Methodologies"
     ]
 }

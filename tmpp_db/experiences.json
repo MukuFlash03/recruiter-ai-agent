@@ -6,13 +6,15 @@
             "location": "Golden, Colorado",
             "start_date": "08/2023",
             "end_date": "09/2024",
-            "description": "Refined data processing in model build and analysis pipeline, transforming raw data into inferred values with comprehensive automated unit and integration testing. Optimized system scalability through time complexity improvements. Troubleshot and resolved model build pipeline failures using CloudWatch logs. Streamlined and automated DevOps processes by restructuring CI/CD workflows with GitHub Actions. Implemented data export/import functionality for timeseries data purge and restore.",
+            "description": "Refined data processing in a model build and analysis pipeline, transforming raw data into inferred values with comprehensive automated unit and integration testing. Optimized system scalability and enhanced performance. Troubleshot and resolved model build pipeline failures using CloudWatch logs. Streamlined DevOps processes with CI/CD workflows using GitHub Actions. Implemented data export/import functionality for timeseries data.",
             "reference_context": [
-                "National Renewable Energy Laboratory",
-                "Software Engineer Intern - Python Developer, DevOps Engineer",
-                "Refined data processing in model build and analysis pipeline in a distributed system"
+                "\"Refined data processing in model build and analysis pipeline...\"",
+                "\"Optimized system scalability through time complexity improvements...\"",
+                "\"Troubleshot and resolved model build pipeline failures...\"",
+                "\"Streamlined and automated DevOps processes...\"",
+                "\"Implementing data export/import functionality for timeseries...\""
             ],
-            "reasoning": "The role description involves tasks associated with software development, data processing, and DevOps, aligning well with the title of Software Development Engineer.",
+            "reasoning": "The entry explicitly describes the role at NREL, including tasks and responsibilities related to software development and DevOps. The start and end dates are provided, along with location and technologies used.",
             "skills": [
                 "Python",
                 "Docker",
@@ -21,9 +23,10 @@
                 "AWS (ECR, Cloudwatch, Inspector)"
             ],
             "tags": [
-                "software development",
+                "Software Development",
                 "DevOps",
-                "data processing"
+                "Data Processing",
+                "AWS"
             ]
         },
         {
@@ -32,13 +35,15 @@
             "location": "Bangalore, India",
             "start_date": "07/2021",
             "end_date": "05/2022",
-            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided post-implementation support. Engineered GUI based workflow runs for ETL pipelines. Enhanced UI for Individual Assessment (IA) module. Generated PL/SQL scripts for data manipulation and validation. Documented technical designs and deployed code packages.",
+            "description": "Implemented OFSAA LLFP fintech solutions in SIT, UAT and provided support in production environments. Engineered GUI based workflow runs for ETL pipelines. Enhanced UI for IA module using XML Forms Framework and PL/SQL. Automated tasks for data manipulation and validation, reducing execution times by 20%. Documented technical designs and deployed code packages.",
             "reference_context": [
-                "ORACLE FINANCIAL SERVICES SOFTWARE LIMITED",
-                "Software Engineer - PL/SQL Developer",
-                "Implemented OFSAA LLFP fintech solutions"
+                "\"Implemented OFSAA LLFP fintech solutions in SIT, UAT...\"",
+                "\"Engineered 6 GUI based workflow runs for ETL pipelines...\"",
+                "\"Enhanced UI for Individual Assessment (IA) module...\"",
+                "\"Generated PL/SQL scripts for data manipulation and validation...\"",
+                "\"Documented technical designs and deployed code packages...\""
             ],
-            "reasoning": "The main tasks and technologies addressed in the description match the responsibilities typically associated with a software development engineer role within a financial software context.",
+            "reasoning": "The section pertains to the role at Oracle Financial Services Software, detailing tasks related to fintech solutions and database scripting. The duration and technologies are clearly specified, making it a distinct experience entry.",
             "skills": [
                 "PL/SQL",
                 "XML",
@@ -47,57 +52,35 @@
                 "ETL"
             ],
             "tags": [
-                "software development",
-                "fintech",
-                "ETL"
+                "Fintech",
+                "ETL",
+                "Data Processing",
+                "UI Enhancement"
             ]
         },
         {
-            "title": "Embedded C++ Developer",
-            "company": "Inter-university Accelerator Centre",
-            "location": "New Delhi, Delhi, India",
-            "start_date": "05/2020",
-            "end_date": "08/2020",
-            "description": "Designed software modules for ARM Cortex-M3 embedded server sensor device to measure subzero temperatures. Troubleshooted bugs and optimized the system for real-time sensor data transfer.",
+            "title": "Software Engineer Intern - Python Developer, DevOps Engineer",
+            "company": "National Renewable Energy Laboratory",
+            "location": "Colorado, United States",
+            "start_date": "08/2023",
+            "end_date": "Present",
+            "description": "Refined data processing in model build and analysis pipeline in a distributed system. Conducted scaling and performance optimization. Automated deployment processes using CI/CD workflows and GitHub Actions.",
             "reference_context": [
-                "Embedded C++ Developer",
-                "Worked under Dr. Joby Antony",
-                "Designed software modules for ARM Cortex-M3 embedded server sensor device"
+                "\"Refined data processing in model build and analysis pipeline...\"",
+                "\"Did scaling and performance optimization...\"",
+                "\"Automated deployment DevOps process...\""
             ],
-            "reasoning": "This experience focuses on software development for embedded systems using C++, aligning with the title of Embedded C++ Developer.",
-            "skills": [
-                "Embedded C++",
-                "ARM Cortex-M3",
-                "RPC protocols"
-            ],
-            "tags": [
-                "embedded systems",
-                "C++",
-                "sensor data"
-            ]
-        },
-        {
-            "title": "Python Developer",
-            "company": "College of Engineering Pune",
-            "location": "Pune, Maharashtra, India",
-            "start_date": "05/2019",
-            "end_date": "07/2019",
-            "description": "Modeled discrete mathematical Rough Set Theory concepts for sensor data mining using Python. Designed custom-built library to process a large number of objects rapidly and accurately using linear regression.",
-            "reference_context": [
-                "Python Developer",
-                "Worked under the guidance of Ms. Vanita Agarwal",
-                "Modeled discrete mathematical Rough Set Theory concepts"
-            ],
-            "reasoning": "The role was focused on Python development for data mining applications, which aligns well with the responsibilities and title of Python Developer.",
+            "reasoning": "This entry reflects the intern role at NREL focusing on Python and DevOps. Responsibilities mirror those of a software engineer role, indicating continuous involvement until present.",
             "skills": [
                 "Python",
-                "data mining",
-                "linear regression"
+                "DevOps",
+                "GitHub Actions"
             ],
             "tags": [
-                "data mining",
-                "Python",
-                "mathematics"
+                "Internship",
+                "Software Engineering",
+                "DevOps",
+                "Data Analytics"
             ]
         },
         {
@@ -106,29 +89,104 @@
             "location": "Tempe, Arizona, United States",
             "start_date": "01/2023",
             "end_date": "05/2023",
-            "description": "Grader for CSE 536 Advanced Operating Systems course. Prepared and reviewed coursework, assisted students during office hours, and graded assignments.",
+            "description": "Grader for CSE 536 Advanced Operating Systems course. Prepared and reviewed coursework, assisted students, and graded assignments.",
             "reference_context": [
-                "Graduate Services Assistant",
-                "Ira A. Fulton Schools of Engineering",
-                "Grader for CSE 536 Advanced Operating Systems course"
+                "\"Grader for CSE 536 Advanced Operating Systems course...\"",
+                "\"Activities: Preparing and reviewing coursework...\"",
+                "\"Assisting students during office hours, Grading assignments...\""
             ],
-            "reasoning": "This role focused on educational support and course management, indicative of a graduate services assistant position.",
+            "reasoning": "The entry describes the position's educational and supportive tasks at ASU's engineering school, aligning with the duties of a Graduate Services Assistant.",
             "skills": [
-                "course preparation",
-                "student assistance"
+                "Academic Grading",
+                "Course Preparation"
             ],
             "tags": [
-                "education",
-                "teaching"
+                "Academic Role",
+                "Education",
+                "Grading",
+                "Student Support"
+            ]
+        },
+        {
+            "title": "Software Engineer - PL/SQL Developer",
+            "company": "ORACLE FINANCIAL SERVICES SOFTWARE LIMITED",
+            "location": "Bengaluru, Karnataka, India",
+            "start_date": "07/2021",
+            "end_date": "05/2022",
+            "description": "Implemented fintech solutions for financial banking firms and provided post-implementation support. Engineered ETL workflow runs. Enhanced UI based on XML Forms and PL/SQL. Automated data manipulation tasks, reducing execution times by 20%. Documented designs and deployed packages.",
+            "reference_context": [
+                "\"Implemented fintech solutions for financial banking firms...\"",
+                "\"Engineered ETL workflow runs. Enhanced UI based on XML Forms...\"",
+                "\"Automated data manipulation tasks, reducing execution times...\"",
+                "\"Documented designs and deployed packages...\""
+            ],
+            "reasoning": "This is a mirrored entry of the role at Oracle, assuming its presence in different contexts in the document provided. It includes similar responsibilities and skills, emphasizing software engineering and development.",
+            "skills": [
+                "PL/SQL",
+                "XML",
+                "Oracle DB",
+                "ETL"
+            ],
+            "tags": [
+                "Software Development",
+                "PL/SQL",
+                "Database Management"
+            ]
+        },
+        {
+            "title": "Embedded C++ Developer",
+            "company": "Inter-university accelerator centre",
+            "location": "New Delhi, Delhi, India",
+            "start_date": "05/2020",
+            "end_date": "08/2020",
+            "description": "Designed software modules for ARM Cortex-M3 embedded server sensor device. Troubleshooted bugs and optimized data handling via RPC protocols.",
+            "reference_context": [
+                "\"Designed software modules for ARM Cortex-M3 embedded server...\"",
+                "\"Troubleshooted bugs and optimized the system...\""
+            ],
+            "reasoning": "The position relates to software development for embedded systems, centered on optimizing and trouble-shooting embedded server devices.",
+            "skills": [
+                "Embedded C++",
+                "Troubleshooting",
+                "RPC"
+            ],
+            "tags": [
+                "Embedded Systems",
+                "Software Development",
+                "Troubleshooting"
+            ]
+        },
+        {
+            "title": "Python Developer",
+            "company": "College of Engineering Pune",
+            "location": "Pune, Maharashtra, India",
+            "start_date": "05/2019",
+            "end_date": "07/2019",
+            "description": "Modeled discrete mathematical Rough Set Theory concepts for sensor data mining. Designed a custom-built library processing a large number of objects with high accuracy.",
+            "reference_context": [
+                "\"Modeled discrete mathematical Rough Set Theory concepts for Sensor Data Mining...\"",
+                "\"Designed custom-built library to process 65,536 objects...\""
+            ],
+            "reasoning": "This experience involves working on a mathematical model using Python, indicate data mining skills and coding proficiency within an academic setting.",
+            "skills": [
+                "Python",
+                "Data Mining",
+                "Mathematical Modeling"
+            ],
+            "tags": [
+                "Academic Research",
+                "Python Development",
+                "Data Mining"
             ]
         }
     ],
     "tags": [
-        "software engineering",
+        "Software Development",
         "DevOps",
-        "education",
-        "internship",
-        "embedded systems",
-        "data mining"
+        "Fintech",
+        "ETL",
+        "Academic Role",
+        "Embedded Systems",
+        "Python Development"
     ]
 }

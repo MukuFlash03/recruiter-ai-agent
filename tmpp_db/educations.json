@@ -1,46 +1,46 @@
 {
     "education": [
         {
-            "degree": "Master of Science - MS, Computer Science",
+            "degree": "Master of Science - MS in Computer Science",
             "institution": "Arizona State University",
             "start_date": "August 2022",
             "end_date": "May 2024",
             "grade": "GPA: 3.90 / 4.0",
             "reference_context": [
+                "Education",
                 "Arizona State University",
                 "Tempe, Arizona",
                 "Masters in Computer Science",
                 "GPA: 3.90 / 4.0",
                 "08/2022 \u2013 05/2024",
                 "Software Courses (Requirements; Design; Verification, Validation, Testing), Data Processing at Scale, Cloud Computing",
-                "Ira A. Fulton Schools of Engineering at Arizona State University",
-                "Graduate Services Assistant",
-                "January 2023 - May 2023",
-                "Tempe, Arizona, United States"
+                "Master of Science - MS, Computer Science",
+                "August 2022 - May 2024"
             ],
             "tags": [
-                "Computer Science",
                 "Masters",
-                "Arizona State University"
+                "Computer Science"
             ]
         },
         {
-            "degree": "Bachelor of Technology - BTech, Electronics and Communications Engineering",
+            "degree": "Bachelor of Technology - BTech in Electronics and Communications Engineering",
             "institution": "National Institute of Technology Hamirpur",
             "start_date": "July 2017",
             "end_date": "June 2021",
             "grade": "GPA: 8.73 / 10",
             "reference_context": [
+                "Education",
                 "National Institute of Technology Hamirpur",
                 "Hamirpur (H.P.) , India",
                 "Bachelors in Electronics and Communication",
                 "GPA: 8.73 / 10",
-                "08/2017 \u2013 05/2021"
+                "08/2017 \u2013 05/2021",
+                "Bachelor of Technology - BTech, Electronics and Communications Engineering",
+                "July 2017 - June 2021"
             ],
             "tags": [
-                "Electronics and Communications",
                 "Bachelors",
-                "National Institute of Technology Hamirpur"
+                "Electronics and Communications"
             ]
         },
         {
@@ -50,13 +50,13 @@
             "end_date": "2017",
             "grade": "",
             "reference_context": [
+                "Education",
                 "The Bishops School, Camp",
                 "Class XI-XII",
-                "(2015 - 2017)"
+                "2015 - 2017"
             ],
             "tags": [
-                "High School",
-                "The Bishops School"
+                "High School"
             ]
         },
         {
@@ -66,21 +66,18 @@
             "end_date": "2015",
             "grade": "",
             "reference_context": [
+                "Education",
                 "The Bishops Co-Ed School, Kalyaninagar",
                 "Class UKG-X",
-                "(2004 - 2015)"
+                "2004 - 2015"
             ],
             "tags": [
-                "Primary Education",
-                "The Bishops Co-Ed School"
+                "School"
             ]
         }
     ],
     "tags": [
         "Education",
-        "Arizona State University",
-        "National Institute of Technology Hamirpur",
-        "The Bishops School",
-        "The Bishops Co-Ed School"
+        "Resume"
     ]
 }

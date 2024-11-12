@@ -141,6 +141,9 @@ export function RecruiterDashboardComponent() {
         body: JSON.stringify({ jobId, recruiter_id }),
       });
       if (!response.ok) throw new Error('Failed to start matching process');
+
+      const updatedJobPostings = await fetchJobPostings();
+      setJobPostingsData(updatedJobPostings.data);
     } catch (error) {
       console.error('Error starting matching process:', error);
     } finally {
