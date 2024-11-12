@@ -1,7 +1,10 @@
 "use client"
+import { Button } from "@/components/ui/button";
+import LoadingSpinner from "@/components/ui/loading-spinner";
 import { InterviewsCandidateResponse } from "@/lib/types/interviews";
 import { fetchJobAnalysis } from '@/lib/utils/api_calls';
 import { createClient } from "@/lib/utils/supabase/client";
+import Link from 'next/link';
 import { redirect, useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import CandidateSkillsChart from './candidate-skills-chart';
@@ -127,6 +130,8 @@ export default function RecruiterDashboard() {
         return redirect('/login');
       }
 
+      setUser(user);
+
       try {
         const data = await fetchJobAnalysis({
           job_id: jobId,
@@ -149,7 +154,7 @@ export default function RecruiterDashboard() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner message="Fetching results..." />;
   }
 
   if (error || !jobAnalysisData) {
@@ -172,12 +177,41 @@ export default function RecruiterDashboard() {
   console.log(candidates);
 
   return (
-    <div>
-      <h1>Candidate Skills Comparison</h1>
-      <CandidateSkillsChart candidates={candidates} />
-      {/* <CandidateSkillsChart candidates={plotData} /> */}
+    <div className="max-w-4xl mx-auto p-6">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">
+          Candidate Skills Comparison
+        </h1>
+        <div className="flex gap-4">
+          <Link href={`/recruiter/${user.id}/jobs/${jobId}/results`}>
+            <Button
+              className="bg-gray-50 hover:bg-gray-100 text-gray-800 border border-gray-200"
+            >
+              View Matched Candidates
+            </Button>
+          </Link>
+          <Link href={`/recruiter/${user.id}`}>
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+              Go to Dashboard
+            </Button>
+          </Link>
+        </div>
+      </div>
+
+      <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+        <CandidateSkillsChart candidates={candidates} />
+      </div>
     </div>
-  );
+  )
+
+
+  // return (
+  //   <div>
+  //     <h1>Candidate Skills Comparison</h1>
+  //     <CandidateSkillsChart candidates={candidates} />
+  //     {/* <CandidateSkillsChart candidates={plotData} /> */}
+  //   </div>
+  // );
 }
 
 

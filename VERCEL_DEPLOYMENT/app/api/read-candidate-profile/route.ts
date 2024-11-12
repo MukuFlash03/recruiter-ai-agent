@@ -18,9 +18,12 @@ export async function GET(request: Request) {
 
     if (error) throw error;
 
-    return NextResponse.json({ message: 'Candidate profiles fetched successfully', data });
+    console.log('Fetched candidate profile data:', data);
+
+
+    return NextResponse.json({ message: 'Candidate profile fetched successfully', data });
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ error: 'Failed to fetch candidate profiles data' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to fetch candidate profile data' }, { status: 500 });
   }
 }

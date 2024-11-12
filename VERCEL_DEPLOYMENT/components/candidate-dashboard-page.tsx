@@ -5,12 +5,13 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import LoadingSpinner from "@/components/ui/loading-spinner"
 import { signout } from "@/lib/auth-action"
 import { checkProfileComplete, fetchCandidateMatchedJobs } from "@/lib/utils/api_calls"
 import { createClient } from "@/lib/utils/supabase/client"
 import { ArrowRight, CheckCircle, UserCircle, X } from "lucide-react"
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 // Mock API call
@@ -75,6 +76,11 @@ export function CandidateDashboardPage({ candidate_id }: { candidate_id: string 
       const {
         data: { user },
       } = await supabase.auth.getUser();
+
+      if (!user) {
+        return redirect('/login');
+      }
+
       setUser(user);
     };
 
@@ -152,9 +158,10 @@ export function CandidateDashboardPage({ candidate_id }: { candidate_id: string 
 
   if (loading) {
     return (
-      <div className="container mx-auto p-4 flex justify-center items-center h-screen">
-        <p className="text-lg">Loading...</p>
-      </div>
+      <LoadingSpinner message="Setting up your dashboard..." />
+      // <div className="container mx-auto p-4 flex justify-center items-center h-screen">
+      //   <p className="text-lg">Loading...</p>
+      // </div>
     )
   }
 
@@ -195,14 +202,6 @@ export function CandidateDashboardPage({ candidate_id }: { candidate_id: string 
     }
   }
 
-  if (loading) {
-    return (
-      <div className="container mx-auto p-4 flex justify-center items-center h-screen">
-        <p className="text-lg">Loading...</p>
-      </div>
-    )
-  }
-
   return (
     <div className="container mx-auto p-4">
       <div className="flex justify-between items-center mb-6">
@@ -227,9 +226,12 @@ export function CandidateDashboardPage({ candidate_id }: { candidate_id: string 
         </CardHeader>
         <CardContent>
           {profileComplete ? (
-            <Button asChild>
-              <Link href="/view-profile">View Profile</Link>
-            </Button>
+
+            <Link href={`/candidate/${candidate_id}/information`} className="flex justify-start">
+              <Button className="text-white px-6">
+                View Profile
+              </Button>
+            </Link>
           ) : (
             <Alert variant="default" className="bg-blue-50 border-blue-200">
               <UserCircle className="h-4 w-4 text-blue-500" />

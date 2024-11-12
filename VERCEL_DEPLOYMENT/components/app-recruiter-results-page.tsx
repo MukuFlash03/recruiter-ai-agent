@@ -1,11 +1,12 @@
 'use client'
 
 import { Button } from "@/components/ui/button";
+import LoadingSpinner from "@/components/ui/loading-spinner";
 import { InterviewsCandidateResponse } from "@/lib/types/interviews";
 import { fetchInterviewData } from '@/lib/utils/api_calls';
 import { createClient } from "@/lib/utils/supabase/client";
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { redirect, useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function RecruiterResultsPage() {
@@ -23,6 +24,11 @@ export default function RecruiterResultsPage() {
   useEffect(() => {
     const fetchUser = async () => {
       const { data: { user } } = await supabase.auth.getUser();
+
+      if (!user) {
+        return redirect('/login');
+      }
+
       setUser(user);
       return user;
     };
@@ -53,28 +59,68 @@ export default function RecruiterResultsPage() {
     fetchUser().then(loadData);
   }, [jobId]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return <LoadingSpinner message="Fetching matched candidates..." />;
   if (error) return <div>Error: {error}</div>;
   if (!user) return <div>User not authenticated</div>;
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">Interview Results</h1>
-      <div className="space-y-4">
-        <Link href={`/recruiter/${user.id}/jobs/${jobId}/results/visualize`}>
-          <Button className="mt-2">View Visuals</Button>
-        </Link>
+    <div className="max-w-4xl mx-auto p-6">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">
+          Interview Results
+        </h1>
+        <div className="flex space-x-4 justify-end">
+          <Link href={`/recruiter/${user.id}/jobs/${jobId}/results/visualize`}>
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6">
+              Compare Candidates
+              {/* <span className="mr-2">📊</span> View Analytics */}
+            </Button>
+          </Link>
+          <Link href={`/recruiter/${user.id}`}>
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6">
+              Go to Dashboard
+            </Button>
+          </Link>
+        </div>
+      </div>
+
+      <div className="grid gap-6">
         {interviewsData.map((candidate) => (
-          <div key={candidate.interview_id} className="border p-4 rounded-lg">
-            <h2 className="text-xl font-semibold">{candidate.candidate_profiles.name}</h2>
-            <p>Match: {candidate.match_pct}</p>
-            <p>Decision: {candidate.interview_decision ? 'Selected' : 'Rejected'}</p>
+          <div
+            key={candidate.interview_id}
+            className="border border-gray-200 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow bg-white"
+          >
+            <div className="flex justify-between items-start mb-4">
+              <h2 className="text-2xl font-semibold text-gray-800">
+                {candidate.candidate_profiles.name}
+              </h2>
+              <span className={`px-4 py-1 rounded-full text-sm font-medium ${candidate.interview_decision
+                ? 'bg-green-100 text-green-800'
+                : 'bg-red-100 text-red-800'
+                }`}>
+                {candidate.interview_decision ? 'Selected' : 'Rejected'}
+              </span>
+            </div>
+
+            <div className="flex items-center mb-4">
+              <div className="text-gray-600 mr-8">
+                Match Score:
+                <span className="ml-2 text-lg font-semibold text-blue-600">
+                  {candidate.match_pct}%
+                </span>
+              </div>
+            </div>
+
             <Link href={`/recruiter/${user.id}/jobs/${jobId}/results/${candidate.candidate_id}/analysis/`}>
-              <Button className="mt-2">View Full Analysis</Button>
+              <Button className="w-full bg-gray-50 hover:bg-gray-100 text-gray-800 border border-gray-200">
+                View Detailed Analysis →
+              </Button>
             </Link>
           </div>
         ))}
       </div>
     </div>
   )
+
 }

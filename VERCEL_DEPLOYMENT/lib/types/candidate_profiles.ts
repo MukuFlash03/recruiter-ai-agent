@@ -11,9 +11,17 @@ export type CandidatesResponse = {
   current_location: string,
   work_environment: string,
   salary_expectation: string,
-  additional_info: string
+  additional_info: string,
+  interview_audio_texts: Record<string, any>,
 };
 
 export type SelectedTopCandidatesResponse = Pick<CandidatesResponse,
   'candidate_id' | 'name' | 'email' | 'contact'
+>;
+
+export type SelectedCandidateFields = Pick<CandidatesResponse,
+  'candidate_id' | 'name' | 'email' | 'contact' |
+  'resume_content' | 'liProfile_content' | 'linkedin_url' |
+  'current_location' | 'work_environment' | 'salary_expectation' |
+  'additional_info' | 'interview_audio_texts'
 >;

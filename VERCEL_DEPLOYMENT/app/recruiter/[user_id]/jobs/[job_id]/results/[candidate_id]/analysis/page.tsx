@@ -1,11 +1,14 @@
 'use client'
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import LoadingSpinner from "@/components/ui/loading-spinner";
 import { InterviewsCandidateResponse } from "@/lib/types/interviews";
 import { fetchCustomQuestions, fetchInterviewAnalysis } from '@/lib/utils/api_calls';
 import { createClient } from "@/lib/utils/supabase/client";
 import { CheckCircledIcon, CrossCircledIcon } from "@radix-ui/react-icons";
+import Link from 'next/link';
 import { redirect, useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -39,6 +42,8 @@ export default function CandidatesAnalysisPage() {
         return redirect('/login');
       }
 
+      setUser(user);
+
       try {
         const data = await fetchInterviewAnalysis({
           job_id: jobId,
@@ -68,9 +73,8 @@ export default function CandidatesAnalysisPage() {
     // }, [jobId, candidateId]);
   }, []);
 
-
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner message="Fetching results..." />;
   }
 
   if (error || !analysisData) {
@@ -103,14 +107,33 @@ export default function CandidatesAnalysisPage() {
 
   return (
     <div className="container mx-auto p-4 space-y-6">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">
+          Candidate Evaluation
+        </h1>
+        <div className="flex justify-end gap-4 mb-6">
+          <Link href={`/recruiter/${user.id}/jobs/${jobId}/results`}>
+            <Button
+              className="bg-gray-50 hover:bg-gray-100 text-gray-800 border border-gray-200"
+            >
+              View Matched Candidates
+            </Button>
+          </Link>
+          <Link href={`/recruiter/${user.id}`}>
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+              Go to Dashboard
+            </Button>
+          </Link>
+        </div>
+      </div>
       <Card>
         <CardHeader>
-          <CardTitle>{`Candidate Evaluation: ${data.candidate_name}`}</CardTitle>
+          <CardTitle>{`Name: ${data.candidate_name}`}</CardTitle>
           <CardDescription>
             Selection Status: {data.candidate_selection.selected ? (
-              <span className="text-green-600 font-semibold">Selected</span>
+              <span className="text-green-600">Selected</span>
             ) : (
-              <span className="text-red-600 font-semibold">Not Selected</span>
+              <span className="text-red-600">Not Selected</span>
             )}
           </CardDescription>
           <CardDescription>

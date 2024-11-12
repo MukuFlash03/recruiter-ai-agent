@@ -80,9 +80,8 @@ export async function fetchJobPostings() {
   return response.json();
 }
 
-// this is hacked for now to show the profile for the candidate dashboard
 export async function fetchCandidateProfile() {
-  const response = await fetch('/api/read-candidate-profiles', {
+  const response = await fetch('/api/read-candidate-profile', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -91,7 +90,7 @@ export async function fetchCandidateProfile() {
   });
 
   if (!response.ok) {
-    throw new Error('Failed to fetch candidate profiles');
+    throw new Error('Failed to fetch candidate profile');
   }
 
   return response.json();
