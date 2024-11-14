@@ -18,7 +18,7 @@ export async function GET(request: Request) {
 
     if (error) throw error;
 
-    console.log('Fetched candidate profile data:', data);
+    console.log('Fetched candidate profile data');
 
 
     return NextResponse.json({ message: 'Candidate profile fetched successfully', data });

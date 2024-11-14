@@ -4,9 +4,10 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
 import { saveAudio } from "@/lib/utils/api_calls"
+import { createClient } from "@/lib/utils/supabase/client"
 import { Mic, Pause, Play, Square, Trash2 } from 'lucide-react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
 const questions = [
@@ -24,6 +25,10 @@ export default function CandidateInterviewPage({ candidate_id }: { candidate_id:
   const [isPlaying, setIsPlaying] = useState(false)
   const [timer, setTimer] = useState(0)
   const [playbackTime, setPlaybackTime] = useState(0)
+  const [user, setUser] = useState<any>(null);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const audioChunksRef = useRef<Blob[]>([])
   const timerIntervalRef = useRef<NodeJS.Timeout | null>(null)
@@ -32,7 +37,24 @@ export default function CandidateInterviewPage({ candidate_id }: { candidate_id:
 
   const router = useRouter()
 
+  const supabase = createClient();
+
   useEffect(() => {
+    const fetchUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user) {
+        return redirect('/login');
+      }
+
+      console.log(user);
+      setUser(user);
+    };
+
+    fetchUser();
+
     return () => {
       if (timerIntervalRef.current !== null) {
         clearInterval(timerIntervalRef.current as unknown as number)
@@ -228,38 +250,54 @@ export default function CandidateInterviewPage({ candidate_id }: { candidate_id:
     }
   }
 
-  const handleSubmit = () => {
+  const handleCloseConfirmation = () => {
+    setShowConfirmation(false);
+    // router.push(`/candidate/${candidate_id}/`);
+  };
+
+  const handleSubmit = async () => {
+    if (isSubmitting) return
+    setIsSubmitting(true)
+
     // const audioTexts = recordings.map(recording => recording?.base64 || null);
     const audioFileNames = recordings.map(recording => recording?.fileName || null);
 
-    fetch("/api/update-audio-text", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      // body: JSON.stringify({ audioTexts }),
-      body: JSON.stringify({ audioFileNames }),
-    })
-      .then(response => {
-        if (response.ok) {
-          console.log("Profile saved successfully with interview QnA")
-          toast({
-            title: "Interview Submitted",
-            description: "Thank you for completing the interview!",
-          })
-        } else {
-          throw new Error("Failed to save profile with interview QnA")
-        }
+    try {
+      const response = await fetch("/api/update-audio-text", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        // body: JSON.stringify({ audioTexts }),
+        body: JSON.stringify({ audioFileNames }),
       })
-      .catch(error => {
-        console.error("Error saving profile with interview QnA:", error)
+
+      if (response.ok) {
+        console.log("Profile saved successfully with interview QnA")
         toast({
-          title: "Error",
-          description: "Failed to save profile with interview QnA. Please try again.",
-          variant: "destructive",
+          title: "Interview Submitted",
+          description: "Thank you for completing the interview!",
         })
+        setShowConfirmation(true);
+        setTimeout(() => {
+          setShowConfirmation(false);
+          // router.push(`/candidate/${candidate_id}/`);
+        }, 3000);
+      } else {
+        throw new Error("Failed to save profile with interview QnA")
+      }
+    } catch (error) {
+      console.error("Error saving profile with interview QnA:", error)
+      // alert("Failed to save profile with interview QnA. Please try again.")
+      toast({
+        title: "Error",
+        description: "Failed to save profile with interview QnA. Please try again.",
+        variant: "destructive",
       })
-  }
+    } finally {
+      setIsSubmitting(false)
+    }
+  };
 
   return (
     <Card className="w-full max-w-3xl mx-auto">
@@ -314,13 +352,37 @@ export default function CandidateInterviewPage({ candidate_id }: { candidate_id:
           <Button onClick={prevQuestion}>Previous Question</Button>
         )}
         {currentQuestion === questions.length - 1 ? (
-          <Link href={`/candidate/${candidate_id}`}>
-            <Button onClick={handleSubmit}>Submit</Button>
-          </Link>
+          <Button
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Submitting...' : 'Submit'}
+          </Button>
         ) : (
           <Button onClick={nextQuestion}>Next Question</Button>
         )}
       </CardFooter>
+      {showConfirmation && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-8 shadow-xl transform transition-all max-w-md w-full">
+            <div className="text-center">
+              <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
+                <svg className="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h3 className="text-lg leading-6 font-medium text-gray-900 mb-2">Success!</h3>
+              <p className="text-sm text-gray-500 mb-4">Thank you for completing the interview!</p>
+              <button
+                onClick={handleCloseConfirmation}
+                className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700 focus:outline-none"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </Card>
   )
 }

@@ -1,13 +1,14 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import Link from 'next/link';
-import { useState } from "react";
+import { createClient } from "@/lib/utils/supabase/client";
+import { redirect, useRouter } from 'next/navigation';
+import { useEffect, useState } from "react";
 
 export function CandidateProfileForm({ candidate_id }: { candidate_id: string }) {
   const [name, setName] = useState("");
@@ -20,6 +21,29 @@ export function CandidateProfileForm({ candidate_id }: { candidate_id: string })
   const [workPreference, setWorkPreference] = useState("");
   const [salaryExpectation, setSalaryExpectation] = useState("");
   const [additionalInfo, setAdditionalInfo] = useState("");
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [user, setUser] = useState<any>(null);
+
+  const router = useRouter();
+
+  const supabase = createClient();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user) {
+        return redirect('/login');
+      }
+
+      console.log(user);
+
+      setUser(user);
+    };
+    fetchUser();
+  }, [])
 
   const handleFileResumeUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const uploadedFile = event.target.files?.[0];
@@ -33,6 +57,11 @@ export function CandidateProfileForm({ candidate_id }: { candidate_id: string })
     if (uploadedFile) {
       setFileLiProfile(uploadedFile);
     }
+  };
+
+  const handleCloseConfirmation = () => {
+    setShowConfirmation(false);
+    router.push(`/candidate/${candidate_id}/`);
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -62,7 +91,11 @@ export function CandidateProfileForm({ candidate_id }: { candidate_id: string })
 
       if (response.ok) {
         console.log("Profile saved successfully");
-
+        setShowConfirmation(true);
+        setTimeout(() => {
+          setShowConfirmation(false);
+          router.push(`/candidate/${candidate_id}/`);
+        }, 3000);
       } else {
         throw new Error("Failed to save profile");
       }
@@ -174,13 +207,33 @@ export function CandidateProfileForm({ candidate_id }: { candidate_id: string })
             <Button type="submit">Save Profile</Button>
           </div>
         </form>
+        {showConfirmation && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-lg p-8 shadow-xl transform transition-all max-w-md w-full">
+              <div className="text-center">
+                <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
+                  <svg className="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="text-lg leading-6 font-medium text-gray-900 mb-2">Success!</h3>
+                <p className="text-sm text-gray-500 mb-4">Your profile has been saved successfully.</p>
+                <button
+                  onClick={handleCloseConfirmation}
+                  className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700 focus:outline-none"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </CardContent>
-      <CardFooter className="flex justify-between">
-        {/* <Button type="submit">Save Profile</Button> */}
+      {/* <CardFooter className="flex justify-between">
         <Link href={`/candidate/${candidate_id}/interview`}>
           <Button variant="outline">Continue to Interview</Button>
         </Link>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
 }

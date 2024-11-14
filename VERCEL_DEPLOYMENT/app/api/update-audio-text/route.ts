@@ -73,7 +73,7 @@ export async function POST(request: Request) {
       throw error;
     }
 
-    console.log('Updated audio data:', data);
+    console.log('Updated audio data:', data[0].interview_audio_texts);
 
     return NextResponse.json({ message: 'Audio data updated successfully' });
   } catch (error) {

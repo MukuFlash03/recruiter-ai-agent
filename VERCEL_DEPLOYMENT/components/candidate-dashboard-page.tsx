@@ -226,12 +226,16 @@ export function CandidateDashboardPage({ candidate_id }: { candidate_id: string 
         </CardHeader>
         <CardContent>
           {profileComplete ? (
-
-            <Link href={`/candidate/${candidate_id}/information`} className="flex justify-start">
-              <Button className="text-white px-6">
-                View Profile
-              </Button>
-            </Link>
+            <div className="flex items-center space-x-4">
+              <Link href={`/candidate/${candidate_id}/information`} className="flex justify-start">
+                <Button className="text-white px-6">
+                  View Profile
+                </Button>
+              </Link>
+              <Link href={`/candidate/${candidate_id}/interview`}>
+                <Button variant="outline">Continue to Interview</Button>
+              </Link>
+            </div>
           ) : (
             <Alert variant="default" className="bg-blue-50 border-blue-200">
               <UserCircle className="h-4 w-4 text-blue-500" />
