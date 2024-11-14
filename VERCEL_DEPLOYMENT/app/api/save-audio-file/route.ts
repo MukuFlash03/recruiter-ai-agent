@@ -1,6 +1,5 @@
 import speechToText from '@/lib/operations/speechToText';
 import { createClient } from '@/lib/utils/supabase/server';
-// import fs from 'fs';
 import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 
@@ -18,8 +17,7 @@ export async function POST(request: NextRequest) {
   const user_id = user.id;
 
   const data = await request.json()
-  // const audioData = data.audioData
-  // const fileName = 'interview_audio.mp3'
+
   const { audioData, questionNumber } = data
   const fileName = `interview_audio_q${questionNumber}.mp3`
   const filePath = path.join(process.cwd(), 'lib', 'data', 'audio', fileName)
@@ -65,10 +63,6 @@ export async function POST(request: NextRequest) {
 
     console.log("InterviewsBucketAudioListData:", InterviewsBucketAudioListData);
     console.log("InterviewsBucketAudioListError:", InterviewsBucketAudioListError);
-
-
-    // fs.writeFileSync(filePath, buffer)
-    // speechToText(filePath)
 
     console.log("File saved successfully");
     console.log(InterviewsBucketAudioData.id);

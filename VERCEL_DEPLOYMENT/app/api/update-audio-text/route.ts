@@ -1,7 +1,5 @@
 import { createClient } from '@/lib/utils/supabase/server';
-import fs from 'fs/promises';
 import { NextResponse } from 'next/server';
-import path from 'path';
 
 export async function POST(request: Request) {
   try {
@@ -12,16 +10,6 @@ export async function POST(request: Request) {
     } = await supabase.auth.getUser();
 
     const candidate_id = user?.id;
-
-    /*
-    const filename = 'interview_audio.txt';
-    const filePath = path.join(process.cwd(), 'lib', 'data', 'audio', filename);
-    const interview_audio_text = await fs.readFile(filePath, 'utf-8');
-    */
-
-    // const { audioTexts } = await request.json();
-    // console.log("Audio texts received from Request");
-    // console.log(audioTexts);
 
     const { audioFileNames } = await request.json();
     console.log("Audio filenames received from Request");
@@ -48,8 +36,23 @@ export async function POST(request: Request) {
 
     const audioTexts = await Promise.all(audioFileNames.map(async (fileName, index) => {
       if (fileName) {
-        const filePath = path.join(process.cwd(), 'lib', 'data', 'audio', fileName.replace('.mp3', '.txt'));
-        const text = await fs.readFile(filePath, 'utf-8');
+        const filePath = fileName.replace('.mp3', '.txt')
+
+        const { data: InterviewsBucketTextData, error: InterviewsBucketTextError } = await supabase
+          .storage
+          .from('interviews')
+          .download(`${candidate_id}/text/${filePath}`)
+
+        console.log("InterviewsBucketTextData:", InterviewsBucketTextData);
+        console.log("InterviewsBucketTextError:", InterviewsBucketTextError);
+
+        if (!InterviewsBucketTextData) {
+          throw new Error('Failed to download text file');
+        }
+
+        const text = await InterviewsBucketTextData.text()
+        console.log("Downloaded text in update-audio-text:", text);
+
         return {
           questionNumber: index + 1,
           fileName: fileName,
