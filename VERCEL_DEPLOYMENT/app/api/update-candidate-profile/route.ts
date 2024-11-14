@@ -1,4 +1,4 @@
-import { fetchPdfText } from '@/lib/utils/api_calls';
+// import { fetchPdfText } from '@/lib/utils/api_calls';
 import { createClient } from '@/lib/utils/supabase/server';
 import { writeFile } from 'fs/promises';
 import { NextResponse } from 'next/server';
@@ -16,6 +16,18 @@ export async function POST(request: Request) {
   const workPreference = formData.get('workPreference') as string;
   const salaryExpectation = formData.get('salaryExpectation') as string;
   const additionalInfo = formData.get('additionalInfo') as string;
+
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error('User not authenticated');
+  }
+
+  console.log("User ID:", user.id);
+  const user_id = user.id;
 
   if (!fileResume || !fileLiProfile) {
     return NextResponse.json({ error: 'No files uploaded' }, { status: 400 });
@@ -37,11 +49,11 @@ export async function POST(request: Request) {
 
     console.log("Received request in POST route");
 
-    const supabase = createClient();
+    // const supabase = createClient();
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+    // const {
+    //   data: { user },
+    // } = await supabase.auth.getUser();
 
     if (user?.id) {
       const userEmail = user.email;
@@ -110,7 +122,18 @@ export async function POST(request: Request) {
 }
 
 // async function fileBufferText({ fileResume, fileLiProfile }: { fileResume: File, fileLiProfile: File }) {
-async function fileBufferText(rawFiles) {
+async function fileBufferText(rawFiles: Record<string, File>) {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error('User not authenticated');
+  }
+
+  console.log("User ID:", user.id);
+  const user_id = user.id;
 
   const fileContents: Record<string, string> = {};
 
@@ -122,6 +145,27 @@ async function fileBufferText(rawFiles) {
 
       const fileName = `${key}.pdf`;
       const filePath = path.join(process.cwd(), 'lib', 'data', 'documents', fileName);
+
+      const { data: ResumesBucketUploadData, error: ResumesBucketUploadError } = await supabase
+        .storage
+        .from('resumes')
+        // .upload(`${user_id}/${file.name}`, file, {
+        .upload(`${user_id}/${fileName}`, file, {
+          cacheControl: '3600',
+          upsert: true
+        })
+
+      console.log("After upload to Supabase Storage...Error?");
+
+      console.log("ResumesBucketUploadData:", ResumesBucketUploadData);
+      console.log("ResumesBucketUploadError:", ResumesBucketUploadError);
+
+      if (ResumesBucketUploadError) {
+        throw new Error('Failed to upload resume documents to Supabase Storage');
+      }
+
+      console.log("Resume files saved successfully");
+
 
       try {
         await writeFile(filePath, buffer);
@@ -142,3 +186,73 @@ async function fileBufferText(rawFiles) {
   return fileContents;
 }
 
+
+import fs from 'fs/promises';
+import { pdfToText } from 'pdf-ts';
+
+async function fetchPdfText(filePath: string) {
+  console.log("File Path:", filePath);
+
+  const fileName = filePath.split('/').pop()
+  console.log("File Name:", fileName);
+
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error('User not authenticated in fetchPdfText');
+  }
+
+  console.log("User ID:", user.id);
+  const user_id = user.id;
+
+  const { data: ResumesBucketDownloadData, error: ResumesBucketDownloadError } = await supabase
+    .storage
+    .from('resumes')
+    .download(`${user_id}/${fileName}`)
+
+  console.log("ResumesBucketDownloadData:", ResumesBucketDownloadData);
+  console.log("ResumesBucketDownloadError:", ResumesBucketDownloadError);
+
+  if (!ResumesBucketDownloadData) {
+    throw new Error('Failed to download PDF file');
+  }
+
+  const pdfBuffer = Buffer.from(await ResumesBucketDownloadData.arrayBuffer())
+
+  // const blob = new Blob([buffer], {
+  //   type: 'application/pdf'
+  // })
+
+  // const file = new File(
+  //   [blob],
+  //   filePath.split('/').pop() || 'document.pdf',
+  //   {
+  //     type: 'application/pdf',
+  //     lastModified: Date.now()
+  //   }
+  // )
+
+  try {
+    const pdf = await fs.readFile(filePath);
+    const text = await pdfToText(pdf);
+
+    const textFromPdfBuffer = await pdfToText(pdfBuffer);
+    console.log("\n***********************\n");
+    console.log("\n***********************\n");
+    console.log("textFromPdfBuffer in fetch-pdf-text route.ts:");
+    console.log(textFromPdfBuffer);
+    console.log("\n***********************\n");
+    console.log("\n***********************\n");
+
+    return {
+      message: 'Text extracted from PDF successfully',
+      text
+    };
+  } catch (error) {
+    console.error('Error extracting text from PDF:', error);
+    throw new Error('Failed to extract text from PDF');
+  }
+}

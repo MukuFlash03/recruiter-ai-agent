@@ -1,7 +1,6 @@
 import speechToText from '@/lib/operations/speechToText';
 import { createClient } from '@/lib/utils/supabase/server';
 import { NextRequest, NextResponse } from 'next/server';
-import path from 'path';
 
 export async function POST(request: NextRequest) {
   const supabase = createClient();
@@ -20,7 +19,6 @@ export async function POST(request: NextRequest) {
 
   const { audioData, questionNumber } = data
   const fileName = `interview_audio_q${questionNumber}.mp3`
-  const filePath = path.join(process.cwd(), 'lib', 'data', 'audio', fileName)
 
   console.log("Uploaded file name: ", fileName);
 
