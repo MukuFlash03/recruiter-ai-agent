@@ -252,7 +252,7 @@ export default function CandidateInterviewPage({ candidate_id }: { candidate_id:
 
   const handleCloseConfirmation = () => {
     setShowConfirmation(false);
-    // router.push(`/candidate/${candidate_id}/`);
+    router.push(`/candidate/${candidate_id}/`);
   };
 
   const handleSubmit = async () => {
@@ -281,7 +281,7 @@ export default function CandidateInterviewPage({ candidate_id }: { candidate_id:
         setShowConfirmation(true);
         setTimeout(() => {
           setShowConfirmation(false);
-          // router.push(`/candidate/${candidate_id}/`);
+          router.push(`/candidate/${candidate_id}/`);
         }, 3000);
       } else {
         throw new Error("Failed to save profile with interview QnA")
@@ -345,8 +345,8 @@ export default function CandidateInterviewPage({ candidate_id }: { candidate_id:
       </CardContent>
       <CardFooter className="flex justify-between">
         {currentQuestion === 0 ? (
-          <Link href={`/candidate/${candidate_id}/profile`}>
-            <Button>Back to Profile</Button>
+          <Link href={`/candidate/${candidate_id}`}>
+            <Button>Back to Dashboard</Button>
           </Link>
         ) : (
           <Button onClick={prevQuestion}>Previous Question</Button>

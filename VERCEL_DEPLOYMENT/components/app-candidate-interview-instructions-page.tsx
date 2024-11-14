@@ -53,8 +53,8 @@ export function InterviewInstructionsPage({ candidate_id }: { candidate_id: stri
         </p>
       </Card>
       <div className="flex justify-between">
-        <Link href="/candidate/123/profile">
-          <Button variant="outline">Back to Profile</Button>
+        <Link href={`/candidate/${candidate_id}`}>
+          <Button variant="outline">Back to Dashboard</Button>
         </Link>
         <Link href={`/candidate/${candidate_id}/interview/start`}>
           <Button>
