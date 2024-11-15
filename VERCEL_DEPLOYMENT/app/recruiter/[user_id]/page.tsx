@@ -1,4 +1,4 @@
-import { RecruiterDashboardComponent as RecruiterDashboardPage } from '@/components/recruiter-dashboard';
+import { RecruiterDashboardComponent as RecruiterDashboardPage } from '@/components/RecruiterDashboard';
 import { createClient } from '@/lib/utils/supabase/server';
 import { redirect } from "next/navigation";
 

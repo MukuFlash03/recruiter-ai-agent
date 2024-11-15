@@ -1,40 +1,5 @@
 import { NewProfileResponse } from '../types/all_profiles';
 
-
-/*
-export async function saveRecording(base64AudioMessage: string) {
-    const response = await fetch('/api/save-recorded-file', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ audioData: base64AudioMessage }),
-    });
-    if (!response.ok) {
-        console.log(response);
-        throw new Error('Failed to save recording');
-    }
-    return response.json();
-}
-*/
-
-/*
-export async function saveAudio(base64AudioMessage: string) {
-  const response = await fetch('/api/save-audio-file', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ audioData: base64AudioMessage }),
-  });
-  if (!response.ok) {
-    console.log(response);
-    throw new Error('Failed to save audio');
-  }
-  return response.json();
-}
-*/
-
 export async function saveAudio(audioData: string, questionNumber: number) {
   const response = await fetch('/api/save-audio-file', {
     method: 'POST',
@@ -148,8 +113,6 @@ export async function fetchJobAnalysis({ job_id, recruiter_id }: { job_id: strin
   return response.json();
 }
 
-
-// export async function fetchCandidateMatchedJobs({ candidate_id }: { candidate_id: string }) {
 export async function fetchCandidateMatchedJobs() {
   console.log('candidate_id in fetchCandidateMatchedJobs');
 
@@ -191,25 +154,6 @@ export async function fetchCustomQuestions({ job_id, recruiter_id }: { job_id: s
 
   return response.json();
 }
-
-
-/*
-export async function insertJobPostings() {
-    const response = await fetch('/api/insert-job-postings', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        // body: JSON.stringify(candidate_data),
-    });
-
-    if (!response.ok) {
-        throw new Error('Failed to insert job postings data');
-    }
-
-    return response.json();
-}
-*/
 
 import { JobPostingData } from '@/lib/types/jobs'; // You'll need to create this type
 

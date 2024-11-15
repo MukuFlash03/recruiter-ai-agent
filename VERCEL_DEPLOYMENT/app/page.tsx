@@ -1,4 +1,4 @@
-import { Page as AppPage } from '@/components/app-page';
+import { Page as AppPage } from '@/components/AppHome';
 // import { createClient } from '@/lib/utils/supabase/server';
 // import { redirect } from "next/navigation";
 

@@ -1,4 +1,4 @@
-import { CandidateProfileForm } from '@/components/app-candidate-profile-page';
+import { CandidateProfileForm } from '@/components/CandidateProfileForm';
 import { createClient } from '@/lib/utils/supabase/server';
 import { redirect } from "next/navigation";
 

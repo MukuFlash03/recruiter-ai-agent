@@ -153,7 +153,6 @@ async function fileBufferText(rawFiles: Record<string, File>) {
 
       console.log("Resume files saved successfully");
 
-
       try {
         const result = await fetchPdfText(fileName);
         // console.log(`Content of ${key}:`, result);
@@ -166,12 +165,8 @@ async function fileBufferText(rawFiles: Record<string, File>) {
   }
   // console.log("Processed file contents:", fileContents);
 
-
   return fileContents;
 }
-
-
-
 
 async function fetchPdfText(fileName: string) {
   console.log("File Name:", fileName);

@@ -1,4 +1,4 @@
-import { CandidateDashboardPage } from '@/components/candidate-dashboard-page';
+import { CandidateDashboardPage } from '@/components/CandidateDashboard';
 import { createClient } from '@/lib/utils/supabase/server';
 import { redirect } from "next/navigation";
 

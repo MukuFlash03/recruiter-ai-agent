@@ -1,5 +1,4 @@
-// import { Page as InterviewInstructionsPage } from '@/components/app-candidate-profile-interview-page';
-import { InterviewInstructionsPage } from '@/components/app-candidate-interview-instructions-page';
+import { InterviewInstructionsPage } from '@/components/InterviewInstructions';
 import { createClient } from '@/lib/utils/supabase/server';
 import { redirect } from "next/navigation";
 

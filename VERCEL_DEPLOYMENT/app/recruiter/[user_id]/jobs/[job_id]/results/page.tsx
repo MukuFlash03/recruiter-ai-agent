@@ -1,4 +1,4 @@
-import RecruiterResultsPage from '@/components/app-recruiter-results-page';
+import RecruiterResultsPage from '@/components/RecruiterResults';
 import { createClient } from '@/lib/utils/supabase/server';
 import { redirect } from "next/navigation";
 

@@ -1,4 +1,4 @@
-import CandidateInterviewPage from '@/components/app-candidate-profile-interview-page';
+import CandidateInterviewPage from '@/components/CandidateInterviewPage';
 import { createClient } from '@/lib/utils/supabase/server';
 import { redirect } from "next/navigation";
 
