@@ -1,5 +1,10 @@
+import sys
+import os
+from pathlib import Path
 from fastapi import FastAPI, BackgroundTasks, HTTPException, Request
 from typing import Dict, Any, Union
+import logging
+
 from db.operations import get_candidate_profiles, get_job_postings, get_interview_data
 from db.helpers import (
     organize_interview_data,
@@ -11,8 +16,14 @@ from db.helpers import (
 )
 from custom_types import JobRecruiterID
 
-import sys
-import os
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Setup path resolution
+API_DIR = Path(__file__).parent
+ROOT_DIR = API_DIR.parent
+sys.path.append(str(API_DIR))
 
 current_file_path = os.path.abspath(__file__)
 parent_directory = os.path.dirname(os.path.dirname(current_file_path))
@@ -134,14 +145,22 @@ jobDetails: JobRecruiterID
     """
     An asynchronous API route that processes a list of questions.
     """
+    import time
+    start_time = time.time()
     print("Inside getCandidatesAnalysis FastAPI route in main.py")
     # Simulate some async processing
-    await asyncio.sleep(1)  # Simulate IO-bound operation
 
-    return_json = await end_to_end_agent(jobDetails)
+    try:
+      await asyncio.sleep(1)  # Simulate IO-bound operation
+      return_json = await end_to_end_agent(jobDetails)
 
-    return return_json
+      logging.info(f"analyze_notes completed in {time.time() - start_time:.2f} seconds")
+      print(f"analyze_notes completed in {time.time() - start_time:.2f} seconds")
 
+      return return_json
+    except asyncio.TimeoutError:
+      logging.error("Note generation timed out after 50 seconds")
+      raise HTTPException(status_code=504, detail="Note generation timed out")
 
 # Synchronous route with background task
 @app.get("/sync_with_background", response_model=Dict[str, str])

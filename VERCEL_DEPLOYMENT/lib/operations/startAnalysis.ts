@@ -1,13 +1,30 @@
+export const maxDuration = 30;
 import { JobRecruiterID } from "@/lib/types/jobs";
 
 // const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://127.0.0.1:8000';
-const API_BASE_URL = 'http://127.0.0.1:8000';
+// const API_BASE_URL = 'http://127.0.0.1:8000';
+
+
+// const API_BASE_URL = process.env.NODE_ENV === 'development'
+//   ? 'http://127.0.0.1:8000'
+//   : '';
 
 export async function startJobCandidateMatching(jobDetails: JobRecruiterID) {
-  console.log("Inside startJobCandidateMatching; making fetch request to FastAPI");;
+  console.log("Inside startJobCandidateMatching; making fetch request to FastAPI");
+
+  const url = process.env.NODE_ENV === 'development'
+    ? `http://127.0.0.1:8000/api/py/get_candidates_analysis`
+    : `/api/py/generate-notes-get_candidates_analysis`;
+
+  console.log("Requesting URL:", url);
+
+  const requestUrl = process.env.NODE_ENV === 'development'
+    ? url
+    : new URL(url, 'https://recruit-ai-agent.vercel.app/').toString();
 
   // const response = await fetch(`http://127.0.0.1:8000/get_candidates_analysis`, {
-  const response = await fetch(`${API_BASE_URL}/api/py/get_candidates_analysis`, {
+  // const response = await fetch(`${API_BASE_URL}/api/py/get_candidates_analysis`, {
+  const response = await fetch(requestUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
