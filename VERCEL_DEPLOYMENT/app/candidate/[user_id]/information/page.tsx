@@ -2,15 +2,15 @@
 
 import { Button } from "@/components/ui/button";
 import LoadingSpinner from "@/components/ui/loading-spinner";
-import { SelectedCandidateFields } from "@/lib/types/candidate_profiles";
+import { DocumentUrls, EnhancedCandidateFields } from "@/lib/types/candidate_profiles";
 import { fetchCandidateProfile } from '@/lib/utils/api_calls';
 import { createClient } from "@/lib/utils/supabase/client";
 import Link from 'next/link';
 import { redirect, useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export default function RecruiterResultsPage() {
-  const [candidateData, setCandidateData] = useState<SelectedCandidateFields>();
+export default function CandidateInfoPage() {
+  const [candidateData, setCandidateData] = useState<EnhancedCandidateFields>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [user, setUser] = useState<any>(null);
@@ -20,6 +20,29 @@ export default function RecruiterResultsPage() {
   const params = useParams();
   const userId = Array.isArray(params.user_id) ? params.user_id[0] : params.user_id;
   console.log("User ID from params:", userId);
+
+
+  const getResumesBucketPdfUrls = async (user_id: string): Promise<DocumentUrls> => {
+    const supabase = createClient();
+    const { data: ResumesBucketUrlData, error: ResumesBucketUrlError } = await supabase
+      .storage
+      .from('resumes')
+      .createSignedUrls([`${user_id}/fileResume.pdf`, `${user_id}/fileLiProfile.pdf`], 60)
+
+    if (ResumesBucketUrlError) {
+      throw new Error('Failed to fetch resume URLs');
+    }
+
+    const pdfUrls = {
+      resume_pdf_url: ResumesBucketUrlData[0].signedUrl,
+      liProfile_pdf_url: ResumesBucketUrlData[1].signedUrl,
+    };
+
+    console.log("Fetched resume URLs:", pdfUrls);
+
+    return pdfUrls;
+  }
+
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -43,7 +66,16 @@ export default function RecruiterResultsPage() {
 
       try {
         const data = await fetchCandidateProfile();
-        setCandidateData(data.data[0]);
+        const pdfUrls = await getResumesBucketPdfUrls(userId);
+        console.log("Fetched resume URLs inside loadData():", pdfUrls);
+
+
+        // setCandidateData(data.data[0]);
+        setCandidateData({
+          ...data.data[0],
+          resume_pdf_url: pdfUrls.resume_pdf_url,
+          liProfile_pdf_url: pdfUrls.liProfile_pdf_url,
+        });
         console.log("Fetched candidate profile data in UI", data);
       } catch (err) {
         console.error("Error fetching candidate profile data:", err);
@@ -57,12 +89,12 @@ export default function RecruiterResultsPage() {
   }, [userId]);
 
   if (loading)
-    return <LoadingSpinner message="Fetching matched candidates..." />;
+    return <LoadingSpinner message="Fetching candidate profile..." />;
   if (error) return <div>Error: {error}</div>;
   if (!user) return <div>User not authenticated</div>;
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="w-full p-6">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">
           Candidate Profile
@@ -76,7 +108,7 @@ export default function RecruiterResultsPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-lg p-8">
+      <div className="bg-white rounded-lg shadow-lg p-8 w-full">
         {candidateData && (
           <div className="space-y-6">
             <div className="flex items-center space-x-4 mb-6">
@@ -106,26 +138,43 @@ export default function RecruiterResultsPage() {
                   <p className="text-gray-600">Salary Expectation: {candidateData.salary_expectation}</p>
                 </div>
               </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-700">Additional Information</h3>
+                <p className="text-gray-600">{candidateData.additional_info}</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-6">
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-700">Resume</h3>
+                  <div className="w-full h-[600px] rounded">
+                    <iframe
+                      src={`${candidateData.resume_pdf_url}#view=FitH`}
+                      className="w-full h-full rounded border border-gray-200"
+                      title="Resume PDF"
+                    />
+                  </div>
+                </div>
+              </div>
 
               <div className="space-y-4">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-700">Resume Content</h3>
-                  <div className="max-h-60 overflow-y-auto bg-gray-50 p-4 rounded">
-                    <p className="text-gray-600 whitespace-pre-line">{candidateData.resume_content}</p>
+                  <h3 className="text-lg font-semibold text-gray-700">LinkedIn Profile</h3>
+                  <div className="w-full h-[600px] rounded">
+                    <iframe
+                      src={`${candidateData.liProfile_pdf_url}#view=FitH`}
+                      className="w-full h-full rounded border border-gray-200"
+                      title="LinkedIn Profile PDF"
+                    />
                   </div>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-700">Additional Information</h3>
-                  <p className="text-gray-600">{candidateData.additional_info}</p>
                 </div>
               </div>
             </div>
           </div>
         )}
       </div>
-
-    </div>
+    </div >
   )
 
 }

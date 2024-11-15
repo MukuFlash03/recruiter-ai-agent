@@ -3,7 +3,7 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import LoadingSpinner from "@/components/ui/loading-spinner"
 import { signout } from "@/lib/auth-action"
@@ -255,7 +255,11 @@ export function CandidateDashboardPage({ candidate_id }: { candidate_id: string 
           <Card className="mb-8">
             <CardHeader>
               <CardTitle>Matched Job Opportunities</CardTitle>
-              <CardDescription>Your avatar has passed the recruiter screen for these positions</CardDescription>
+              {matchedJobs.length > 0 ? (
+                <CardDescription>Your avatar has passed the recruiter screen for these positions</CardDescription>
+              ) : (
+                <CardDescription>Check back later to see matched jobs...</CardDescription>
+              )}
             </CardHeader>
             <CardContent>
               <ul className="space-y-4">
@@ -327,82 +331,13 @@ export function CandidateDashboardPage({ candidate_id }: { candidate_id: string 
                     </div>
                   </li>
                 ))}
-                {/* {activeJobs.map((job) => (
-                  <li key={job.id} className="p-4 bg-muted rounded-lg">
-                    <div className="flex justify-between items-start mb-2">
-                      <div>
-                        <h3 className="font-semibold text-lg">
-                          <Link href={job.link} className="hover:underline">
-                            {job.title}
-                          </Link>
-                        </h3>
-                        <p className="text-primary font-medium">{job.company}</p>
-                        <p className="text-sm text-muted-foreground mt-1">{job.summary}</p>
-                        <div className="flex flex-wrap gap-2 mt-2">
-                          {job.tags.map((tag: string, index: number) => (
-                            <Badge key={index} variant="secondary" className="bg-secondary text-secondary-foreground">
-                              {tag}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-                      <Badge variant={job.status === 'Next Step: Technical Screen' ? 'default' : 'secondary'} className={job.status === 'Next Step: Technical Screen' ? 'bg-primary text-primary-foreground' : ''}>
-                        {job.status}
-                      </Badge>
-                    </div>
-                    <div className="flex space-x-2 mt-4">
-                      {job.status !== 'Next Step: Technical Screen' && (
-                        <Dialog>
-                          <DialogTrigger asChild>
-                            <Button onClick={() => handleMoveForward(job)} size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                              <ArrowRight className="h-4 w-4 mr-2" />
-                              Move Forward
-                            </Button>
-                          </DialogTrigger>
-                          <DialogContent>
-                            <DialogHeader>
-                              <DialogTitle>Next Steps for {job.title} at {job.company}</DialogTitle>
-                              <DialogDescription>
-                                You&apos;re about to move forward with this opportunity. Here&apos;s what happens next:
-                              </DialogDescription>
-                            </DialogHeader>
-                            <div className="py-4">
-                              <ol className="list-decimal list-inside space-y-2">
-                                <li>Your interest will be communicated to the employer</li>
-                                <li>The employer will review your profile</li>
-                                <li>If there&apos;s a match, we&apos;ll schedule an initial interview</li>
-                                <li>You&apos;ll receive preparation materials for the interview</li>
-                                <li>After the interview, both parties will provide feedback</li>
-                              </ol>
-                            </div>
-                            <DialogFooter>
-                              <Button onClick={confirmMoveForward} className="bg-primary text-primary-foreground hover:bg-primary/90">
-                                <CheckCircle className="h-4 w-4 mr-2" />
-                                Confirm and Proceed
-                              </Button>
-                            </DialogFooter>
-                          </DialogContent>
-                        </Dialog>
-                      )}
-                      <Button
-                        onClick={() => handleWithdraw(job.id)}
-                        variant={job.status === 'Next Step: Technical Screen' ? 'outline' : 'secondary'}
-                        size="sm"
-                        className={job.status === 'Next Step: Technical Screen' ? 'text-muted-foreground' : ''}
-                      >
-                        <X className="h-4 w-4 mr-2" />
-                        Withdraw Application
-                      </Button>
-                    </div>
-                  </li>
-                ))} */}
               </ul>
             </CardContent>
-            <CardFooter>
+            {/* <CardFooter>
               <Button onClick={handleRefreshJobs} disabled={loading}>
                 {loading ? 'Refreshing...' : 'Refresh Jobs'}
               </Button>
-            </CardFooter>
+            </CardFooter> */}
           </Card>
           {withdrawnJobs.length > 0 && (
             <Card>

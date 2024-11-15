@@ -23,6 +23,7 @@ export function CandidateProfileForm({ candidate_id }: { candidate_id: string })
   const [additionalInfo, setAdditionalInfo] = useState("");
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(false)
 
   const router = useRouter();
 
@@ -65,6 +66,7 @@ export function CandidateProfileForm({ candidate_id }: { candidate_id: string })
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
+    setLoading(true);
     event.preventDefault();
     if (!fileResume) {
       alert("Please upload a resume file.");
@@ -102,6 +104,8 @@ export function CandidateProfileForm({ candidate_id }: { candidate_id: string })
     } catch (error) {
       console.error("Error saving profile:", error);
       alert("Failed to save profile. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -204,7 +208,9 @@ export function CandidateProfileForm({ candidate_id }: { candidate_id: string })
             />
           </div>
           <div className="flex justify-between">
-            <Button type="submit">Save Profile</Button>
+            <Button type="submit" disabled={loading}>
+              {loading ? 'Saving...' : 'Save Profile'}
+            </Button>
           </div>
         </form>
         {showConfirmation && (

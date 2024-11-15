@@ -25,3 +25,13 @@ export type SelectedCandidateFields = Pick<CandidatesResponse,
   'current_location' | 'work_environment' | 'salary_expectation' |
   'additional_info' | 'interview_audio_texts'
 >;
+
+export type DocumentUrls = {
+  resume_pdf_url: string,
+  liProfile_pdf_url: string,
+};
+
+export type EnhancedCandidateFields =
+  SelectedCandidateFields &
+  DocumentUrls
+  ;

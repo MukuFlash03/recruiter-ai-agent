@@ -1,8 +1,6 @@
-// import { fetchPdfText } from '@/lib/utils/api_calls';
 import { createClient } from '@/lib/utils/supabase/server';
-import { writeFile } from 'fs/promises';
 import { NextResponse } from 'next/server';
-import path from 'path';
+import { pdfToText } from 'pdf-ts';
 
 export async function POST(request: Request) {
   const formData = await request.formData();
@@ -42,18 +40,10 @@ export async function POST(request: Request) {
     const fileContents = await fileBufferText(rawFiles);
     const result_fetchResumeContent = fileContents["fileResume"];
     const result_fetchLiProfileContent = fileContents["fileLiProfile"];
-    // console.log(result_fetchResumeContent);
-    // console.log(result_fetchLiProfileContent);
 
-    console.log('Profile info:', { name, email, contact, linkedIn, location, workPreference, salaryExpectation, additionalInfo });
+    // console.log('Profile info:', { name, email, contact, linkedIn, location, workPreference, salaryExpectation, additionalInfo });
 
     console.log("Received request in POST route");
-
-    // const supabase = createClient();
-
-    // const {
-    //   data: { user },
-    // } = await supabase.auth.getUser();
 
     if (user?.id) {
       const userEmail = user.email;
@@ -121,7 +111,6 @@ export async function POST(request: Request) {
   }
 }
 
-// async function fileBufferText({ fileResume, fileLiProfile }: { fileResume: File, fileLiProfile: File }) {
 async function fileBufferText(rawFiles: Record<string, File>) {
   const supabase = createClient();
   const {
@@ -141,15 +130,13 @@ async function fileBufferText(rawFiles: Record<string, File>) {
     if (file instanceof File) {
       console.log(`Processing ${key}... inside fileBufferText if`);
       const bytes = await file.arrayBuffer();
-      const buffer = Buffer.from(bytes);
+      // const buffer = Buffer.from(bytes);
 
       const fileName = `${key}.pdf`;
-      const filePath = path.join(process.cwd(), 'lib', 'data', 'documents', fileName);
 
       const { data: ResumesBucketUploadData, error: ResumesBucketUploadError } = await supabase
         .storage
         .from('resumes')
-        // .upload(`${user_id}/${file.name}`, file, {
         .upload(`${user_id}/${fileName}`, file, {
           cacheControl: '3600',
           upsert: true
@@ -168,10 +155,7 @@ async function fileBufferText(rawFiles: Record<string, File>) {
 
 
       try {
-        await writeFile(filePath, buffer);
-        console.log(`File saved to ${filePath}`);
-
-        const result = await fetchPdfText(filePath);
+        const result = await fetchPdfText(fileName);
         // console.log(`Content of ${key}:`, result);
 
         fileContents[key] = result.text;
@@ -180,20 +164,16 @@ async function fileBufferText(rawFiles: Record<string, File>) {
       }
     }
   }
-  console.log("Processed file contents:", fileContents);
+  // console.log("Processed file contents:", fileContents);
 
 
   return fileContents;
 }
 
 
-import fs from 'fs/promises';
-import { pdfToText } from 'pdf-ts';
 
-async function fetchPdfText(filePath: string) {
-  console.log("File Path:", filePath);
 
-  const fileName = filePath.split('/').pop()
+async function fetchPdfText(fileName: string) {
   console.log("File Name:", fileName);
 
   const supabase = createClient();
@@ -222,34 +202,11 @@ async function fetchPdfText(filePath: string) {
 
   const pdfBuffer = Buffer.from(await ResumesBucketDownloadData.arrayBuffer())
 
-  // const blob = new Blob([buffer], {
-  //   type: 'application/pdf'
-  // })
-
-  // const file = new File(
-  //   [blob],
-  //   filePath.split('/').pop() || 'document.pdf',
-  //   {
-  //     type: 'application/pdf',
-  //     lastModified: Date.now()
-  //   }
-  // )
-
   try {
-    const pdf = await fs.readFile(filePath);
-    const text = await pdfToText(pdf);
-
     const textFromPdfBuffer = await pdfToText(pdfBuffer);
-    console.log("\n***********************\n");
-    console.log("\n***********************\n");
-    console.log("textFromPdfBuffer in fetch-pdf-text route.ts:");
-    console.log(textFromPdfBuffer);
-    console.log("\n***********************\n");
-    console.log("\n***********************\n");
-
     return {
       message: 'Text extracted from PDF successfully',
-      text
+      text: textFromPdfBuffer
     };
   } catch (error) {
     console.error('Error extracting text from PDF:', error);
