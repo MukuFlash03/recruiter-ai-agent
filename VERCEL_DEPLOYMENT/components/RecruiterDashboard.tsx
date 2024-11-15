@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import LoadingSpinner from "@/components/ui/loading-spinner"
@@ -183,109 +183,114 @@ export function RecruiterDashboardComponent() {
           </Button>
           <Dialog open={isNewJobModalOpen} onOpenChange={setIsNewJobModalOpen}>
             <DialogTrigger asChild>
-              <Button>
+              <Button variant="outline" className="w-full sm:w-auto group">
                 <PlusCircle className="mr-2 h-4 w-4" />
                 Create New Job
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
-              <DialogHeader>
-                <DialogTitle>Create New Job Posting</DialogTitle>
-                <DialogDescription>Fill in the details for a new job opportunity</DialogDescription>
+            <DialogContent className="sm:max-w-[700px] max-h-[80vh] bg-white dark:bg-gray-900 border-0 shadow-lg fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-y-auto">
+              <DialogHeader className="border-b pb-2 sticky top-0 bg-white dark:bg-gray-900 z-50">
+                <DialogTitle className="text-2xl text-black dark:text-white font-bold">Create New Job Posting</DialogTitle>
+                <DialogDescription className="text-gray-600 dark:text-gray-400">Fill in the details for a new job opportunity</DialogDescription>
               </DialogHeader>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <Label htmlFor="jobTitle">Job Title</Label>
-                  <Input
-                    id="jobTitle"
-                    value={jobTitle}
-                    onChange={(e) => setJobTitle(e.target.value)}
-                    placeholder="e.g. Senior React Developer"
-                    required
-                  />
-                  {/* <Input id="jobTitle" placeholder="e.g. Senior React Developer" required /> */}
-                </div>
-                <div>
-                  <Label htmlFor="companyName">Company Name</Label>
-                  <Input
-                    id="companyName"
-                    value={companyName}
-                    onChange={(e) => setCompanyName(e.target.value)}
-                    placeholder="Your Company Name"
-                    required
-                  />
-                  {/* <Input id="companyName" placeholder="Your Company Name" required /> */}
-                </div>
-                <div>
-                  <Label htmlFor="companyURL">Company URL</Label>
-                  <Input
-                    id="companyURL"
-                    value={companyURL}
-                    onChange={(e) => setCompanyURL(e.target.value)}
-                    placeholder="Your Company URL"
-                    required
-                  />
-                  {/* <Input id="companyURL" placeholder="Your Company Name" required /> */}
-                </div>
-                <div>
-                  <Label htmlFor="jobDescription">Job Description</Label>
-                  <Textarea
-                    id="jobDescription"
-                    value={jobDescription}
-                    onChange={(e) => setJobDescription(e.target.value)}
-                    placeholder="Describe the job role and responsibilities"
-                    required
-                  />
-                  {/* <Textarea id="jobDescription" placeholder="Describe the job role and responsibilities" required /> */}
-                </div>
-                <div>
-                  <Label htmlFor="requiredSkills">Required Skills</Label>
-                  <Textarea
-                    id="requiredSkills"
-                    value={requiredSkills}
-                    onChange={(e) => setRequiredSkills(e.target.value)}
-                    placeholder="List the required skills and qualifications"
-                    required
-                  />
-                  {/* <Textarea id="requiredSkills" placeholder="List the required skills and qualifications" required /> */}
-                </div>
-                <div>
-                  <Label htmlFor="characteristicValues">Characteristic Values</Label>
-                  <Textarea
-                    id="characteristicValues"
-                    value={characteristicValues}
-                    onChange={(e) => setCharacteristicValues(e.target.value)}
-                    placeholder="Describe the company's core principles and values"
-                    required
-                  />
-                  {/* <Textarea id="characteristicValues" placeholder="Describe the company's core princicples and values" required /> */}
-                </div>
-                <div>
-                  <Label>Custom Questions for Candidates</Label>
-                  {questions.map((question, index) => (
-                    <div key={index} className="flex items-center space-x-2 mt-2">
+              <div className="overflow-y-auto max-h-[calc(80vh-120px)] pt-2 px-6">
+                <form onSubmit={handleSubmit} className="space-y-4 p-6">
+                  <div className="flex-1 overflow-y-auto space-y-6 px-6 py-2">
+                    <div>
+                      <Label htmlFor="jobTitle" className="text-black">Job Title</Label>
                       <Input
-                        value={question}
-                        onChange={(e) => handleQuestionChange(index, e.target.value)}
-                        placeholder={`Question ${index + 1}`}
+                        id="jobTitle"
+                        value={jobTitle}
+                        onChange={(e) => setJobTitle(e.target.value)}
+                        placeholder="e.g. Senior React Developer"
+                        required
                       />
+                    </div>
+                    <div>
+                      <Label htmlFor="companyName" className="text-black">Company Name</Label>
+                      <Input
+                        id="companyName"
+                        value={companyName}
+                        onChange={(e) => setCompanyName(e.target.value)}
+                        placeholder="Your Company Name"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="companyURL" className="text-black">Company URL</Label>
+                      <Input
+                        id="companyURL"
+                        value={companyURL}
+                        onChange={(e) => setCompanyURL(e.target.value)}
+                        placeholder="Your Company URL"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="jobDescription" className="text-black">Job Description</Label>
+                      <Textarea
+                        id="jobDescription"
+                        value={jobDescription}
+                        onChange={(e) => setJobDescription(e.target.value)}
+                        placeholder="Describe the job role and responsibilities"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="requiredSkills" className="text-black">Required Skills</Label>
+                      <Textarea
+                        id="requiredSkills"
+                        value={requiredSkills}
+                        onChange={(e) => setRequiredSkills(e.target.value)}
+                        placeholder="List the required skills and qualifications"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="characteristicValues" className="text-black">Characteristic Values</Label>
+                      <Textarea
+                        id="characteristicValues"
+                        value={characteristicValues}
+                        onChange={(e) => setCharacteristicValues(e.target.value)}
+                        placeholder="Describe the company's core principles and values"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-black">Custom Questions for Candidates</Label>
+                      {questions.map((question, index) => (
+                        <div key={index} className="flex items-center space-x-2 mt-2">
+                          <Input
+                            value={question}
+                            onChange={(e) => handleQuestionChange(index, e.target.value)}
+                            placeholder={`Question ${index + 1}`}
+                          />
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="icon"
+                            onClick={() => removeQuestion(index)}
+                          >
+                            <X className="h-4 w-4 text-black" />
+                          </Button>
+                        </div>
+                      ))}
                       <Button
                         type="button"
                         variant="outline"
-                        size="icon"
-                        onClick={() => removeQuestion(index)}
+                        onClick={addQuestion}
+                        className="mt-2 text-black"
                       >
-                        <X className="h-4 w-4" />
+                        <PlusCircle className="h-4 w-4 mr-2 text-black" />
+                        Add Question
                       </Button>
                     </div>
-                  ))}
-                  <Button type="button" variant="outline" onClick={addQuestion} className="mt-2">
-                    <PlusCircle className="h-4 w-4 mr-2" />
-                    Add Question
-                  </Button>
-                </div>
-                <Button type="submit" className="w-full">Post Job</Button>
-              </form>
+                  </div>
+                  <DialogFooter>
+                    <Button type="submit" className="w-full">Post Job</Button>
+                  </DialogFooter>
+                </form>
+              </div>
             </DialogContent>
           </Dialog>
         </div>
@@ -341,6 +346,6 @@ export function RecruiterDashboardComponent() {
           </div>
         </CardContent>
       </Card>
-    </div>
+    </div >
   )
 }
