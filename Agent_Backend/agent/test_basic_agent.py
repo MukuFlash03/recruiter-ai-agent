@@ -181,26 +181,26 @@ async def get_user_info(candidate_data) -> Any:
 
     import json
 
-    with open(experience_file, "w") as f:
-        json.dump(experiences.model_dump(), f, indent=4)
+    # with open(experience_file, "w") as f:
+    #     json.dump(experiences.model_dump(), f, indent=4)
 
-    with open(education_file, "w") as f:
-        json.dump(educations.model_dump(), f, indent=4)
+    # with open(education_file, "w") as f:
+    #     json.dump(educations.model_dump(), f, indent=4)
 
-    with open(skill_file, "w") as f:
-        json.dump(skills.model_dump(), f, indent=4)
+    # with open(skill_file, "w") as f:
+    #     json.dump(skills.model_dump(), f, indent=4)
 
-    with open(project_file, "w") as f:
-        json.dump(projects.model_dump(), f, indent=4)
+    # with open(project_file, "w") as f:
+    #     json.dump(projects.model_dump(), f, indent=4)
 
-    with open(achievement_file, "w") as f:
-        json.dump(achievements.model_dump(), f, indent=4)
+    # with open(achievement_file, "w") as f:
+    #     json.dump(achievements.model_dump(), f, indent=4)
 
-    with open(personal_details_file, "w") as f:
-        json.dump(personal_details.model_dump(), f, indent=4)
+    # with open(personal_details_file, "w") as f:
+    #     json.dump(personal_details.model_dump(), f, indent=4)
 
-    with open(question_answer_file, "w") as f:
-        json.dump(qa_list.model_dump(), f, indent=4)
+    # with open(question_answer_file, "w") as f:
+    #     json.dump(qa_list.model_dump(), f, indent=4)
     
     """
     Uncomment above
