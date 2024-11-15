@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/utils/supabase/server';
 import { NextRequest, NextResponse } from 'next/server';
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   console.log("GET Request received at /api/read-candidate-matched-jobs");

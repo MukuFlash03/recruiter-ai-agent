@@ -1,0 +1,53 @@
+Link: https://www.linkedin.com/jobs/view/4027848446
+
+Senior Machine Learning Engineer 
+California, United States · 2 days ago · 68 applicants
+$220K/yr - $419.8K/yrMatches your job preferences, minimum pay preference is 250000.  RemoteMatches your job preferences, workplace type is Remote.  Full-timeMatches your job preferences, job type is Full-time.  Mid-Senior level
+83 connections work here · 1,538 school alumni work here
+7 of 10 skills match your profile - you may be a good fit
+
+Senior Machine Learning Engineer  at NVIDIA
+Senior Machine Learning Engineer
+NVIDIA · California, United States (Remote)
+
+
+Senior Machine Learning Engineer  at NVIDIA
+Show more options
+About the job
+We're looking for a motivated Senior Machine Learning Engineer, focused on Vector Search, to join NVIDIA’s RAPIDS Machine Learning team. RAPIDS is the open source suite of libraries that combine the performance of modern GPUs with the ease of use of Python APIs. We are working on growing the capabilities of the ML components of RAPIDS as well as integrating into model deployment, inference and other innovative critical infrastructure projects. You’ll join a team of ML, HPC and Software Engineers developing groundbreaking GPU accelerated frameworks. You’ll contribute and guide feature development of RAPIDS ML Projects as well as other open source projects and push the GPU Data Science and ML ecosystems forward.
+
+What You’ll Be Doing
+
+Developing and improving innovative Vector Search and Machine Learning algorithms and pipelines.
+Integrating RAPIDS ML training and inference components into enterprise and open source software packages
+Implementing solutions based on systems that have components in Python, Cython, C++ and CUDA and improving those components.
+Contributing to open source projects, such as RAPIDS RAFT, cuML, and others. Benchmarking, profiling, and optimizing complex algorithms that have components in Python, Cython and C++ on different system architectures, from single node to high scale distributed systems.
+Working closely with Data Scientists, Solution Architects and other groups to integrate, triage, debug and develop feature roadmaps of our tools. 
+
+What We Need To See
+
+8+ years of experience as a ML Engineer or Software Engineer, preferably building and maintaining either Vector Search, Nearest Neighbors or distance based algorithms and/or distributed systems.
+BS, MS in CS/CE or related engineering field (or equivalent experience) 
+Strong Modern C++ programming skills
+Familiarity with Python. 
+Knowledge of one distributed programming framework like Dask or Spark. 
+Familiar with build systems based around CMake and Docker. 
+You care deeply about robust, readable, well documented, well tested, high-performance code. 
+Excited to learn, explore new problem areas, and apply your creativity to some of the most challenging and rewarding problems we have. 
+
+Ways To Stand Out From The Crowd
+
+Significant experience with Vector Databases like Milvus, Pinecone or frameworks like FAISS. 
+Proficiency in CUDA. 
+Understanding of build infrastructure and CI/CD related technologies such as CMake, Docker, Bash scripting, Jenkins, compilers, linkers. 
+Significant contributions and interactions with data science and ML open source projects. 
+Expert knowledge Dask, Spark or other distributed systems. 
+
+NVIDIA is widely considered to be one of the technology world’s most desirable employers. We have some of the most hard-working and talented people in the world working for us. If you're creative and passionate about developing cloud services we want to hear from you!
+
+The base salary range is 220,000 USD - 419,750 USD. Your base salary will be determined based on your location, experience, and the pay of employees in similar positions.
+
+You will also be eligible for equity and benefits .  NVIDIA accepts applications on an ongoing basis. 
+
+NVIDIA is committed to fostering a diverse work environment and proud to be an equal opportunity employer. As we highly value diversity in our current and future employees, we do not discriminate (including in our hiring and promotion practices) on the basis of race, religion, color, national origin, gender, gender expression, sexual orientation, age, marital status, veteran status, disability status or any other characteristic protected by law.
+

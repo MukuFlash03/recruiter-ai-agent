@@ -1,0 +1,82 @@
+Link: https://www.linkedin.com/jobs/view/4012931907
+
+Amazon logo
+Amazon
+Share
+Show more options
+Software Dev Engineer - Computer Science 
+Santa Clara, CA · Reposted 1 day ago · Over 100 applicants
+$99.5K/yr - $200K/yr  Full-timeMatches your job preferences, job type is Full-time.
+113 connections work here · 1,347 school alumni work here
+8 of 10 skills match your profile - you may be a good fit
+
+Software Dev Engineer - Computer Science  at Amazon
+Software Dev Engineer - Computer Science
+Amazon · Santa Clara, CA
+
+Apply
+
+Software Dev Engineer - Computer Science  at Amazon
+Show more options
+About the job
+Description
+
+Do you want to solve business challenges through innovative technology? Do you enjoy working on cutting-edge, scalable services technology in a team environment? Do you like working on industry-defining projects that move the needle?
+
+At Amazon, we hire the best minds in technology to innovate and build on behalf of our customers. The focus we have on our customers is why we are one of the world’s most beloved brands – customer obsession is part of our company DNA. Our Software Development Engineers (SDEs) use cutting-edge technology to solve complex problems and get to see the impact of their work first-hand.
+
+The challenges SDEs solve for at Amazon are big and influence millions of customers, sellers, and products around the world. We are looking for individuals who are passionate about creating new products, features, and services from scratch while managing ambiguity and the pace of a company where development cycles are measured in weeks, not years.
+
+Key job responsibilities
+
+ Collaborate with experienced cross-disciplinary Amazonians to conceive, design, and bring innovative products and services to market
+ Design and build innovative technologies in a large distributed computing environment and help lead fundamental changes in the industry
+ Create solutions to run predictions on distributed systems with exposure to innovative technologies at incredible scale and speed.
+ Build distributed storage, index, and query systems that are scalable, fault-tolerant, low cost, and easy to manage/use.
+ Design and code the right solutions starting with broadly defined problems.
+ Work in an agile environment to deliver high-quality software.
+
+Basic Qualifications
+
+ Bachelor’s degree or higher in Computer Science is required.
+ To qualify, applicants should have earned a Bachelor’s degree or higher between June 2023 and August 2024. Possible start dates for this role are between July to November 2024.
+ Programming experience in internship or coursework with programming language such as Python and/or C or C++.
+
+Preferred Qualifications
+
+ Master’s or PhD degree with focus on computer science
+ Strong knowledge of Computer Science fundamentals in object-oriented design, data structures, algorithm design, problem solving, and complexity analysis
+ Experience with distributed, multi-tiered systems, algorithms, and relational databases.
+ Experience in optimization mathematics such as linear programming and nonlinear optimization.
+
+Why AWS
+
+Amazon Web Services (AWS) is the world’s most comprehensive and broadly adopted cloud platform. We pioneered cloud computing and never stopped innovating — that’s why customers from the most successful startups to Global 500 companies trust our robust suite of products and services to power their businesses.
+
+Inclusive Team Culture
+
+Here at AWS, it’s in our nature to learn and be curious. Our employee-led affinity groups foster a culture of inclusion that empower us to be proud of our differences. Ongoing events and learning experiences, including our Conversations on Race and Ethnicity (CORE) and AmazeCon (gender diversity) conferences, inspire us to never stop embracing our uniqueness.
+
+Work/Life Balance
+
+We value work-life harmony. Achieving success at work should never come at the expense of sacrifices at home, which is why flexible work hours and arrangements are part of our culture. When we feel supported in the workplace and at home, there’s nothing we can’t achieve in the cloud.
+
+Mentorship and Career growth
+
+We have a career path for you no matter what stage you’re in when you start here. We’re continuously raising our performance bar as we strive to become Earth’s Best Employer. That’s why you’ll find endless knowledge-sharing, mentorship and other career-advancing resources here to help you develop into a better-rounded professional.
+
+Amazon is committed to a diverse and inclusive workplace. Amazon is an equal opportunity employer and does not discriminate on the basis of race, national origin, gender, gender identity, sexual orientation, protected veteran status, disability, age, or other legally protected status. For individuals with disabilities who would like to request an accommodation, please visit https://www.amazon.jobs/en/disability/us.
+
+Los Angeles County applicants: Job duties for this position include: work safely and cooperatively with other employees, supervisors, and staff; adhere to standards of excellence despite stressful conditions; communicate effectively and respectfully with employees, supervisors, and staff to ensure exceptional customer service; and follow all federal, state, and local laws and Company policies. Criminal history may have a direct, adverse, and negative relationship with some of the material job duties of this position. These include the duties and responsibilities listed above, as well as the abilities to adhere to company policies, exercise sound judgment, effectively manage stress and work safely and respectfully with others, exhibit trustworthiness and professionalism, and safeguard business operations and the Company’s reputation. Pursuant to the Los Angeles County Fair Chance Ordinance, we will consider for employment qualified applicants with arrest and conviction records.
+
+Our compensation reflects the cost of labor across several US geographic markets. The base pay for this position ranges from $99,500/year in our lowest geographic market up to $200,000/year in our highest geographic market. Pay is based on a number of factors including market location and may vary depending on job-related knowledge, skills, and experience. Amazon is a total compensation company. Dependent on the position offered, equity, sign-on payments, and other forms of compensation may be provided as part of a total compensation package, in addition to a full range of medical, financial, and/or other benefits. For more information, please visit https://www.aboutamazon.com/workplace/employee-benefits. This position will remain posted until filled. Applicants should apply via our internal or external career site.
+
+
+Company - Amazon.com Services LLC
+
+Job ID: A2688831
+Pay found in job post
+Retrieved from the description.
+
+Base salary
+$99,500/yr - $200,000/yr (from job description)
