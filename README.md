@@ -1,4 +1,4 @@
-# recruiter-ai-agent-aiiffo-hackathon
+# levelhire-ai-agent-ted-ai-hackathon
 
 The workflow
 
