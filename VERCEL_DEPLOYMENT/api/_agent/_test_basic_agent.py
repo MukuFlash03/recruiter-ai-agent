@@ -21,7 +21,7 @@ current_file_path = os.path.abspath(__file__)
 parent_directory = os.path.dirname(os.path.dirname(current_file_path))
 sys.path.append(parent_directory)
 
-from entities.applicant import (
+from _custom_types._applicant import (
     User,
     ExperienceList,
     EducationList,
@@ -50,7 +50,7 @@ personal_details_file = os.path.join(tmpp_db, "personal_details.json")
 question_answer_file = os.path.join(tmpp_db, "question_answers.json")
 achievement_file = os.path.join(tmpp_db, "achievements.json")
 
-from basic_agent import (
+from _agent._basic_agent import (
     parse_input,
     get_openai_text_response,
     parse_input_async,

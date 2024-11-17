@@ -10,7 +10,7 @@ parent_directory = os.path.dirname(os.path.dirname(current_file_path))
 sys.path.append(parent_directory)
 
 
-from entities.applicant import (  # type: ignore
+from _custom_types._applicant import (  # type: ignore
     User,
     ExperienceList,
     EducationList,
@@ -158,7 +158,8 @@ email, location and phone from the resume.""",
         user_content="Email : dheerajpai@fgmail.com<Dheeraj>, Palo Alto, 268-987-DPAI",
         response_format=PersonalDetails,
     )
-    return personal_details
+    # return personal_details
+    return ""
 
 
 if __name__ == "__main__":

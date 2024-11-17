@@ -3,7 +3,7 @@ from typing import Union, Dict, Any, List, Tuple, Set
 from fastapi import HTTPException
 from dotenv import load_dotenv
 import os
-from db.helpers import \
+from _db._helpers import \
   organize_interview_data, \
   get_org_interviews_data, \
   organize_job_postings_data, \
@@ -11,7 +11,7 @@ from db.helpers import \
   organize_candidate_profiles, \
   get_org_candidate_profiles, \
   organize_all_job_postings_data
-from custom_types import RelevantContext
+from _custom_types._agent import RelevantContext
 
 load_dotenv()
 

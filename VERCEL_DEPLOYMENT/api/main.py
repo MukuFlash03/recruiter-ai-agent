@@ -24,12 +24,12 @@ sys.path.append(parent_directory)
 sys.path.append(f"{parent_directory}/Agent_Backend")
 sys.path.append(f"{parent_directory}/Agent_Backend/agent")
 
-from db.operations import get_candidate_profiles, get_job_postings, get_interview_data
-from custom_types import JobRecruiterID, CandidateID
+from api._db._operations import get_candidate_profiles, get_job_postings, get_interview_data
+from api._custom_types._agent import JobRecruiterID, CandidateID
 
-from agent.test_basic_agent import get_user_info
-from api.agent.workflow_recruiter import agent_matched_candidates
-from api.agent.workflow_candidate import agent_matched_jobs
+from api._agent._test_basic_agent import get_user_info
+from api._agent._workflow_recruiter import agent_matched_candidates
+from api._agent._workflow_candidate import agent_matched_jobs
 
 app = FastAPI()
 

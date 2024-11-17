@@ -9,7 +9,7 @@
 
 
 from typing import Any
-from basic_agent import (
+from _agent._basic_agent import (
     parse_input_async,
     parse_input,
     groq_text,
@@ -17,7 +17,7 @@ from basic_agent import (
     get_openai_text_response_async,
 )
 import asyncio
-from test_basic_agent import (
+from _agent._test_basic_agent import (
     experience_file,
     education_file,
     project_file,
@@ -30,14 +30,14 @@ from test_basic_agent import (
 
 from pydantic import BaseModel
 import json
-from db.operations import \
+from _db._operations import \
   get_candidate_profiles, \
   get_job_postings, \
   get_interview_data, \
   insert_interviews_data, \
   get_all_job_postings
   
-from db.helpers import \
+from _db._helpers import \
   organize_interview_data, \
   get_org_interviews_data, \
   organize_job_postings_data, \
@@ -45,9 +45,9 @@ from db.helpers import \
   organize_candidate_profiles, \
   get_org_candidate_profiles, \
   get_org_all_job_postings
-from custom_types import CandidateID
+from _custom_types._agent import CandidateID
 
-from entities.applicant import (
+from _custom_types._applicant import (
     User,
     ExperienceList,
     EducationList,
