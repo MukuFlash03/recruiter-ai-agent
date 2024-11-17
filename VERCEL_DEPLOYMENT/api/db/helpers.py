@@ -73,3 +73,25 @@ def get_org_candidate_profiles(
     candidate_id: str
 ) -> List[Dict[str, Any]]:
     return organized_data.get(candidate_id, [])
+
+def organize_all_job_postings_data(
+        job_postings_data: List[Dict[str, Any]]
+) -> Dict[str, Dict[str, Any]]:
+    organized_data = {}
+    
+    for job_posting in job_postings_data:
+        job_id = str(job_posting['job_id'])
+        print("\n\nJob ID in organize_job_postings_data:")
+        print(job_id)
+        print("Type of job_id:", type(job_id))
+        
+        if job_id not in organized_data:
+            organized_data[job_id] = {}
+        print("\n\nChecking job posting organized...")
+        organized_data[job_id] = job_posting
+
+    return organized_data
+
+def get_org_all_job_postings(organized_data: Dict[str, Dict[str, Any]], 
+                   job_id: str) -> Dict[str, Any]:
+    return organized_data.get(job_id, {})

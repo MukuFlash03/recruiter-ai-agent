@@ -30,15 +30,22 @@ from test_basic_agent import (
 
 from pydantic import BaseModel
 import json
-from db.operations import get_candidate_profiles, get_job_postings, get_interview_data, insert_interviews_data
+from db.operations import \
+  get_candidate_profiles, \
+  get_job_postings, \
+  get_interview_data, \
+  insert_interviews_data, \
+  get_all_job_postings
+  
 from db.helpers import \
   organize_interview_data, \
   get_org_interviews_data, \
   organize_job_postings_data, \
   get_org_job_postings, \
   organize_candidate_profiles, \
-  get_org_candidate_profiles
-from custom_types import JobRecruiterID
+  get_org_candidate_profiles, \
+  get_org_all_job_postings
+from custom_types import CandidateID
 
 from entities.applicant import (
     User,
@@ -318,20 +325,17 @@ async def select_candidate(user_profile_list: list[Any], input_questions: list[s
     return candidate_selection, answers, relevant_contexts, candidate_characterstics
 
 
-async def end_to_end_agent(jobDetails: JobRecruiterID):
-    print("Inside end to end agent workflow\n\n")
+async def agent_matched_jobs(candidate_id: str):
+    print("\n\nInside agent_matched_jobs workflow")
 
-    recruiter_id, job_id = jobDetails.recruiter_id, jobDetails.job_id
+    print("\n\nCandidate ID:", candidate_id)
 
-    print("\n\nRecruiter ID:", recruiter_id)
-    print("\n\nJob ID:", job_id)
+    candidates_data, organized_candidate_profiles, keys_list = get_candidate_profiles(candidate_id)
 
-    candidates_data, organized_candidate_profiles, keys_list = get_candidate_profiles()
-
-    print("\n\nCandidates Data:")
+    print("\n\nCandidate Data:")
     print(candidates_data)
     print()
-    print("\n\nOrganized Candidate Profiles:")
+    print("\n\nOrganized Candidate Profile:")
     print(organized_candidate_profiles)
     print()
     print("\n\nKeys List:")
@@ -342,39 +346,51 @@ async def end_to_end_agent(jobDetails: JobRecruiterID):
     print("\n\nStandard Questions:")
     print(standard_questions)
 
-    job_postings_data, organized_job_postings  = get_job_postings(recruiter_id, job_id)
+    candidate_data = organized_candidate_profiles[candidate_id]
+
+    experiences, educations, skills, projects, achievements, personal_details, qa_list = (
+        await get_user_info(candidate_data)
+    )
+
+    job_postings_data, organized_job_postings, keys_list  = get_all_job_postings()
     print("\n\nJob Postings:")
     print(job_postings_data)
     print()
     print("\n\nOrganized Job Postings:")
     print(organized_job_postings)
     print()
-
-    specific_job_data = get_org_job_postings(organized_job_postings, recruiter_id, job_id)
-    
-    print("\n\nSpecific Job Posting:")
-    print(specific_job_data)
-
-    custom_questions = specific_job_data["custom_questions"]
-    print("\n\nCustom Questions:")
-    print(custom_questions)
     
     json_to_return = {}
-    for candidate_id in keys_list:
-        print("\n\n Checking candidate data in for loop in workflow for candidate: ", candidate_id)
+    for job_id in keys_list:
+        print("\n\n Checking job posting data in for loop in workflow for job_id: ", job_id)
 
-        candidate_data = organized_candidate_profiles[candidate_id]
-        print(candidate_data)
-        experiences, educations, skills, projects, achievements, personal_details, qa_list = (
-            await get_user_info(candidate_data)
-        )
+        job_posting_data = organized_job_postings[job_id]
+        print("\n\nJob Posting Data:")
+        print(job_posting_data)
+
+        recruiter_id = job_posting_data["recruiter_id"]
+        print("\n\nRecruiter ID:")
+        print(recruiter_id)
+
+        # experiences, educations, skills, projects, achievements, personal_details, qa_list = (
+        #     await get_user_info(candidate_data)
+        # )
+
+        # specific_job_data = get_org_all_job_postings(organized_job_postings, job_id)      
+        # print("\n\nSpecific Job Posting Data:")
+        # print(specific_job_data)
+
+        # custom_questions = specific_job_data["custom_questions"]
+        custom_questions = job_posting_data["custom_questions"]
+        print("\n\nCustom Questions:")
+        print(custom_questions)
 
         # all_questions = standard_questions + custom_questions
         all_questions = custom_questions
         print("\n\nAll Questions:")
         print(all_questions)
 
-        print("\n\nInside end to end agent workflow; before select_candidate()")
+        print("\n\nInside agent_matched_jobs workflow; before select_candidate()")
 
         candidate_selection, answers, relevant_contexts, candidate_characterstics = await select_candidate(
             user_profile_list=[
@@ -389,9 +405,9 @@ async def end_to_end_agent(jobDetails: JobRecruiterID):
             input_questions=all_questions,
         )
 
-        print("Inside end to end agent workflow; after select_candidate()")
+        print("Inside agent_matched_jobs workflow; after select_candidate()")
 
-        print("\n\nCandidate Selection:")
+        print("\n\nCandidate Matched Jobs Selection:")
         print(candidate_selection)
 
         # print("\n\nMatch percentage:")
@@ -412,29 +428,18 @@ async def end_to_end_agent(jobDetails: JobRecruiterID):
         ]
         json_to_return[candidate_id]["candidate_characterstics"] = candidate_characterstics.model_dump()
 
-        print("\n\nJSON to return in workflow end to end agent for candidate:", candidate_id)
+        print("\n\nJSON to return in workflow agent_matched_jobs for job_id:", job_id)
         print(json.dumps(json_to_return, indent=4))
         # print(json_to_return)
 
+        print("Before inserting matched jobs interviews data to DB")
+        insert_interviews_data(json_to_return)
+        print("After inserting matched jobs interviews data to DB")
     
-    print("Before inserting interviews data to DB")
-    insert_interviews_data(json_to_return)
-    print("After inserting interviews data to DB")
+        json_to_return = {}
 
-    json_to_return = {}
-    return json_to_return
-
+    print("\n\nReturning back after executing workflow agent_matched_jobs")
+    # return json_to_return
 
 if __name__ == "__main__":
-
-    # asyncio.run(
-    #     end_to_end_agent(
-    #         all_questions=[
-    #             "How good is the candidate for Actor at a hollywood movie?",
-    #             # "How good is the candidate for Full Stack development?",
-    #             # "How good is the candidate for Frontend development?",
-    #             # "How good is the candidate for Backend development?",
-    #         ]
-    #     )
-    # )
     print("Running workflow main...")

@@ -25,6 +25,9 @@ from entities.applicant import (  # type: ignore
 # Define a generic type variable
 T = TypeVar("T", bound=BaseModel)
 
+print("Inside basic_agent.py")
+print("OpenAI API key:", os.getenv("OPENAI_API_KEY"))
+
 client: OpenAI = OpenAI()
 async_client: AsyncOpenAI = AsyncOpenAI()
 
@@ -33,7 +36,8 @@ def parse_input(
     system_content: str,
     user_content: str,
     response_format: Type[T],
-    model: str = "gpt-4o-2024-08-06",
+    # model: str = "gpt-4o-2024-08-06",
+    model: str = "gpt-4o-mini",
 ) -> T:
     """
     Generates a response from OpenAI based on the given inputs and model.
@@ -76,7 +80,8 @@ async def parse_input_async(
     system_content: str,
     user_content: str,
     response_format: Type[T],
-    model: str = "gpt-4o-2024-08-06",
+    # model: str = "gpt-4o-2024-08-06",
+    model: str = "gpt-4o-mini",
 ) -> T:
     """
     Generates a response from OpenAI based on the given inputs and model.
@@ -106,7 +111,8 @@ async def parse_input_async(
 
 
 def get_openai_text_response(
-    system_prompt: str, user_prompt: str, model: str = "gpt-4o"
+    # system_prompt: str, user_prompt: str, model: str = "gpt-4o"
+    system_prompt: str, user_prompt: str, model: str = "gpt-4o-mini"
 ) -> str:
 
     response = client.chat.completions.create(
@@ -124,7 +130,8 @@ def get_openai_text_response(
 
 
 async def get_openai_text_response_async(
-    system_prompt: str, user_prompt: str, model: str = "gpt-4o"
+    # system_prompt: str, user_prompt: str, model: str = "gpt-4o"
+    system_prompt: str, user_prompt: str, model: str = "gpt-4o-mini"
 ) -> str:
 
     response = await async_client.chat.completions.create(

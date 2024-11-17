@@ -132,8 +132,8 @@ export function RecruiterDashboardComponent() {
     setIsNewJobModalOpen(false)
   }
 
-  const startMatchingProcess = async (jobId: string, recruiter_id: string) => {
-    console.log("Inside startMatchingProcess onClick for jobId:", jobId);
+  const startCandidatesMatchingProcess = async (jobId: string, recruiter_id: string) => {
+    console.log("Inside startCandidatesMatchingProcess onClick for jobId:", jobId);
 
     setProcessingJobs(prev => new Set(prev).add(jobId));
     console.log("Processing jobs set:", processingJobs);
@@ -146,12 +146,12 @@ export function RecruiterDashboardComponent() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ jobId, recruiter_id }),
       });
-      if (!response.ok) throw new Error('Failed to start matching process');
+      if (!response.ok) throw new Error('Failed to start candidates matching process');
 
       const updatedJobPostings = await fetchJobPostings();
       setJobPostingsData(updatedJobPostings.data);
     } catch (error) {
-      console.error('Error starting matching process:', error);
+      console.error('Error starting candidates matching process:', error);
     } finally {
       setProcessingJobs(prev => {
         const newSet = new Set(prev);
@@ -160,7 +160,7 @@ export function RecruiterDashboardComponent() {
       });
     }
 
-    console.log("After fetching job postings data via API route");
+    console.log("After fetching matched candidates via API route");
   };
 
   if (loading)
@@ -323,7 +323,7 @@ export function RecruiterDashboardComponent() {
                     <Button
                       variant="outline"
                       size="sm"
-                      onClick={() => startMatchingProcess(job.job_id.toString(), user.id)}
+                      onClick={() => startCandidatesMatchingProcess(job.job_id.toString(), user.id)}
                       disabled={processingJobs.has(job.job_id.toString())}
                     >
                       {processingJobs.has(job.job_id.toString()) ? 'Processing...' : 'Fetch Matching Candidates'}

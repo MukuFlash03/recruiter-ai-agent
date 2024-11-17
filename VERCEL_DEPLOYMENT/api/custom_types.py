@@ -6,6 +6,8 @@ class JobRecruiterID(BaseModel):
   recruiter_id: str
   job_id: str
 
+class CandidateID(BaseModel):
+  candidate_id: str
 
 class RelevantContext(BaseModel):
   yes_or_no: bool

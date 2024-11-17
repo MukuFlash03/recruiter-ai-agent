@@ -9,7 +9,8 @@ from db.helpers import \
   organize_job_postings_data, \
   get_org_job_postings, \
   organize_candidate_profiles, \
-  get_org_candidate_profiles
+  get_org_candidate_profiles, \
+  organize_all_job_postings_data
 from custom_types import RelevantContext
 
 load_dotenv()
@@ -27,6 +28,7 @@ supabase: Client = create_client(url, key)
 def get_candidate_profiles(
     candidate_id: Union[str, None] = None
 ) -> Tuple[List[Dict[str, Any]] | None, Dict[str, Dict[str, Any]], List[str]]:
+  print("\nCandidate id in get_candidate_profiles: %s" % candidate_id)
   try:
     candidates_data: List[Dict[str, Any]] | None = []
     if candidate_id is None:
@@ -266,4 +268,35 @@ def insert_interviews_data(
     return response
   except Exception as e:
       print(f"message: Candidate profile not found; Error: {e}")
+      return None, {}, []
+
+def get_all_job_postings(
+) -> Tuple[List[Dict[str, Any]] | None, Dict[str, Dict[str, Any]], List[str]]:
+  try:
+    job_postings_data: List[Dict[str, Any]] | None = []
+    job_postings = supabase\
+        .table("job_postings")\
+        .select("*")\
+        .execute()
+    # print(job_postings)
+    job_postings_data = job_postings.data
+    # return job_postings.data
+    
+    if job_postings_data is None:
+        raise HTTPException(status_code=404, detail="Jobs data not found")
+    
+    print("\n\nJob postings data in supabase get job postings operations:")
+    print(job_postings_data)
+    
+    organized_job_postings = organize_all_job_postings_data(job_postings_data)
+    print("\n\nOrganized job postings:")
+    print(organized_job_postings)
+
+    print("\n\nOrganized job postings keys:")
+    keys_list = list(organized_job_postings.keys())
+    print(keys_list)
+
+    return job_postings_data, organized_job_postings, keys_list
+  except Exception as e:
+      print(f"message: Job posting not found; Error: {e}")
       return None, {}, []

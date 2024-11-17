@@ -22,6 +22,7 @@ export async function GET(request: NextRequest) {
           `
       )
       .eq('candidate_id', candidate_id)
+      .gt('match_pct', 90)
       ;
 
     if (InterviewJobsError) throw InterviewJobsError;

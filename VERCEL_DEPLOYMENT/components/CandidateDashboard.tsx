@@ -66,6 +66,8 @@ export function CandidateDashboardPage({ candidate_id }: { candidate_id: string 
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null);
   const [selectedJob, setSelectedJob] = useState<any>(null)
+  const [fetchingMatchedJobs, setFetchingMatchedJobs] = useState(false)
+
   const router = useRouter()
 
   const [user, setUser] = useState<any>(null);
@@ -114,18 +116,18 @@ export function CandidateDashboardPage({ candidate_id }: { candidate_id: string 
       // setLoading(false)
     }
 
-    const loadData = async () => {
-      try {
-        const data = await fetchCandidateMatchedJobs();
-        console.log("Fetched candidate matched jobs in loadData:", data.MatchedJobsData);
-        const jobListingsWithStatus = data.MatchedJobsData.map(job => ({ ...job, status: "" }));
-        setMatchedJobs(jobListingsWithStatus);
-      } catch (err) {
-        setError('Failed to fetch candidate matched jobs data');
-      } finally {
-        setLoading(false);
-      }
-    }
+    // const loadData = async () => {
+    //   try {
+    //     const data = await fetchCandidateMatchedJobs();
+    //     console.log("Fetched candidate matched jobs in loadData:", data.MatchedJobsData);
+    //     const jobListingsWithStatus = data.MatchedJobsData.map(job => ({ ...job, status: "" }));
+    //     setMatchedJobs(jobListingsWithStatus);
+    //   } catch (err) {
+    //     setError('Failed to fetch candidate matched jobs data');
+    //   } finally {
+    //     setLoading(false);
+    //   }
+    // }
 
     fetchUser();
     initializeDashboard()
@@ -133,10 +135,14 @@ export function CandidateDashboardPage({ candidate_id }: { candidate_id: string 
   }, [])
 
   const handleRefreshJobs = async () => {
-    setLoading(true)
+    // setLoading(true)
+    setFetchingMatchedJobs(true);
+
     // const jobListings = await fetchJobs()
     // setActiveJobs(jobListings)
     try {
+      await startJobsMatchingProcess(user.id)
+
       const data = await fetchCandidateMatchedJobs()
 
       if (Array.isArray(data.MatchedJobsData)) {
@@ -152,9 +158,33 @@ export function CandidateDashboardPage({ candidate_id }: { candidate_id: string 
     } catch (err) {
       setError('Failed to refresh jobs');
     } finally {
-      setLoading(false)
+      // setLoading(false)
+      setFetchingMatchedJobs(false);
     }
   }
+
+  const startJobsMatchingProcess = async (candidate_id: string) => {
+    console.log("Inside startJobsMatchingProcess onClick for candidate_id:", candidate_id);
+    console.log("user_id:", user.id);
+    console.log("candidate_id:", candidate_id);
+
+    console.log("Processing jobs set:", fetchingMatchedJobs);
+
+    console.log("Before fetching job postings data via API route");
+
+    try {
+      const response = await fetch('/api/start-job-matching', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ candidate_id: user.id }),
+      });
+      if (!response.ok) throw new Error('Failed to start jobs matching process');
+    } catch (error) {
+      console.error('Error starting jobs matching process:', error);
+    }
+
+    console.log("After fetching matched job postings data via API route");
+  };
 
   if (loading) {
     return (
@@ -260,6 +290,17 @@ export function CandidateDashboardPage({ candidate_id }: { candidate_id: string 
               ) : (
                 <CardDescription>Check back later to see matched jobs...</CardDescription>
               )}
+              <div className="flex justify-start">
+                <Button
+                  // variant="outline"
+                  // size="sm"
+                  // className="w-auto"
+                  onClick={handleRefreshJobs}
+                  disabled={fetchingMatchedJobs}
+                >
+                  {fetchingMatchedJobs ? 'Refreshing...' : 'Refresh Jobs'}
+                </Button>
+              </div>
             </CardHeader>
             <CardContent>
               <ul className="space-y-4">
@@ -334,8 +375,13 @@ export function CandidateDashboardPage({ candidate_id }: { candidate_id: string 
               </ul>
             </CardContent>
             {/* <CardFooter>
-              <Button onClick={handleRefreshJobs} disabled={loading}>
-                {loading ? 'Refreshing...' : 'Refresh Jobs'}
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleRefreshJobs}
+                disabled={fetchingMatchedJobs}
+              >
+                {fetchingMatchedJobs ? 'Refreshing...' : 'Refresh Jobs'}
               </Button>
             </CardFooter> */}
           </Card>

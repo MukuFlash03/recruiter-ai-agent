@@ -33,10 +33,11 @@ from db.helpers import (
     organize_candidate_profiles,
     get_org_candidate_profiles,
 )
-from custom_types import JobRecruiterID
+from custom_types import JobRecruiterID, CandidateID
 
 from agent.test_basic_agent import get_user_info
-from agent.workflow import end_to_end_agent
+from api.agent.workflow_recruiter import agent_matched_candidates
+from api.agent.workflow_candidate import agent_matched_jobs
 
 app = FastAPI()
 
@@ -156,9 +157,31 @@ jobDetails: JobRecruiterID
     # Simulate some async processing
     await asyncio.sleep(1)  # Simulate IO-bound operation
 
-    return_json = await end_to_end_agent(jobDetails)
+    return_json = await agent_matched_candidates(jobDetails)
 
     return return_json
+
+
+@app.post("/api/py/get_matched_jobs")
+async def getMatchedJobs(
+  candidateDetails: CandidateID
+# ) -> Union[Dict[str, Any], Any]:
+):
+    """
+    An asynchronous API route that returns matching jobs for a candidate.
+    """
+    print("Inside getMatchedJobs FastAPI route in main.py")
+    # Simulate some async processing
+    await asyncio.sleep(1)  # Simulate IO-bound operation
+
+    # return_json = await agent_matched_jobs(candidateDetails.candidate_id)
+    await agent_matched_jobs(candidateDetails.candidate_id)
+
+    return {
+        "message": "Completed getting matched jobs in FastAPI server",
+    }
+
+    # return return_json
 
 
 # Synchronous route with background task
