@@ -4,5 +4,11 @@
       "excludeFiles": "{.next,*.cache,node_modules}/**",
       "maxDuration": 60
     }
-  }
+  },
+  "routes": [
+    {
+      "src": "/api/py/(.*)",
+      "dest": "/api/main.py"
+    }
+  ]
 }
