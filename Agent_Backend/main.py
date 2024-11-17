@@ -154,8 +154,8 @@ jobDetails: JobRecruiterID
       await asyncio.sleep(1)  # Simulate IO-bound operation
       return_json = await end_to_end_agent(jobDetails)
 
-      logging.info(f"analyze_notes completed in {time.time() - start_time:.2f} seconds")
-      print(f"analyze_notes completed in {time.time() - start_time:.2f} seconds")
+      logging.info(f"get_candidates_analysis completed in {time.time() - start_time:.2f} seconds")
+      print(f"get_candidates_analysis completed in {time.time() - start_time:.2f} seconds")
 
       return return_json
     except asyncio.TimeoutError:

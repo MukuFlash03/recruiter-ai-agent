@@ -14,7 +14,7 @@ export async function startJobCandidateMatching(jobDetails: JobRecruiterID) {
 
   const url = process.env.NODE_ENV === 'development'
     ? `http://127.0.0.1:8000/api/py/get_candidates_analysis`
-    : `/api/py/generate-notes-get_candidates_analysis`;
+    : `/api/py/get_candidates_analysis`;
 
   console.log("Requesting URL:", url);
 
@@ -46,7 +46,7 @@ export async function startCandidateJobMatching(candidate_id: string) {
 
   const url = process.env.NODE_ENV === 'development'
     ? `http://127.0.0.1:8000/api/py/get_matched_jobs`
-    : `/api/py/generate-notes-get_matched_jobs`;
+    : `/api/py/get_matched_jobs`;
 
   console.log("Requesting URL:", url);
 
