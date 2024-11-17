@@ -53,16 +53,16 @@ export async function POST(request: Request) {
       if (error) {
         console.error('Error during matching process:', error);
       } else {
-        console.log('Matching process completed for job:', jobId);
+        console.log('Job->Candidates Matching process completed for job:', jobId);
       }
     } else {
       console.error('User ID is not available.');
     }
 
-    return NextResponse.json({ message: 'Matching process completed for job' });
+    return NextResponse.json({ message: 'Job->Candidates Matching process completed for job' });
   } catch (error) {
-    console.error('Error in matching process:', error);
-    return NextResponse.json({ error: 'Error in matching process' }, { status: 500 });
+    console.error('Error in job->candidates matching process:', error);
+    return NextResponse.json({ error: 'Error in job->candidates matching process' }, { status: 500 });
   }
 }
 
