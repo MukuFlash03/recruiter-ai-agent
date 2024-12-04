@@ -1,4 +1,5 @@
 # Recruit AI Agentic Platform
+Try it out: [Preview](https://recruit-ai-agent.vercel.app)
 
 <img width="1439" alt="Screenshot 2024-12-03 at 5 49 47 PM" src="https://github.com/user-attachments/assets/57aa91e1-e515-4a08-bc8e-a92911de1751">
 
