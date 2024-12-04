@@ -1,12 +1,12 @@
-# levelhire-ai-agent-ted-ai-hackathon
+# Recruit AI Agentic Platform
+
+<img width="1439" alt="Screenshot 2024-12-03 at 5 49 47 PM" src="https://github.com/user-attachments/assets/57aa91e1-e515-4a08-bc8e-a92911de1751">
+
+-------
 
 The workflow
 
-Recruiter workflow
-
-- The recruiter will upload the job description.
-- The recruiter will also add some questions.
-- The recruiter 
+A. Recruiter workflow
 
 ```mermaid
 
@@ -35,6 +35,7 @@ graph TD
 
 ```
 
+B. Candidate workflow
 
 ```mermaid
 
@@ -71,4 +72,65 @@ graph TD
     
 
 ```
+
+-------
+
+Screenshots:
+
+#### A. Recruiters
+
+1. Recruiter Dashboard
+
+<img width="1439" alt="Screenshot 2024-12-03 at 5 59 14 PM" src="https://github.com/user-attachments/assets/decbe337-9493-4167-a0e6-bc7d2e84d17a">
+
+----------
+
+2. Candidate Evaluation
+
+<img width="1439" alt="Screenshot 2024-12-03 at 5 59 32 PM" src="https://github.com/user-attachments/assets/db2813cd-c18e-4436-a1d9-db6cc8431c0a">
+
+-------
+
+3. Candidate Comparison
+
+<img width="819" alt="Screenshot 2024-12-03 at 6 00 09 PM" src="https://github.com/user-attachments/assets/38ebf31a-492d-4e30-94cc-59b6b8bd5ada">
+
+-------
+
+#### B. Candidates
+
+1. Candidate Dashboard
+
+<img width="1439" alt="Screenshot 2024-12-03 at 6 00 42 PM" src="https://github.com/user-attachments/assets/0536744f-435c-45ff-84c6-6ff84021b83e">
+
+---------
+
+2. Candidate Profile
+
+<img width="1439" alt="Screenshot 2024-12-03 at 6 01 00 PM" src="https://github.com/user-attachments/assets/28ff8b93-10a2-4948-8202-ad3927023182">
+
+
+-------
+
+3. Interview Process
+
+<img width="702" alt="Screenshot 2024-12-03 at 6 01 22 PM" src="https://github.com/user-attachments/assets/54d96e49-8696-426f-8c4a-73970df8ae08">
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
